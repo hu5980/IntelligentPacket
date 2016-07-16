@@ -28,7 +28,7 @@
     self.nickNameTextField.placeholder = L(@"Please enter your nickName");
     self.codeTextFeild.placeholder = L(@"Please enter your code");
     [self.registerButton setTitle:L(@"register") forState:UIControlStateNormal];
-    [self.getCodeButton setTitle:L(@"code") forState:UIControlStateNormal];
+    [self.getCodeButton setTitle:L(@"get code") forState:UIControlStateNormal];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -11,11 +11,13 @@
 #import "ITPAddBabWithIDViewController.h"
 #import "SafeAreaViewController.h"
 #import "FeedBackViewController.h"
+#import "ITPManageCell.h"
 
 @interface ITPManageVC ()<UITableViewDelegate, UITableViewDataSource>
 {
 
     UISwitch * __languageSwitch;
+    ITPManageCell * headerCell ;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -52,7 +54,8 @@
     if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     }
-    
+    [self.tableView registerNib:[UINib nibWithNibName:@"ITPManageCell" bundle:nil] forCellReuseIdentifier:@"ITPManageCell"];
+
     
     __languageSwitch = [UISwitch new];
     __languageSwitch.thumbTintColor = [UIColor redColor];
@@ -150,29 +153,44 @@ NSString * manageData[manageDataCount___] = {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return manageDataCount___;
+    return manageDataCount___+1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    if (indexPath.row == 0) {
+        return 80;
+    }else return 50;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-    if (!cell) {
-        cell  = [[UITableViewCell alloc]initWithStyle:0 reuseIdentifier:@"UITableViewCell"];
-    }
-    
-    cell.textLabel.text = L(manageData[indexPath.row]);
-    
-    if (indexPath.row == 3) {
-        cell.accessoryView = __languageSwitch;
-    }else {
+    if (indexPath.row == 0) {
+        
+        ITPManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ITPManageCell"];
+        cell.headerImage.image = [UIImage imageNamed:@"已注册商标"];
+        
+        cell.nickName.text = @"Seth Chen";
         UIImageView  * arrow  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"展开去到"]];
         cell.accessoryView = arrow;
+
+        return cell;
+    }else {
+    
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+        if (!cell) {
+            cell  = [[UITableViewCell alloc]initWithStyle:0 reuseIdentifier:@"UITableViewCell"];
+        }
+        
+        cell.textLabel.text = L(manageData[indexPath.row-1]);
+        
+        if (indexPath.row == 4) {
+            cell.accessoryView = __languageSwitch;
+        }else {
+            UIImageView  * arrow  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"展开去到"]];
+            cell.accessoryView = arrow;
+        }
+        return cell;
     }
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -184,13 +202,21 @@ NSString * manageData[manageDataCount___] = {
     switch (indexPath.row) {
         case 0:
         {
+            
+//            ITPContactViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"contacts"];
+//            vc.title = title;
+//            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1:
+        {
         
             ITPContactViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"contacts"];
             vc.title = title;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 1:
+        case 2:
         {
             
             ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
@@ -198,7 +224,7 @@ NSString * manageData[manageDataCount___] = {
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 2:
+        case 3:
         {
             SafeAreaViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"safearea"];
             vc.title = title;
@@ -206,7 +232,7 @@ NSString * manageData[manageDataCount___] = {
 
         }
             break;
-        case 4:
+        case 5:
         {   
             FeedBackViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"feedback"];
             vc.title = title;

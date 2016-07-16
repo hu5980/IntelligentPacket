@@ -23,6 +23,8 @@
 		5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7E4CA1D1F830400F1A5D3 /* ITPSocketSDK.m */; };
 		5DA88A751D2D599500C0F8CD /* ITPPacketBagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A741D2D599500C0F8CD /* ITPPacketBagModel.m */; };
 		5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A771D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m */; };
+		5DABF9E41D3A14CB006ADBE3 /* EditContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DABF9E21D3A14CB006ADBE3 /* EditContactTableViewCell.m */; };
+		5DABF9E51D3A14CB006ADBE3 /* EditContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DABF9E31D3A14CB006ADBE3 /* EditContactTableViewCell.xib */; };
 		5DB50C5E1D1FAF3C00F28535 /* ITPScoketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C5D1D1FAF3C00F28535 /* ITPScoketManager.m */; };
 		5DB50C661D20043400F28535 /* ITPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C651D20043400F28535 /* ITPBaseViewController.m */; };
 		5DB50C691D20049400F28535 /* ITPPacketBagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C681D20049400F28535 /* ITPPacketBagVC.m */; };
@@ -115,6 +117,9 @@
 		5DA88A741D2D599500C0F8CD /* ITPPacketBagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPacketBagModel.m; sourceTree = "<group>"; };
 		5DA88A761D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketbagWeightVeiwController.h; sourceTree = "<group>"; };
 		5DA88A771D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPacketbagWeightVeiwController.m; sourceTree = "<group>"; };
+		5DABF9E11D3A14CB006ADBE3 /* EditContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditContactTableViewCell.h; sourceTree = "<group>"; };
+		5DABF9E21D3A14CB006ADBE3 /* EditContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditContactTableViewCell.m; sourceTree = "<group>"; };
+		5DABF9E31D3A14CB006ADBE3 /* EditContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditContactTableViewCell.xib; sourceTree = "<group>"; };
 		5DB50C5C1D1FAF3C00F28535 /* ITPScoketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPScoketManager.h; sourceTree = "<group>"; };
 		5DB50C5D1D1FAF3C00F28535 /* ITPScoketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPScoketManager.m; sourceTree = "<group>"; };
 		5DB50C641D20043400F28535 /* ITPBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPBaseViewController.h; sourceTree = "<group>"; };
@@ -246,6 +251,8 @@
 		5D55771C1D2ABD2D0094E72C /* Manage */ = {
 			isa = PBXGroup;
 			children = (
+				5DABF9E01D3A14AE006ADBE3 /* View */,
+				5DABF9DF1D3A14A4006ADBE3 /* Model */,
 				5D5577201D2ABD5B0094E72C /* Contacts */,
 				5D5577211D2ABD7B0094E72C /* AddBags */,
 				5D5577221D2ABD8C0094E72C /* SafeArea */,
@@ -326,6 +333,23 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5DABF9DF1D3A14A4006ADBE3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5DABF9E01D3A14AE006ADBE3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5DABF9E11D3A14CB006ADBE3 /* EditContactTableViewCell.h */,
+				5DABF9E21D3A14CB006ADBE3 /* EditContactTableViewCell.m */,
+				5DABF9E31D3A14CB006ADBE3 /* EditContactTableViewCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		5DB50C5B1D1FAF0E00F28535 /* SocketServiceApiManager */ = {
@@ -763,7 +787,6 @@
 				TargetAttributes = {
 					5DD5AFB21D0E9DB000EBDB70 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = KFHY8Z75E6;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -807,6 +830,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D7BE9021D313A2200E8C55F /* ITPContactsCell.xib in Resources */,
+				5DABF9E51D3A14CB006ADBE3 /* EditContactTableViewCell.xib in Resources */,
 				5DD5AFC91D0E9DB000EBDB70 /* LaunchScreen.storyboard in Resources */,
 				5DB50FB71D27FA6100F28535 /* ITPPacketBagCell.xib in Resources */,
 				5DD5B0011D0EBDB700EBDB70 /* Images.xcassets in Resources */,
@@ -920,6 +944,7 @@
 				5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */,
 				5DB50C6F1D2004CE00F28535 /* ITPIntroduceVC.m in Sources */,
 				5DD5AFB81D0E9DB000EBDB70 /* main.m in Sources */,
+				5DABF9E41D3A14CB006ADBE3 /* EditContactTableViewCell.m in Sources */,
 				5DBE37B01D104C4300A8F386 /* MapManager.m in Sources */,
 				5D7BE9081D32022B00E8C55F /* ITPContactEditorVeiwController.m in Sources */,
 				5DB50FA31D277B7B00F28535 /* ITPForgetViewController.m in Sources */,

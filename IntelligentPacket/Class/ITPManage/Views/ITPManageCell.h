@@ -10,4 +10,8 @@
 
 @interface ITPManageCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *headerImage;
+
+@property (weak, nonatomic) IBOutlet UILabel *nickName;
+
 @end
