@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  IntelligentPacket
+
+  Created by Seth on 16/6/13.
+  Copyright © 2016年 detu. All rights reserved.
+*/
+
+CFBundleDisplayName="Intelligent Packet";
+
+//管理
+"contacts" = "contacts";
+"Add bags" = "Add bags";
+"Safe area" = "Safe area";
+"Language selection" = "Language selection";
+"Complaints and suggestions" = "Complaints and suggestions";
+
+"Sign out" = "Sign out";
+"Manage" = "Manage";

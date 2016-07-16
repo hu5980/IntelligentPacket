@@ -1,0 +1,34 @@
+//
+//  IntelligentPacket.pch
+//  IntelligentPacket
+//
+//  Created by Seth on 16/6/13.
+//  Copyright © 2016年 detu. All rights reserved.
+//
+
+#ifndef IntelligentPacket_pch
+#define IntelligentPacket_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "IntelligentPacket-Swift.h"
+#import "MapManager.h"
+#import "Macros.h"
+#import "BaiduMapHeader.h"
+#import "ConstValue.h"
+#import "ReactiveCocoa.h"
+
+#import "Categary.h"
+#import "Masonry.h"
+
+
+#import "ITPLanguageManager.h"
+#import "ITPScoketManager.h"
+#import "MBProgressHUD.h"
+
+#import "AppUtil.h"
+#import "ITPPacketBagViewModel.h"
+#import "ITPPacketBagModel.h"
+
+#endif /* IntelligentPacket_pch */

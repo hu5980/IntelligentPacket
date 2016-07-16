@@ -1,0 +1,83 @@
+/* 
+  Localizable.strings
+  IntelligentPacket
+
+  Created by Seth on 16/6/13.
+  Copyright © 2016年 detu. All rights reserved.
+*/
+
+CFBundleDisplayName="智能箱包";
+
+/////  箱包 =================
+"Luggage and bags" = "箱包";
+"Bag weighing" = "箱包称重";
+"confim" = "确认";
+
+"Add bags" = "添加箱包";
+"Manual input box ID" = "手动输入箱包ID";
+"Manual input box ID" = "手动输入箱包ID";
+"By two dimensional code scanning" = "通过二维码扫描";
+"add" = "添加";
+"phone number" = "手机号码";
+"Please select type" = "请选择类型";
+"nickname" = "昵称";
+
+////// 定位 ========================
+"Location" = "定位";
+
+////// 介绍 ========================
+"Introduce" = "介绍";
+
+"Shenzhen Hong Wang handbags Products Co., Ltd.\n" = "深圳市宏旺手袋制品有限公司\n";
+"Was founded in January 2002, is a professional design and production of bags of production enterprises. Hong Wang to foundry world brand of a gleam of bags products started, after many years of efforts, developed a series of own brand products, mainly including:\n" = "创立于2002年1月，是一家专业设计和制作箱包产品的生产企业。宏旺以代工世界一线品牌的包袋产品起家，经过多年的努力，研发出一系列的自主品牌产品，主要包括:\n";
+"series solar charging bag\n" = "太阳能充电手袋系列\n";
+"Intelligent outdoor bag series\n" = "智能户外包袋系列\n";
+"Smart bag series\n" = "智能书包系列\n";
+"Smart luggage series\n\n" = "智能行李箱系列\n\n";
+"Hong Wang's vision: to do first-class luggage products, to do responsible business, happy work, happy life\n" = "宏旺的愿景：做一流的箱包产品，做负责任的企业，快乐的工作，快乐的生活\n";
+/////管理 =================
+
+
+"contacts" = "联系人";
+
+// add contact
+"add contacts" = "添加联系人";
+"Please enter phone number" = "请输入手机号码";
+"Please enter password" = "请输入密码";
+"Please enter nickName" = "请输入昵称";
+"save" = "保存";
+
+//contact edit
+
+
+
+"Add bags" = "添加箱包";
+"Safe area" = "安全区域";
+"Language selection" = "语言选择";
+"Complaints and suggestions" = "投诉与建议";
+
+"Sign out" = "退出";
+"Manage" = "管理";
+
+
+////// login =======================
+
+"To get the verification code, please check the mailbox." = "获取验证码成功，请查看邮箱";
+"get the verification code failed." = "获取验证码失败";
+"code error" = "验证码错误";
+"email error" = "邮箱错误";
+"register success" = "注册成功";
+"register failed" = "注册失败";
+
+"Please enter your email address" = "请输入邮箱";
+"Please enter your password" = "请输入密码";
+"login" = "登录";
+"fast register" = "快速注册";
+"find password" = "找回密码";
+
+////// register ==========================
+"Please enter your code" = "请输入验证码";
+"Please enter your nickName" = "请输入昵称";
+"register" = "注册";
+"back" = "返回";
+"code" = "获取";

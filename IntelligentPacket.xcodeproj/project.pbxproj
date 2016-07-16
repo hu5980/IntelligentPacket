@@ -1,0 +1,1233 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5D0D046D1D37CE6800950057 /* ITPAddBabWithIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0D046C1D37CE6800950057 /* ITPAddBabWithIDViewController.m */; };
+		5D41908F1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D41908B1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m */; };
+		5D5577151D28EA150094E72C /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577141D28EA150094E72C /* AppUtil.m */; };
+		5D5577181D2A96BB0094E72C /* LoginWithRegisterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577171D2A96BB0094E72C /* LoginWithRegisterViewModel.m */; };
+		5D5577251D2ABDA80094E72C /* ITPContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577241D2ABDA80094E72C /* ITPContactViewController.m */; };
+		5D5577281D2ABDBD0094E72C /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577271D2ABDBD0094E72C /* FeedBackViewController.m */; };
+		5D55772B1D2ABDD70094E72C /* SafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D55772A1D2ABDD70094E72C /* SafeAreaViewController.m */; };
+		5D55772E1D2ABDEF0094E72C /* AddBagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D55772D1D2ABDEF0094E72C /* AddBagsViewController.m */; };
+		5D5577311D2AC0C00094E72C /* ITPPacketBagViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577301D2AC0C00094E72C /* ITPPacketBagViewModel.m */; };
+		5D7BE9011D313A2200E8C55F /* ITPContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE8FF1D313A2200E8C55F /* ITPContactsCell.m */; };
+		5D7BE9021D313A2200E8C55F /* ITPContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BE9001D313A2200E8C55F /* ITPContactsCell.xib */; };
+		5D7BE9051D31E0B000E8C55F /* ITPAddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE9041D31E0B000E8C55F /* ITPAddContactViewController.m */; };
+		5D7BE9081D32022B00E8C55F /* ITPContactEditorVeiwController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE9071D32022B00E8C55F /* ITPContactEditorVeiwController.m */; };
+		5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7E4CA1D1F830400F1A5D3 /* ITPSocketSDK.m */; };
+		5DA88A751D2D599500C0F8CD /* ITPPacketBagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A741D2D599500C0F8CD /* ITPPacketBagModel.m */; };
+		5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A771D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m */; };
+		5DB50C5E1D1FAF3C00F28535 /* ITPScoketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C5D1D1FAF3C00F28535 /* ITPScoketManager.m */; };
+		5DB50C661D20043400F28535 /* ITPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C651D20043400F28535 /* ITPBaseViewController.m */; };
+		5DB50C691D20049400F28535 /* ITPPacketBagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C681D20049400F28535 /* ITPPacketBagVC.m */; };
+		5DB50C6F1D2004CE00F28535 /* ITPIntroduceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C6E1D2004CE00F28535 /* ITPIntroduceVC.m */; };
+		5DB50C721D2004E500F28535 /* ITPManageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C711D2004E500F28535 /* ITPManageVC.m */; };
+		5DB50C751D2005FD00F28535 /* ITPLocationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C741D2005FD00F28535 /* ITPLocationVC.m */; };
+		5DB50C821D200F0900F28535 /* ITPPacketBagCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C801D200F0900F28535 /* ITPPacketBagCell.m */; };
+		5DB50C861D201D9200F28535 /* UIViewController+Ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C851D201D9200F28535 /* UIViewController+Ex.m */; };
+		5DB50C8C1D20232C00F28535 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C8B1D20232C00F28535 /* UIView+YYAdd.m */; };
+		5DB50C981D22CDB900F28535 /* ITPManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C961D22CDB900F28535 /* ITPManageCell.m */; };
+		5DB50C991D22CDB900F28535 /* ITPManageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB50C971D22CDB900F28535 /* ITPManageCell.xib */; };
+		5DB50C9D1D25585400F28535 /* ITPRealmStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C9C1D25585400F28535 /* ITPRealmStore.m */; };
+		5DB50CA11D25591700F28535 /* RealmItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50CA01D25591700F28535 /* RealmItem.m */; };
+		5DB50CA41D269B0700F28535 /* StdDes.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50CA31D269B0700F28535 /* StdDes.m */; };
+		5DB50CA71D269B5B00F28535 /* ITPDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50CA61D269B5B00F28535 /* ITPDataCenter.m */; };
+		5DB50CAA1D26BBCF00F28535 /* ITPRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50CA91D26BBCF00F28535 /* ITPRegisterViewController.m */; };
+		5DB50FA31D277B7B00F28535 /* ITPForgetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50FA21D277B7B00F28535 /* ITPForgetViewController.m */; };
+		5DB50FA61D279AAC00F28535 /* CALayer+Ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50FA51D279AAC00F28535 /* CALayer+Ex.m */; };
+		5DB50FA91D27E68B00F28535 /* ITPLanguageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50FA81D27E68B00F28535 /* ITPLanguageManager.m */; };
+		5DB50FAC1D27F3D200F28535 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50FAB1D27F3D200F28535 /* NSObject+Extension.m */; };
+		5DB50FB71D27FA6100F28535 /* ITPPacketBagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB50FB61D27FA6100F28535 /* ITPPacketBagCell.xib */; };
+		5DB50FBB1D28D76000F28535 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50FBA1D28D76000F28535 /* LoginViewController.m */; };
+		5DBE37B01D104C4300A8F386 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE37AF1D104C4300A8F386 /* MapManager.m */; };
+		5DBE37B21D10549500A8F386 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DBE37B11D10549500A8F386 /* MapKit.framework */; };
+		5DD5A7721D167717006D771E /* ITPUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5A7711D167717006D771E /* ITPUserManager.swift */; };
+		5DD5AFB81D0E9DB000EBDB70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5AFB71D0E9DB000EBDB70 /* main.m */; };
+		5DD5AFC11D0E9DB000EBDB70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DD5AFBF1D0E9DB000EBDB70 /* Main.storyboard */; };
+		5DD5AFC41D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5AFC21D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld */; };
+		5DD5AFC91D0E9DB000EBDB70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DD5AFC71D0E9DB000EBDB70 /* LaunchScreen.storyboard */; };
+		5DD5AFD41D0E9DB000EBDB70 /* IntelligentPacketTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5AFD31D0E9DB000EBDB70 /* IntelligentPacketTests.m */; };
+		5DD5AFDF1D0E9DB000EBDB70 /* IntelligentPacketUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5AFDE1D0E9DB000EBDB70 /* IntelligentPacketUITests.m */; };
+		5DD5AFF41D0EB48F00EBDB70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5AFF11D0EB48F00EBDB70 /* AppDelegate.m */; };
+		5DD5AFF91D0EB7B700EBDB70 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DD5AFFB1D0EB7B700EBDB70 /* Localizable.strings */; };
+		5DD5B0011D0EBDB700EBDB70 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DD5B0001D0EBDB700EBDB70 /* Images.xcassets */; };
+		5DE3F0231D16850700FCAEEF /* UIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE3F0221D16850700FCAEEF /* UIManager.m */; };
+		5DE3F02B1D16B25400FCAEEF /* ITPHttpServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DE3F02A1D16B25400FCAEEF /* ITPHttpServiceBase.m */; };
+		5DEA63571D166DF1000D3BBD /* LoginAndRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEA63561D166DF1000D3BBD /* LoginAndRegister.storyboard */; };
+		5DEA635C1D166F8C000D3BBD /* ConstValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA635B1D166F8C000D3BBD /* ConstValue.m */; };
+		8F8F305B6E52185108FC867C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB601F3E5C030D86FD0E9EE0 /* Pods.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5DD5AFD01D0E9DB000EBDB70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DD5AFAB1D0E9DAF00EBDB70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DD5AFB21D0E9DB000EBDB70;
+			remoteInfo = IntelligentPacket;
+		};
+		5DD5AFDB1D0E9DB000EBDB70 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DD5AFAB1D0E9DAF00EBDB70 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DD5AFB21D0E9DB000EBDB70;
+			remoteInfo = IntelligentPacket;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		36671EB56609768BCE3AC3C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		5CA47F56F8288657024A364D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5D0D046B1D37CE6800950057 /* ITPAddBabWithIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPAddBabWithIDViewController.h; sourceTree = "<group>"; };
+		5D0D046C1D37CE6800950057 /* ITPAddBabWithIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAddBabWithIDViewController.m; sourceTree = "<group>"; };
+		5D41908A1D1523A000D9BAF7 /* FitnessShareApi5_1_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FitnessShareApi5_1_2.h; sourceTree = "<group>"; };
+		5D41908B1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FitnessShareApi5_1_2.m; sourceTree = "<group>"; };
+		5D5577131D28EA150094E72C /* AppUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtil.h; sourceTree = "<group>"; };
+		5D5577141D28EA150094E72C /* AppUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtil.m; sourceTree = "<group>"; };
+		5D5577161D2A96BB0094E72C /* LoginWithRegisterViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginWithRegisterViewModel.h; sourceTree = "<group>"; };
+		5D5577171D2A96BB0094E72C /* LoginWithRegisterViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWithRegisterViewModel.m; sourceTree = "<group>"; };
+		5D5577231D2ABDA80094E72C /* ITPContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPContactViewController.h; sourceTree = "<group>"; };
+		5D5577241D2ABDA80094E72C /* ITPContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPContactViewController.m; sourceTree = "<group>"; };
+		5D5577261D2ABDBD0094E72C /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		5D5577271D2ABDBD0094E72C /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		5D5577291D2ABDD70094E72C /* SafeAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeAreaViewController.h; sourceTree = "<group>"; };
+		5D55772A1D2ABDD70094E72C /* SafeAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeAreaViewController.m; sourceTree = "<group>"; };
+		5D55772C1D2ABDEF0094E72C /* AddBagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBagsViewController.h; sourceTree = "<group>"; };
+		5D55772D1D2ABDEF0094E72C /* AddBagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBagsViewController.m; sourceTree = "<group>"; };
+		5D55772F1D2AC0C00094E72C /* ITPPacketBagViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketBagViewModel.h; sourceTree = "<group>"; };
+		5D5577301D2AC0C00094E72C /* ITPPacketBagViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPacketBagViewModel.m; sourceTree = "<group>"; };
+		5D7BE8FE1D313A2200E8C55F /* ITPContactsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPContactsCell.h; sourceTree = "<group>"; };
+		5D7BE8FF1D313A2200E8C55F /* ITPContactsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPContactsCell.m; sourceTree = "<group>"; };
+		5D7BE9001D313A2200E8C55F /* ITPContactsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPContactsCell.xib; sourceTree = "<group>"; };
+		5D7BE9031D31E0B000E8C55F /* ITPAddContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPAddContactViewController.h; sourceTree = "<group>"; };
+		5D7BE9041D31E0B000E8C55F /* ITPAddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAddContactViewController.m; sourceTree = "<group>"; };
+		5D7BE9061D32022B00E8C55F /* ITPContactEditorVeiwController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPContactEditorVeiwController.h; sourceTree = "<group>"; };
+		5D7BE9071D32022B00E8C55F /* ITPContactEditorVeiwController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPContactEditorVeiwController.m; sourceTree = "<group>"; };
+		5DA7E4C91D1F830400F1A5D3 /* ITPSocketSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSocketSDK.h; sourceTree = "<group>"; };
+		5DA7E4CA1D1F830400F1A5D3 /* ITPSocketSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPSocketSDK.m; sourceTree = "<group>"; };
+		5DA88A731D2D599500C0F8CD /* ITPPacketBagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketBagModel.h; sourceTree = "<group>"; };
+		5DA88A741D2D599500C0F8CD /* ITPPacketBagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPacketBagModel.m; sourceTree = "<group>"; };
+		5DA88A761D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketbagWeightVeiwController.h; sourceTree = "<group>"; };
+		5DA88A771D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPacketbagWeightVeiwController.m; sourceTree = "<group>"; };
+		5DB50C5C1D1FAF3C00F28535 /* ITPScoketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPScoketManager.h; sourceTree = "<group>"; };
+		5DB50C5D1D1FAF3C00F28535 /* ITPScoketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPScoketManager.m; sourceTree = "<group>"; };
+		5DB50C641D20043400F28535 /* ITPBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPBaseViewController.h; sourceTree = "<group>"; };
+		5DB50C651D20043400F28535 /* ITPBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPBaseViewController.m; sourceTree = "<group>"; };
+		5DB50C671D20049400F28535 /* ITPPacketBagVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketBagVC.h; sourceTree = "<group>"; };
+		5DB50C681D20049400F28535 /* ITPPacketBagVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPacketBagVC.m; sourceTree = "<group>"; };
+		5DB50C6D1D2004CE00F28535 /* ITPIntroduceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPIntroduceVC.h; sourceTree = "<group>"; };
+		5DB50C6E1D2004CE00F28535 /* ITPIntroduceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPIntroduceVC.m; sourceTree = "<group>"; };
+		5DB50C701D2004E500F28535 /* ITPManageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPManageVC.h; sourceTree = "<group>"; };
+		5DB50C711D2004E500F28535 /* ITPManageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPManageVC.m; sourceTree = "<group>"; };
+		5DB50C731D2005FD00F28535 /* ITPLocationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPLocationVC.h; sourceTree = "<group>"; };
+		5DB50C741D2005FD00F28535 /* ITPLocationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPLocationVC.m; sourceTree = "<group>"; };
+		5DB50C7F1D200F0900F28535 /* ITPPacketBagCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketBagCell.h; sourceTree = "<group>"; };
+		5DB50C801D200F0900F28535 /* ITPPacketBagCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPacketBagCell.m; sourceTree = "<group>"; };
+		5DB50C841D201D9200F28535 /* UIViewController+Ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Ex.h"; sourceTree = "<group>"; };
+		5DB50C851D201D9200F28535 /* UIViewController+Ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Ex.m"; sourceTree = "<group>"; };
+		5DB50C871D201E5A00F28535 /* Categary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categary.h; sourceTree = "<group>"; };
+		5DB50C8A1D20232C00F28535 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYAdd.h"; sourceTree = "<group>"; };
+		5DB50C8B1D20232C00F28535 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYAdd.m"; sourceTree = "<group>"; };
+		5DB50C951D22CDB900F28535 /* ITPManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPManageCell.h; sourceTree = "<group>"; };
+		5DB50C961D22CDB900F28535 /* ITPManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPManageCell.m; sourceTree = "<group>"; };
+		5DB50C971D22CDB900F28535 /* ITPManageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPManageCell.xib; sourceTree = "<group>"; };
+		5DB50C9B1D25585400F28535 /* ITPRealmStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPRealmStore.h; sourceTree = "<group>"; };
+		5DB50C9C1D25585400F28535 /* ITPRealmStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPRealmStore.m; sourceTree = "<group>"; };
+		5DB50C9F1D25591700F28535 /* RealmItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealmItem.h; sourceTree = "<group>"; };
+		5DB50CA01D25591700F28535 /* RealmItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealmItem.m; sourceTree = "<group>"; };
+		5DB50CA21D269B0200F28535 /* StdDes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdDes.h; sourceTree = "<group>"; };
+		5DB50CA31D269B0700F28535 /* StdDes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StdDes.m; sourceTree = "<group>"; };
+		5DB50CA51D269B5B00F28535 /* ITPDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPDataCenter.h; sourceTree = "<group>"; };
+		5DB50CA61D269B5B00F28535 /* ITPDataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPDataCenter.m; sourceTree = "<group>"; };
+		5DB50CA81D26BBCF00F28535 /* ITPRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPRegisterViewController.h; sourceTree = "<group>"; };
+		5DB50CA91D26BBCF00F28535 /* ITPRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPRegisterViewController.m; sourceTree = "<group>"; };
+		5DB50FA11D277B7B00F28535 /* ITPForgetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPForgetViewController.h; sourceTree = "<group>"; };
+		5DB50FA21D277B7B00F28535 /* ITPForgetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPForgetViewController.m; sourceTree = "<group>"; };
+		5DB50FA41D279AAC00F28535 /* CALayer+Ex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Ex.h"; sourceTree = "<group>"; };
+		5DB50FA51D279AAC00F28535 /* CALayer+Ex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Ex.m"; sourceTree = "<group>"; };
+		5DB50FA71D27E68B00F28535 /* ITPLanguageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPLanguageManager.h; sourceTree = "<group>"; };
+		5DB50FA81D27E68B00F28535 /* ITPLanguageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPLanguageManager.m; sourceTree = "<group>"; };
+		5DB50FAA1D27F3D200F28535 /* NSObject+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Extension.h"; sourceTree = "<group>"; };
+		5DB50FAB1D27F3D200F28535 /* NSObject+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Extension.m"; sourceTree = "<group>"; };
+		5DB50FB61D27FA6100F28535 /* ITPPacketBagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPPacketBagCell.xib; sourceTree = "<group>"; };
+		5DB50FB91D28D76000F28535 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		5DB50FBA1D28D76000F28535 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		5DBE37AE1D104C4300A8F386 /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManager.h; sourceTree = "<group>"; };
+		5DBE37AF1D104C4300A8F386 /* MapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManager.m; sourceTree = "<group>"; };
+		5DBE37B11D10549500A8F386 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5DBE37B41D10588C00A8F386 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		5DBE37B71D105AB900A8F386 /* BaiduMapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaiduMapHeader.h; sourceTree = "<group>"; };
+		5DD5A7711D167717006D771E /* ITPUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ITPUserManager.swift; sourceTree = "<group>"; };
+		5DD5AFB31D0E9DB000EBDB70 /* IntelligentPacket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntelligentPacket.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DD5AFB71D0E9DB000EBDB70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5DD5AFC01D0E9DB000EBDB70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5DD5AFC31D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IntelligentPacket.xcdatamodel; sourceTree = "<group>"; };
+		5DD5AFC81D0E9DB000EBDB70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5DD5AFCA1D0E9DB000EBDB70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DD5AFCF1D0E9DB000EBDB70 /* IntelligentPacketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntelligentPacketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DD5AFD31D0E9DB000EBDB70 /* IntelligentPacketTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntelligentPacketTests.m; sourceTree = "<group>"; };
+		5DD5AFD51D0E9DB000EBDB70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DD5AFDA1D0E9DB000EBDB70 /* IntelligentPacketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntelligentPacketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DD5AFDE1D0E9DB000EBDB70 /* IntelligentPacketUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntelligentPacketUITests.m; sourceTree = "<group>"; };
+		5DD5AFE01D0E9DB000EBDB70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DD5AFF01D0EB48F00EBDB70 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5DD5AFF11D0EB48F00EBDB70 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5DD5AFF61D0EB51300EBDB70 /* IntelligentPacket.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelligentPacket.pch; sourceTree = "<group>"; };
+		5DD5AFFA1D0EB7B700EBDB70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5DD5AFFC1D0EB7F600EBDB70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		5DD5AFFD1D0EB7F600EBDB70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		5DD5AFFE1D0EB7F600EBDB70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		5DD5AFFF1D0EBA0900EBDB70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5DD5B0001D0EBDB700EBDB70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5DD5B0031D0ECA5700EBDB70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		5DD5B0051D0ECA6200EBDB70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		5DE3F0211D16850700FCAEEF /* UIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIManager.h; sourceTree = "<group>"; };
+		5DE3F0221D16850700FCAEEF /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIManager.m; sourceTree = "<group>"; };
+		5DE3F0291D16B25400FCAEEF /* ITPHttpServiceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPHttpServiceBase.h; sourceTree = "<group>"; };
+		5DE3F02A1D16B25400FCAEEF /* ITPHttpServiceBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPHttpServiceBase.m; sourceTree = "<group>"; };
+		5DEA63561D166DF1000D3BBD /* LoginAndRegister.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LoginAndRegister.storyboard; path = ../LoginAndRegister.storyboard; sourceTree = "<group>"; };
+		5DEA635A1D166F8C000D3BBD /* ConstValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConstValue.h; sourceTree = "<group>"; };
+		5DEA635B1D166F8C000D3BBD /* ConstValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstValue.m; sourceTree = "<group>"; };
+		5DEA63611D1672E7000D3BBD /* IntelligentPacket-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IntelligentPacket-Bridging-Header.h"; sourceTree = "<group>"; };
+		AB601F3E5C030D86FD0E9EE0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5DD5AFB01D0E9DB000EBDB70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DBE37B21D10549500A8F386 /* MapKit.framework in Frameworks */,
+				8F8F305B6E52185108FC867C /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD5AFCC1D0E9DB000EBDB70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD5AFD71D0E9DB000EBDB70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09AB81FE049866B6997C49DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5DBE37B11D10549500A8F386 /* MapKit.framework */,
+				AB601F3E5C030D86FD0E9EE0 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5D4190891D1523A000D9BAF7 /* FitnessShareApi */ = {
+			isa = PBXGroup;
+			children = (
+				5D41908A1D1523A000D9BAF7 /* FitnessShareApi5_1_2.h */,
+				5D41908B1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m */,
+			);
+			path = FitnessShareApi;
+			sourceTree = "<group>";
+		};
+		5D55771C1D2ABD2D0094E72C /* Manage */ = {
+			isa = PBXGroup;
+			children = (
+				5D5577201D2ABD5B0094E72C /* Contacts */,
+				5D5577211D2ABD7B0094E72C /* AddBags */,
+				5D5577221D2ABD8C0094E72C /* SafeArea */,
+				5D5577261D2ABDBD0094E72C /* FeedBackViewController.h */,
+				5D5577271D2ABDBD0094E72C /* FeedBackViewController.m */,
+			);
+			path = Manage;
+			sourceTree = "<group>";
+		};
+		5D5577201D2ABD5B0094E72C /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				5D5577231D2ABDA80094E72C /* ITPContactViewController.h */,
+				5D5577241D2ABDA80094E72C /* ITPContactViewController.m */,
+				5D7BE9031D31E0B000E8C55F /* ITPAddContactViewController.h */,
+				5D7BE9041D31E0B000E8C55F /* ITPAddContactViewController.m */,
+				5D7BE9061D32022B00E8C55F /* ITPContactEditorVeiwController.h */,
+				5D7BE9071D32022B00E8C55F /* ITPContactEditorVeiwController.m */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		5D5577211D2ABD7B0094E72C /* AddBags */ = {
+			isa = PBXGroup;
+			children = (
+				5D55772C1D2ABDEF0094E72C /* AddBagsViewController.h */,
+				5D55772D1D2ABDEF0094E72C /* AddBagsViewController.m */,
+				5D0D046B1D37CE6800950057 /* ITPAddBabWithIDViewController.h */,
+				5D0D046C1D37CE6800950057 /* ITPAddBabWithIDViewController.m */,
+			);
+			path = AddBags;
+			sourceTree = "<group>";
+		};
+		5D5577221D2ABD8C0094E72C /* SafeArea */ = {
+			isa = PBXGroup;
+			children = (
+				5D5577291D2ABDD70094E72C /* SafeAreaViewController.h */,
+				5D55772A1D2ABDD70094E72C /* SafeAreaViewController.m */,
+			);
+			path = SafeArea;
+			sourceTree = "<group>";
+		};
+		5DA7E4C81D1E1BB200F1A5D3 /* ITPSocketService */ = {
+			isa = PBXGroup;
+			children = (
+				5DA7E4C91D1F830400F1A5D3 /* ITPSocketSDK.h */,
+				5DA7E4CA1D1F830400F1A5D3 /* ITPSocketSDK.m */,
+			);
+			name = ITPSocketService;
+			path = SocketService;
+			sourceTree = "<group>";
+		};
+		5DA88A6F1D2D597100C0F8CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5DA88A731D2D599500C0F8CD /* ITPPacketBagModel.h */,
+				5DA88A741D2D599500C0F8CD /* ITPPacketBagModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5DA88A701D2D597400C0F8CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5DA88A711D2D597800C0F8CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5DA88A721D2D597B00C0F8CD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5DB50C5B1D1FAF0E00F28535 /* SocketServiceApiManager */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50CA21D269B0200F28535 /* StdDes.h */,
+				5DB50CA31D269B0700F28535 /* StdDes.m */,
+				5DB50CA51D269B5B00F28535 /* ITPDataCenter.h */,
+				5DB50CA61D269B5B00F28535 /* ITPDataCenter.m */,
+				5DB50C5C1D1FAF3C00F28535 /* ITPScoketManager.h */,
+				5DB50C5D1D1FAF3C00F28535 /* ITPScoketManager.m */,
+			);
+			name = SocketServiceApiManager;
+			path = SocketServiceApi;
+			sourceTree = "<group>";
+		};
+		5DB50C5F1D2002CF00F28535 /* ITPPacketBag */ = {
+			isa = PBXGroup;
+			children = (
+				5DA88A6F1D2D597100C0F8CD /* Model */,
+				5DB50C7B1D200EC600F28535 /* ViewModel */,
+				5DB50C771D200EAF00F28535 /* Views */,
+				5DB50C671D20049400F28535 /* ITPPacketBagVC.h */,
+				5DB50C681D20049400F28535 /* ITPPacketBagVC.m */,
+				5DA88A761D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.h */,
+				5DA88A771D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m */,
+			);
+			path = ITPPacketBag;
+			sourceTree = "<group>";
+		};
+		5DB50C601D20031C00F28535 /* ITPLocation */ = {
+			isa = PBXGroup;
+			children = (
+				5DA88A701D2D597400C0F8CD /* Model */,
+				5DB50C7C1D200ECA00F28535 /* ViewModel */,
+				5DB50C781D200EB200F28535 /* Views */,
+				5DB50C731D2005FD00F28535 /* ITPLocationVC.h */,
+				5DB50C741D2005FD00F28535 /* ITPLocationVC.m */,
+			);
+			path = ITPLocation;
+			sourceTree = "<group>";
+		};
+		5DB50C611D20033C00F28535 /* ITPIntroduce */ = {
+			isa = PBXGroup;
+			children = (
+				5DA88A711D2D597800C0F8CD /* Model */,
+				5DB50C7E1D200ED200F28535 /* ViewModel */,
+				5DB50C791D200EB500F28535 /* Views */,
+				5DB50C6D1D2004CE00F28535 /* ITPIntroduceVC.h */,
+				5DB50C6E1D2004CE00F28535 /* ITPIntroduceVC.m */,
+			);
+			path = ITPIntroduce;
+			sourceTree = "<group>";
+		};
+		5DB50C621D20035C00F28535 /* ITPManage */ = {
+			isa = PBXGroup;
+			children = (
+				5DA88A721D2D597B00C0F8CD /* Model */,
+				5DB50C7D1D200ECE00F28535 /* ViewModel */,
+				5DB50C7A1D200EB900F28535 /* Views */,
+				5DB50C701D2004E500F28535 /* ITPManageVC.h */,
+				5DB50C711D2004E500F28535 /* ITPManageVC.m */,
+				5D55771C1D2ABD2D0094E72C /* Manage */,
+			);
+			path = ITPManage;
+			sourceTree = "<group>";
+		};
+		5DB50C631D20041900F28535 /* ITPBaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50C641D20043400F28535 /* ITPBaseViewController.h */,
+				5DB50C651D20043400F28535 /* ITPBaseViewController.m */,
+			);
+			path = ITPBaseViewController;
+			sourceTree = "<group>";
+		};
+		5DB50C761D20074900F28535 /* ITPTools */ = {
+			isa = PBXGroup;
+			children = (
+				5D5577131D28EA150094E72C /* AppUtil.h */,
+				5D5577141D28EA150094E72C /* AppUtil.m */,
+			);
+			path = ITPTools;
+			sourceTree = "<group>";
+		};
+		5DB50C771D200EAF00F28535 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50FB61D27FA6100F28535 /* ITPPacketBagCell.xib */,
+				5DB50C7F1D200F0900F28535 /* ITPPacketBagCell.h */,
+				5DB50C801D200F0900F28535 /* ITPPacketBagCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5DB50C781D200EB200F28535 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5DB50C791D200EB500F28535 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5DB50C7A1D200EB900F28535 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50C951D22CDB900F28535 /* ITPManageCell.h */,
+				5DB50C961D22CDB900F28535 /* ITPManageCell.m */,
+				5DB50C971D22CDB900F28535 /* ITPManageCell.xib */,
+				5D7BE8FE1D313A2200E8C55F /* ITPContactsCell.h */,
+				5D7BE8FF1D313A2200E8C55F /* ITPContactsCell.m */,
+				5D7BE9001D313A2200E8C55F /* ITPContactsCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5DB50C7B1D200EC600F28535 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5D55772F1D2AC0C00094E72C /* ITPPacketBagViewModel.h */,
+				5D5577301D2AC0C00094E72C /* ITPPacketBagViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5DB50C7C1D200ECA00F28535 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5DB50C7D1D200ECE00F28535 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5DB50C7E1D200ED200F28535 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5DB50C9A1D25584100F28535 /* ITPStorage */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50C9E1D25591700F28535 /* Statistics */,
+				5DB50C9B1D25585400F28535 /* ITPRealmStore.h */,
+				5DB50C9C1D25585400F28535 /* ITPRealmStore.m */,
+			);
+			path = ITPStorage;
+			sourceTree = "<group>";
+		};
+		5DB50C9E1D25591700F28535 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50C9F1D25591700F28535 /* RealmItem.h */,
+				5DB50CA01D25591700F28535 /* RealmItem.m */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		5DB50FB81D28AFCD00F28535 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5D5577161D2A96BB0094E72C /* LoginWithRegisterViewModel.h */,
+				5D5577171D2A96BB0094E72C /* LoginWithRegisterViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5DBE37B31D10588000A8F386 /* ITPOthers */ = {
+			isa = PBXGroup;
+			children = (
+				5DBE37B41D10588C00A8F386 /* Macros.h */,
+				5DBE37B71D105AB900A8F386 /* BaiduMapHeader.h */,
+				5DEA635A1D166F8C000D3BBD /* ConstValue.h */,
+				5DEA635B1D166F8C000D3BBD /* ConstValue.m */,
+				5DB50C9A1D25584100F28535 /* ITPStorage */,
+				5DB50C761D20074900F28535 /* ITPTools */,
+				5DA7E4C81D1E1BB200F1A5D3 /* ITPSocketService */,
+				5DE3F0281D16B25400FCAEEF /* ITPHttpServicebase */,
+				5DE3F0241D16B01E00FCAEEF /* ITPCategary */,
+			);
+			name = ITPOthers;
+			path = Others;
+			sourceTree = "<group>";
+		};
+		5DD5AFAA1D0E9DAF00EBDB70 = {
+			isa = PBXGroup;
+			children = (
+				5DD5AFB51D0E9DB000EBDB70 /* IntelligentPacket */,
+				5DD5AFD21D0E9DB000EBDB70 /* IntelligentPacketTests */,
+				5DD5AFDD1D0E9DB000EBDB70 /* IntelligentPacketUITests */,
+				5DD5AFB41D0E9DB000EBDB70 /* Products */,
+				A7862B86EB0AD6056C8E02F4 /* Pods */,
+				09AB81FE049866B6997C49DE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5DD5AFB41D0E9DB000EBDB70 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5DD5AFB31D0E9DB000EBDB70 /* IntelligentPacket.app */,
+				5DD5AFCF1D0E9DB000EBDB70 /* IntelligentPacketTests.xctest */,
+				5DD5AFDA1D0E9DB000EBDB70 /* IntelligentPacketUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5DD5AFB51D0E9DB000EBDB70 /* IntelligentPacket */ = {
+			isa = PBXGroup;
+			children = (
+				5DBE37B31D10588000A8F386 /* ITPOthers */,
+				5DD5AFEF1D0EB37100EBDB70 /* ITPServices */,
+				5DD5AFEC1D0EB2B900EBDB70 /* ITPLanguage */,
+				5DD5AFED1D0EB2FF00EBDB70 /* ITPManager */,
+				5DD5AFEE1D0EB31500EBDB70 /* ITPClass */,
+				5DD5AFB61D0E9DB000EBDB70 /* Supporting Files */,
+			);
+			path = IntelligentPacket;
+			sourceTree = "<group>";
+		};
+		5DD5AFB61D0E9DB000EBDB70 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DEA63611D1672E7000D3BBD /* IntelligentPacket-Bridging-Header.h */,
+				5DD5AFC71D0E9DB000EBDB70 /* LaunchScreen.storyboard */,
+				5DD5AFC21D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld */,
+				5DD5AFCA1D0E9DB000EBDB70 /* Info.plist */,
+				5DD5B0001D0EBDB700EBDB70 /* Images.xcassets */,
+				5DD5AFB71D0E9DB000EBDB70 /* main.m */,
+				5DD5AFF61D0EB51300EBDB70 /* IntelligentPacket.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5DD5AFD21D0E9DB000EBDB70 /* IntelligentPacketTests */ = {
+			isa = PBXGroup;
+			children = (
+				5DD5AFD31D0E9DB000EBDB70 /* IntelligentPacketTests.m */,
+				5DD5AFD51D0E9DB000EBDB70 /* Info.plist */,
+			);
+			path = IntelligentPacketTests;
+			sourceTree = "<group>";
+		};
+		5DD5AFDD1D0E9DB000EBDB70 /* IntelligentPacketUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5DD5AFDE1D0E9DB000EBDB70 /* IntelligentPacketUITests.m */,
+				5DD5AFE01D0E9DB000EBDB70 /* Info.plist */,
+			);
+			path = IntelligentPacketUITests;
+			sourceTree = "<group>";
+		};
+		5DD5AFEC1D0EB2B900EBDB70 /* ITPLanguage */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50FA71D27E68B00F28535 /* ITPLanguageManager.h */,
+				5DB50FA81D27E68B00F28535 /* ITPLanguageManager.m */,
+				5DD5AFFB1D0EB7B700EBDB70 /* Localizable.strings */,
+			);
+			name = ITPLanguage;
+			path = Language;
+			sourceTree = "<group>";
+		};
+		5DD5AFED1D0EB2FF00EBDB70 /* ITPManager */ = {
+			isa = PBXGroup;
+			children = (
+				5DBE37AE1D104C4300A8F386 /* MapManager.h */,
+				5DBE37AF1D104C4300A8F386 /* MapManager.m */,
+				5DE3F0211D16850700FCAEEF /* UIManager.h */,
+				5DE3F0221D16850700FCAEEF /* UIManager.m */,
+				5DD5A7711D167717006D771E /* ITPUserManager.swift */,
+			);
+			name = ITPManager;
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		5DD5AFEE1D0EB31500EBDB70 /* ITPClass */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50C631D20041900F28535 /* ITPBaseViewController */,
+				5DEA635D1D16724B000D3BBD /* ITPLogin&register */,
+				5DB50C5F1D2002CF00F28535 /* ITPPacketBag */,
+				5DB50C601D20031C00F28535 /* ITPLocation */,
+				5DB50C611D20033C00F28535 /* ITPIntroduce */,
+				5DB50C621D20035C00F28535 /* ITPManage */,
+				5DD5AFF01D0EB48F00EBDB70 /* AppDelegate.h */,
+				5DD5AFF11D0EB48F00EBDB70 /* AppDelegate.m */,
+				5DD5AFBF1D0E9DB000EBDB70 /* Main.storyboard */,
+			);
+			name = ITPClass;
+			path = Class;
+			sourceTree = "<group>";
+		};
+		5DD5AFEF1D0EB37100EBDB70 /* ITPServices */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50C5B1D1FAF0E00F28535 /* SocketServiceApiManager */,
+				5D4190891D1523A000D9BAF7 /* FitnessShareApi */,
+			);
+			name = ITPServices;
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5DE3F0241D16B01E00FCAEEF /* ITPCategary */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50FAA1D27F3D200F28535 /* NSObject+Extension.h */,
+				5DB50FAB1D27F3D200F28535 /* NSObject+Extension.m */,
+				5DB50C8A1D20232C00F28535 /* UIView+YYAdd.h */,
+				5DB50C8B1D20232C00F28535 /* UIView+YYAdd.m */,
+				5DB50C841D201D9200F28535 /* UIViewController+Ex.h */,
+				5DB50C851D201D9200F28535 /* UIViewController+Ex.m */,
+				5DB50C871D201E5A00F28535 /* Categary.h */,
+				5DB50FA41D279AAC00F28535 /* CALayer+Ex.h */,
+				5DB50FA51D279AAC00F28535 /* CALayer+Ex.m */,
+			);
+			name = ITPCategary;
+			path = Categary;
+			sourceTree = "<group>";
+		};
+		5DE3F0281D16B25400FCAEEF /* ITPHttpServicebase */ = {
+			isa = PBXGroup;
+			children = (
+				5DE3F0291D16B25400FCAEEF /* ITPHttpServiceBase.h */,
+				5DE3F02A1D16B25400FCAEEF /* ITPHttpServiceBase.m */,
+			);
+			name = ITPHttpServicebase;
+			path = Servicebase;
+			sourceTree = "<group>";
+		};
+		5DEA635D1D16724B000D3BBD /* ITPLogin&register */ = {
+			isa = PBXGroup;
+			children = (
+				5DB50FB81D28AFCD00F28535 /* ViewModel */,
+				5DEA63561D166DF1000D3BBD /* LoginAndRegister.storyboard */,
+				5DB50FB91D28D76000F28535 /* LoginViewController.h */,
+				5DB50FBA1D28D76000F28535 /* LoginViewController.m */,
+				5DB50CA81D26BBCF00F28535 /* ITPRegisterViewController.h */,
+				5DB50CA91D26BBCF00F28535 /* ITPRegisterViewController.m */,
+				5DB50FA11D277B7B00F28535 /* ITPForgetViewController.h */,
+				5DB50FA21D277B7B00F28535 /* ITPForgetViewController.m */,
+			);
+			name = "ITPLogin&register";
+			path = "Login&register";
+			sourceTree = "<group>";
+		};
+		A7862B86EB0AD6056C8E02F4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				36671EB56609768BCE3AC3C7 /* Pods.debug.xcconfig */,
+				5CA47F56F8288657024A364D /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5DD5AFB21D0E9DB000EBDB70 /* IntelligentPacket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DD5AFE31D0E9DB000EBDB70 /* Build configuration list for PBXNativeTarget "IntelligentPacket" */;
+			buildPhases = (
+				9384AF752312979EAB99081F /* Check Pods Manifest.lock */,
+				5DD5AFAF1D0E9DB000EBDB70 /* Sources */,
+				5DD5AFB01D0E9DB000EBDB70 /* Frameworks */,
+				5DD5AFB11D0E9DB000EBDB70 /* Resources */,
+				CB69688E54FBD80046EE427A /* Embed Pods Frameworks */,
+				6DE9B55656838CB206205930 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IntelligentPacket;
+			productName = IntelligentPacket;
+			productReference = 5DD5AFB31D0E9DB000EBDB70 /* IntelligentPacket.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5DD5AFCE1D0E9DB000EBDB70 /* IntelligentPacketTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DD5AFE61D0E9DB000EBDB70 /* Build configuration list for PBXNativeTarget "IntelligentPacketTests" */;
+			buildPhases = (
+				5DD5AFCB1D0E9DB000EBDB70 /* Sources */,
+				5DD5AFCC1D0E9DB000EBDB70 /* Frameworks */,
+				5DD5AFCD1D0E9DB000EBDB70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DD5AFD11D0E9DB000EBDB70 /* PBXTargetDependency */,
+			);
+			name = IntelligentPacketTests;
+			productName = IntelligentPacketTests;
+			productReference = 5DD5AFCF1D0E9DB000EBDB70 /* IntelligentPacketTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5DD5AFD91D0E9DB000EBDB70 /* IntelligentPacketUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DD5AFE91D0E9DB000EBDB70 /* Build configuration list for PBXNativeTarget "IntelligentPacketUITests" */;
+			buildPhases = (
+				5DD5AFD61D0E9DB000EBDB70 /* Sources */,
+				5DD5AFD71D0E9DB000EBDB70 /* Frameworks */,
+				5DD5AFD81D0E9DB000EBDB70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DD5AFDC1D0E9DB000EBDB70 /* PBXTargetDependency */,
+			);
+			name = IntelligentPacketUITests;
+			productName = IntelligentPacketUITests;
+			productReference = 5DD5AFDA1D0E9DB000EBDB70 /* IntelligentPacketUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5DD5AFAB1D0E9DAF00EBDB70 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = detu;
+				TargetAttributes = {
+					5DD5AFB21D0E9DB000EBDB70 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = KFHY8Z75E6;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					5DD5AFCE1D0E9DB000EBDB70 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 5DD5AFB21D0E9DB000EBDB70;
+					};
+					5DD5AFD91D0E9DB000EBDB70 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 5DD5AFB21D0E9DB000EBDB70;
+					};
+				};
+			};
+			buildConfigurationList = 5DD5AFAE1D0E9DAF00EBDB70 /* Build configuration list for PBXProject "IntelligentPacket" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 5DD5AFAA1D0E9DAF00EBDB70;
+			productRefGroup = 5DD5AFB41D0E9DB000EBDB70 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5DD5AFB21D0E9DB000EBDB70 /* IntelligentPacket */,
+				5DD5AFCE1D0E9DB000EBDB70 /* IntelligentPacketTests */,
+				5DD5AFD91D0E9DB000EBDB70 /* IntelligentPacketUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5DD5AFB11D0E9DB000EBDB70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D7BE9021D313A2200E8C55F /* ITPContactsCell.xib in Resources */,
+				5DD5AFC91D0E9DB000EBDB70 /* LaunchScreen.storyboard in Resources */,
+				5DB50FB71D27FA6100F28535 /* ITPPacketBagCell.xib in Resources */,
+				5DD5B0011D0EBDB700EBDB70 /* Images.xcassets in Resources */,
+				5DD5AFF91D0EB7B700EBDB70 /* Localizable.strings in Resources */,
+				5DEA63571D166DF1000D3BBD /* LoginAndRegister.storyboard in Resources */,
+				5DB50C991D22CDB900F28535 /* ITPManageCell.xib in Resources */,
+				5DD5AFC11D0E9DB000EBDB70 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD5AFCD1D0E9DB000EBDB70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD5AFD81D0E9DB000EBDB70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6DE9B55656838CB206205930 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9384AF752312979EAB99081F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CB69688E54FBD80046EE427A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5DD5AFAF1D0E9DB000EBDB70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */,
+				5DD5A7721D167717006D771E /* ITPUserManager.swift in Sources */,
+				5D55772B1D2ABDD70094E72C /* SafeAreaViewController.m in Sources */,
+				5DB50C821D200F0900F28535 /* ITPPacketBagCell.m in Sources */,
+				5DB50CA71D269B5B00F28535 /* ITPDataCenter.m in Sources */,
+				5D41908F1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m in Sources */,
+				5DB50C691D20049400F28535 /* ITPPacketBagVC.m in Sources */,
+				5DA88A751D2D599500C0F8CD /* ITPPacketBagModel.m in Sources */,
+				5D7BE9011D313A2200E8C55F /* ITPContactsCell.m in Sources */,
+				5DD5AFC41D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld in Sources */,
+				5D5577151D28EA150094E72C /* AppUtil.m in Sources */,
+				5DB50CA11D25591700F28535 /* RealmItem.m in Sources */,
+				5DEA635C1D166F8C000D3BBD /* ConstValue.m in Sources */,
+				5DB50FA91D27E68B00F28535 /* ITPLanguageManager.m in Sources */,
+				5DB50C8C1D20232C00F28535 /* UIView+YYAdd.m in Sources */,
+				5DB50C721D2004E500F28535 /* ITPManageVC.m in Sources */,
+				5DB50CA41D269B0700F28535 /* StdDes.m in Sources */,
+				5DB50C981D22CDB900F28535 /* ITPManageCell.m in Sources */,
+				5DB50CAA1D26BBCF00F28535 /* ITPRegisterViewController.m in Sources */,
+				5DB50C861D201D9200F28535 /* UIViewController+Ex.m in Sources */,
+				5DE3F0231D16850700FCAEEF /* UIManager.m in Sources */,
+				5DB50FAC1D27F3D200F28535 /* NSObject+Extension.m in Sources */,
+				5D55772E1D2ABDEF0094E72C /* AddBagsViewController.m in Sources */,
+				5D5577181D2A96BB0094E72C /* LoginWithRegisterViewModel.m in Sources */,
+				5D5577251D2ABDA80094E72C /* ITPContactViewController.m in Sources */,
+				5D0D046D1D37CE6800950057 /* ITPAddBabWithIDViewController.m in Sources */,
+				5DB50FA61D279AAC00F28535 /* CALayer+Ex.m in Sources */,
+				5D7BE9051D31E0B000E8C55F /* ITPAddContactViewController.m in Sources */,
+				5DE3F02B1D16B25400FCAEEF /* ITPHttpServiceBase.m in Sources */,
+				5DB50C5E1D1FAF3C00F28535 /* ITPScoketManager.m in Sources */,
+				5DB50C751D2005FD00F28535 /* ITPLocationVC.m in Sources */,
+				5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */,
+				5DB50C6F1D2004CE00F28535 /* ITPIntroduceVC.m in Sources */,
+				5DD5AFB81D0E9DB000EBDB70 /* main.m in Sources */,
+				5DBE37B01D104C4300A8F386 /* MapManager.m in Sources */,
+				5D7BE9081D32022B00E8C55F /* ITPContactEditorVeiwController.m in Sources */,
+				5DB50FA31D277B7B00F28535 /* ITPForgetViewController.m in Sources */,
+				5D5577311D2AC0C00094E72C /* ITPPacketBagViewModel.m in Sources */,
+				5D5577281D2ABDBD0094E72C /* FeedBackViewController.m in Sources */,
+				5DB50C9D1D25585400F28535 /* ITPRealmStore.m in Sources */,
+				5DB50C661D20043400F28535 /* ITPBaseViewController.m in Sources */,
+				5DD5AFF41D0EB48F00EBDB70 /* AppDelegate.m in Sources */,
+				5DB50FBB1D28D76000F28535 /* LoginViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD5AFCB1D0E9DB000EBDB70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DD5AFD41D0E9DB000EBDB70 /* IntelligentPacketTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DD5AFD61D0E9DB000EBDB70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DD5AFDF1D0E9DB000EBDB70 /* IntelligentPacketUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5DD5AFD11D0E9DB000EBDB70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DD5AFB21D0E9DB000EBDB70 /* IntelligentPacket */;
+			targetProxy = 5DD5AFD01D0E9DB000EBDB70 /* PBXContainerItemProxy */;
+		};
+		5DD5AFDC1D0E9DB000EBDB70 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DD5AFB21D0E9DB000EBDB70 /* IntelligentPacket */;
+			targetProxy = 5DD5AFDB1D0E9DB000EBDB70 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5DD5AFBF1D0E9DB000EBDB70 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DD5AFC01D0E9DB000EBDB70 /* Base */,
+				5DD5AFFC1D0EB7F600EBDB70 /* zh-Hans */,
+				5DD5B0031D0ECA5700EBDB70 /* en */,
+			);
+			name = Main.storyboard;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		5DD5AFC71D0E9DB000EBDB70 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DD5AFC81D0E9DB000EBDB70 /* Base */,
+				5DD5AFFD1D0EB7F600EBDB70 /* zh-Hans */,
+				5DD5B0051D0ECA6200EBDB70 /* en */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5DD5AFFB1D0EB7B700EBDB70 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DD5AFFA1D0EB7B700EBDB70 /* en */,
+				5DD5AFFE1D0EB7F600EBDB70 /* zh-Hans */,
+				5DD5AFFF1D0EBA0900EBDB70 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5DD5AFE11D0E9DB000EBDB70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5DD5AFE21D0E9DB000EBDB70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5DD5AFE41D0E9DB000EBDB70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36671EB56609768BCE3AC3C7 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = IntelligentPacket/IntelligentPacket.pch;
+				INFOPLIST_FILE = IntelligentPacket/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JianYiMei.IntelligentPacket;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5DD5AFE51D0E9DB000EBDB70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CA47F56F8288657024A364D /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = IntelligentPacket/IntelligentPacket.pch;
+				INFOPLIST_FILE = IntelligentPacket/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.JianYiMei.IntelligentPacket;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		5DD5AFE71D0E9DB000EBDB70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = IntelligentPacketTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.detu.IntelligentPacketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IntelligentPacket.app/IntelligentPacket";
+			};
+			name = Debug;
+		};
+		5DD5AFE81D0E9DB000EBDB70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = IntelligentPacketTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.detu.IntelligentPacketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IntelligentPacket.app/IntelligentPacket";
+			};
+			name = Release;
+		};
+		5DD5AFEA1D0E9DB000EBDB70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = IntelligentPacketUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.detu.IntelligentPacketUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = IntelligentPacket;
+			};
+			name = Debug;
+		};
+		5DD5AFEB1D0E9DB000EBDB70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = IntelligentPacketUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.detu.IntelligentPacketUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = IntelligentPacket;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5DD5AFAE1D0E9DAF00EBDB70 /* Build configuration list for PBXProject "IntelligentPacket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DD5AFE11D0E9DB000EBDB70 /* Debug */,
+				5DD5AFE21D0E9DB000EBDB70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DD5AFE31D0E9DB000EBDB70 /* Build configuration list for PBXNativeTarget "IntelligentPacket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DD5AFE41D0E9DB000EBDB70 /* Debug */,
+				5DD5AFE51D0E9DB000EBDB70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DD5AFE61D0E9DB000EBDB70 /* Build configuration list for PBXNativeTarget "IntelligentPacketTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DD5AFE71D0E9DB000EBDB70 /* Debug */,
+				5DD5AFE81D0E9DB000EBDB70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DD5AFE91D0E9DB000EBDB70 /* Build configuration list for PBXNativeTarget "IntelligentPacketUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DD5AFEA1D0E9DB000EBDB70 /* Debug */,
+				5DD5AFEB1D0E9DB000EBDB70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5DD5AFC21D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5DD5AFC31D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodel */,
+			);
+			currentVersion = 5DD5AFC31D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodel */;
+			path = IntelligentPacket.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 5DD5AFAB1D0E9DAF00EBDB70 /* Project object */;
+}

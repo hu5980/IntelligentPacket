@@ -1,0 +1,71 @@
+/* 
+  Localizable.strings
+  IntelligentPacket
+
+  Created by Seth on 16/6/13.
+  Copyright © 2016年 detu. All rights reserved.
+*/
+
+CFBundleDisplayName="Intelligent Packet";
+
+//箱包
+"Luggage and bags" = "Luggage and bags";
+"Bag weighing" = "Bag weighing";
+"confim" = "confim";
+
+"Add bags" = "Add bags";
+"add" = "add";
+"phone number" = "phone number";
+"Please select type" = "Please select type";
+
+//定位
+"Location" = "Location";
+
+//介绍
+"Introduce" = "Introduce";
+
+//管理
+"contacts" = "contacts";
+"add contacts" = "add contacts";
+"Please enter phone number" = "Please enter phone number";
+"Please enter password" = "Please enter password";
+"Please enter nickName" = "Please enter nickName";
+"save" = "save";
+
+
+"Add bags" = "Add bags";
+"Safe area" = "Safe area";
+"Language selection" = "Language selection";
+"Complaints and suggestions" = "Complaints and suggestions";
+
+"Sign out" = "Sign out";
+"Manage" = "Manage";
+
+
+
+
+// login
+
+"To get the verification code, please check the mailbox." = "To get the verification code, please check the mailbox.";
+"get the verification code failed." = "get the verification code failed.";
+"code error" = "code error";
+"email error" = "email error";
+"register success" = "register success";
+"register failed" = "register failed";
+
+"Please enter your email address" = "Please enter your email address";
+"Please enter your password" = "Please enter your password";
+"login" = "login";
+"fast register" = "fast register";
+"find password" = "find password";
+
+// register
+"Please enter your code" = "Please enter your code";
+"Please enter your nickName" = "Please enter your nickName";
+"register" = "register";
+"back" = "back";
+"code" = "code";
+
+
+
+

@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4F87930AB469ED9D8D46C574842C381F9F898E0E+++BA49E73",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4F87930AB469ED9D8D46C574842C381F9F898E0E+++BA49E73" : 0,
+    "4F87930AB469ED9D8D46C574842C381F9F898E0E+++B2F4160" : 0,
+    "4F87930AB469ED9D8D46C574842C381F9F898E0E+++76CC0D2" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "951E4830-89A9-47B7-8787-0B9B0502D1CD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4F87930AB469ED9D8D46C574842C381F9F898E0E+++BA49E73" : "IntelligentPacket\/",
+    "4F87930AB469ED9D8D46C574842C381F9F898E0E+++B2F4160" : "IntelligentPacket\/IntelligentPacket\/",
+    "4F87930AB469ED9D8D46C574842C381F9F898E0E+++76CC0D2" : "IntelligentPacket\/IntelligentPacket\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "IntelligentPacket",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "IntelligentPacket.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:chenxi102\/IntelligentPacket.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4F87930AB469ED9D8D46C574842C381F9F898E0E+++76CC0D2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/chenxi102\/IntelligentPacket.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4F87930AB469ED9D8D46C574842C381F9F898E0E+++B2F4160"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:chenxi102\/IntelligentPacket.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4F87930AB469ED9D8D46C574842C381F9F898E0E+++BA49E73"
+    }
+  ]
+}
