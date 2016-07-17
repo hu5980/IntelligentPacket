@@ -22,7 +22,7 @@
                                 <rect key="frame" x="20" y="13" width="30" height="30"/>
                                 <state key="normal" title="🍵"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="已注册商标" translatesAutoresizingMaskIntoConstraints="NO" id="dOy-xg-ZOs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="已注册商标" translatesAutoresizingMaskIntoConstraints="NO" id="dOy-xg-ZOs">
                                 <rect key="frame" x="111" y="70" width="98" height="98"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="phv-hv-eQv">
@@ -362,6 +362,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="getCode:" destination="5vS-Gl-bfQ" eventType="touchUpInside" id="4rc-t7-ojh"/>
+                                    <action selector="getCodeAction:" destination="ToH-6Z-BXx" eventType="touchUpInside" id="uEw-E0-ugB"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfs-e6-UHO">
@@ -409,12 +410,18 @@
                                 <state key="normal" title="完成">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="confimAction:" destination="ToH-6Z-BXx" eventType="touchUpInside" id="nOv-tL-boy"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -503,7 +510,7 @@
                                     <action selector="back:" destination="5vS-Gl-bfQ" eventType="touchUpInside" id="U1p-08-fGB"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="已注册商标" translatesAutoresizingMaskIntoConstraints="NO" id="1an-np-esL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="已注册商标" translatesAutoresizingMaskIntoConstraints="NO" id="1an-np-esL">
                                 <rect key="frame" x="111" y="67" width="98" height="98"/>
                             </imageView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z6m-3U-fzr">

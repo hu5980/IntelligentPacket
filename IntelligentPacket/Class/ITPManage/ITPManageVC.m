@@ -12,6 +12,7 @@
 #import "SafeAreaViewController.h"
 #import "FeedBackViewController.h"
 #import "ITPManageCell.h"
+#import "ITPHeadAndNameViewController.h"
 
 @interface ITPManageVC ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -197,15 +198,15 @@ NSString * manageData[manageDataCount___] = {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString *title = L(manageData[indexPath.row]);
+    NSString *title = L(manageData[indexPath.row - 1]);
     
     switch (indexPath.row) {
         case 0:
         {
             
-//            ITPContactViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"contacts"];
-//            vc.title = title;
-//            [self.navigationController pushViewController:vc animated:YES];
+            ITPHeadAndNameViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"headername"];
+            vc.title = L(@"Head and nickname");
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1:

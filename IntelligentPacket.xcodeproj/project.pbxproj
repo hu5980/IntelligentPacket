@@ -25,6 +25,10 @@
 		5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A771D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m */; };
 		5DABF9E41D3A14CB006ADBE3 /* EditContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DABF9E21D3A14CB006ADBE3 /* EditContactTableViewCell.m */; };
 		5DABF9E51D3A14CB006ADBE3 /* EditContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DABF9E31D3A14CB006ADBE3 /* EditContactTableViewCell.xib */; };
+		5DABF9E91D3B1BAF006ADBE3 /* ITPHeadAndNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DABF9E81D3B1BAF006ADBE3 /* ITPHeadAndNameViewController.m */; };
+		5DABF9EC1D3B3228006ADBE3 /* ITPheadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DABF9EB1D3B3228006ADBE3 /* ITPheadViewController.m */; };
+		5DABF9EF1D3B370B006ADBE3 /* ITPNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DABF9EE1D3B370B006ADBE3 /* ITPNameViewController.m */; };
+		5DABF9F21D3B4397006ADBE3 /* UIImage+Fit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DABF9F11D3B4397006ADBE3 /* UIImage+Fit.m */; };
 		5DB50C5E1D1FAF3C00F28535 /* ITPScoketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C5D1D1FAF3C00F28535 /* ITPScoketManager.m */; };
 		5DB50C661D20043400F28535 /* ITPBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C651D20043400F28535 /* ITPBaseViewController.m */; };
 		5DB50C691D20049400F28535 /* ITPPacketBagVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50C681D20049400F28535 /* ITPPacketBagVC.m */; };
@@ -120,6 +124,14 @@
 		5DABF9E11D3A14CB006ADBE3 /* EditContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditContactTableViewCell.h; sourceTree = "<group>"; };
 		5DABF9E21D3A14CB006ADBE3 /* EditContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditContactTableViewCell.m; sourceTree = "<group>"; };
 		5DABF9E31D3A14CB006ADBE3 /* EditContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditContactTableViewCell.xib; sourceTree = "<group>"; };
+		5DABF9E71D3B1BAF006ADBE3 /* ITPHeadAndNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPHeadAndNameViewController.h; sourceTree = "<group>"; };
+		5DABF9E81D3B1BAF006ADBE3 /* ITPHeadAndNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPHeadAndNameViewController.m; sourceTree = "<group>"; };
+		5DABF9EA1D3B3228006ADBE3 /* ITPheadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPheadViewController.h; sourceTree = "<group>"; };
+		5DABF9EB1D3B3228006ADBE3 /* ITPheadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPheadViewController.m; sourceTree = "<group>"; };
+		5DABF9ED1D3B370B006ADBE3 /* ITPNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPNameViewController.h; sourceTree = "<group>"; };
+		5DABF9EE1D3B370B006ADBE3 /* ITPNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPNameViewController.m; sourceTree = "<group>"; };
+		5DABF9F01D3B4397006ADBE3 /* UIImage+Fit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Fit.h"; sourceTree = "<group>"; };
+		5DABF9F11D3B4397006ADBE3 /* UIImage+Fit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Fit.m"; sourceTree = "<group>"; };
 		5DB50C5C1D1FAF3C00F28535 /* ITPScoketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPScoketManager.h; sourceTree = "<group>"; };
 		5DB50C5D1D1FAF3C00F28535 /* ITPScoketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPScoketManager.m; sourceTree = "<group>"; };
 		5DB50C641D20043400F28535 /* ITPBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPBaseViewController.h; sourceTree = "<group>"; };
@@ -253,6 +265,7 @@
 			children = (
 				5DABF9E01D3A14AE006ADBE3 /* View */,
 				5DABF9DF1D3A14A4006ADBE3 /* Model */,
+				5DABF9E61D3B1B92006ADBE3 /* HeadPortraitAndName */,
 				5D5577201D2ABD5B0094E72C /* Contacts */,
 				5D5577211D2ABD7B0094E72C /* AddBags */,
 				5D5577221D2ABD8C0094E72C /* SafeArea */,
@@ -350,6 +363,19 @@
 				5DABF9E31D3A14CB006ADBE3 /* EditContactTableViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5DABF9E61D3B1B92006ADBE3 /* HeadPortraitAndName */ = {
+			isa = PBXGroup;
+			children = (
+				5DABF9E71D3B1BAF006ADBE3 /* ITPHeadAndNameViewController.h */,
+				5DABF9E81D3B1BAF006ADBE3 /* ITPHeadAndNameViewController.m */,
+				5DABF9EA1D3B3228006ADBE3 /* ITPheadViewController.h */,
+				5DABF9EB1D3B3228006ADBE3 /* ITPheadViewController.m */,
+				5DABF9ED1D3B370B006ADBE3 /* ITPNameViewController.h */,
+				5DABF9EE1D3B370B006ADBE3 /* ITPNameViewController.m */,
+			);
+			path = HeadPortraitAndName;
 			sourceTree = "<group>";
 		};
 		5DB50C5B1D1FAF0E00F28535 /* SocketServiceApiManager */ = {
@@ -668,6 +694,8 @@
 		5DE3F0241D16B01E00FCAEEF /* ITPCategary */ = {
 			isa = PBXGroup;
 			children = (
+				5DABF9F01D3B4397006ADBE3 /* UIImage+Fit.h */,
+				5DABF9F11D3B4397006ADBE3 /* UIImage+Fit.m */,
 				5DB50FAA1D27F3D200F28535 /* NSObject+Extension.h */,
 				5DB50FAB1D27F3D200F28535 /* NSObject+Extension.m */,
 				5DB50C8A1D20232C00F28535 /* UIView+YYAdd.h */,
@@ -912,6 +940,7 @@
 			files = (
 				5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */,
 				5DD5A7721D167717006D771E /* ITPUserManager.swift in Sources */,
+				5DABF9EC1D3B3228006ADBE3 /* ITPheadViewController.m in Sources */,
 				5D55772B1D2ABDD70094E72C /* SafeAreaViewController.m in Sources */,
 				5DB50C821D200F0900F28535 /* ITPPacketBagCell.m in Sources */,
 				5DB50CA71D269B5B00F28535 /* ITPDataCenter.m in Sources */,
@@ -926,6 +955,7 @@
 				5DB50FA91D27E68B00F28535 /* ITPLanguageManager.m in Sources */,
 				5DB50C8C1D20232C00F28535 /* UIView+YYAdd.m in Sources */,
 				5DB50C721D2004E500F28535 /* ITPManageVC.m in Sources */,
+				5DABF9E91D3B1BAF006ADBE3 /* ITPHeadAndNameViewController.m in Sources */,
 				5DB50CA41D269B0700F28535 /* StdDes.m in Sources */,
 				5DB50C981D22CDB900F28535 /* ITPManageCell.m in Sources */,
 				5DB50CAA1D26BBCF00F28535 /* ITPRegisterViewController.m in Sources */,
@@ -947,10 +977,12 @@
 				5DABF9E41D3A14CB006ADBE3 /* EditContactTableViewCell.m in Sources */,
 				5DBE37B01D104C4300A8F386 /* MapManager.m in Sources */,
 				5D7BE9081D32022B00E8C55F /* ITPContactEditorVeiwController.m in Sources */,
+				5DABF9F21D3B4397006ADBE3 /* UIImage+Fit.m in Sources */,
 				5DB50FA31D277B7B00F28535 /* ITPForgetViewController.m in Sources */,
 				5D5577311D2AC0C00094E72C /* ITPPacketBagViewModel.m in Sources */,
 				5D5577281D2ABDBD0094E72C /* FeedBackViewController.m in Sources */,
 				5DB50C9D1D25585400F28535 /* ITPRealmStore.m in Sources */,
+				5DABF9EF1D3B370B006ADBE3 /* ITPNameViewController.m in Sources */,
 				5DB50C661D20043400F28535 /* ITPBaseViewController.m in Sources */,
 				5DD5AFF41D0EB48F00EBDB70 /* AppDelegate.m in Sources */,
 				5DB50FBB1D28D76000F28535 /* LoginViewController.m in Sources */,

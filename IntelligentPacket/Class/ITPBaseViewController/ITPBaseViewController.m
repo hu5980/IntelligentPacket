@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = viewColor;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLanguge) name:refreshLangugeNotification object:nil];
@@ -36,6 +37,7 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
+    [self.nextResponder touchesBegan:touches withEvent:event];
 }
 
 - (void)refreshLanguge {

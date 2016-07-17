@@ -30,7 +30,7 @@
     [self refreshLanguge];
    
     introduceLabel = [UILabel new];
-    introduceLabel.backgroundColor  = [UIColor whiteColor];
+    introduceLabel.backgroundColor  = self.view.backgroundColor;
     introduceLabel.numberOfLines = 0;
     [self.view addSubview:introduceLabel];
 }

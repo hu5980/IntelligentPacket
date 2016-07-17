@@ -37,6 +37,12 @@ CFBundleDisplayName="智能箱包";
 "Hong Wang's vision: to do first-class luggage products, to do responsible business, happy work, happy life\n" = "宏旺的愿景：做一流的箱包产品，做负责任的企业，快乐的工作，快乐的生活\n";
 /////管理 =================
 
+"Head and nickname" = "头像和昵称";
+"Head portrait" = "头像";
+"NickName" = "昵称";
+"Modify head portrait" = "修改头像";
+"Modify NickName" = "修改昵称";
+
 
 "contacts" = "联系人";
 "edit" = "编辑";
