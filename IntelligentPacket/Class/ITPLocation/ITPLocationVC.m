@@ -21,6 +21,8 @@
     CLGeocoder *geocoder;
 //    NSString *plistPath;
     NSMutableArray *locationArray;
+    
+   // UIImageView *arrowImageView;
  
 }
 
@@ -47,6 +49,10 @@
     _mapView.mapType = MKMapTypeStandard;
     _mapView.zoomEnabled = YES;//支持缩放
     _mapView.delegate = self;
+    _mapView .showsUserLocation = YES;
+  //  arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 20, 40)];
+  //  arrowImageView.image = [UIImage imageNamed:@"icon_cellphone"];
+  //  [_mapView addSubview:arrowImageView];
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"定位"] style:UIBarButtonItemStylePlain target:self action:@selector(entryHistoryLocationAction)];
     
@@ -69,9 +75,10 @@
         locationmanager.delegate=self;
         locationmanager.desiredAccuracy=kCLLocationAccuracyBest;
         locationmanager.distanceFilter=0.5f;
+        
         [locationmanager requestAlwaysAuthorization];
         [locationmanager startUpdatingLocation];
-        [locationmanager startUpdatingHeading];
+//        [locationmanager startUpdatingHeading];
     }
 }
 
@@ -109,7 +116,7 @@
     
     [UIView animateWithDuration:0.2 animations:^{
         //旋转我们的指南针
-      //  self.imgView.transform=CGAffineTransformMakeRotation(-angle);
+     //   arrowImageView.transform=CGAffineTransformMakeRotation(-angle);
     }];
 }
 
@@ -161,7 +168,10 @@
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-    if(userLocation.coordinate.latitude == 0.0f || userLocation.coordinate.longitude == 0.0f)    return;
+    if(userLocation.coordinate.latitude == 0.0f || userLocation.coordinate.longitude == 0.0f){
+        return;
+    }
+    [self showCurrentLocationInfo:userLocation];
     [pointsArray addObject:userLocation];
     
     NSMutableDictionary *locationDic = [[NSMutableDictionary alloc]init];
@@ -191,6 +201,35 @@
 }
 
 
-
+- (void)showCurrentLocationInfo:(MKUserLocation *)location {
+    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+    NSLog(@"%f\n%f",location.coordinate.latitude,location.coordinate.longitude);
+  
+    //根据经纬度反向地理编译出地址信息
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error){
+        if (placemarks.count > 0){
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+            //将获得的所有信息显示到label上
+            self.locationLabel.text = placemark.name;
+            //获取城市
+            NSString *city = placemark.locality;
+            if (!city) {
+                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
+                city = placemark.administrativeArea;
+            }
+            NSLog(@"city = %@", city);
+            self.locationLabel.text = city;
+      
+        }
+        else if (error == nil && [placemarks count] == 0)
+        {
+            NSLog(@"No results were returned.");
+        }
+        else if (error != nil)
+        {
+            NSLog(@"An error occurred = %@", error);
+        }
+    }];
+}
 
 @end
