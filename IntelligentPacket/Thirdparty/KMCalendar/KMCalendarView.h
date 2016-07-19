@@ -1,31 +1,27 @@
 //
-//  XKRWCalendarView.h
-//  XKRW
+//  KMCalendarView.h
+//  KMCalendarDemo
 //
-//  Created by XiKang on 14-11-10.
-//  Copyright (c) 2014年 XiKang. All rights reserved.
+//  Created by Klein Mioke on 15/12/4.
+//  Copyright © 2015年 KleinMioke. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "XKRWCalendarHelper.h"
-#import "NSDate+XKRWCalendar.h" 
+#import "KMCalendarItem.h"
 
-@interface XKRWCalendarView : UIView
+@interface KMCalendarView : UIView
 
 @property (nonatomic        ) NSInteger        selectedLine;
 @property (nonatomic        ) NSInteger        currentLine;
 @property (nonatomic, strong) NSDate           *selectedDay;
 @property (nonatomic, strong) NSDate           *date;
 
-@property (nonatomic        ) XKRWCalendarType type;
+@property (nonatomic        ) KMCalendarType    type;
 @property (nonatomic, weak  ) NSArray          *recordDateArray;
-@property (nonatomic, strong) NSArray          *weightRecordArray;
-@property (nonatomic) XKRWCalendarMonthType monthType;
 
 - (instancetype)initWithDate:(NSDate *)date
              recordDateArray:(NSArray *)dateArray
                 returnHeight:(void (^)(CGFloat height))block
-           calendarMonthType:(XKRWCalendarMonthType )monthType
               clickDateBlock:(void (^)(NSDate *date, BOOL outOfMonth))block2;
 
 - (void)resetWithDate:(NSDate *)date returnHeight:(void (^)(CGFloat height))block;

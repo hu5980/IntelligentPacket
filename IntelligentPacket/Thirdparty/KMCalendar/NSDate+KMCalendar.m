@@ -1,60 +1,53 @@
 //
-//  NSDate+XKRWCalendar.m
-//  XKRW
+//  NSDate+KMCalendar.m
+//  KMCalendarDemo
 //
-//  Created by XiKang on 14-11-10.
-//  Copyright (c) 2014年 XiKang. All rights reserved.
+//  Created by Klein Mioke on 15/12/4.
+//  Copyright © 2015年 KleinMioke. All rights reserved.
 //
 
-#import "NSDate+XKRWCalendar.h"
+#import "NSDate+KMCalendar.h"
 
-@implementation NSDate (XKRWCalendar)
+@implementation NSDate (KMCalendar)
 
 @dynamic year, day, month;
 
 - (NSInteger)year
 {
-    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components:NSCalendarUnitYear fromDate:self];
     return comps.year;
 }
 
 - (NSInteger)day
 {
-    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components:NSCalendarUnitDay fromDate:self];
     return comps.day;
 }
 
 - (NSInteger)month
 {
-    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components:NSCalendarUnitMonth fromDate:self];
     return comps.month;
 }
 
-- (NSInteger)hour
-{
-    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *comps = [calendar components:NSCalendarUnitHour fromDate:self];
-    return comps.hour;
-}
-
-- (int)returnWeekday
+- (int)km_returnWeekday
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-
+    
     return (int)[calendar ordinalityOfUnit:NSCalendarUnitWeekday inUnit:NSCalendarUnitWeekOfYear forDate:self];
 }
 
-- (int)weekOfMonth
+- (int)km_weekOfMonth
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components:NSCalendarUnitWeekOfMonth fromDate:self];
     return (int32_t)comps.weekOfMonth;
 }
 
-- (NSDate *)offsetMonth:(NSInteger)offset
+- (NSDate *)km_offsetMonth:(NSInteger)offset
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
@@ -63,7 +56,7 @@
     return [calendar dateByAddingComponents:comps toDate:self options:0];
 }
 
-- (NSDate *)offsetWeekOfYear:(NSInteger)offset
+- (NSDate *)km_offsetWeekOfYear:(NSInteger)offset
 {
     if (offset == 0) {
         return self;
@@ -75,7 +68,7 @@
     return [calendar dateByAddingComponents:comps toDate:self options:0];
 }
 
-- (NSDate *)offsetDay:(NSInteger)offset
+- (NSDate *)km_offsetDay:(NSInteger)offset
 {
     if (offset == 0) {
         return self;
@@ -87,35 +80,21 @@
     return [calendar dateByAddingComponents:comps toDate:self options:0];
 }
 
-- (NSDate *)offsetMinute:(NSInteger)offset
-{
-    if (offset == 0) {
-        return self;
-    }
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    
-    [comps setMinute:offset];
-    return [calendar dateByAddingComponents:comps toDate:self options:0];
-}
-
-
-- (NSString *)formatInXKRWCalendar
+- (NSString *)km_formatInKMCalendar
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
-    formatter.dateFormat = @"yyyy年MM月";
+    formatter.dateFormat = @"YYYY年MM月";
     return [formatter stringFromDate:self];
 }
 
-- (NSInteger)numberOfDaysInMonth
+- (NSInteger)km_numberOfDaysInMonth
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSRange range = [cal rangeOfUnit:NSCalendarUnitDay inUnit:NSCalendarUnitMonth forDate:self];
     return range.length;
 }
 
-- (NSInteger)firstWeekDayInMonth
+- (NSInteger)km_firstWeekDayInMonth
 {
     NSCalendar *gregorian = [NSCalendar currentCalendar];
     NSDateComponents *comps = [gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
@@ -126,7 +105,7 @@
     return [gregorian ordinalityOfUnit:NSCalendarUnitWeekday inUnit:NSCalendarUnitWeekOfYear forDate:newDate];
 }
 
-- (BOOL)isMonthEqualToDate:(NSDate *)date
+- (BOOL)km_isMonthEqualToDate:(NSDate *)date
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *selfComps = [cal components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:self];
@@ -137,7 +116,7 @@
     return NO;
 }
 
-- (BOOL)isDayEqualToDate:(NSDate *)date
+- (BOOL)km_isDayEqualToDate:(NSDate *)date
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *selfComps = [cal components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
@@ -150,7 +129,7 @@
     return NO;
 }
 
-- (BOOL)isWeekEqualToDate:(NSDate *)date
+- (BOOL)km_isWeekEqualToDate:(NSDate *)date
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *selfComps = [cal components:NSCalendarUnitWeekOfYear | NSCalendarUnitYearForWeekOfYear | NSCalendarUnitYear
@@ -163,7 +142,7 @@
     return NO;
 }
 
-- (NSDate *)firstDayInMonth
+- (NSDate *)km_firstDayInMonth
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
@@ -174,38 +153,18 @@
     return [calendar dateFromComponents:comps];
 }
 
-- (NSDate *)lastDayInMonth
+- (NSDate *)km_lastDayInMonth
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay
                                           fromDate:self];
     [comps setHour:12];
-    [comps setDay:[self numberOfDaysInMonth]];
+    [comps setDay:[self km_numberOfDaysInMonth]];
     
     return [calendar dateFromComponents:comps];
 }
 
-- (NSDate *)firstDayInWeek {
-    int offsetDay;
-    if ([self returnWeekday] == 1) {
-        offsetDay = -7;
-    } else {
-        offsetDay = - [self returnWeekday] + 1;
-    }
-    return [self offsetDay:(offsetDay + 1)];
-}
-
-- (NSDate *)lastDayInWeek {
-    int offsetDay;
-    if ([self returnWeekday] == 1) {
-        offsetDay = 0;
-    } else {
-        offsetDay = 7 - [self returnWeekday] + 1;
-    }
-    return [self offsetDay:offsetDay];
-}
-
-- (NSTimeInterval)originTimeOfADay {
+- (NSTimeInterval)km_originTimeOfADay {
     
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
@@ -215,5 +174,6 @@
     
     return [[calendar dateFromComponents:comps] timeIntervalSince1970];
 }
+
 
 @end

@@ -1,22 +1,20 @@
 //
-//  XKRWCalendarView.m
-//  XKRW
+//  KMCalendarView.m
+//  KMCalendarDemo
 //
-//  Created by XiKang on 14-11-10.
-//  Copyright (c) 2014年 XiKang. All rights reserved.
+//  Created by Klein Mioke on 15/12/4.
+//  Copyright © 2015年 KleinMioke. All rights reserved.
 //
 
-#import "XKRWCalendarView.h"
-#import "XKRWCalendarItem.h"
-#import "XKRWCalendarHelper.h"
-#import "NSDate+XKRWCalendar.h"
-#import "XKRWWeightService.h"
+#import "KMCalendarView.h"
+#import "NSDate+KMCalendar.h"
+#import "KMCalendarItem.h"
 
-@implementation XKRWCalendarView
+@implementation KMCalendarView
 {
     NSInteger _numberOfDayInMonth;
     NSInteger _weekday;
-
+    
     NSInteger _numberOfLine;
     CGFloat _originalY;
     
@@ -27,11 +25,11 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.frame = CGRectMake(0.f, 0.f, XKAppWidth, 150.f);
+        self.frame = CGRectMake(0.f, 0.f, UI_SCREEN_WIDTH, 150.f);
         _originalY = 0.f;
         self.backgroundColor = [UIColor whiteColor];
         _itemArray = [NSMutableArray array];
-        self.type = XKRWCalendarTypeMonth;
+        self.type = KMCalendarTypeMonth;
     }
     return self;
 }
@@ -39,24 +37,15 @@
 - (instancetype)initWithDate:(NSDate *)date
              recordDateArray:(NSArray *)dateArray
                 returnHeight:(void (^)(CGFloat height))block
-           calendarMonthType:(XKRWCalendarMonthType )monthType
-              clickDateBlock:(void (^)(NSDate *date, BOOL outOfMonth))block2;
+              clickDateBlock:(void (^)(NSDate *date, BOOL outOfMonth))block2
 {
     self = [self init];
     self.recordDateArray = dateArray;
-    self.monthType = monthType;
     [self initCalendarItemsWithDate:date clickDateBlock:block2];
-     CGRect rect = self.frame;
-    if(monthType == XKRWCalendarTypeStrongMonth){
-        block(_numberOfLine * 70.f);
-        rect.size.height = _numberOfLine * 70.f;
-    }else{
-        block(_numberOfLine * 30.f);
-        rect.size.height = _numberOfLine * 30.f;
-    }
+    block(_numberOfLine * 30.f);
     
-   
-    
+    CGRect rect = self.frame;
+    rect.size.height = _numberOfLine * 30.f;
     self.frame = rect;
     
     return self;
@@ -69,24 +58,24 @@
  */
 - (void)resetWithDate:(NSDate *)date returnHeight:(void (^)(CGFloat height))block
 {
-//    [self removeAllItems];
-//    [self initCalendarItemsWithDate:date clickDateBlock:nil];
+    //    [self removeAllItems];
+    //    [self initCalendarItemsWithDate:date clickDateBlock:nil];
     
     self.date = date;
     BOOL flag = NO;
-    if ([self.date isMonthEqualToDate:[NSDate date]]) {
+    if ([self.date km_isMonthEqualToDate:[NSDate date]]) {
         flag = YES;
     }
-    _numberOfDayInMonth = [date numberOfDaysInMonth];
+    _numberOfDayInMonth = [date km_numberOfDaysInMonth];
     _numberOfLine = 1;
-    _weekday = [date firstWeekDayInMonth];
+    _weekday = [date km_firstWeekDayInMonth];
     
     __block NSInteger day = 1;
     __block NSInteger offset = day - _weekday;
     
     [_itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
-        XKRWCalendarItem *item = (XKRWCalendarItem *)obj;
+        KMCalendarItem *item = (KMCalendarItem *)obj;
         BOOL isToday = NO;
         if (flag) {
             if (day == [NSDate date].day) {
@@ -94,46 +83,42 @@
             }
         }
         if ((idx + 1) >= _weekday && day <= _numberOfDayInMonth) {
-            NSDate *itemDate = [[date firstDayInMonth] offsetDay:day - 1];
+            NSDate *itemDate = [[date km_firstDayInMonth] km_offsetDay:day - 1];
             BOOL isRecord = NO;
             for (NSDate *temp_date in self.recordDateArray) {
-                if ([temp_date isDayEqualToDate:itemDate]) {
+                if ([temp_date km_isDayEqualToDate:itemDate]) {
                     isRecord = YES;
                     break;
                 }
             }
-            item.tag = day;
-            item.date = date;
             [item setDay:[NSString stringWithFormat:@"%d", (int)day]
               outOfMonth:NO
                  isToday:isToday
                 isRecord:isRecord];
-            
+            item.tag = day;
             day ++;
             if (item.hidden == YES) {
-//                [item setHidden:NO withAnimation:YES];
+                //                [item setHidden:NO withAnimation:YES];
             }
         } else {
-            NSDate *itemDate = [[date firstDayInMonth] offsetDay:offset];
-            if ([itemDate isDayEqualToDate:[NSDate date]]) {
+            NSDate *itemDate = [[date km_firstDayInMonth] km_offsetDay:offset];
+            if ([itemDate km_isDayEqualToDate:[NSDate date]]) {
                 isToday = YES;
             }
             BOOL isRecord = NO;
             for (NSDate *temp_date in self.recordDateArray) {
-                if ([temp_date isDayEqualToDate:itemDate]) {
+                if ([temp_date km_isDayEqualToDate:itemDate]) {
                     isRecord = YES;
                     break;
                 }
             }
-            item.tag = [[date firstDayInMonth] offsetDay:offset].day + 100;
-            item.date = date;
-            [item setDay:[NSString stringWithFormat:@"%ld", (long)[[date firstDayInMonth] offsetDay:offset].day]
+            [item setDay:[NSString stringWithFormat:@"%ld", (long)[[date km_firstDayInMonth] km_offsetDay:offset].day]
               outOfMonth:YES
                  isToday:isToday
                 isRecord:isRecord];
+            item.tag = [[date km_firstDayInMonth] km_offsetDay:offset].day + 100;
             
-            
-//            [item setHidden:YES withAnimation:YES];
+            //            [item setHidden:YES withAnimation:YES];
         }
         offset ++;
         if (item.isSelected) {
@@ -147,31 +132,23 @@
         _numberOfLine = (_numberOfDayInMonth - (8 - _weekday)) / 7 + 1;
     }
     
-    if ([date isMonthEqualToDate:self.selectedDay]) {
+    if ([date km_isMonthEqualToDate:self.selectedDay]) {
         [self setDateSelected:self.selectedDay];
-        self.currentLine = [self.selectedDay weekOfMonth];
-    } else if ([self.selectedDay isWeekEqualToDate:[date firstDayInMonth]] ||
-               [self.selectedDay isWeekEqualToDate:[date lastDayInMonth]]) {
+        self.currentLine = [self.selectedDay km_weekOfMonth];
+    } else if ([self.selectedDay km_isWeekEqualToDate:[date km_firstDayInMonth]] ||
+               [self.selectedDay km_isWeekEqualToDate:[date km_lastDayInMonth]]) {
         
-        XKRWCalendarItem *item = (XKRWCalendarItem *)[self viewWithTag:100 + self.selectedDay.day];
+        KMCalendarItem *item = (KMCalendarItem *)[self viewWithTag:100 + self.selectedDay.day];
         [item setSelected:YES];
     } else {
         self.currentLine = 1;
     }
-    
+    if (block) {
+        block(_numberOfLine * 30.f);
+    }
     
     CGRect rect = self.frame;
-    if(_monthType == XKRWCalendarTypeStrongMonth){
-        if (block) {
-            block(_numberOfLine * 70.f);
-        }
-        rect.size.height = _numberOfLine * 70.f;
-    }else{
-        if (block) {
-            block(_numberOfLine * 30.f);
-        }
-        rect.size.height = _numberOfLine * 30.f;
-    }
+    rect.size.height = _numberOfLine * 30.f;
     self.frame = rect;
 }
 /**
@@ -184,41 +161,27 @@
 {
     self.date = date;
     BOOL flag = NO;
-    if ([self.date isMonthEqualToDate:[NSDate date]]) {
+    if ([self.date km_isMonthEqualToDate:[NSDate date]]) {
         flag = YES;
     }
     
     if (!_clickBlock) {
         _clickBlock = block;
     }
-
+    
     CGFloat _xPoint = 15.f, _yPoint = 0.f;
     
-    if (_monthType == XKRWCalendarTypeStrongMonth) {
-        UIView  *lineView  =[[UIView alloc]initWithFrame:CGRectMake(0, 69, XKAppWidth, 0.5)];
-        lineView.backgroundColor = colorSecondary_f4f4f4;
-        [self addSubview:lineView];
-    }
-    
-    _numberOfDayInMonth = [date numberOfDaysInMonth];
+    _numberOfDayInMonth = [date km_numberOfDaysInMonth];
     _numberOfLine = 1;
-    _weekday = [date firstWeekDayInMonth];
+    _weekday = [date km_firstWeekDayInMonth];
     
     NSInteger day = 1;
     NSInteger offset = day - _weekday;
-
+    
     for (int i = 1; i <= 42; i ++) {
-        if (_xPoint > XKAppWidth - 15.f - ITEM_WIDTH / 2) {
+        if (_xPoint > UI_SCREEN_WIDTH - 15.f - ITEM_WIDTH / 2) {
             _xPoint = 15.f;
-            if(_monthType == XKRWCalendarTypeStrongMonth){
-                _yPoint += 70.f;
-                UIView  *lineView  = [[UIView alloc] init];
-                lineView.backgroundColor = colorSecondary_f4f4f4;
-                lineView.frame = CGRectMake(0, 69 + _yPoint, XKAppWidth, 0.5);
-                [self addSubview:lineView];
-            }else{
-                _yPoint += 30.f;
-            }
+            _yPoint += 30.f;
             if (day <= _numberOfDayInMonth) {
                 _numberOfLine ++;
             }
@@ -230,18 +193,17 @@
             }
         }
         
-        XKRWCalendarItem *item =
-        [[XKRWCalendarItem alloc] initWithOrigin:CGPointMake(_xPoint, _yPoint)
+        KMCalendarItem *item =
+        [[KMCalendarItem alloc] initWithOrigin:CGPointMake(_xPoint, _yPoint)
                                        withTitle:@"-"
                                           record:NO
                                       isSelected:NO
                                       outOfMonth:NO
-                                         isToday:isToday
-                               calendarMonthType:_monthType
-                                    onClickBlock:^(XKRWCalendarItem *item) {
+                                         isToday:NO
+                                    onClickBlock:^(KMCalendarItem *item) {
                                         if (item.isSelected == NO) {
                                             [_itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                                                XKRWCalendarItem *it = (XKRWCalendarItem *)obj;
+                                                KMCalendarItem *it = (KMCalendarItem *)obj;
                                                 if (it.tag != item.tag && it.isSelected == YES) {
                                                     [it setSelected:NO];
                                                 }
@@ -265,52 +227,48 @@
                                             NSDate *clickedDate = [cal dateFromComponents:comps];
                                             _clickBlock(clickedDate, item.outOfMonth);
                                             
-                                            self.selectedLine = [clickedDate weekOfMonth];
+                                            self.selectedLine = [clickedDate km_weekOfMonth];
                                             self.currentLine = self.selectedLine;
-                                      
+                                            
                                         } else {
                                             return;
                                         }
                                     }];
         if (i >= _weekday && day <= _numberOfDayInMonth) {
-            NSDate *itemDate = [[date firstDayInMonth] offsetDay:day - 1];
+            NSDate *itemDate = [[date km_firstDayInMonth] km_offsetDay:day - 1];
             BOOL isRecord = NO;
             for (NSDate *temp_date in self.recordDateArray) {
-                if ([temp_date isDayEqualToDate:itemDate]) {
+                if ([temp_date km_isDayEqualToDate:itemDate]) {
                     isRecord = YES;
                     break;
                 }
             }
-            item.tag = day;
-            item.date = itemDate;
             [item setDay:[NSString stringWithFormat:@"%d", (int)day]
               outOfMonth:NO
                  isToday:isToday
                 isRecord:isRecord];
-            
+            item.tag = day;
             day ++;
         } else {
-            NSDate *itemDate = [[date firstDayInMonth] offsetDay:offset];
-            if ([itemDate isDayEqualToDate:[NSDate date]]) {
+            NSDate *itemDate = [[date km_firstDayInMonth] km_offsetDay:offset];
+            if ([itemDate km_isDayEqualToDate:[NSDate date]]) {
                 isToday = YES;
             }
             BOOL isRecord = NO;
             for (NSDate *temp_date in self.recordDateArray) {
-                if ([temp_date isDayEqualToDate:itemDate]) {
+                if ([temp_date km_isDayEqualToDate:itemDate]) {
                     isRecord = YES;
                     break;
                 }
             }
-            item.date = itemDate;
-            item.tag = [[date firstDayInMonth] offsetDay:offset].day + 100;
-            [item setDay:[NSString stringWithFormat:@"%ld", (long)[[date firstDayInMonth] offsetDay:offset].day]
+            [item setDay:[NSString stringWithFormat:@"%ld", (long)[[date km_firstDayInMonth] km_offsetDay:offset].day]
               outOfMonth:YES
                  isToday:isToday
                 isRecord:isRecord];
+            item.tag = [[date km_firstDayInMonth] km_offsetDay:offset].day + 100;
             
             
-            
-//            [item setHidden:YES withAnimation:NO];
+            //            [item setHidden:YES withAnimation:NO];
         }
         offset ++;
         
@@ -329,55 +287,55 @@
 {
     self.selectedDay = date;
     [_itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        XKRWCalendarItem *item = (XKRWCalendarItem *)obj;
+        KMCalendarItem *item = (KMCalendarItem *)obj;
         if (item.isSelected) {
             [item setSelected:NO];
         }
     }];
-    if (self.type == XKRWCalendarTypeMonth) {
+    if (self.type == KMCalendarTypeMonth) {
         
-        if (![date isMonthEqualToDate:self.date]) {
+        if (![date km_isMonthEqualToDate:self.date]) {
             self.currentLine = 1;
             return;
         }
         NSCalendar *calendar = [NSCalendar currentCalendar];
         NSDateComponents *comps = [calendar components:NSCalendarUnitDay fromDate:date];
-        XKRWCalendarItem *item = (XKRWCalendarItem *)[self viewWithTag:comps.day];
+        KMCalendarItem *item = (KMCalendarItem *)[self viewWithTag:comps.day];
         
         self.selectedLine = (int)(item.frame.origin.y / 30 + 1);
         self.currentLine = self.selectedLine;
-//        [item setSelected:YES];
+        [item setSelected:YES];
         
     } else {
         
-        if (![self.selectedDay isWeekEqualToDate:self.date]) {
+        if (![self.selectedDay km_isWeekEqualToDate:self.date]) {
             return;
         }
         
         NSCalendar *calendar = [NSCalendar currentCalendar];
         NSDateComponents *comps = [calendar components:NSCalendarUnitDay fromDate:date];
-        XKRWCalendarItem *item;
-        if ([self.selectedDay isMonthEqualToDate:self.date]) {
-            item = (XKRWCalendarItem *)[self viewWithTag:comps.day];
+        KMCalendarItem *item;
+        if ([self.selectedDay km_isMonthEqualToDate:self.date]) {
+            item = (KMCalendarItem *)[self viewWithTag:comps.day];
             
         } else {
-            item = (XKRWCalendarItem *)[self viewWithTag:comps.day + 100];
+            item = (KMCalendarItem *)[self viewWithTag:comps.day + 100];
         }
         self.selectedLine = (int)(item.frame.origin.y / 30 + 1);
-//        [item setSelected:YES];
+        [item setSelected:YES];
     }
 }
 
 - (void)removeAllItems
 {
     [_itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        XKRWCalendarItem *item = (XKRWCalendarItem *)obj;
+        KMCalendarItem *item = (KMCalendarItem *)obj;
         [item removeFromSuperview];
     }];
     [_itemArray removeAllObjects];
 }
 
-#pragma mark - type of week 
+#pragma mark - type of week
 
 - (void)setTypeToWeek
 {
@@ -392,15 +350,15 @@
 - (void)resetWeekStyleAsPrimaryView:(NSDate *)date animation:(BOOL)yesOrNo returnHeight:(void (^)(CGFloat height))block
 {
     [_itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        XKRWCalendarItem *item = (XKRWCalendarItem *)obj;
+        KMCalendarItem *item = (KMCalendarItem *)obj;
         if (item.isHidden) {
-//            [item setHidden:NO withAnimation:YES];
+            //            [item setHidden:NO withAnimation:YES];
         }
     }];
     
-    if (![date isMonthEqualToDate:self.date]) {
+    if (![date km_isMonthEqualToDate:self.date]) {
         [_itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            XKRWCalendarItem *item = (XKRWCalendarItem *)obj;
+            KMCalendarItem *item = (KMCalendarItem *)obj;
             if (item.isSelected) {
                 [item setSelected:NO];
             }
@@ -409,7 +367,7 @@
             block(height);
         }];
     }
-    self.currentLine = [date weekOfMonth];
+    self.currentLine = [date km_weekOfMonth];
     CGFloat offset = [self offsetOfDate:date];
     if (yesOrNo) {
         [UIView animateWithDuration:0.2f animations:^{
@@ -426,26 +384,26 @@
  */
 - (void)resetWeekStyleWithDate:(NSDate *)date
 {
-    self.type = XKRWCalendarTypeWeek;
+    self.type = KMCalendarTypeWeek;
     
     self.date = date;
     BOOL flag = NO;
-    if ([self.date isMonthEqualToDate:[NSDate date]]) {
+    if ([self.date km_isMonthEqualToDate:[NSDate date]]) {
         flag = YES;
     }
     
-    int offset = 0 - [self.date returnWeekday];
+    int offset = 0 - [self.date km_returnWeekday];
     
     [_itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        XKRWCalendarItem *item = (XKRWCalendarItem *)obj;
+        KMCalendarItem *item = (KMCalendarItem *)obj;
         BOOL isToday = NO;
         
         if (idx < 7) {
-            NSDate *itemDate = [self.date offsetDay:offset + idx + 1];
-            if ([itemDate isDayEqualToDate:[NSDate date]]) {
+            NSDate *itemDate = [self.date km_offsetDay:offset + idx + 1];
+            if ([itemDate km_isDayEqualToDate:[NSDate date]]) {
                 isToday = YES;
             }
-            BOOL outOfMonth = ![itemDate isMonthEqualToDate:self.date];
+            BOOL outOfMonth = ![itemDate km_isMonthEqualToDate:self.date];
             if (outOfMonth) {
                 item.tag = itemDate.day + 100;
                 
@@ -454,7 +412,7 @@
             }
             BOOL isRecord = NO;
             for (NSDate *temp_date in self.recordDateArray) {
-                if ([temp_date isDayEqualToDate:itemDate]) {
+                if ([temp_date km_isDayEqualToDate:itemDate]) {
                     isRecord = YES;
                     break;
                 }
@@ -464,7 +422,7 @@
                  isToday:isToday
                 isRecord:isRecord];
             if (item.isHidden) {
-//                [item setHidden:NO withAnimation:YES];
+                //                [item setHidden:NO withAnimation:YES];
             }
         } else {
             item.tag = 0;
@@ -486,10 +444,10 @@
 - (CGFloat)offsetOfDate:(NSDate *)date
 {
     CGFloat offset = -1.f;
-    if (![date isMonthEqualToDate:self.date]) {
+    if (![date km_isMonthEqualToDate:self.date]) {
         return offset;
     }
-    offset = ([date weekOfMonth] - 1) * 30.f;
+    offset = ([date km_weekOfMonth] - 1) * 30.f;
     return - offset;
 }
 

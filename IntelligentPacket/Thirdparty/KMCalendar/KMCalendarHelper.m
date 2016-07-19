@@ -1,14 +1,14 @@
 //
-//  XKRWCalendarHelper.m
-//  XKRW
+//  KMCalendarHelper.m
+//  KMCalendarDemo
 //
-//  Created by XiKang on 14-11-10.
-//  Copyright (c) 2014年 XiKang. All rights reserved.
+//  Created by Klein Mioke on 15/12/4.
+//  Copyright © 2015年 KleinMioke. All rights reserved.
 //
 
-#import "XKRWCalendarHelper.h"
+#import "KMCalendarHelper.h"
 
-@implementation XKRWCalendarHelper
+@implementation KMCalendarHelper
 
 + (NSDate *)getPreviousMonth:(NSDate *)date
 {
@@ -23,7 +23,7 @@
 
 + (NSDate *)getNextMonth:(NSDate *)date
 {
-    NSCalendar *calendar = [NSCalendar currentCalendar]; 
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitWeekday |NSCalendarUnitWeekOfMonth | NSCalendarUnitWeekOfYear fromDate:date];
     [components setDay:1];
     [components setHour:12];
@@ -35,8 +35,7 @@
 + (BOOL)checkSameDay:(NSDate *)date1 another:(NSDate *)date2
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
-    formatter.dateFormat = @"yyyy-MM-DD";
+    formatter.dateFormat = @"YYYY-MM-DD";
     NSString *string1 = [formatter stringFromDate:date1];
     NSString *string2 = [formatter stringFromDate:date2];
     

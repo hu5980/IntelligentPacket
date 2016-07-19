@@ -1,12 +1,12 @@
 //
-//  XKRWCalendar.m
-//  XKRW
+//  KMCalendar.m
+//  KMCalendarDemo
 //
-//  Created by XiKang on 14-10-28.
-//  Copyright (c) 2014年 XiKang. All rights reserved.
+//  Created by Klein Mioke on 15/12/4.
+//  Copyright © 2015年 KleinMioke. All rights reserved.
 //
 
-#import "XKRWCalendar.h"
+#import "KMCalendar.h"
 
 #define SPACEING_VALUE_BETWEEN_VIEWS 10.f
 
@@ -14,19 +14,20 @@
 #define HEADER_HEIGHT 40.f
 #define WEEKDAY_HEIGHT 20.f
 
-#define SELF_HEIGHT self.headerView.height + _calendarScrollView.height + self.footerView.height
+#define SELF_HEIGHT self.headerView.frame.size.height + _calendarScrollView.frame.size.height + self.footerView.frame.size.height
 
-@interface XKRWCalendar () <UIScrollViewDelegate>
+@interface KMCalendar () <UIScrollViewDelegate>
 {
     CGFloat _openedHeight;
     CGFloat _closedHeight;
     
     CGFloat _calendarViewHeight;
     
+    UIView *_footerLine;
     UIScrollView *_calendarScrollView;
     
-    XKRWCalendarView *_preMonth;
-    XKRWCalendarView *_nextMonth;
+    KMCalendarView *_preMonth;
+    KMCalendarView *_nextMonth;
     /**
      *  选中的天的日期
      */
@@ -38,7 +39,7 @@
     
     CGFloat _delay;
     
-    XKRWCalendarHeaderType _headerType;
+    KMCalendarHeaderType _headerType;
 }
 /**
  *  当前显示的月份日期
@@ -47,7 +48,7 @@
 
 @end
 
-@implementation XKRWCalendar
+@implementation KMCalendar
 
 #pragma mark - initialization
 
@@ -59,21 +60,8 @@
     }
     return self;
 }
-- (instancetype)initWithOrigin:(CGPoint)origin
-               recordDateArray:(NSMutableArray *)dateArray
-                    headerType:(XKRWCalendarHeaderType)type
-                andResizeBlock:(void (^)(void))block
-                  andMonthType:(XKRWCalendarMonthType )monthType {
-    _monthType = monthType;
 
-    if (self ==[self initWithOrigin:origin recordDateArray:dateArray headerType:type andResizeBlock:block]){
-    
-    }
-    
-    return self;
-}
-
-- (instancetype)initWithOrigin:(CGPoint)origin recordDateArray:(NSMutableArray *)dateArray headerType:(XKRWCalendarHeaderType)type andResizeBlock:(void (^)(void))block {
+- (instancetype)initWithOrigin:(CGPoint)origin recordDateArray:(NSMutableArray *)dateArray headerType:(KMCalendarHeaderType)type andResizeBlock:(void (^)(void))block {
     
     _headerType = type;
     if (self = [self initWithOrigin:origin recordDateArray:dateArray andResizeBlock:block]) {
@@ -100,7 +88,7 @@
         self.recordDateArray = dateArray;
         _isNeedDelegateRespond = NO;
         [self initialize];
-        self.type = XKRWCalendarTypeMonth;
+        self.type = KMCalendarTypeMonth;
         _resizeBlock = block;
         
         CGRect rect = self.frame;
@@ -117,11 +105,11 @@
     self.isHeaderHide = NO;
     self.isFooterHide = NO;
     
-    NSCalendar *calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSGregorianCalendar];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *comps = [calendar components:NSCalendarUnitYear |NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitTimeZone | NSCalendarUnitHour fromDate:[NSDate date]];
     [comps setHour:12];
     self.currentDate = [calendar dateFromComponents:comps];
-    XKLog(@"init date :%@", self.currentDate);
+    KMLog(@"init date :%@", self.currentDate);
     
     [self initSubviews];
     self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, SELF_HEIGHT);
@@ -134,41 +122,40 @@
 
 - (void)initSubviews
 {
-    self.headerView = [[XKRWCalendarHeaderView alloc] initWithType:_headerType
-                                              onClickPreMonthBlock:^{
+    self.headerView = [[KMCalendarHeaderView alloc] initWithType:_headerType
+                                            onClickPreMonthBlock:^{
                                                   [self scrollBackToPreMonth];
-                                                  
-                                              } onClickNextMonthBlock:^{
+                                            }
+                                           onClickNextMonthBlock:^{
                                                   [self scrollToNextMonth];
-                                                  
-                                              } onClickBackToTodayBlock:^{
+                                           }
+                                         onClickBackToTodayBlock:^{
                                                   [self backToToday];
-                                              }];
+                                         }];
     [self addSubview:self.headerView];
     
-    _calendarScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.headerView.bottom, XKAppWidth, 150.f)];
-    [_calendarScrollView setContentSize:CGSizeMake(XKAppWidth * 3, 0)];
+    _calendarScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.headerView.frame.origin.y + self.headerView.frame.size.height, UI_SCREEN_WIDTH, 150.f)];
+    [_calendarScrollView setContentSize:CGSizeMake(UI_SCREEN_WIDTH * 3, 0)];
     _calendarScrollView.pagingEnabled = YES;
     _calendarScrollView.showsHorizontalScrollIndicator = NO;
     _calendarScrollView.bounces = NO;
-    [_calendarScrollView setContentOffset:CGPointMake(XKAppWidth, 0)];
+    [_calendarScrollView setContentOffset:CGPointMake(UI_SCREEN_WIDTH, 0)];
     _calendarScrollView.delegate = self;
     [self addSubview:_calendarScrollView];
     
-    self.calendarView = [[XKRWCalendarView alloc] initWithDate:self.currentDate
+    self.calendarView = [[KMCalendarView alloc] initWithDate:self.currentDate
                                                recordDateArray:_recordDateArray
-                         
                                                   returnHeight:^(CGFloat height) {
+                                                      
                                                       CGRect rect = _calendarScrollView.frame;
                                                       rect.size.height = height;
                                                       _calendarScrollView.frame = rect;
                                                       
                                                   }
-                                             calendarMonthType:_monthType
                                                 clickDateBlock:^(NSDate *date, BOOL outOfMonth) {
-                                                    XKLog(@"\n=========\nclick: %@", date);
+                                                    KMLog(@"\n=========\nclick: %@", date);
                                                     
-                                                    if (self.calendarView.type == XKRWCalendarTypeWeek && outOfMonth) {
+                                                    if (self.calendarView.type == KMCalendarTypeWeek && outOfMonth) {
                                                         NSCalendar *cal = [NSCalendar currentCalendar];
                                                         NSDateComponents *comps = [cal components:NSCalendarUnitYear |NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitTimeZone | NSCalendarUnitHour fromDate:date];
                                                         [comps setHour:12];
@@ -178,7 +165,7 @@
                                                         self.currentDate = date;
                                                         [self reloadCalendarViewTypeWeek];
                                                         [self setSelectedDate:date];
-                                                    } else if (self.calendarView.type == XKRWCalendarTypeMonth && outOfMonth) {
+                                                    } else if (self.calendarView.type == KMCalendarTypeMonth && outOfMonth) {
                                                         
                                                         NSCalendar *cal = [NSCalendar currentCalendar];
                                                         NSDateComponents *comps = [cal components:NSCalendarUnitYear |NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitTimeZone | NSCalendarUnitHour fromDate:date];
@@ -186,7 +173,7 @@
                                                         if (comps.day > 20) {
                                                             [_calendarScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
                                                         } else {
-                                                            [_calendarScrollView setContentOffset:CGPointMake(XKAppWidth * 2, 0) animated:YES];
+                                                            [_calendarScrollView setContentOffset:CGPointMake(UI_SCREEN_WIDTH * 2, 0) animated:YES];
                                                         }
                                                         [self setSelectedDate:date];
                                                         
@@ -199,7 +186,10 @@
                                                     }
                                                 }];
     
-    [self.calendarView setX:XKAppWidth];
+//    [self.calendarView setX:XKAppWidth];
+    CGRect frame = self.calendarView.frame;
+    frame.origin.x = UI_SCREEN_WIDTH;
+    self.calendarView.frame = frame;
     
     [_calendarScrollView addSubview:self.calendarView];
     [self.calendarView setDateSelected:self.currentDate];
@@ -208,82 +198,59 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            _preMonth = [[XKRWCalendarView alloc] initWithDate:[XKRWCalendarHelper getPreviousMonth:self.currentDate]
+            _preMonth = [[KMCalendarView alloc] initWithDate:[KMCalendarHelper getPreviousMonth:self.currentDate]
                                                recordDateArray:_recordDateArray
                                                   returnHeight:^(CGFloat height) {
                                                       
                                                   }
-                                             calendarMonthType:_monthType
                                                 clickDateBlock:nil];
-            [_preMonth setX:0.f];
+            CGRect frame = _preMonth.frame;
+            frame.origin.x = 0.f;
+            _preMonth.frame = frame;
+            
             [_calendarScrollView addSubview:_preMonth];
             [_preMonth setDateSelected:self.currentDate];
         });
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            _nextMonth = [[XKRWCalendarView alloc] initWithDate:[XKRWCalendarHelper getNextMonth:self.currentDate]
+            _nextMonth = [[KMCalendarView alloc] initWithDate:[KMCalendarHelper getNextMonth:self.currentDate]
                                                 recordDateArray:_recordDateArray
                                                    returnHeight:^(CGFloat height) {
                                                        
                                                    }
-                                              calendarMonthType:_monthType
                                                  clickDateBlock:nil];
-            [_nextMonth setX:XKAppWidth * 2];
+            CGRect frame = _nextMonth.frame;
+            frame.origin.x = UI_SCREEN_WIDTH * 2;
+            _nextMonth.frame = frame;
+
             [_calendarScrollView addSubview:_nextMonth];
             [_nextMonth setDateSelected:self.currentDate];
         });
     });
     
     
-    self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0.f, _calendarScrollView.bottom, XKAppWidth, 100)];
+    self.footerView = [[UIView alloc] initWithFrame:CGRectMake(0.f, _calendarScrollView.frame.origin.y + _calendarScrollView.frame.size.height, UI_SCREEN_WIDTH, 40.f)];
     self.footerView.backgroundColor = [UIColor whiteColor];
     self.footerView.clipsToBounds = YES;
     [self addSubview:self.footerView];
     
-    UIView *grayBgView = [[UIView alloc] initWithFrame:CGRectMake(15, 50, XKAppWidth - 30, 35)];
-    grayBgView.backgroundColor = colorSecondary_f4f4f4;
-    grayBgView.layer.cornerRadius = 2.5;
-    [self.footerView addSubview:grayBgView];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(27.f, 0.f, 150.f, 40.f)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textAlignment = NSTextAlignmentLeft;
+    label.text = @"为记录日期";
+    label.font = [UIFont systemFontOfSize:14];
+    label.textColor =  [[UIColor blackColor] colorWithAlphaComponent:0.8];
     
-    UILabel *declareLabel = [[UILabel alloc] init];
-    declareLabel.font = XKDefaultFontWithSize(14 * XKRWScaleWidth);
-    declareLabel.textAlignment = NSTextAlignmentLeft;
-    declareLabel.textColor = colorSecondary_333333;
-    declareLabel.text = @"点击日期来查看历史";
-    [declareLabel sizeToFit];
-    declareLabel.center = CGPointMake(0, grayBgView.height / 2.0);
-    declareLabel.left = 15;
-    [grayBgView addSubview:declareLabel];
+    [self.footerView addSubview:label];
     
-    UIImage *greenDotImage = [UIImage imageNamed:@"circleGreen"];
-    UIImageView *greenDotImageView = [[UIImageView alloc] initWithImage:greenDotImage];
-    greenDotImageView.size = CGSizeMake(10, 10);
-    greenDotImageView.center = CGPointMake(declareLabel.right + 20 * XKRWScaleWidth, grayBgView.height / 2.0);
-    [grayBgView addSubview:greenDotImageView];
-    UILabel *greenDotLabel = [[UILabel alloc] init];
-    greenDotLabel.font = XKDefaultFontWithSize(14 * XKRWScaleWidth);
-    greenDotLabel.textAlignment = NSTextAlignmentLeft;
-    greenDotLabel.textColor = colorSecondary_333333;
-    greenDotLabel.text = @"已有记录";
-    [greenDotLabel sizeToFit];
-    greenDotLabel.origin = CGPointMake(greenDotImageView.right + 5 * XKRWScaleWidth, declareLabel.top);
-    [grayBgView addSubview:greenDotLabel];
+    UIImageView *dot = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dotGreen"]];
+    dot.frame = CGRectMake(18.f, 19.f, 4.f, 4.f);
+    [self.footerView addSubview:dot];
     
-    UIView *grayCircleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-    grayCircleView.layer.cornerRadius = 5.0;
-    grayCircleView.backgroundColor = colorSecondary_c7c7c7;
-    grayCircleView.center = CGPointMake(greenDotLabel.right + 20 * XKRWScaleWidth, grayBgView.height / 2.0);
-    [grayBgView addSubview:grayCircleView];
+    _footerLine = [[UIView alloc] initWithFrame:CGRectMake(0.f, self.frame.size.height - 0.5f, UI_SCREEN_WIDTH, 0.5f)];
+    _footerLine.backgroundColor = [UIColor grayColor];
     
-    UILabel *grayDotLabel = [[UILabel alloc] init];
-    grayDotLabel.font = XKDefaultFontWithSize(14 * XKRWScaleWidth);
-    grayDotLabel.textAlignment = NSTextAlignmentLeft;
-    grayDotLabel.textColor = colorSecondary_333333;
-    grayDotLabel.text = @"尚未记录";
-    [grayDotLabel sizeToFit];
-    grayDotLabel.origin = CGPointMake(grayCircleView.right + 5 * XKRWScaleWidth, declareLabel.top);
-    [grayBgView addSubview:grayDotLabel];
-    
+    [self addSubview:_footerLine];
 }
 
 - (void)setSelectedDate:(NSDate *)date
@@ -314,23 +281,23 @@
  *
  *  @param type 将要改变的样式
  */
-- (void)transformToType:(XKRWCalendarType)type
+- (void)transformToType:(KMCalendarType)type
 {
     self.type = type;
     _preMonth.type = type;
     self.calendarView.type = type;
     _nextMonth.type = type;
     
-    if (type == XKRWCalendarTypeMonth) {
+    if (type == KMCalendarTypeMonth) {
         [self reloadCalendarViewTypeMonth];
         
     } else {
-        if ([_sDate isMonthEqualToDate:self.currentDate]) {
+        if ([_sDate km_isMonthEqualToDate:self.currentDate]) {
             [self reloadCalendarViewTypeWeekWithDate:_sDate animation:NO];
             self.currentDate = _sDate;
             
         } else {
-            self.currentDate = [self.currentDate firstDayInMonth];
+            self.currentDate = [self.currentDate km_firstDayInMonth];
             [self reloadCalendarViewTypeWeekWithDate:self.currentDate animation:NO];
         }
     }
@@ -353,7 +320,9 @@
     newRect.size.height = _openedHeight + offset;
     self.frame = newRect;
     
-//    [_footerLine setY:self.height - 0.5f];
+    newRect = _footerLine.frame;
+    newRect.origin.y = self.frame.size.height - 0.5f;
+    _footerLine.frame = newRect;
 }
 
 - (void)scrollingAnimationWithOffset:(CGFloat)yOffset
@@ -390,9 +359,9 @@
         
         [self setY:-yOffset];
         if (self.calendarView.frame.origin.y != 0.f) {
-             [self.calendarView offsetYPoint:0.f];
+            [self.calendarView offsetYPoint:0.f];
         }
-       
+        
         
     } else if (yOffset <= HEADER_HEIGHT + SPACEING_VALUE_BETWEEN_VIEWS) {
         
@@ -415,12 +384,12 @@
             self.isHeaderHide = YES;
             [self setY:-HEADER_HEIGHT];
         }
-        if (yOffset <= self.calendarView.height - [self.calendarView animationEndBottomLine] + 80.f + SPACEING_VALUE_BETWEEN_VIEWS) {
+        if (yOffset <= self.calendarView.frame.size.height - [self.calendarView animationEndBottomLine] + 80.f + SPACEING_VALUE_BETWEEN_VIEWS) {
             
             [self offsetHeight:-yOffset + FOOTER_HEIGHT + SPACEING_VALUE_BETWEEN_VIEWS];
-        } else if (yOffset <= self.calendarView.height - [self.calendarView animationEndBottomLine] + 80.f + SPACEING_VALUE_BETWEEN_VIEWS + [self.calendarView animationEndTopLine]) {
+        } else if (yOffset <= self.calendarView.frame.size.height - [self.calendarView animationEndBottomLine] + 80.f + SPACEING_VALUE_BETWEEN_VIEWS + [self.calendarView animationEndTopLine]) {
             
-//            [self offsetHeight:self.calendarView.height - [self.calendarView animationEndBottomLine] + 80.f + SPACEING_VALUE_BETWEEN_VIEWS];
+            //            [self offsetHeight:self.calendarView.height - [self.calendarView animationEndBottomLine] + 80.f + SPACEING_VALUE_BETWEEN_VIEWS];
             [self.calendarView offsetYPoint:-yOffset + _heightOfCurrentType - WEEKDAY_HEIGHT - [self.calendarView animationEndBottomLine]+ SPACEING_VALUE_BETWEEN_VIEWS];
             [self offsetHeight:-yOffset + HEADER_HEIGHT + SPACEING_VALUE_BETWEEN_VIEWS];
             
@@ -436,17 +405,17 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if (!scrollView.isDecelerating) {
             if (yOffset > 150.f && yOffset <= _heightOfCurrentType - 20.f) {
-                if (self.type == XKRWCalendarTypeMonth) {
+                if (self.type == KMCalendarTypeMonth) {
                     [self closeAnimation:scrollView];
-                    [self transformToType:XKRWCalendarTypeWeek];
+                    [self transformToType:KMCalendarTypeWeek];
                 } else {
                     [self closeAnimation:scrollView];
                 }
             } else if (yOffset > 0 && yOffset <= 150.f) {
                 
-                if (self.type == XKRWCalendarTypeWeek) {
+                if (self.type == KMCalendarTypeWeek) {
                     [self openAnimation:scrollView];
-                    [self transformToType:XKRWCalendarTypeMonth];
+                    [self transformToType:KMCalendarTypeMonth];
                 } else {
                     [self openAnimation:scrollView];
                 }
@@ -468,7 +437,7 @@
         [scrollView setContentOffset:CGPointMake(0.f, _heightOfCurrentType - 40.f)];
     } completion:^(BOOL finished) {
         self.isAnimating = NO;
-        XKLog(@"offset: %g", scrollView.contentOffset.y);
+        KMLog(@"offset: %g", scrollView.contentOffset.y);
     }];
 }
 
@@ -488,22 +457,22 @@
 - (void)endDecelaratingAnimationWithOffset:(CGFloat)yOffset scrollView:(UIScrollView *)scrollView
 {
     if (yOffset > 150.f && yOffset <= _heightOfCurrentType - 20.f) {
-        if (self.type == XKRWCalendarTypeMonth) {
+        if (self.type == KMCalendarTypeMonth) {
             [self closeAnimation:scrollView];
-            [self transformToType:XKRWCalendarTypeWeek];
+            [self transformToType:KMCalendarTypeWeek];
         } else {
             [self closeAnimation:scrollView];
         }
     } else if (yOffset >= 0 && yOffset <= 150.f) {
         
-        if (self.type == XKRWCalendarTypeWeek) {
+        if (self.type == KMCalendarTypeWeek) {
             [self openAnimation:scrollView];
-            [self transformToType:XKRWCalendarTypeMonth];
+            [self transformToType:KMCalendarTypeMonth];
         } else {
             [self openAnimation:scrollView];
         }
     } else if (yOffset > _heightOfCurrentType - 20.f) {
-        [self transformToType:XKRWCalendarTypeWeek];
+        [self transformToType:KMCalendarTypeWeek];
     }
     if (!_calendarScrollView.isUserInteractionEnabled) {
         [_calendarScrollView setUserInteractionEnabled:YES];
@@ -519,7 +488,7 @@
             _calendarScrollView.frame = rect;
             
             rect = self.footerView.frame;
-            rect.origin.y = _calendarScrollView.bottom;
+            rect.origin.y = _calendarScrollView.frame.origin.y + _calendarScrollView.frame.size.height;
             self.footerView.frame = rect;
             
             rect = self.frame;
@@ -528,7 +497,10 @@
             _heightOfCurrentType = SELF_HEIGHT;
             self.frame = rect;
             
-//            [_footerLine setY:self.height - 0.5f];
+            rect = _footerLine.frame;
+            rect.origin.y = self.frame.size.height - 0.5f;
+            _footerLine.frame = rect;
+
             _resizeBlock();
             
         } completion:^(BOOL finished) {
@@ -540,7 +512,7 @@
         _calendarScrollView.frame = rect;
         
         rect = self.footerView.frame;
-        rect.origin.y = _calendarScrollView.bottom;
+        rect.origin.y = _calendarScrollView.frame.origin.y + _calendarScrollView.frame.size.height;
         self.footerView.frame = rect;
         
         rect = self.frame;
@@ -549,7 +521,9 @@
         _heightOfCurrentType = SELF_HEIGHT;
         self.frame = rect;
         
-//        [_footerLine setY:self.height - 0.5f];
+        rect = _footerLine.frame;
+        rect.origin.y = self.frame.size.height - 0.5f;
+        _footerLine.frame = rect;
     }
 }
 
@@ -567,19 +541,19 @@
 
 - (void)redrawCalendarViews:(UIScrollView *)scrollView
 {
-    if (self.type == XKRWCalendarTypeMonth) {
+    if (self.type == KMCalendarTypeMonth) {
         
-        if (scrollView.contentOffset.x < XKAppWidth) {
+        if (scrollView.contentOffset.x < UI_SCREEN_WIDTH) {
             
-            self.currentDate = [XKRWCalendarHelper getPreviousMonth:self.currentDate];
+            self.currentDate = [KMCalendarHelper getPreviousMonth:self.currentDate];
             
             if (self.delegate && [self.delegate respondsToSelector:@selector(calendarScrollToPreMonth)]) {
                 [self.delegate calendarScrollToPreMonth];
             }
             
-        } else if (scrollView.contentOffset.x >= XKAppWidth * 2) {
+        } else if (scrollView.contentOffset.x >= UI_SCREEN_WIDTH * 2) {
             
-            self.currentDate = [XKRWCalendarHelper getNextMonth:self.currentDate];
+            self.currentDate = [KMCalendarHelper getNextMonth:self.currentDate];
             
             if (self.delegate && [self.delegate respondsToSelector:@selector(calendarScrollToNextMonth)]) {
                 [self.delegate calendarScrollToNextMonth];
@@ -590,17 +564,17 @@
     } else {
         NSDate *date;
         
-        if (scrollView.contentOffset.x < XKAppWidth) {
-            date = [self.currentDate offsetWeekOfYear:-1];
+        if (scrollView.contentOffset.x < UI_SCREEN_WIDTH) {
+            date = [self.currentDate km_offsetWeekOfYear:-1];
             
-            if (![date isMonthEqualToDate:self.currentDate]) {
+            if (![date km_isMonthEqualToDate:self.currentDate]) {
                 NSCalendar *calendar = [NSCalendar currentCalendar];
                 NSDateComponents *comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitTimeZone fromDate:self.currentDate];
                 [comps setDay:1];
                 [comps setHour:12];
                 NSDate *newDate = [calendar dateFromComponents:comps];
                 
-                if ([newDate isWeekEqualToDate:date]) {
+                if ([newDate km_isWeekEqualToDate:date]) {
                     self.currentDate = newDate;
                 } else {
                     self.currentDate = date;
@@ -608,20 +582,20 @@
             } else {
                 self.currentDate = date;
             }
-            XKLog(@"current date: %@", self.currentDate);
+            KMLog(@"current date: %@", self.currentDate);
             [self reloadCalendarViewTypeWeek];
             
-        } else if (scrollView.contentOffset.x >= XKAppWidth * 2) {
-            date = [self.currentDate offsetWeekOfYear:1];
+        } else if (scrollView.contentOffset.x >= UI_SCREEN_WIDTH * 2) {
+            date = [self.currentDate km_offsetWeekOfYear:1];
             
-            if (![date isMonthEqualToDate:self.currentDate]) {
+            if (![date km_isMonthEqualToDate:self.currentDate]) {
                 NSCalendar *calendar = [NSCalendar currentCalendar];
                 NSDateComponents *comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitTimeZone fromDate:self.currentDate];
-                [comps setDay:[self.currentDate numberOfDaysInMonth]];
+                [comps setDay:[self.currentDate km_numberOfDaysInMonth]];
                 [comps setHour:12];
                 NSDate *newDate = [calendar dateFromComponents:comps];
                 
-                if ([newDate isWeekEqualToDate:date]) {
+                if ([newDate km_isWeekEqualToDate:date]) {
                     self.currentDate = newDate;
                 } else {
                     self.currentDate = date;
@@ -629,7 +603,7 @@
             } else {
                 self.currentDate = date;
             }
-            XKLog(@"current date: %@", self.currentDate);
+            KMLog(@"current date: %@", self.currentDate);
             [self reloadCalendarViewTypeWeek];
         }
     }
@@ -644,7 +618,11 @@
 - (void)reloadCalendarViewTypeMonth
 {
     __block CGFloat delta = 0.f;
-    [self.calendarView setY:0];
+    
+    CGRect rect = self.calendarView.frame;
+    rect.origin.y = 0;
+    self.calendarView.frame = rect;
+    
     [self.calendarView resetWithDate:self.currentDate
                         returnHeight:^(CGFloat height) {
                             delta = height - _calendarViewHeight;
@@ -653,13 +631,13 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [_preMonth resetWithDate:[XKRWCalendarHelper getPreviousMonth:self.currentDate]
+        [_preMonth resetWithDate:[KMCalendarHelper getPreviousMonth:self.currentDate]
                     returnHeight:^(CGFloat height) {
                         
                     }];
     });
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_nextMonth resetWithDate:[XKRWCalendarHelper getNextMonth:self.currentDate]
+        [_nextMonth resetWithDate:[KMCalendarHelper getNextMonth:self.currentDate]
                      returnHeight:^(CGFloat height) {
                          
                      }];
@@ -667,7 +645,7 @@
     
     [self.headerView setDate:self.currentDate];
     
-    [_calendarScrollView setContentOffset:CGPointMake(XKAppWidth, 0.f)];
+    [_calendarScrollView setContentOffset:CGPointMake(UI_SCREEN_WIDTH, 0.f)];
     [self resizeFrameWithAnimation:YES];
 }
 
@@ -684,10 +662,10 @@
                                           _calendarViewHeight = height;
                                       }];
     
-    NSDate *preWeek = [date offsetWeekOfYear:-1];
-    NSDate *nextWeek = [date offsetWeekOfYear:1];
+    NSDate *preWeek = [date km_offsetWeekOfYear:-1];
+    NSDate *nextWeek = [date km_offsetWeekOfYear:1];
     
-    if ([preWeek isMonthEqualToDate:date]) {
+    if ([preWeek km_isMonthEqualToDate:date]) {
         [_preMonth resetWeekStyleWithDate:preWeek];
     } else {
         
@@ -697,7 +675,7 @@
         [comps setHour:12];
         NSDate *newDate = [calendar dateFromComponents:comps];
         
-        if ([newDate isWeekEqualToDate:preWeek]) {
+        if ([newDate km_isWeekEqualToDate:preWeek]) {
             [_preMonth resetWeekStyleWithDate:newDate];
             
         } else {
@@ -706,17 +684,17 @@
     }
     
     
-    if ([nextWeek isMonthEqualToDate:date]) {
+    if ([nextWeek km_isMonthEqualToDate:date]) {
         [_nextMonth resetWeekStyleWithDate:nextWeek];
     } else {
         
         NSCalendar *calendar = [NSCalendar currentCalendar];
         NSDateComponents *comps = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitTimeZone fromDate:date];
-        [comps setDay:[date numberOfDaysInMonth]];
+        [comps setDay:[date km_numberOfDaysInMonth]];
         [comps setHour:12];
         NSDate *newDate = [calendar dateFromComponents:comps];
         
-        if ([newDate isWeekEqualToDate:nextWeek]) {
+        if ([newDate km_isWeekEqualToDate:nextWeek]) {
             [_nextMonth resetWeekStyleWithDate:newDate];
             
         } else {
@@ -724,14 +702,14 @@
         }
     }
     
-    [_calendarScrollView setContentOffset:CGPointMake(XKAppWidth, 0.f)];
+    [_calendarScrollView setContentOffset:CGPointMake(UI_SCREEN_WIDTH, 0.f)];
     [self.headerView setDate:date];
-//    [self resizeFrameWithAnimation:NO];
+    //    [self resizeFrameWithAnimation:NO];
 }
 
 - (void)reloadCalendar
 {
-    if (self.type == XKRWCalendarTypeMonth) {
+    if (self.type == KMCalendarTypeMonth) {
         [self reloadCalendarViewTypeMonth];
     } else {
         [self reloadCalendarViewTypeWeek];
@@ -742,38 +720,39 @@
 
 - (void)backToToday
 {
-    if ([self.currentDate isMonthEqualToDate:[NSDate date]]) {
+    if ([self.currentDate km_isMonthEqualToDate:[NSDate date]]) {
         [self setSelectedDate:[NSDate date]];
         [self.delegate calendarSelectedDate:[NSDate date]];
-
+        
     } else {
         [_nextMonth resetWithDate:[NSDate date] returnHeight:nil];
         /**
          *  -1是因为reload方法之前判断scrollview的offset，如果为screenWidth*2的话，currentDate会自动+1
          */
-        self.currentDate = [[NSDate date] offsetMonth:-1];
-
+        self.currentDate = [[NSDate date] km_offsetMonth:-1];
+        
         [self setSelectedDate:[NSDate date]];
+        
         _isNeedDelegateRespond = YES;
-        [_calendarScrollView setContentOffset:CGPointMake(XKAppWidth * 2, 0) animated:YES];
+        [_calendarScrollView setContentOffset:CGPointMake(UI_SCREEN_WIDTH * 2, 0) animated:YES];
     }
 }
 
 - (void)scrollBackToCurrentMonth {
     
-    if ([self.currentDate isMonthEqualToDate:[NSDate date]]) {
+    if ([self.currentDate km_isMonthEqualToDate:[NSDate date]]) {
         return;
     } else {
         [_nextMonth resetWithDate:[NSDate date] returnHeight:nil];
         /**
          *  -1是因为reload方法之前判断scrollview的offset，如果为screenWidth*2的话，currentDate会自动+1
          */
-        self.currentDate = [[NSDate date] offsetMonth:-1];
+        self.currentDate = [[NSDate date] km_offsetMonth:-1];
         
         [self setSelectedDate:[NSDate date]];
         
         _isNeedDelegateRespond = NO;
-        [_calendarScrollView setContentOffset:CGPointMake(XKAppWidth * 2, 0) animated:YES];
+        [_calendarScrollView setContentOffset:CGPointMake(UI_SCREEN_WIDTH * 2, 0) animated:YES];
     }
 }
 
@@ -784,35 +763,31 @@
 
 - (void)scrollToNextMonth
 {
-    [_calendarScrollView setContentOffset:CGPointMake(XKAppWidth * 2, 0) animated:YES];
+    [_calendarScrollView setContentOffset:CGPointMake(UI_SCREEN_WIDTH * 2, 0) animated:YES];
 }
 
 - (void)addBackToTodayButtonInFooterView {
     
-//    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(self.footerView.width - 75 - 20, 7, 75, 26)];
-//    button.backgroundColor = [UIColor whiteColor];
-//    button.layer.borderColor = XKMainSchemeColor.CGColor;
-//    button.layer.borderWidth = 1;
-//    
-//    button.layer.cornerRadius = 4;
-//    button.layer.masksToBounds = YES;
-//    
-//    [button setTitle:@"回今天" forState:UIControlStateNormal];
-//    [button setBackgroundImage:[UIImage createImageWithColor:XKMainSchemeColor] forState:UIControlStateHighlighted];
-//    [button setTitleColor:XKMainSchemeColor forState:UIControlStateNormal];
-//    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-//    button.titleLabel.font = [UIFont systemFontOfSize:14];
-//    
-//    [button addTarget:self action:@selector(backToToday) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    [self.footerView addSubview:button];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(self.footerView.frame.size.width - 75 - 20, 7, 75, 26)];
+    button.backgroundColor = [UIColor whiteColor];
+    button.layer.borderColor = DEFAULT_TINT_COLOR.CGColor;
+    button.layer.borderWidth = 1;
+    
+    button.layer.cornerRadius = 4;
+    button.layer.masksToBounds = YES;
+    
+    [button setTitle:@"回今天" forState:UIControlStateNormal];
+    [button setTitleColor:DEFAULT_TINT_COLOR forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:14];
+    
+    [button addTarget:self action:@selector(backToToday) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.footerView addSubview:button];
 }
 
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
+- (void)setY:(CGFloat)y {
+    CGRect rect = self.frame;
+    rect.origin.y = y;
+    self.frame = rect;
+}
 @end
