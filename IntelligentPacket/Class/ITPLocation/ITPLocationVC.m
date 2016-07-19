@@ -9,6 +9,7 @@
 #import "ITPLocationVC.h"
 #import <CoreMotion/CoreMotion.h>
 #import <MapKit/MapKit.h>
+#import "ITPLocationHistoryVC.h"
 
 @interface ITPLocationVC () <CLLocationManagerDelegate,MKMapViewDelegate> {
     CLLocationManager * locationmanager;
@@ -47,6 +48,10 @@
     _mapView.zoomEnabled = YES;//支持缩放
     _mapView.delegate = self;
     
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"定位"] style:UIBarButtonItemStylePlain target:self action:@selector(entryHistoryLocationAction)];
+    
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
     [self getCurPosition];
 }
 
@@ -77,6 +82,12 @@
     
 }
 
+
+- (void) entryHistoryLocationAction {
+    ITPLocationHistoryVC *historyVC = [[ITPLocationHistoryVC alloc] init];
+    [historyVC setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:historyVC animated:YES];
+}
 
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

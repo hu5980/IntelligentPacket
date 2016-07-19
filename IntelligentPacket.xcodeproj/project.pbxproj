@@ -76,6 +76,7 @@
 		BC2C9D141D3E0742007DC90C /* KMCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D0A1D3E0742007DC90C /* KMCalendarView.m */; };
 		BC2C9D151D3E0742007DC90C /* NSDate+KMCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D0C1D3E0742007DC90C /* NSDate+KMCalendar.m */; };
 		BC2C9D161D3E0742007DC90C /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D0E1D3E0742007DC90C /* UIColor+Hex.m */; };
+		BC2C9D191D3E0C9C007DC90C /* ITPLocationHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D181D3E0C9C007DC90C /* ITPLocationHistoryVC.m */; };
 		BCA3BF281D3E0133009AC2B3 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA3BF271D3E0133009AC2B3 /* UIColor+Helper.m */; };
 		BCA3BF2B1D3E0253009AC2B3 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA3BF2A1D3E0253009AC2B3 /* UIViewExt.m */; };
 /* End PBXBuildFile section */
@@ -238,6 +239,8 @@
 		BC2C9D0C1D3E0742007DC90C /* NSDate+KMCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+KMCalendar.m"; sourceTree = "<group>"; };
 		BC2C9D0D1D3E0742007DC90C /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		BC2C9D0E1D3E0742007DC90C /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		BC2C9D171D3E0C9C007DC90C /* ITPLocationHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPLocationHistoryVC.h; sourceTree = "<group>"; };
+		BC2C9D181D3E0C9C007DC90C /* ITPLocationHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPLocationHistoryVC.m; sourceTree = "<group>"; };
 		BCA3BF261D3E0133009AC2B3 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		BCA3BF271D3E0133009AC2B3 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		BCA3BF291D3E0253009AC2B3 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
@@ -443,6 +446,8 @@
 				5DB50C781D200EB200F28535 /* Views */,
 				5DB50C731D2005FD00F28535 /* ITPLocationVC.h */,
 				5DB50C741D2005FD00F28535 /* ITPLocationVC.m */,
+				BC2C9D171D3E0C9C007DC90C /* ITPLocationHistoryVC.h */,
+				BC2C9D181D3E0C9C007DC90C /* ITPLocationHistoryVC.m */,
 			);
 			path = ITPLocation;
 			sourceTree = "<group>";
@@ -1042,6 +1047,7 @@
 				BCA3BF281D3E0133009AC2B3 /* UIColor+Helper.m in Sources */,
 				5D55772E1D2ABDEF0094E72C /* AddBagsViewController.m in Sources */,
 				BC2C9D131D3E0742007DC90C /* KMCalendarItem.m in Sources */,
+				BC2C9D191D3E0C9C007DC90C /* ITPLocationHistoryVC.m in Sources */,
 				5D5577181D2A96BB0094E72C /* LoginWithRegisterViewModel.m in Sources */,
 				5D5577251D2ABDA80094E72C /* ITPContactViewController.m in Sources */,
 				5D0D046D1D37CE6800950057 /* ITPAddBabWithIDViewController.m in Sources */,

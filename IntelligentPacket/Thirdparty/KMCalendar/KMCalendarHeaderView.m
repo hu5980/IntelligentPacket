@@ -16,8 +16,8 @@
 {
     UIView *_dateView;
     
-    UIButton *preMonthButton;
-    UIButton *nextMonthButton;
+    UIButton *preDayButton;
+    UIButton *nextDayButton;
     UILabel *dateLabel;
     
     UIView *weekdayView;
@@ -46,21 +46,33 @@
             self.backgroundColor = [UIColor whiteColor];
             
             _dateView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, UI_SCREEN_WIDTH, 40.f)];
-            preMonthButton = [[UIButton alloc] initWithFrame:CGRectMake(15.f, 13.25f, 13.5f, 13.5f)];
-            [preMonthButton setBackgroundImage:[UIImage imageNamed:@"record_calendar_left"] forState:UIControlStateNormal];
-            [preMonthButton addTarget:self action:@selector(clickPreMonth) forControlEvents:UIControlEventTouchUpInside];
+            preDayButton = [[UIButton alloc] initWithFrame:CGRectMake(15.f, (40-25.f)/2, 80, 25.f)];
+            [preDayButton setTitle:@"前一天" forState:UIControlStateNormal];
+            preDayButton.titleLabel.font = XKDefaultFontWithSize(14.f);
+            preDayButton.layer.borderWidth = 1;
+            preDayButton.layer.cornerRadius = 5;
+            preDayButton.layer.masksToBounds = YES;
+            preDayButton.layer.borderColor = [UIColor colorFromHexString:@"#999999"].CGColor;
+            [preDayButton setTitleColor:[UIColor colorFromHexString:@"#666666"] forState:UIControlStateNormal];
+            [preDayButton addTarget:self action:@selector(clickPreMonth) forControlEvents:UIControlEventTouchUpInside];
             
-            nextMonthButton = [[UIButton alloc] initWithFrame:CGRectMake(130.f, 13.25f, 13.5f, 13.5f)];
-            [nextMonthButton setBackgroundImage:[UIImage imageNamed:@"record_calendar_right"] forState:UIControlStateNormal];
-            [nextMonthButton addTarget:self action:@selector(clickNextMonth) forControlEvents:UIControlEventTouchUpInside];
+            nextDayButton = [[UIButton alloc] initWithFrame:CGRectMake(XKAppWidth - 80-15, (40-25.f)/2, 80, 25.f)];
+            [nextDayButton setTitle:@"后一天" forState:UIControlStateNormal];
+            nextDayButton.titleLabel.font = XKDefaultFontWithSize(14.f);
+            nextDayButton.layer.borderWidth = 1;
+            nextDayButton.layer.cornerRadius = 5;
+            nextDayButton.layer.masksToBounds = YES;
+            nextDayButton.layer.borderColor = [UIColor colorFromHexString:@"#999999"].CGColor;
+            [nextDayButton setTitleColor:[UIColor colorFromHexString:@"#666666"] forState:UIControlStateNormal];
+            [nextDayButton addTarget:self action:@selector(clickNextMonth) forControlEvents:UIControlEventTouchUpInside];
             
             dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(30.f, 5.f, 100.f, 30.f)];
             [dateLabel setFont:[UIFont systemFontOfSize:16]];
             [dateLabel setTextAlignment:NSTextAlignmentCenter];
             
-            [_dateView addSubview:preMonthButton];
-            [_dateView addSubview:dateLabel];
-            [_dateView addSubview:nextMonthButton];
+            [_dateView addSubview:preDayButton];
+//            [_dateView addSubview:dateLabel];
+            [_dateView addSubview:nextDayButton];
             
             [self addSubview:_dateView];
             
@@ -84,8 +96,8 @@
                 dateLabel.text = [self.date km_formatInKMCalendar];
             }
             
-            _backToTodayButton = [[UIButton alloc] initWithFrame:CGRectMake(UI_SCREEN_WIDTH - 100.f, 5.f, 100.f, 30.f)];
-            [_backToTodayButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
+            _backToTodayButton = [[UIButton alloc] initWithFrame:CGRectMake((UI_SCREEN_WIDTH - 60.f)/2, 5.f, 60.f, 30.f)];
+            [_backToTodayButton.titleLabel setFont:[UIFont systemFontOfSize:17]];
             [_backToTodayButton setTitleColor:DEFAULT_TINT_COLOR forState:UIControlStateNormal];
             [_backToTodayButton setTitle:@"今天" forState:UIControlStateNormal];
             [_backToTodayButton addTarget:self action:@selector(clickBackToTodayButton) forControlEvents:UIControlEventTouchUpInside];
@@ -98,7 +110,7 @@
             self.backgroundColor = [UIColor whiteColor];
             
             weekdayView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, UI_SCREEN_WIDTH, LABEL_HEIGHT)];
-            weekdayView.backgroundColor = DEFAULT_TINT_COLOR;
+            weekdayView.backgroundColor = [UIColor colorFromHexString:@"#F4F4F4"];
             [self addSubview:weekdayView];
             
             NSArray *dateStringArr = [NSArray arrayWithObjects:@"日", @"一", @"二", @"三", @"四", @"五", @"六", nil];
