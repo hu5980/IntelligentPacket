@@ -54,6 +54,5 @@
 #else
 #define XKLog(...)
 #endif
->>>>>>> 56b0658bae6cf538eef76e0dce0f1786587efdfe
 
 #endif /* IntelligentPacket_pch */
