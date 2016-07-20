@@ -71,6 +71,17 @@
 		5DEA63571D166DF1000D3BBD /* LoginAndRegister.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEA63561D166DF1000D3BBD /* LoginAndRegister.storyboard */; };
 		5DEA635C1D166F8C000D3BBD /* ConstValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA635B1D166F8C000D3BBD /* ConstValue.m */; };
 		8F8F305B6E52185108FC867C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB601F3E5C030D86FD0E9EE0 /* Pods.framework */; };
+		BC2C9D0F1D3E0742007DC90C /* dotGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC2C9D001D3E0742007DC90C /* dotGreen@2x.png */; };
+		BC2C9D101D3E0742007DC90C /* KMCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D021D3E0742007DC90C /* KMCalendar.m */; };
+		BC2C9D111D3E0742007DC90C /* KMCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D041D3E0742007DC90C /* KMCalendarHeaderView.m */; };
+		BC2C9D121D3E0742007DC90C /* KMCalendarHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D061D3E0742007DC90C /* KMCalendarHelper.m */; };
+		BC2C9D131D3E0742007DC90C /* KMCalendarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D081D3E0742007DC90C /* KMCalendarItem.m */; };
+		BC2C9D141D3E0742007DC90C /* KMCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D0A1D3E0742007DC90C /* KMCalendarView.m */; };
+		BC2C9D151D3E0742007DC90C /* NSDate+KMCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D0C1D3E0742007DC90C /* NSDate+KMCalendar.m */; };
+		BC2C9D161D3E0742007DC90C /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D0E1D3E0742007DC90C /* UIColor+Hex.m */; };
+		BC2C9D191D3E0C9C007DC90C /* ITPLocationHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D181D3E0C9C007DC90C /* ITPLocationHistoryVC.m */; };
+		BCA3BF281D3E0133009AC2B3 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA3BF271D3E0133009AC2B3 /* UIColor+Helper.m */; };
+		BCA3BF2B1D3E0253009AC2B3 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA3BF2A1D3E0253009AC2B3 /* UIViewExt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +233,27 @@
 		5DEA635B1D166F8C000D3BBD /* ConstValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConstValue.m; sourceTree = "<group>"; };
 		5DEA63611D1672E7000D3BBD /* IntelligentPacket-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IntelligentPacket-Bridging-Header.h"; sourceTree = "<group>"; };
 		AB601F3E5C030D86FD0E9EE0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC2C9D001D3E0742007DC90C /* dotGreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dotGreen@2x.png"; sourceTree = "<group>"; };
+		BC2C9D011D3E0742007DC90C /* KMCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCalendar.h; sourceTree = "<group>"; };
+		BC2C9D021D3E0742007DC90C /* KMCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCalendar.m; sourceTree = "<group>"; };
+		BC2C9D031D3E0742007DC90C /* KMCalendarHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCalendarHeaderView.h; sourceTree = "<group>"; };
+		BC2C9D041D3E0742007DC90C /* KMCalendarHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCalendarHeaderView.m; sourceTree = "<group>"; };
+		BC2C9D051D3E0742007DC90C /* KMCalendarHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCalendarHelper.h; sourceTree = "<group>"; };
+		BC2C9D061D3E0742007DC90C /* KMCalendarHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCalendarHelper.m; sourceTree = "<group>"; };
+		BC2C9D071D3E0742007DC90C /* KMCalendarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCalendarItem.h; sourceTree = "<group>"; };
+		BC2C9D081D3E0742007DC90C /* KMCalendarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCalendarItem.m; sourceTree = "<group>"; };
+		BC2C9D091D3E0742007DC90C /* KMCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMCalendarView.h; sourceTree = "<group>"; };
+		BC2C9D0A1D3E0742007DC90C /* KMCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMCalendarView.m; sourceTree = "<group>"; };
+		BC2C9D0B1D3E0742007DC90C /* NSDate+KMCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+KMCalendar.h"; sourceTree = "<group>"; };
+		BC2C9D0C1D3E0742007DC90C /* NSDate+KMCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+KMCalendar.m"; sourceTree = "<group>"; };
+		BC2C9D0D1D3E0742007DC90C /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		BC2C9D0E1D3E0742007DC90C /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		BC2C9D171D3E0C9C007DC90C /* ITPLocationHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPLocationHistoryVC.h; sourceTree = "<group>"; };
+		BC2C9D181D3E0C9C007DC90C /* ITPLocationHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPLocationHistoryVC.m; sourceTree = "<group>"; };
+		BCA3BF261D3E0133009AC2B3 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
+		BCA3BF271D3E0133009AC2B3 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
+		BCA3BF291D3E0253009AC2B3 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
+		BCA3BF2A1D3E0253009AC2B3 /* UIViewExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewExt.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -435,6 +467,8 @@
 				5DB50C781D200EB200F28535 /* Views */,
 				5DB50C731D2005FD00F28535 /* ITPLocationVC.h */,
 				5DB50C741D2005FD00F28535 /* ITPLocationVC.m */,
+				BC2C9D171D3E0C9C007DC90C /* ITPLocationHistoryVC.h */,
+				BC2C9D181D3E0C9C007DC90C /* ITPLocationHistoryVC.m */,
 			);
 			path = ITPLocation;
 			sourceTree = "<group>";
@@ -637,6 +671,8 @@
 		5DD5AFB51D0E9DB000EBDB70 /* IntelligentPacket */ = {
 			isa = PBXGroup;
 			children = (
+				BCA3BF251D3E012A009AC2B3 /* Category */,
+				BCA3BF111D3DF679009AC2B3 /* Thirdparty */,
 				5DBE37B31D10588000A8F386 /* ITPOthers */,
 				5DD5AFEF1D0EB37100EBDB70 /* ITPServices */,
 				5DD5AFEC1D0EB2B900EBDB70 /* ITPLanguage */,
@@ -784,6 +820,47 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BC2C9CFF1D3E0742007DC90C /* KMCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				BC2C9D001D3E0742007DC90C /* dotGreen@2x.png */,
+				BC2C9D011D3E0742007DC90C /* KMCalendar.h */,
+				BC2C9D021D3E0742007DC90C /* KMCalendar.m */,
+				BC2C9D031D3E0742007DC90C /* KMCalendarHeaderView.h */,
+				BC2C9D041D3E0742007DC90C /* KMCalendarHeaderView.m */,
+				BC2C9D051D3E0742007DC90C /* KMCalendarHelper.h */,
+				BC2C9D061D3E0742007DC90C /* KMCalendarHelper.m */,
+				BC2C9D071D3E0742007DC90C /* KMCalendarItem.h */,
+				BC2C9D081D3E0742007DC90C /* KMCalendarItem.m */,
+				BC2C9D091D3E0742007DC90C /* KMCalendarView.h */,
+				BC2C9D0A1D3E0742007DC90C /* KMCalendarView.m */,
+				BC2C9D0B1D3E0742007DC90C /* NSDate+KMCalendar.h */,
+				BC2C9D0C1D3E0742007DC90C /* NSDate+KMCalendar.m */,
+				BC2C9D0D1D3E0742007DC90C /* UIColor+Hex.h */,
+				BC2C9D0E1D3E0742007DC90C /* UIColor+Hex.m */,
+			);
+			path = KMCalendar;
+			sourceTree = "<group>";
+		};
+		BCA3BF111D3DF679009AC2B3 /* Thirdparty */ = {
+			isa = PBXGroup;
+			children = (
+				BC2C9CFF1D3E0742007DC90C /* KMCalendar */,
+			);
+			path = Thirdparty;
+			sourceTree = "<group>";
+		};
+		BCA3BF251D3E012A009AC2B3 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				BCA3BF291D3E0253009AC2B3 /* UIViewExt.h */,
+				BCA3BF2A1D3E0253009AC2B3 /* UIViewExt.m */,
+				BCA3BF261D3E0133009AC2B3 /* UIColor+Helper.h */,
+				BCA3BF271D3E0133009AC2B3 /* UIColor+Helper.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -854,6 +931,7 @@
 				TargetAttributes = {
 					5DD5AFB21D0E9DB000EBDB70 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = KFHY8Z75E6;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -904,6 +982,7 @@
 				5DD5AFF91D0EB7B700EBDB70 /* Localizable.strings in Resources */,
 				5DEA63571D166DF1000D3BBD /* LoginAndRegister.storyboard in Resources */,
 				5DB50C991D22CDB900F28535 /* ITPManageCell.xib in Resources */,
+				BC2C9D0F1D3E0742007DC90C /* dotGreen@2x.png in Resources */,
 				5DD5AFC11D0E9DB000EBDB70 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -977,6 +1056,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCA3BF2B1D3E0253009AC2B3 /* UIViewExt.m in Sources */,
+				BC2C9D161D3E0742007DC90C /* UIColor+Hex.m in Sources */,
 				5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */,
 				5D91947A1D3E6D26001203CC /* ITPBagViewModel.m in Sources */,
 				5DD5A7721D167717006D771E /* ITPUserManager.swift in Sources */,
@@ -1002,8 +1083,12 @@
 				5DB50CAA1D26BBCF00F28535 /* ITPRegisterViewController.m in Sources */,
 				5DB50C861D201D9200F28535 /* UIViewController+Ex.m in Sources */,
 				5DE3F0231D16850700FCAEEF /* UIManager.m in Sources */,
+				BC2C9D121D3E0742007DC90C /* KMCalendarHelper.m in Sources */,
 				5DB50FAC1D27F3D200F28535 /* NSObject+Extension.m in Sources */,
+				BCA3BF281D3E0133009AC2B3 /* UIColor+Helper.m in Sources */,
 				5D55772E1D2ABDEF0094E72C /* AddBagsViewController.m in Sources */,
+				BC2C9D131D3E0742007DC90C /* KMCalendarItem.m in Sources */,
+				BC2C9D191D3E0C9C007DC90C /* ITPLocationHistoryVC.m in Sources */,
 				5D5577181D2A96BB0094E72C /* LoginWithRegisterViewModel.m in Sources */,
 				5D5577251D2ABDA80094E72C /* ITPContactViewController.m in Sources */,
 				5D0D046D1D37CE6800950057 /* ITPAddBabWithIDViewController.m in Sources */,
@@ -1012,9 +1097,12 @@
 				5DE3F02B1D16B25400FCAEEF /* ITPHttpServiceBase.m in Sources */,
 				5DB50C5E1D1FAF3C00F28535 /* ITPScoketManager.m in Sources */,
 				5DB50C751D2005FD00F28535 /* ITPLocationVC.m in Sources */,
+				BC2C9D101D3E0742007DC90C /* KMCalendar.m in Sources */,
 				5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */,
+				BC2C9D141D3E0742007DC90C /* KMCalendarView.m in Sources */,
 				5DB50C6F1D2004CE00F28535 /* ITPIntroduceVC.m in Sources */,
 				5DD5AFB81D0E9DB000EBDB70 /* main.m in Sources */,
+				BC2C9D151D3E0742007DC90C /* NSDate+KMCalendar.m in Sources */,
 				5DABF9E41D3A14CB006ADBE3 /* EditContactTableViewCell.m in Sources */,
 				5DBE37B01D104C4300A8F386 /* MapManager.m in Sources */,
 				5D7BE9081D32022B00E8C55F /* ITPContactEditorVeiwController.m in Sources */,
@@ -1028,6 +1116,7 @@
 				5DD5AFF41D0EB48F00EBDB70 /* AppDelegate.m in Sources */,
 				5DB7A9E71D3D1482006BA3D8 /* ITPContactViewModel.m in Sources */,
 				5DB50FBB1D28D76000F28535 /* LoginViewController.m in Sources */,
+				BC2C9D111D3E0742007DC90C /* KMCalendarHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

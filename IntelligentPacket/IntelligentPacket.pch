@@ -21,8 +21,8 @@
 
 #import "Categary.h"
 #import "Masonry.h"
-
-
+#import "UIViewExt.h"
+#import "UIColor+Helper.h"
 #import "ITPLanguageManager.h"
 #import "ITPScoketManager.h"
 #import "MBProgressHUD.h"
@@ -32,6 +32,28 @@
 #import "ITPPacketBagModel.h"
 
 #import "ITPContactModel.h"
-#import "ITPPacketBagModel.h"
+
+#define XKAppWidth [UIScreen mainScreen].bounds.size.width
+#define XKAppHeight [UIScreen mainScreen].bounds.size.height
+#define SCREEN_SIZE [UIScreen mainScreen].bounds.size
+#define XKMainSchemeColor [UIColor colorFromHexString:@"#29CCB1"]
+#define XK_BACKGROUND_COLOR [UIColor colorFromHexString:@"#F4F4F4"]
+
+#define  colorSecondary_333333 [UIColor colorFromHexString:@"#333333"]//标题字色
+#define  colorSecondary_f4f4f4 [UIColor colorFromHexString:@"#f4f4f4"] //底色和tab
+#define  colorSecondary_c7c7c7 [UIColor colorFromHexString:@"#c7c7c7"]
+
+#define XKRWScaleWidth ([[UIScreen mainScreen] bounds].size.width/375.0)
+#define XKRWScaleHeight ([[UIScreen mainScreen] bounds].size.height/667.0)
+
+#define XKDefaultFontWithSize(fontSize)  [UIFont systemFontOfSize:fontSize]
+
+#ifdef DEBUG
+#import <Foundation/Foundation.h>
+#define XKLog(...) NSLog(__VA_ARGS__)
+#else
+#define XKLog(...)
+#endif
+>>>>>>> 56b0658bae6cf538eef76e0dce0f1786587efdfe
 
 #endif /* IntelligentPacket_pch */
