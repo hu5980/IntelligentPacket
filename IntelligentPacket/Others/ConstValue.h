@@ -11,6 +11,8 @@
 ///  user manager
 extern NSString * ITPacketIsLogin;
 
+extern NSString * ITPacketUserEmail;
+
 
 
 
@@ -19,3 +21,5 @@ extern NSString * ITPacketIsLogin;
 /// Notice value
 
 extern NSString * ITPacketAPPChangeStoreBoard;
+
+extern NSString * ITPacketAddbags;

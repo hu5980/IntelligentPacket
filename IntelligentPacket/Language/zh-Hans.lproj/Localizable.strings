@@ -21,7 +21,8 @@ CFBundleDisplayName="智能箱包";
 "phone number" = "手机号码";
 "Please select type" = "请选择类型";
 "nickname" = "昵称";
-
+"Add bags success" = "添加成功";
+"Add bags failure" = "添加失败";
 ////// 定位 ========================
 "Location" = "定位";
 

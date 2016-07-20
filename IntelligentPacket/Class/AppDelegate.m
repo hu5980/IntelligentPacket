@@ -18,7 +18,7 @@
 
 - (void)refreshLanguge {
     
-    if ([ITPUserManager ShareInstanceOne].userName != nil) {
+    if ([ITPUserManager ShareInstanceOne].userEmail != nil) {
         
         UITabBarController * mainView = (UITabBarController *)self.window.rootViewController;
         
@@ -36,7 +36,7 @@
 
 - (void)SetUpTheRootViewController {
     
-    if ([ITPUserManager ShareInstanceOne].userName != nil) {
+    if ([ITPUserManager ShareInstanceOne].userEmail != nil) {
 
         UIStoryboard *mainTabBar = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         
@@ -60,14 +60,15 @@
     [[MapManager shareInstance] configParameter];
     [[UIManager shareInstance] configUI];
     [[ITPLanguageManager sharedInstance]config];
-    
+//    [self SetUpTheRootViewController];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(SetUpTheRootViewController) name:ITPacketAPPChangeStoreBoard object:nil];
-    
-    [RACObserve([ITPUserManager ShareInstanceOne], userName) subscribeNext:^(id x) {
+
+    [RACObserve([ITPUserManager ShareInstanceOne], userEmail) subscribeNext:^(id x) {
         [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAPPChangeStoreBoard object:nil];
     }];
     
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLanguge) name:refreshLangugeNotification object:nil];
+    
     
     return YES;
 }

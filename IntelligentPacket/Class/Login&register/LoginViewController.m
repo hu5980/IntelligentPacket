@@ -92,7 +92,6 @@
 
 - (IBAction)loginAction:(UIButton *)sender {
     
-    [ITPUserManager ShareInstanceOne].userName = OCSTR(@"%@", @"12321321");
     if (![AppUtil isEmailString:self.emailTextField.text]) {
         [self showAlert:L(@"email error") WithDelay:1.0];
         return;
@@ -107,13 +106,18 @@
     [[ITPScoketManager shareInstance]loginWith:self.emailTextField.text password:self.passwordTextField.text withTimeout:10 tag:101 success:^(NSData *data, long tag) {
         
         [self performBlock:^{
-            
-            if ([LoginWithRegisterViewModel isLoginSuccess:data]) {
+            BOOL abool = [LoginWithRegisterViewModel isLoginSuccess:data];
+            if (abool) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self showAlert:L(@"Login Success!") WithDelay:1.5];
+                
+                [ITPUserManager ShareInstanceOne].userEmail = OCSTR(@"%@", self.emailTextField.text);
+            }else {
+             
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self showAlert:L(@"Login error!") WithDelay:1.5];
+                
             }
-            
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self showAlert:L(@"Login error!") WithDelay:1.5];
             
         } afterDelay:.1];
         

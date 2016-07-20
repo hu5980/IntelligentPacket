@@ -36,12 +36,13 @@
 
 - (IBAction)idhaschanged:(UITextField *)sender {
    
-    if (sender.text.length > 10) {
+    if (sender.text.length >= 10) {
         
         [sender.text substringToIndex:10];
         
         ITPPacketBagModel * model = [ITPPacketBagModel new];
-        model.bagType = 1;
+        model.bagType = [sender.text substringToIndex:1].intValue;
+        model.bagId = sender.text;
         AddBagsViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbags"];
         vc.model = model;
         [self.navigationController pushViewController:vc animated:YES];

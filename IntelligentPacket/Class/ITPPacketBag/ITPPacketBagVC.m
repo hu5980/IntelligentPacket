@@ -15,12 +15,13 @@
 #import "ITPPacketbagWeightVeiwController.h"
 #import "AddBagsViewController.h"
 #import "ITPAddBabWithIDViewController.h"
+#import "ITPBagViewModel.h"
 
 
 @interface ITPPacketBagVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray *dataSource;
+@property (strong, nonatomic) NSMutableArray<ITPPacketBagModel *> *dataSource;
 @end
 
 @implementation ITPPacketBagVC
@@ -38,7 +39,54 @@
     
     [self configOther];
     
-    self.dataSource = [NSMutableArray arrayWithArray:@[@"", @"", @"", @""]];
+    [self loaddata];
+    
+    @weakify(self)
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketAddbags object:nil]subscribeNext:^(id x) {
+        
+        @strongify(self)
+        [self loaddata];
+//        [self.tableView reloadData];
+    }];
+
+    
+}
+
+- (void)loaddata {
+   
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    @weakify(self);
+    [[ITPScoketManager shareInstance]bagListWithTimeout:10 tag:106 success:^(NSData *data, long tag) {
+        @strongify(self);
+        
+        BOOL abool = [ITPBagViewModel isSuccesss:data];
+        if (abool) {
+            
+            [self performBlock:^{
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                self.dataSource = [ITPBagViewModel bags:data];
+                [self.tableView reloadData];
+                NSLog(@"%@", self.dataSource);
+                
+            } afterDelay:0.1];
+        
+        }else {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self showAlert:@"获取数据失败" WithDelay:1];
+        }
+        
+    } faillure:^(NSError *error) {
+    
+        if (error) {
+            [self performBlock:^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            } afterDelay:.1];
+        }
+        
+    }];
+    
 }
 
 - (void)configOther {
@@ -99,6 +147,15 @@
     ITPPacketBagCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ITPPacketBagCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.indexPath_ = (int)indexPath.row;
+    cell.bagName.text = self.dataSource[indexPath.row].bagName;
+    cell.bagNum.text = self.dataSource[indexPath.row].bagPhoneNum;
+    
+    if (self.dataSource[indexPath.row].bagType == 1) {
+        [cell.bagheadImage setImage:[UIImage imageNamed:@"组-2"]];
+    }else {
+        [cell.bagheadImage setImage:[UIImage imageNamed:@"组-1"]];
+    }
+    
     
     @weakify(self);
     cell.phoneBlcok = ^(int indexPath){

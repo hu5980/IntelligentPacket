@@ -31,6 +31,7 @@
             password:(NSString *)password
             nickName:(NSString *)nickName
             authCode:(NSString *)authCode
+               phone:(NSString *)phone
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
              success:(void(^)(NSData *data, long tag))success
@@ -44,4 +45,41 @@
           success:(void(^)(NSData *data, long tag))success
          faillure:(void(^)(NSError *error))faillure;
 
+
+// 设置亲情号码
+- (void)phbWithEmail:(NSString *)email
+               phone:(NSString *)phone
+         withTimeout:(NSTimeInterval)timeout
+                 tag:(long)tag
+             success:(void(^)(NSData *data, long tag))success
+            faillure:(void(^)(NSError *error))faillure;
+
+// 获取联系人
+- (void)lxrWithEmail:(NSString *)email
+//               bagId:(NSString *)bagId
+         withTimeout:(NSTimeInterval)timeout
+                 tag:(long)tag
+             success:(void(^)(NSData *data, long tag))success
+            faillure:(void(^)(NSError *error))faillure;
+
+
+/*!
+ * 绑定箱子
+ */
+- (void)bingWithEmail:(NSString *)email
+                bagId:(NSString *)bagId
+               bagNum:(NSString *)bagNum
+              bagName:(NSString *)bagName
+          withTimeout:(NSTimeInterval)timeout
+                  tag:(long)tag
+              success:(void(^)(NSData *data, long tag))success
+             faillure:(void(^)(NSError *error))faillure;
+
+/*!
+ * 箱子列表
+ */
+- (void)bagListWithTimeout:(NSTimeInterval)timeout
+                       tag:(long)tag
+                   success:(void(^)(NSData *data, long tag))success
+                  faillure:(void(^)(NSError *error))faillure;
 @end

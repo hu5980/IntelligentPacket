@@ -7,6 +7,7 @@
 //
 
 #import "ITPAddContactViewController.h"
+#import "ITPContactViewModel.h"
 
 @interface ITPAddContactViewController ()
 {
@@ -38,7 +39,20 @@
 }
 
 - (IBAction)saveAction:(id)sender {
-
+ 
+    [[ITPScoketManager shareInstance]phbWithEmail:nameTextField.text phone:phoneTextFeild.text withTimeout:10 tag:102 success:^(NSData *data, long tag) {
+        
+        if (data) {
+            
+        }
+    } faillure:^(NSError *error) {
+        if (error) {
+            
+        }
+        
+        
+    }];
+    
 }
 
 - (void)refreshLanguge {
@@ -46,7 +60,7 @@
     
     phoneTextFeild.placeholder = L(@"Please enter phone number");
     passwordTextField.placeholder = L(@"Please enter password");
-    nameTextField.placeholder = L(@"Please enter nickName");
+    nameTextField.placeholder = L(@"Please enter your email address");
     [saveButton setTitle:L(@"save") forState:UIControlStateNormal];
 }
 

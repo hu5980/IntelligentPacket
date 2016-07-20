@@ -94,6 +94,12 @@
                     <constraint firstItem="AkP-mg-8ln" firstAttribute="leading" secondItem="9Il-GI-lr3" secondAttribute="trailing" constant="12" id="wLQ-oU-jwL"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="bagName" destination="AkP-mg-8ln" id="t5s-G6-bvk"/>
+                <outlet property="bagNum" destination="HNX-ce-Nd2" id="TUd-wM-UI9"/>
+                <outlet property="bagheadImage" destination="9Il-GI-lr3" id="Otw-cr-jNs"/>
+                <outlet property="bagweight" destination="6z9-Gz-0AM" id="lb1-jo-aqP"/>
+            </connections>
             <point key="canvasLocation" x="278.5" y="250.5"/>
         </tableViewCell>
     </objects>

@@ -26,7 +26,7 @@
 #define ITP_SIMG                           @"SIMG"          // 10. 上传图片
 #define ITP_GIMG                           @"GIMG"          // 11. 获取图片
 #define ITP_BANGDING                       @"BANGDING"      // 12. 箱子绑定
-
+#define ITP_BAGLIST                        @"POSTITIONMODULELIST"  // 13. 箱子列表
 
 @interface ITPDataCenter : NSObject
 

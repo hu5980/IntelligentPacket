@@ -7,6 +7,7 @@
 //
 
 #import "AddBagsViewController.h"
+#import "ITPBagViewModel.h"
 
 @implementation AddBagsViewController
 {
@@ -72,12 +73,33 @@
 
 
 - (IBAction)confimAction:(UIButton *)sender {
-//    if (confimImage.hidden) {
-//        [self showAlert:L(@"Please select type") WithDelay:1];
-//        return;
-//    }
-    
-    
+
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [[ITPScoketManager shareInstance]bingWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.model.bagId bagNum:phoneTextFiled.text bagName:nicknameTF.text withTimeout:10 tag:104 success:^(NSData *data, long tag) {
+        
+        BOOL abool = [ITPBagViewModel isSuccesss:data];
+        if (abool) {
+            [self performBlock:^{
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [self showAlert:L(@"Add bags success") WithDelay:1.];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:ITPacketAddbags object:nil];
+                
+                [self performBlock:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                } afterDelay:1.5];
+                
+            } afterDelay:.1];
+        }
+    } faillure:^(NSError *error) {
+        if (error) {
+            [self performBlock:^{
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [self showAlert:L(@"Add bags failure") WithDelay:1.];
+            } afterDelay:.1];
+        }
+    }];
     
 }
 

@@ -10,25 +10,61 @@
 #import "ITPAddContactViewController.h"
 #import "ITPContactEditorVeiwController.h"
 #import "ITPContactsCell.h"
+#import "ITPContactViewModel.h"
 
 @interface ITPContactViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray *dataSource;
+@property (strong, nonatomic) NSMutableArray<ITPContactModel *> *dataSource;
 @end
 
 
 @implementation ITPContactViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self laodData];
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
+    [self laodData];
+    
     [self configTable];
     
-    self.dataSource = [NSMutableArray arrayWithArray:@[@"", @"", @"", @""]];
-    
     [self setNavBarBarItemWithTitle:@"➕" target:self action:@selector(addContacts) atRight:YES];
+}
+
+- (void)laodData {
+    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    @weakify(self);
+   [[ITPScoketManager shareInstance]lxrWithEmail:[ITPUserManager ShareInstanceOne].userEmail withTimeout:10 tag:103 success:^(NSData *data, long tag) {
+       
+       @strongify(self);
+       if ([ITPContactViewModel isSuccesss:data]) {
+          [self performBlock:^{
+              [MBProgressHUD hideHUDForView:self.view animated:YES];
+              
+              self.dataSource = [ITPContactViewModel contacts:data];
+              [self.tableView reloadData];
+              NSLog(@"%@", self.dataSource);
+              
+          } afterDelay:0.1];
+       }
+       
+   } faillure:^(NSError *error) {
+       
+       if (error) {
+           [self performBlock:^{
+               [MBProgressHUD hideHUDForView:self.view animated:YES];
+           } afterDelay:.1];
+       }
+       
+   } ];
 }
 
 - (void)addContacts {
@@ -68,32 +104,8 @@
     
     ITPContactsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ITPContactsCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.indexPath_ = (int)indexPath.row;
-//    
-//    @weakify(self);
-//    cell.phoneBlcok = ^(int indexPath){
-//        
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://18617108096"]];
-//    };
-//    
-//    cell.locationBlcok = ^(int indexPath){
-//        @strongify(self)
-//        self.tabBarController.selectedIndex = 1;
-//    };
-//    
-//    cell.weightBlcok = ^(int indexPath){
-//        @strongify(self)
-//        
-//        ITPPacketBagModel * _model = [ITPPacketBagModel new];
-//        _model.bagType = indexPath/2 == 0?1:0;
-//        ITPPacketbagWeightVeiwController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"weight"];
-//        vc.model = _model;
-//        [self.navigationController pushViewController:vc animated:YES];
-//        vc.weighingBlock = ^(float weight){
-//            NSLog(@"weight back");
-//        };
-//    };
-//    
+    cell.name.text = self.dataSource[indexPath.row].contactName;
+    cell.phoneNum.text = self.dataSource[indexPath.row].contactPhoneNum;
     return cell;
 }
 

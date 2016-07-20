@@ -31,4 +31,7 @@
 #import "ITPPacketBagViewModel.h"
 #import "ITPPacketBagModel.h"
 
+#import "ITPContactModel.h"
+#import "ITPPacketBagModel.h"
+
 #endif /* IntelligentPacket_pch */

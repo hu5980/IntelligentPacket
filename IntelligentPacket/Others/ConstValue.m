@@ -10,4 +10,10 @@
 
 NSString * ITPacketIsLogin = @"ITPacketIsLogin";
 
+NSString * ITPacketUserEmail = @"ITPacketUserEmail";
+
+
+// notice
 NSString const * ITPacketAPPChangeStoreBoard = @"ITPacketAPPChangeStoreBoard";
+
+NSString const * ITPacketAddbags = @"ITPacketAddbags";

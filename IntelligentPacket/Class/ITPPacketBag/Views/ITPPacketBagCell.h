@@ -16,4 +16,14 @@
 @property (nonatomic, copy) void (^locationBlcok)(int indexPath);
 @property (nonatomic, copy) void (^weightBlcok)(int indexPath);
 
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *bagheadImage;
+
+@property (weak, nonatomic) IBOutlet UILabel *bagName;
+
+@property (weak, nonatomic) IBOutlet UILabel *bagNum;
+
+@property (weak, nonatomic) IBOutlet UIButton *bagweight;
+
 @end

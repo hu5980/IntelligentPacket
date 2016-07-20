@@ -39,24 +39,43 @@
 
 - (NSData *)paramData :(NSArray *)param command:(NSString *)command{
   
-    NSString * paramStr = @"";
-    
-    for (int i = 0; i < param.count; i ++) {
-        if (i == 0) {
-            paramStr = [paramStr stringByAppendingString:param[i]];
-        }else paramStr = [paramStr stringByAppendingString:OCSTR(@",%@", param[i])];
+    @try
+    {
+        NSString * paramStr = @"";
+        
+        for (int i = 0; i < param.count; i ++) {
+            if (i == 0) {
+                paramStr = [paramStr stringByAppendingString:param[i]];
+            }else paramStr = [paramStr stringByAppendingString:OCSTR(@",%@", param[i])];
+        }
+        
+        NSString * indata = OCSTR(@"%@*%@*%04X*%04lX*%@,%@", APPID, KM, self.index, (command.length + paramStr.length + 1), command, paramStr);
+        
+        char outData[16] = "0C9D8AD545B0C5F4";
+        
+        EncryptDate((char *)indata.UTF8String, outData);
+        
+        NSString * outstr = [NSString stringWithUTF8String:outData];
+        
+        indata = OCSTR(@"[%@*%@]", outstr, indata);//[0C9D8AD545B0C5F4*APP1*KM*0001*001D*LOGIN,355567207@qq.com,123456]
+        
+        NSData * data = [indata dataUsingEncoding:NSUTF8StringEncoding];
+        
+        return data;
+
+    }
+    @catch (NSException* exception)
+    {
+        NSLog(@"Uncaught exception: %@, %@", [exception description],
+              [exception callStackSymbols]);
+        @throw exception;
     }
     
-    NSString * indata = OCSTR(@"%@*%@*%04X*%04lX*%@,%@", APPID, KM, self.index, (command.length + paramStr.length + 1), command, paramStr);
-    
-    char outData[16] = {0};
-    
-    EncryptDate((char *)indata.UTF8String, outData);
-    
-    indata = OCSTR(@"[%s*%@]", outData, indata);
-    
-    return [indata dataUsingEncoding:NSUTF8StringEncoding];
+    return nil;
+
 }
+
+
 /*
 验证数据算法
 比如:[94E595B120ED0965*APP1*KM*0001*0014*REG,443564333@qq.com]
@@ -74,7 +93,7 @@ void Xor(char *InA, const char *InB, int len)
 
 int EncryptDate(char* indate,char* OutDate)
 {
-    unsigned char MacBlock[32]={0},aryTmp[32]={0};
+    unsigned char MacBlock[32] = {0}, aryTmp[32] = {0};
     int iPos;
     int p_len = (int)strlen(indate);
     iPos=0;
@@ -91,7 +110,9 @@ int EncryptDate(char* indate,char* OutDate)
     }
     for(int i=0;i<8;i++)
     {
-        sprintf(OutDate+i*2,"%02X",MacBlock[i]);
+        sprintf(OutDate+i*2,"%02X", MacBlock[i]);
+//        int len = snprintf(OutDate+i*2, sizeof(OutDate+i*2), "%02X", MacBlock[i]);
+//        int a = len;
     }
     return 0;
 }

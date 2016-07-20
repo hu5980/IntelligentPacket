@@ -10,6 +10,8 @@
 #import "LoginWithRegisterViewModel.h"
 
 @interface ITPRegisterViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *phoneTF;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *nickNameTextField;
@@ -40,12 +42,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    RAC(self.registerButton, enabled) = [RACSignal combineLatest:@[self.emailTextField.rac_textSignal,
+    RAC(self.registerButton, enabled) = [RACSignal combineLatest:@[self.phoneTF.rac_textSignal,
+                                                                   self.emailTextField.rac_textSignal,
                                                                    self.passwordTextField.rac_textSignal,
                                                                    self.nickNameTextField.rac_textSignal,
                                                                    self.codeTextFeild.rac_textSignal]
-                                                          reduce:^(NSString *username, NSString *password, NSString *nickName, NSString *code) {
-                                                              return @(username.length && password.length && nickName.length && code.length);
+                                                          reduce:^(NSString *phone, NSString *username, NSString *password, NSString *nickName, NSString *code) {
+                                                              return @(phone.length && username.length && password.length && nickName.length && code.length);
                                                           }];
     
     
@@ -126,7 +129,7 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [[ITPScoketManager shareInstance]registerWith:self.emailTextField.text password:self.passwordTextField.text nickName:self.nickNameTextField.text authCode:self.codeTextFeild.text withTimeout:10 tag:101 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance]registerWith:self.emailTextField.text password:self.passwordTextField.text nickName:self.nickNameTextField.text authCode:self.codeTextFeild.text phone:self.phoneTF.text withTimeout:10 tag:101 success:^(NSData *data, long tag) {
         
         [self performBlock:^{
             

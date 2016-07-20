@@ -20,6 +20,7 @@
 		5D7BE9021D313A2200E8C55F /* ITPContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BE9001D313A2200E8C55F /* ITPContactsCell.xib */; };
 		5D7BE9051D31E0B000E8C55F /* ITPAddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE9041D31E0B000E8C55F /* ITPAddContactViewController.m */; };
 		5D7BE9081D32022B00E8C55F /* ITPContactEditorVeiwController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE9071D32022B00E8C55F /* ITPContactEditorVeiwController.m */; };
+		5D91947A1D3E6D26001203CC /* ITPBagViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9194791D3E6D26001203CC /* ITPBagViewModel.m */; };
 		5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7E4CA1D1F830400F1A5D3 /* ITPSocketSDK.m */; };
 		5DA88A751D2D599500C0F8CD /* ITPPacketBagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A741D2D599500C0F8CD /* ITPPacketBagModel.m */; };
 		5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A771D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m */; };
@@ -51,6 +52,8 @@
 		5DB50FAC1D27F3D200F28535 /* NSObject+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50FAB1D27F3D200F28535 /* NSObject+Extension.m */; };
 		5DB50FB71D27FA6100F28535 /* ITPPacketBagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB50FB61D27FA6100F28535 /* ITPPacketBagCell.xib */; };
 		5DB50FBB1D28D76000F28535 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB50FBA1D28D76000F28535 /* LoginViewController.m */; };
+		5DB7A9E71D3D1482006BA3D8 /* ITPContactViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB7A9E61D3D1482006BA3D8 /* ITPContactViewModel.m */; };
+		5DB7A9EB1D3D23B0006BA3D8 /* ITPContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB7A9EA1D3D23B0006BA3D8 /* ITPContactModel.m */; };
 		5DBE37B01D104C4300A8F386 /* MapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE37AF1D104C4300A8F386 /* MapManager.m */; };
 		5DBE37B21D10549500A8F386 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DBE37B11D10549500A8F386 /* MapKit.framework */; };
 		5DD5A7721D167717006D771E /* ITPUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5A7711D167717006D771E /* ITPUserManager.swift */; };
@@ -115,6 +118,8 @@
 		5D7BE9041D31E0B000E8C55F /* ITPAddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAddContactViewController.m; sourceTree = "<group>"; };
 		5D7BE9061D32022B00E8C55F /* ITPContactEditorVeiwController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPContactEditorVeiwController.h; sourceTree = "<group>"; };
 		5D7BE9071D32022B00E8C55F /* ITPContactEditorVeiwController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPContactEditorVeiwController.m; sourceTree = "<group>"; };
+		5D9194781D3E6D26001203CC /* ITPBagViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPBagViewModel.h; sourceTree = "<group>"; };
+		5D9194791D3E6D26001203CC /* ITPBagViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPBagViewModel.m; sourceTree = "<group>"; };
 		5DA7E4C91D1F830400F1A5D3 /* ITPSocketSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSocketSDK.h; sourceTree = "<group>"; };
 		5DA7E4CA1D1F830400F1A5D3 /* ITPSocketSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPSocketSDK.m; sourceTree = "<group>"; };
 		5DA88A731D2D599500C0F8CD /* ITPPacketBagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketBagModel.h; sourceTree = "<group>"; };
@@ -175,6 +180,10 @@
 		5DB50FB61D27FA6100F28535 /* ITPPacketBagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITPPacketBagCell.xib; sourceTree = "<group>"; };
 		5DB50FB91D28D76000F28535 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		5DB50FBA1D28D76000F28535 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		5DB7A9E51D3D1482006BA3D8 /* ITPContactViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPContactViewModel.h; sourceTree = "<group>"; };
+		5DB7A9E61D3D1482006BA3D8 /* ITPContactViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPContactViewModel.m; sourceTree = "<group>"; };
+		5DB7A9E91D3D23B0006BA3D8 /* ITPContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPContactModel.h; sourceTree = "<group>"; };
+		5DB7A9EA1D3D23B0006BA3D8 /* ITPContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPContactModel.m; sourceTree = "<group>"; };
 		5DBE37AE1D104C4300A8F386 /* MapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapManager.h; sourceTree = "<group>"; };
 		5DBE37AF1D104C4300A8F386 /* MapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapManager.m; sourceTree = "<group>"; };
 		5DBE37B11D10549500A8F386 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -278,6 +287,8 @@
 		5D5577201D2ABD5B0094E72C /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				5DB7A9E81D3D23A0006BA3D8 /* Model */,
+				5DB7A9E41D3D146E006BA3D8 /* ViewModel */,
 				5D5577231D2ABDA80094E72C /* ITPContactViewController.h */,
 				5D5577241D2ABDA80094E72C /* ITPContactViewController.m */,
 				5D7BE9031D31E0B000E8C55F /* ITPAddContactViewController.h */,
@@ -291,6 +302,7 @@
 		5D5577211D2ABD7B0094E72C /* AddBags */ = {
 			isa = PBXGroup;
 			children = (
+				5D9194771D3E6D18001203CC /* ViewModel */,
 				5D55772C1D2ABDEF0094E72C /* AddBagsViewController.h */,
 				5D55772D1D2ABDEF0094E72C /* AddBagsViewController.m */,
 				5D0D046B1D37CE6800950057 /* ITPAddBabWithIDViewController.h */,
@@ -306,6 +318,15 @@
 				5D55772A1D2ABDD70094E72C /* SafeAreaViewController.m */,
 			);
 			path = SafeArea;
+			sourceTree = "<group>";
+		};
+		5D9194771D3E6D18001203CC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5D9194781D3E6D26001203CC /* ITPBagViewModel.h */,
+				5D9194791D3E6D26001203CC /* ITPBagViewModel.m */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5DA7E4C81D1E1BB200F1A5D3 /* ITPSocketService */ = {
@@ -554,6 +575,24 @@
 				5D5577171D2A96BB0094E72C /* LoginWithRegisterViewModel.m */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5DB7A9E41D3D146E006BA3D8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5DB7A9E51D3D1482006BA3D8 /* ITPContactViewModel.h */,
+				5DB7A9E61D3D1482006BA3D8 /* ITPContactViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5DB7A9E81D3D23A0006BA3D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5DB7A9E91D3D23B0006BA3D8 /* ITPContactModel.h */,
+				5DB7A9EA1D3D23B0006BA3D8 /* ITPContactModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5DBE37B31D10588000A8F386 /* ITPOthers */ = {
@@ -939,6 +978,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */,
+				5D91947A1D3E6D26001203CC /* ITPBagViewModel.m in Sources */,
 				5DD5A7721D167717006D771E /* ITPUserManager.swift in Sources */,
 				5DABF9EC1D3B3228006ADBE3 /* ITPheadViewController.m in Sources */,
 				5D55772B1D2ABDD70094E72C /* SafeAreaViewController.m in Sources */,
@@ -952,6 +992,7 @@
 				5D5577151D28EA150094E72C /* AppUtil.m in Sources */,
 				5DB50CA11D25591700F28535 /* RealmItem.m in Sources */,
 				5DEA635C1D166F8C000D3BBD /* ConstValue.m in Sources */,
+				5DB7A9EB1D3D23B0006BA3D8 /* ITPContactModel.m in Sources */,
 				5DB50FA91D27E68B00F28535 /* ITPLanguageManager.m in Sources */,
 				5DB50C8C1D20232C00F28535 /* UIView+YYAdd.m in Sources */,
 				5DB50C721D2004E500F28535 /* ITPManageVC.m in Sources */,
@@ -985,6 +1026,7 @@
 				5DABF9EF1D3B370B006ADBE3 /* ITPNameViewController.m in Sources */,
 				5DB50C661D20043400F28535 /* ITPBaseViewController.m in Sources */,
 				5DD5AFF41D0EB48F00EBDB70 /* AppDelegate.m in Sources */,
+				5DB7A9E71D3D1482006BA3D8 /* ITPContactViewModel.m in Sources */,
 				5DB50FBB1D28D76000F28535 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,6 +17,9 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="组-1" translatesAutoresizingMaskIntoConstraints="NO" id="Xe6-nY-bE4">
                         <rect key="frame" x="15" y="10" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="ImR-1v-q4o"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小小志" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MdC-2M-pwN">
                         <rect key="frame" x="90" y="17" width="48" height="20"/>
@@ -48,6 +51,11 @@
                     <constraint firstItem="C8i-Iz-H5w" firstAttribute="leading" secondItem="Xe6-nY-bE4" secondAttribute="trailing" constant="15" id="xq6-tT-4tF"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="headImage" destination="Xe6-nY-bE4" id="OKK-53-1Zt"/>
+                <outlet property="name" destination="MdC-2M-pwN" id="TLY-AF-Wpk"/>
+                <outlet property="phoneNum" destination="C8i-Iz-H5w" id="GcD-R8-l39"/>
+            </connections>
             <point key="canvasLocation" x="265" y="334"/>
         </tableViewCell>
     </objects>

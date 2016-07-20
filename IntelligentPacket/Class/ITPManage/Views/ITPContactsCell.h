@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ITPContactsCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *phoneNum;
+@property (weak, nonatomic) IBOutlet UIImageView *headImage;
 
 @end

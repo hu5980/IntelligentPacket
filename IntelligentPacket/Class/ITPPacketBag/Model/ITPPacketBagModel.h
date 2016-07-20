@@ -11,6 +11,8 @@
 @interface ITPPacketBagModel : NSObject
 
 @property (nonatomic, copy) NSString * bagName;
+@property (nonatomic, copy) NSString * bagEmail;
+@property (nonatomic, copy) NSString * bagId;
 @property (nonatomic, copy) NSString * bagPhoneNum;
 @property (nonatomic, assign) int   bagType;
 @property (nonatomic, assign) int   bagWeight;

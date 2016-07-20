@@ -51,15 +51,14 @@
 
 //  申请注册
 - (void)registerAuthWith:(NSString *)nickName
-                   phone:(NSString *)phone
-         withTimeout:(NSTimeInterval)timeout
-                 tag:(long)tag
-             success:(void(^)(NSData *data, long tag))success
-            faillure:(void(^)(NSError *error))faillure
+             withTimeout:(NSTimeInterval)timeout
+                     tag:(long)tag
+                 success:(void(^)(NSData *data, long tag))success
+                faillure:(void(^)(NSError *error))faillure
 {
     //    NSString * str = @"[F1AC526E1BA4EECB*APP1*KM*0001*0014*REG,443564333@qq.com]";
     //    char * chars = "[F1AC526E1BA4EECB*APP1*KM*0001*0014*REG,443564333@qq.com]"; [NSData dataWithBytes:chars length:strlen(chars)]
-    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[nickName, phone] command:ITP_REGISTER_REQUEST];
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[nickName] command:ITP_REGISTER_REQUEST];
     
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 //    [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:^(NSData *data, long tag) {
@@ -75,13 +74,14 @@
             password:(NSString *)password
             nickName:(NSString *)nickName
             authCode:(NSString *)authCode
+               phone:(NSString *)phone
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
              success:(void(^)(NSData *data, long tag))success
             faillure:(void(^)(NSError *error))faillure;
 
 {
-    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[emailName, password, authCode, nickName] command:ITP_REGISTER_CONFIM];
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[emailName, password, authCode, nickName, phone] command:ITP_REGISTER_CONFIM];
     
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 }
@@ -95,7 +95,7 @@
             faillure:(void(^)(NSError *error))faillure
 {
     NSData * data = [[ITPDataCenter sharedInstance] paramData:@[nickName, password] command:ITP_LOGIN];
-    
+       
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 }
 
@@ -109,6 +109,16 @@
             success:(void(^)(NSData *data, long tag))success
            faillure:(void(^)(NSError *error))faillure {
     NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email, bagId, bagNum, bagName] command:ITP_BANGDING];
+    
+    [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
+}
+
+// 箱子列表
+- (void)bagListWithTimeout:(NSTimeInterval)timeout
+                       tag:(long)tag
+                   success:(void(^)(NSData *data, long tag))success
+                  faillure:(void(^)(NSError *error))faillure {
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[[ITPUserManager ShareInstanceOne].userEmail] command:ITP_BAGLIST];
     
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 }
@@ -128,15 +138,12 @@
 
 // 设置亲情号码
 - (void)phbWithEmail:(NSString *)email
-               bagId:(NSString *)bagId
-                name:(NSString *)name
-                type:(NSString *)type
                phone:(NSString *)phone
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
              success:(void(^)(NSData *data, long tag))success
             faillure:(void(^)(NSError *error))faillure {
-    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email, bagId, OCSTR(@"%@-%@-%@", name, type, phone)] command:ITP_PHB];
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[[ITPUserManager ShareInstanceOne].userEmail/*@"355567207@qq.com"*/, email, phone] command:ITP_PHB];
     
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 }
@@ -185,12 +192,12 @@
 
 // 获取联系人
 - (void)lxrWithEmail:(NSString *)email
-               bagId:(NSString *)bagId
+//               bagId:(NSString *)bagId
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
              success:(void(^)(NSData *data, long tag))success
             faillure:(void(^)(NSError *error))faillure {
-    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email, bagId] command:ITP_LXR];
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email] command:ITP_LXR];
     
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 }

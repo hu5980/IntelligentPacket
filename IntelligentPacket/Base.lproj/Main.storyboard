@@ -769,8 +769,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="电话" translatesAutoresizingMaskIntoConstraints="NO" id="ZJx-Kz-W10">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="电话" translatesAutoresizingMaskIntoConstraints="NO" id="ZJx-Kz-W10">
                                         <rect key="frame" x="8" y="12" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="7Of-tw-Pck"/>
+                                            <constraint firstAttribute="height" constant="20" id="et8-54-Opa"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -780,9 +784,7 @@
                                     <constraint firstItem="ZJx-Kz-W10" firstAttribute="leading" secondItem="PnQ-ph-ceM" secondAttribute="leading" constant="8" id="FT6-UF-0as"/>
                                     <constraint firstItem="PpV-QO-bjS" firstAttribute="leading" secondItem="ZJx-Kz-W10" secondAttribute="trailing" constant="20" id="GgU-8o-wRS"/>
                                     <constraint firstAttribute="trailing" secondItem="PpV-QO-bjS" secondAttribute="trailing" constant="8" id="HiT-p8-pEN"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZJx-Kz-W10" secondAttribute="bottom" constant="12" id="I7E-xe-MUX"/>
                                     <constraint firstItem="PpV-QO-bjS" firstAttribute="height" secondItem="PnQ-ph-ceM" secondAttribute="height" id="aQd-AD-LSt"/>
-                                    <constraint firstItem="ZJx-Kz-W10" firstAttribute="top" secondItem="PnQ-ph-ceM" secondAttribute="top" constant="12" id="hTM-Yb-5HM"/>
                                     <constraint firstAttribute="height" constant="44" id="iyA-WW-CkX"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -807,8 +809,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="用户名_" translatesAutoresizingMaskIntoConstraints="NO" id="y5I-UQ-Be1">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="邮箱_" translatesAutoresizingMaskIntoConstraints="NO" id="y5I-UQ-Be1">
                                         <rect key="frame" x="8" y="12" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="677-6D-6Dx"/>
+                                            <constraint firstAttribute="height" constant="20" id="J9w-mK-YvY"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -839,8 +845,12 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OvX-Ey-fGn">
                                 <rect key="frame" x="15" y="150" width="290" height="44"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="密码_" translatesAutoresizingMaskIntoConstraints="NO" id="paW-ln-l6u">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="密码_" translatesAutoresizingMaskIntoConstraints="NO" id="paW-ln-l6u">
                                         <rect key="frame" x="8" y="12" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="bs2-Cx-N8U"/>
+                                            <constraint firstAttribute="height" constant="20" id="iwq-k8-mjJ"/>
+                                        </constraints>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OTm-rF-Dgm">
                                         <rect key="frame" x="48" y="0.0" width="234" height="44"/>
@@ -1080,11 +1090,11 @@
         <image name="定位" width="21" height="23"/>
         <image name="定位_P" width="21" height="23"/>
         <image name="密码_" width="22" height="22"/>
-        <image name="用户名_" width="22" height="22"/>
         <image name="电话" width="16" height="18"/>
         <image name="管理_P" width="21" height="21"/>
         <image name="箱包" width="15" height="22"/>
         <image name="箱包_p" width="15" height="22"/>
         <image name="箱子" width="171" height="171"/>
+        <image name="邮箱_" width="22" height="22"/>
     </resources>
 </document>
