@@ -51,6 +51,8 @@ CFBundleDisplayName="智能箱包";
 
 // add contact
 "add contacts" = "添加联系人";
+"add contacts success" = "添加联系人成功";
+"add contacts failure" = "添加联系人失败";
 "Please enter phone number" = "请输入手机号码";
 "Please enter password" = "请输入密码";
 "Please enter nickName" = "请输入昵称";

@@ -23,3 +23,5 @@ extern NSString * ITPacketUserEmail;
 extern NSString * ITPacketAPPChangeStoreBoard;
 
 extern NSString * ITPacketAddbags;
+
+extern NSString * ITPacketAddcontacts;

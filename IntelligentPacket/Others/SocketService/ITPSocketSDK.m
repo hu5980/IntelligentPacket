@@ -94,7 +94,7 @@
     SuccessCallBack = success;
     FailureCallBack = faillure;
     [self.socket writeData:data withTimeout:2 tag:tag];
-    [self.socket readDataWithTimeout:timeout tag:100];
+    [self.socket readDataWithTimeout:timeout tag:tag];
 }
 
 #pragma mark - GCDAsyncSocket Delegate .

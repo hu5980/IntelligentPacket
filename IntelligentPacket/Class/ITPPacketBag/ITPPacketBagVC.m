@@ -58,7 +58,9 @@
     @weakify(self);
     [[ITPScoketManager shareInstance]bagListWithTimeout:10 tag:106 success:^(NSData *data, long tag) {
         @strongify(self);
-        
+        if (tag != 106) {
+            return ;
+        }
         BOOL abool = [ITPBagViewModel isSuccesss:data];
         if (abool) {
             

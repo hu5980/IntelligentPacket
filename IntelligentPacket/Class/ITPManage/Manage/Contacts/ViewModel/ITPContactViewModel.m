@@ -36,6 +36,7 @@
     NSMutableArray * contacts = [NSMutableArray array];
     NSArray * dataArr = [self paraserData:data];
     NSString * contactstr = dataArr[2];
+    if (contactstr.length == 0) return nil;
     NSArray * contactsTemp = [contactstr componentsSeparatedByString:@"\n"];
     
     for (NSString * contact in contactsTemp) {

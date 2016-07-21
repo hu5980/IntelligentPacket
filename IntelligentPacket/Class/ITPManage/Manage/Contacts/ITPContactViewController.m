@@ -22,8 +22,9 @@
 @implementation ITPContactViewController
 
 - (void)viewWillAppear:(BOOL)animated {
+
     [super viewWillAppear:animated];
-    [self laodData];
+
 }
 
 - (void)viewDidLoad {
@@ -35,6 +36,14 @@
     [self configTable];
     
     [self setNavBarBarItemWithTitle:@"➕" target:self action:@selector(addContacts) atRight:YES];
+    
+    @weakify(self)
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketAddcontacts object:nil]subscribeNext:^(id x) {
+        
+        @strongify(self)
+        [self laodData];
+    }];
+
 }
 
 - (void)laodData {
@@ -45,16 +54,17 @@
    [[ITPScoketManager shareInstance]lxrWithEmail:[ITPUserManager ShareInstanceOne].userEmail withTimeout:10 tag:103 success:^(NSData *data, long tag) {
        
        @strongify(self);
-       if ([ITPContactViewModel isSuccesss:data]) {
-          [self performBlock:^{
-              [MBProgressHUD hideHUDForView:self.view animated:YES];
-              
-              self.dataSource = [ITPContactViewModel contacts:data];
-              [self.tableView reloadData];
-              NSLog(@"%@", self.dataSource);
-              
-          } afterDelay:0.1];
-       }
+       [self performBlock:^{
+           BOOL abool = [ITPContactViewModel isSuccesss:data];
+           if (abool) {
+               
+               [MBProgressHUD hideHUDForView:self.view animated:YES];
+               
+               self.dataSource = [ITPContactViewModel contacts:data];
+               [self.tableView reloadData];
+               NSLog(@"%@", self.dataSource);
+           }
+       } afterDelay:0.1];
        
    } faillure:^(NSError *error) {
        

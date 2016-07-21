@@ -89,44 +89,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Services/SocketServiceApi/ITPScoketManager.m"
-            timestampString = "490635715.987925"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "-phbWithEmail:phone:withTimeout:tag:success:faillure:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "IntelligentPacket/Class/ITPManage/Manage/Contacts/ITPAddContactViewController.m"
-            timestampString = "490545889.095266"
+            timestampString = "490718587.445152"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-saveAction:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/ITPManage/Manage/Contacts/ITPAddContactViewController.m"
-            timestampString = "490545889.095266"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "-saveAction:"
             landmarkType = "5">
          </BreakpointContent>

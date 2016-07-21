@@ -40,16 +40,35 @@
 
 - (IBAction)saveAction:(id)sender {
  
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    @weakify(self);
     [[ITPScoketManager shareInstance]phbWithEmail:nameTextField.text phone:phoneTextFeild.text withTimeout:10 tag:102 success:^(NSData *data, long tag) {
-        
-        if (data) {
+        @strongify(self);
+        [self performBlock:^{
             
-        }
+            BOOL abool = [ITPContactViewModel isSuccesss:data];
+            if (abool) {
+                
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [self showAlert:L(@"add contacts success") WithDelay:1.];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:ITPacketAddcontacts object:nil];
+                
+                [self performBlock:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                } afterDelay:1.5];
+                
+            }
+        } afterDelay:.1];
+        
     } faillure:^(NSError *error) {
-        if (error) {
-            
-        }
         
+        [self performBlock:^{
+            if (error) {
+                [self showAlert:L(@"add contacts failure") WithDelay:1.];
+            }
+        } afterDelay:.1];
         
     }];
     

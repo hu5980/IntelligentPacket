@@ -101,7 +101,9 @@
 //        [self showAlert:@"密码格式不正确" WithDelay:1.0];
 //        return;
 //    }
-
+    
+    
+//    [ITPUserManager ShareInstanceOne].userEmail = OCSTR(@"%@", self.emailTextField.text);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[ITPScoketManager shareInstance]loginWith:self.emailTextField.text password:self.passwordTextField.text withTimeout:10 tag:101 success:^(NSData *data, long tag) {
         
