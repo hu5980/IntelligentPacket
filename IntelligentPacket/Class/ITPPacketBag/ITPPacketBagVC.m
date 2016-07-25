@@ -124,14 +124,18 @@
 
 - (void)edit {
     
-//    [self.tableView setEditing:!self.tableView.isEditing animated:YES];
-    
-    ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-//    AddBagsViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbags"];
+//    ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
 //    [self.navigationController pushViewController:vc animated:YES];
     
+    [[ITPScoketManager shareInstance]crWithEmail:@"443564222@qq.com" bagId:@"0123456789" withTimeout:10 tag:107 success:^(NSData *data, long tag) {
+        if (data) {
+            
+        }
+    } faillure:^(NSError *error) {
+        if (error) {
+            
+        }
+    }];
 }
 
 #pragma mark - UITableViewDelegate

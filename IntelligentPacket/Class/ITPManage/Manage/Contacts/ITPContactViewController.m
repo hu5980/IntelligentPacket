@@ -134,17 +134,17 @@
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    @weakify(self)
-        UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:L(@"edit") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-            @strongify(self)
-            // 实现相关的逻辑代码
-            // ...
-            // 在最后希望cell可以自动回到默认状态，所以需要退出编辑模式
-            ITPContactEditorVeiwController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"contactedit"];
-            [self.navigationController pushViewController:vc animated:YES];
-            
-            tableView.editing = NO;
-        }];
+//    @weakify(self)
+//        UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:L(@"edit") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+//            @strongify(self)
+//            // 实现相关的逻辑代码
+//            // ...
+//            // 在最后希望cell可以自动回到默认状态，所以需要退出编辑模式
+//            ITPContactEditorVeiwController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"contactedit"];
+//            [self.navigationController pushViewController:vc animated:YES];
+//            
+//            tableView.editing = NO;
+//        }];
     
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:L(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         // 首先改变model
@@ -154,7 +154,7 @@
         // 不需要主动退出编辑模式，上面更新view的操作完成后就会自动退出编辑模式
     }];
     
-    return @[deleteAction, editAction];
+    return @[deleteAction];
 }
 
 @end
