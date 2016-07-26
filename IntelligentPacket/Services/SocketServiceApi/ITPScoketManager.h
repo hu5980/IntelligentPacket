@@ -82,4 +82,13 @@
                        tag:(long)tag
                    success:(void(^)(NSData *data, long tag))success
                   faillure:(void(^)(NSError *error))faillure;
+
+
+// 实时查询
+- (void)crWithEmail:(NSString *)email
+              bagId:(NSString *)bagId
+        withTimeout:(NSTimeInterval)timeout
+                tag:(long)tag
+            success:(void(^)(NSData *data, long tag))success
+           faillure:(void(^)(NSError *error))faillure;
 @end
