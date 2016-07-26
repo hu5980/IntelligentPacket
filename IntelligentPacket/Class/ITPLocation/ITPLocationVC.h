@@ -12,8 +12,10 @@
 
 @interface ITPLocationVC : ITPBaseViewController
 
-@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
+@property (strong,nonatomic) CLLocation *location;
+
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
 @end
 
