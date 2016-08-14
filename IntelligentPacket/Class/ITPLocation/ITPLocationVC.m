@@ -22,8 +22,7 @@
 //    NSString *plistPath;
     NSMutableArray *locationArray;
     
-   // UIImageView *arrowImageView;
- 
+    UIImageView *arrowImageView;
 }
 
 
@@ -34,7 +33,7 @@
 @implementation ITPLocationVC
 
 //设置顶部20的部分字体颜色变为白色
-- (UIStatusBarStyle)preferredStatusBarStyle{
+- (UIStatusBarStyle)preferredStatusBarStyle {
     
     return UIStatusBarStyleLightContent;
     
@@ -50,10 +49,11 @@
     _mapView.zoomEnabled = YES;//支持缩放
     _mapView.delegate = self;
     _mapView .showsUserLocation = YES;
-  //  arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 20, 40)];
-  //  arrowImageView.image = [UIImage imageNamed:@"icon_cellphone"];
+    arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 20, 40)];
+    arrowImageView.image = [UIImage imageNamed:@"icon_cellphone"];
   //  [_mapView addSubview:arrowImageView];
     
+    geocoder = [[CLGeocoder alloc] init];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"定位"] style:UIBarButtonItemStylePlain target:self action:@selector(entryHistoryLocationAction)];
     
     self.navigationItem.rightBarButtonItem = rightItem;
@@ -66,6 +66,10 @@
         NSLog(@"%@", x);
         
     }];
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:_location.coordinate];
+    [_mapView addAnnotation:annotation];
 }
 
 #pragma --mark Action
@@ -123,7 +127,7 @@
     
     [UIView animateWithDuration:0.2 animations:^{
         //旋转我们的指南针
-     //   arrowImageView.transform=CGAffineTransformMakeRotation(-angle);
+        arrowImageView.transform=CGAffineTransformMakeRotation(-angle);
     }];
 }
 
@@ -186,46 +190,48 @@
     [locationDic setValue:[NSString stringWithFormat:@"%f",userLocation.coordinate.latitude] forKey:@"latitude"];
     
     [locationArray addObject:locationDic];
-    
-//    BOOL isSuccess =  [locationArray writeToFile:plistPath atomically:YES];
-//    
-//    if (isSuccess) {
-//        NSLog(@"写入成功");
-//    }else{
-//        NSLog(@"写入失败");
-//    }
-    
+
     CLLocationCoordinate2D pos = userLocation.coordinate;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
     [_mapView setRegion:adjustedRegion animated:YES];
     
     [self setMapRoutes];
-    [geocoder reverseGeocodeLocation:userLocation.location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        NSLog(@"%@", placemarks[0]);
-    }];
     
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    
+    // If the annotation is the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
+        MKAnnotationView* aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MKPointAnnotation"];
+        aView.image = [UIImage imageNamed:@"myimage"];
+        aView.canShowCallout = YES;
+        
+        UIView *view = [[UIView alloc] init];
+        view.frame = CGRectMake(10,10, 100, 30);
+        
+        view.backgroundColor = [UIColor redColor];
+        [aView addSubview:view];
+        return aView;
+    }
+    return nil;
 }
 
 
 - (void)showCurrentLocationInfo:(MKUserLocation *)location {
     CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
     NSLog(@"%f\n%f",location.coordinate.latitude,location.coordinate.longitude);
-  
+    
     //根据经纬度反向地理编译出地址信息
     [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error){
         if (placemarks.count > 0){
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
-            //将获得的所有信息显示到label上
-            self.locationLabel.text = placemark.name;
-            //获取城市
-            NSString *city = placemark.locality;
-            if (!city) {
-                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
-                city = placemark.administrativeArea;
-            }
-            NSLog(@"city = %@", city);
-            self.locationLabel.text = city;
+            NSString *locationString = [NSString stringWithFormat:@"%@%@%@附近",[[placemark addressDictionary] objectForKey:@"City"],[[placemark addressDictionary] objectForKey:@"SubLocality"],[[placemark addressDictionary] objectForKey:@"Thoroughfare"]];
+            
+            self.locationLabel.text = locationString;
       
         }
         else if (error == nil && [placemarks count] == 0)
