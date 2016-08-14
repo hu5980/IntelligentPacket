@@ -72,8 +72,8 @@
 // 注册
 - (void)registerWith:(NSString *)emailName
             password:(NSString *)password
-            nickName:(NSString *)nickName
             authCode:(NSString *)authCode
+            nickName:(NSString *)nickName
                phone:(NSString *)phone
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag

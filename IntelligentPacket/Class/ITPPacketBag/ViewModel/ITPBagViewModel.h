@@ -16,4 +16,6 @@
 
 + (NSMutableArray *)bags:(NSData *)data ;
 
++ (NSMutableArray *)managerBags:(NSData *)data ;
+
 @end

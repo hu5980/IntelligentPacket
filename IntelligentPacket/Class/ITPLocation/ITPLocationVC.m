@@ -59,6 +59,13 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
     [self getCurPosition];
+    
+    @weakify(self)
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketLocation object:nil]subscribeNext:^(id x) {
+        @strongify(self)
+        NSLog(@"%@", x);
+        
+    }];
 }
 
 #pragma --mark Action

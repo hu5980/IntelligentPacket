@@ -28,7 +28,6 @@
 #import "MBProgressHUD.h"
 
 #import "AppUtil.h"
-#import "ITPPacketBagViewModel.h"
 #import "ITPPacketBagModel.h"
 
 #import "ITPContactModel.h"

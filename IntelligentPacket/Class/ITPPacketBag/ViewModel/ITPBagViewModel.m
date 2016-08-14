@@ -57,4 +57,33 @@
     return bags;
 }
 
++ (NSMutableArray *)managerBags:(NSData *)data {
+    
+    NSMutableArray * bags = [NSMutableArray array];
+    NSArray * dataArr = [self paraserData:data];
+    NSString * bagstr = dataArr[2];
+    NSArray * bagTemp = [bagstr componentsSeparatedByString:@"\n"];
+    
+    for (NSString * bag in bagTemp) {
+        
+        NSString * _bag = [bag stringByReplacingOccurrencesOfString:@" " withString:@""];
+        if (_bag.length == 0) break;
+        
+        NSArray * temp = [bag componentsSeparatedByString:@"/"];
+        
+        ITPPacketBagModel * model = [ITPPacketBagModel new];
+        model.bagId = (NSString *)temp[0];
+        model.bagEmail = (NSString *)temp[1];
+        model.bagName = (NSString *)temp[2];
+        model.bagPhoneNum = (NSString *)temp[3];
+        model.bagType = [model.bagId substringToIndex:1].intValue;
+        if ([model.bagEmail isEqualToString:[ITPUserManager ShareInstanceOne].userEmail]) {
+            [bags addObject:model];
+        }
+    }
+    
+    return bags;
+}
+
+
 @end

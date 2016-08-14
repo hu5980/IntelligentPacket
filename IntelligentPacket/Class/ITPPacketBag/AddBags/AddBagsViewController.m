@@ -91,6 +91,12 @@
                 } afterDelay:1.5];
                 
             } afterDelay:.1];
+        }else {
+            [self performBlock:^{
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [self showAlert:L(@"Add bags failure") WithDelay:1.];;
+                
+            } afterDelay:.1];
         }
     } faillure:^(NSError *error) {
         if (error) {

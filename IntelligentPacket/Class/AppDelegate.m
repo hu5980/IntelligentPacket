@@ -60,6 +60,9 @@
     [[MapManager shareInstance] configParameter];
     [[UIManager shareInstance] configUI];
     [[ITPLanguageManager sharedInstance]config];
+    
+    [[ITPScoketManager shareInstance]startConnect];
+    
 //    [self SetUpTheRootViewController];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(SetUpTheRootViewController) name:ITPacketAPPChangeStoreBoard object:nil];
 

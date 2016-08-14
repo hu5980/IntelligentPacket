@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D0D046D1D37CE6800950057 /* ITPAddBabWithIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0D046C1D37CE6800950057 /* ITPAddBabWithIDViewController.m */; };
+		5D05CA551D4640D60073FAD9 /* ITPBagViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA541D4640D60073FAD9 /* ITPBagViewModel.m */; };
+		5D05CA5B1D4640FC0073FAD9 /* AddBagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA581D4640FC0073FAD9 /* AddBagsViewController.m */; };
+		5D05CA5C1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA5A1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m */; };
 		5D41908F1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D41908B1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m */; };
 		5D5577151D28EA150094E72C /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577141D28EA150094E72C /* AppUtil.m */; };
 		5D5577181D2A96BB0094E72C /* LoginWithRegisterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577171D2A96BB0094E72C /* LoginWithRegisterViewModel.m */; };
 		5D5577251D2ABDA80094E72C /* ITPContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577241D2ABDA80094E72C /* ITPContactViewController.m */; };
 		5D5577281D2ABDBD0094E72C /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577271D2ABDBD0094E72C /* FeedBackViewController.m */; };
 		5D55772B1D2ABDD70094E72C /* SafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D55772A1D2ABDD70094E72C /* SafeAreaViewController.m */; };
-		5D55772E1D2ABDEF0094E72C /* AddBagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D55772D1D2ABDEF0094E72C /* AddBagsViewController.m */; };
-		5D5577311D2AC0C00094E72C /* ITPPacketBagViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577301D2AC0C00094E72C /* ITPPacketBagViewModel.m */; };
 		5D6812751D3FC1530041D811 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6812721D3FC1530041D811 /* UIColor+Helper.m */; };
 		5D6812761D3FC1530041D811 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6812741D3FC1530041D811 /* UIViewExt.m */; };
 		5D6812871D3FC1790041D811 /* dotGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6812781D3FC1790041D811 /* dotGreen@2x.png */; };
@@ -30,10 +30,10 @@
 		5D7BE9021D313A2200E8C55F /* ITPContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BE9001D313A2200E8C55F /* ITPContactsCell.xib */; };
 		5D7BE9051D31E0B000E8C55F /* ITPAddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE9041D31E0B000E8C55F /* ITPAddContactViewController.m */; };
 		5D7BE9081D32022B00E8C55F /* ITPContactEditorVeiwController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE9071D32022B00E8C55F /* ITPContactEditorVeiwController.m */; };
-		5D91947A1D3E6D26001203CC /* ITPBagViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9194791D3E6D26001203CC /* ITPBagViewModel.m */; };
 		5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7E4CA1D1F830400F1A5D3 /* ITPSocketSDK.m */; };
 		5DA88A751D2D599500C0F8CD /* ITPPacketBagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A741D2D599500C0F8CD /* ITPPacketBagModel.m */; };
 		5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A771D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m */; };
+		5DA8B3351D4C4D8500078217 /* SafeBagListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA8B3341D4C4D8500078217 /* SafeBagListViewController.m */; };
 		5DABF9E41D3A14CB006ADBE3 /* EditContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DABF9E21D3A14CB006ADBE3 /* EditContactTableViewCell.m */; };
 		5DABF9E51D3A14CB006ADBE3 /* EditContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DABF9E31D3A14CB006ADBE3 /* EditContactTableViewCell.xib */; };
 		5DABF9E91D3B1BAF006ADBE3 /* ITPHeadAndNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DABF9E81D3B1BAF006ADBE3 /* ITPHeadAndNameViewController.m */; };
@@ -104,8 +104,12 @@
 /* Begin PBXFileReference section */
 		36671EB56609768BCE3AC3C7 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5CA47F56F8288657024A364D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		5D0D046B1D37CE6800950057 /* ITPAddBabWithIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPAddBabWithIDViewController.h; sourceTree = "<group>"; };
-		5D0D046C1D37CE6800950057 /* ITPAddBabWithIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAddBabWithIDViewController.m; sourceTree = "<group>"; };
+		5D05CA531D4640D60073FAD9 /* ITPBagViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPBagViewModel.h; sourceTree = "<group>"; };
+		5D05CA541D4640D60073FAD9 /* ITPBagViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPBagViewModel.m; sourceTree = "<group>"; };
+		5D05CA571D4640FC0073FAD9 /* AddBagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBagsViewController.h; sourceTree = "<group>"; };
+		5D05CA581D4640FC0073FAD9 /* AddBagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBagsViewController.m; sourceTree = "<group>"; };
+		5D05CA591D4640FC0073FAD9 /* ITPAddBabWithIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPAddBabWithIDViewController.h; sourceTree = "<group>"; };
+		5D05CA5A1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAddBabWithIDViewController.m; sourceTree = "<group>"; };
 		5D41908A1D1523A000D9BAF7 /* FitnessShareApi5_1_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FitnessShareApi5_1_2.h; sourceTree = "<group>"; };
 		5D41908B1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FitnessShareApi5_1_2.m; sourceTree = "<group>"; };
 		5D5577131D28EA150094E72C /* AppUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtil.h; sourceTree = "<group>"; };
@@ -118,10 +122,6 @@
 		5D5577271D2ABDBD0094E72C /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		5D5577291D2ABDD70094E72C /* SafeAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeAreaViewController.h; sourceTree = "<group>"; };
 		5D55772A1D2ABDD70094E72C /* SafeAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeAreaViewController.m; sourceTree = "<group>"; };
-		5D55772C1D2ABDEF0094E72C /* AddBagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBagsViewController.h; sourceTree = "<group>"; };
-		5D55772D1D2ABDEF0094E72C /* AddBagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBagsViewController.m; sourceTree = "<group>"; };
-		5D55772F1D2AC0C00094E72C /* ITPPacketBagViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketBagViewModel.h; sourceTree = "<group>"; };
-		5D5577301D2AC0C00094E72C /* ITPPacketBagViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPacketBagViewModel.m; sourceTree = "<group>"; };
 		5D6812711D3FC1530041D811 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		5D6812721D3FC1530041D811 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		5D6812731D3FC1530041D811 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
@@ -148,14 +148,14 @@
 		5D7BE9041D31E0B000E8C55F /* ITPAddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAddContactViewController.m; sourceTree = "<group>"; };
 		5D7BE9061D32022B00E8C55F /* ITPContactEditorVeiwController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPContactEditorVeiwController.h; sourceTree = "<group>"; };
 		5D7BE9071D32022B00E8C55F /* ITPContactEditorVeiwController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPContactEditorVeiwController.m; sourceTree = "<group>"; };
-		5D9194781D3E6D26001203CC /* ITPBagViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPBagViewModel.h; sourceTree = "<group>"; };
-		5D9194791D3E6D26001203CC /* ITPBagViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPBagViewModel.m; sourceTree = "<group>"; };
 		5DA7E4C91D1F830400F1A5D3 /* ITPSocketSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSocketSDK.h; sourceTree = "<group>"; };
 		5DA7E4CA1D1F830400F1A5D3 /* ITPSocketSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPSocketSDK.m; sourceTree = "<group>"; };
 		5DA88A731D2D599500C0F8CD /* ITPPacketBagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketBagModel.h; sourceTree = "<group>"; };
 		5DA88A741D2D599500C0F8CD /* ITPPacketBagModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPacketBagModel.m; sourceTree = "<group>"; };
 		5DA88A761D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketbagWeightVeiwController.h; sourceTree = "<group>"; };
 		5DA88A771D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPPacketbagWeightVeiwController.m; sourceTree = "<group>"; };
+		5DA8B3331D4C4D8500078217 /* SafeBagListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeBagListViewController.h; sourceTree = "<group>"; };
+		5DA8B3341D4C4D8500078217 /* SafeBagListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeBagListViewController.m; sourceTree = "<group>"; };
 		5DABF9E11D3A14CB006ADBE3 /* EditContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditContactTableViewCell.h; sourceTree = "<group>"; };
 		5DABF9E21D3A14CB006ADBE3 /* EditContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditContactTableViewCell.m; sourceTree = "<group>"; };
 		5DABF9E31D3A14CB006ADBE3 /* EditContactTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditContactTableViewCell.xib; sourceTree = "<group>"; };
@@ -292,6 +292,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5D05CA561D4640FC0073FAD9 /* AddBags */ = {
+			isa = PBXGroup;
+			children = (
+				5D05CA571D4640FC0073FAD9 /* AddBagsViewController.h */,
+				5D05CA581D4640FC0073FAD9 /* AddBagsViewController.m */,
+				5D05CA591D4640FC0073FAD9 /* ITPAddBabWithIDViewController.h */,
+				5D05CA5A1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m */,
+			);
+			path = AddBags;
+			sourceTree = "<group>";
+		};
 		5D4190891D1523A000D9BAF7 /* FitnessShareApi */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,7 +319,6 @@
 				5DABF9DF1D3A14A4006ADBE3 /* Model */,
 				5DABF9E61D3B1B92006ADBE3 /* HeadPortraitAndName */,
 				5D5577201D2ABD5B0094E72C /* Contacts */,
-				5D5577211D2ABD7B0094E72C /* AddBags */,
 				5D5577221D2ABD8C0094E72C /* SafeArea */,
 				5D5577261D2ABDBD0094E72C /* FeedBackViewController.h */,
 				5D5577271D2ABDBD0094E72C /* FeedBackViewController.m */,
@@ -331,23 +341,13 @@
 			path = Contacts;
 			sourceTree = "<group>";
 		};
-		5D5577211D2ABD7B0094E72C /* AddBags */ = {
-			isa = PBXGroup;
-			children = (
-				5D9194771D3E6D18001203CC /* ViewModel */,
-				5D55772C1D2ABDEF0094E72C /* AddBagsViewController.h */,
-				5D55772D1D2ABDEF0094E72C /* AddBagsViewController.m */,
-				5D0D046B1D37CE6800950057 /* ITPAddBabWithIDViewController.h */,
-				5D0D046C1D37CE6800950057 /* ITPAddBabWithIDViewController.m */,
-			);
-			path = AddBags;
-			sourceTree = "<group>";
-		};
 		5D5577221D2ABD8C0094E72C /* SafeArea */ = {
 			isa = PBXGroup;
 			children = (
 				5D5577291D2ABDD70094E72C /* SafeAreaViewController.h */,
 				5D55772A1D2ABDD70094E72C /* SafeAreaViewController.m */,
+				5DA8B3331D4C4D8500078217 /* SafeBagListViewController.h */,
+				5DA8B3341D4C4D8500078217 /* SafeBagListViewController.m */,
 			);
 			path = SafeArea;
 			sourceTree = "<group>";
@@ -372,15 +372,6 @@
 				5D6812861D3FC1790041D811 /* UIColor+Hex.m */,
 			);
 			path = KMCalendar;
-			sourceTree = "<group>";
-		};
-		5D9194771D3E6D18001203CC /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				5D9194781D3E6D26001203CC /* ITPBagViewModel.h */,
-				5D9194791D3E6D26001203CC /* ITPBagViewModel.m */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5DA7E4C81D1E1BB200F1A5D3 /* ITPSocketService */ = {
@@ -470,6 +461,7 @@
 		5DB50C5F1D2002CF00F28535 /* ITPPacketBag */ = {
 			isa = PBXGroup;
 			children = (
+				5D05CA561D4640FC0073FAD9 /* AddBags */,
 				5DA88A6F1D2D597100C0F8CD /* Model */,
 				5DB50C7B1D200EC600F28535 /* ViewModel */,
 				5DB50C771D200EAF00F28535 /* Views */,
@@ -579,8 +571,8 @@
 		5DB50C7B1D200EC600F28535 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5D55772F1D2AC0C00094E72C /* ITPPacketBagViewModel.h */,
-				5D5577301D2AC0C00094E72C /* ITPPacketBagViewModel.m */,
+				5D05CA531D4640D60073FAD9 /* ITPBagViewModel.h */,
+				5D05CA541D4640D60073FAD9 /* ITPBagViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -696,9 +688,9 @@
 			children = (
 				5DBE37B31D10588000A8F386 /* ITPOthers */,
 				5DD5AFEF1D0EB37100EBDB70 /* ITPServices */,
-				5DD5AFEC1D0EB2B900EBDB70 /* ITPLanguage */,
 				5DD5AFED1D0EB2FF00EBDB70 /* ITPManager */,
 				5DD5AFEE1D0EB31500EBDB70 /* ITPClass */,
+				5DD5AFEC1D0EB2B900EBDB70 /* ITPLanguage */,
 				5DD5AFB61D0E9DB000EBDB70 /* Supporting Files */,
 			);
 			path = IntelligentPacket;
@@ -1042,7 +1034,6 @@
 				5D6812891D3FC1790041D811 /* KMCalendarHeaderView.m in Sources */,
 				5D68128E1D3FC1790041D811 /* UIColor+Hex.m in Sources */,
 				5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */,
-				5D91947A1D3E6D26001203CC /* ITPBagViewModel.m in Sources */,
 				5DD5A7721D167717006D771E /* ITPUserManager.swift in Sources */,
 				5DABF9EC1D3B3228006ADBE3 /* ITPheadViewController.m in Sources */,
 				5D68128C1D3FC1790041D811 /* KMCalendarView.m in Sources */,
@@ -1055,6 +1046,7 @@
 				5DA88A751D2D599500C0F8CD /* ITPPacketBagModel.m in Sources */,
 				5D7BE9011D313A2200E8C55F /* ITPContactsCell.m in Sources */,
 				5DD5AFC41D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld in Sources */,
+				5D05CA551D4640D60073FAD9 /* ITPBagViewModel.m in Sources */,
 				5D5577151D28EA150094E72C /* AppUtil.m in Sources */,
 				5DB50CA11D25591700F28535 /* RealmItem.m in Sources */,
 				5DEA635C1D166F8C000D3BBD /* ConstValue.m in Sources */,
@@ -1070,16 +1062,15 @@
 				5DB50C861D201D9200F28535 /* UIViewController+Ex.m in Sources */,
 				5DE3F0231D16850700FCAEEF /* UIManager.m in Sources */,
 				5DB50FAC1D27F3D200F28535 /* NSObject+Extension.m in Sources */,
-				5D55772E1D2ABDEF0094E72C /* AddBagsViewController.m in Sources */,
 				BC2C9D191D3E0C9C007DC90C /* ITPLocationHistoryVC.m in Sources */,
 				5D6812751D3FC1530041D811 /* UIColor+Helper.m in Sources */,
 				5D5577181D2A96BB0094E72C /* LoginWithRegisterViewModel.m in Sources */,
 				5D5577251D2ABDA80094E72C /* ITPContactViewController.m in Sources */,
-				5D0D046D1D37CE6800950057 /* ITPAddBabWithIDViewController.m in Sources */,
 				5DB50FA61D279AAC00F28535 /* CALayer+Ex.m in Sources */,
 				5D7BE9051D31E0B000E8C55F /* ITPAddContactViewController.m in Sources */,
 				5DE3F02B1D16B25400FCAEEF /* ITPHttpServiceBase.m in Sources */,
 				5DB50C5E1D1FAF3C00F28535 /* ITPScoketManager.m in Sources */,
+				5D05CA5C1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m in Sources */,
 				5DB50C751D2005FD00F28535 /* ITPLocationVC.m in Sources */,
 				5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */,
 				5DB50C6F1D2004CE00F28535 /* ITPIntroduceVC.m in Sources */,
@@ -1089,9 +1080,10 @@
 				5DBE37B01D104C4300A8F386 /* MapManager.m in Sources */,
 				5D7BE9081D32022B00E8C55F /* ITPContactEditorVeiwController.m in Sources */,
 				5DABF9F21D3B4397006ADBE3 /* UIImage+Fit.m in Sources */,
+				5D05CA5B1D4640FC0073FAD9 /* AddBagsViewController.m in Sources */,
 				5D68128D1D3FC1790041D811 /* NSDate+KMCalendar.m in Sources */,
 				5DB50FA31D277B7B00F28535 /* ITPForgetViewController.m in Sources */,
-				5D5577311D2AC0C00094E72C /* ITPPacketBagViewModel.m in Sources */,
+				5DA8B3351D4C4D8500078217 /* SafeBagListViewController.m in Sources */,
 				5D5577281D2ABDBD0094E72C /* FeedBackViewController.m in Sources */,
 				5DB50C9D1D25585400F28535 /* ITPRealmStore.m in Sources */,
 				5DABF9EF1D3B370B006ADBE3 /* ITPNameViewController.m in Sources */,

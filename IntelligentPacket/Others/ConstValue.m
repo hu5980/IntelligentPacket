@@ -19,3 +19,5 @@ NSString const * ITPacketAPPChangeStoreBoard = @"ITPacketAPPChangeStoreBoard";
 NSString const * ITPacketAddbags = @"ITPacketAddbags";
 
 NSString const * ITPacketAddcontacts = @"ITPacketAddcontacts";
+
+NSString const * ITPacketLocation = @"ITPacketLocation";

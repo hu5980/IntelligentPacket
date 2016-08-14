@@ -92,7 +92,7 @@
 }
 
 - (void)configOther {
-    [self setNavBarBarItemWithTitle:@"编辑" target:self action:@selector(edit) atRight:YES];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(edit)];
 }
 
 - (void)configTable {
@@ -126,8 +126,8 @@
     
 //    ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
 //    [self.navigationController pushViewController:vc animated:YES];
-    
-    [[ITPScoketManager shareInstance]crWithEmail:@"443564222@qq.com" bagId:@"0123456789" withTimeout:10 tag:107 success:^(NSData *data, long tag) {
+
+    [[ITPScoketManager shareInstance] crWithEmail:@"443564222@qq.com" bagId:@"0123456789" withTimeout:10 tag:107 success:^(NSData *data, long tag) {
         if (data) {
             
         }
@@ -171,6 +171,8 @@
     
     cell.locationBlcok = ^(int indexPath){
         @strongify(self)
+        
+        [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketLocation object:self.dataSource[indexPath]];
         self.tabBarController.selectedIndex = 1;
     };
     

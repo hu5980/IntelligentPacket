@@ -227,10 +227,12 @@ NSString * manageData[manageDataCount___] = {
             break;
         case 3:
         {
-            SafeAreaViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"safearea"];
+            Class cls = NSClassFromString(@"SafeBagListViewController");
+            ITPBaseViewController * vc = [cls new];
+            vc.hidesBottomBarWhenPushed = YES;
             vc.title = title;
             [self.navigationController pushViewController:vc animated:YES];
-
+            
         }
             break;
         case 5:

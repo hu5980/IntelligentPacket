@@ -105,22 +105,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-            timestampString = "490802744.358497"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "-edit"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "IntelligentPacket/Class/ITPManage/Manage/AddBags/AddBagsViewController.m"
             timestampString = "490802880.067031"
             startingColumnNumber = "9223372036854775807"
@@ -137,29 +121,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Services/SocketServiceApi/ITPScoketManager.m"
-            timestampString = "490803028.44657"
+            filePath = "IntelligentPacket/Class/ITPLocation/ITPLocationVC.m"
+            timestampString = "491235920.533162"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "-crWithEmail:bagId:withTimeout:tag:success:faillure:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Others/SocketService/ITPSocketSDK.m"
-            timestampString = "490803051.677797"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-socket:didReadData:withTag:"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -170,7 +138,39 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-            timestampString = "490934096.676009"
+            timestampString = "491235954.564771"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
+            timestampString = "491236215.083172"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "-edit"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
+            timestampString = "491236246.010597"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
@@ -186,7 +186,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-                  timestampString = "490934352.975231"
+                  timestampString = "492355436.661259"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "130"
@@ -201,7 +201,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-                  timestampString = "490934352.975396"
+                  timestampString = "492355436.661447"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
@@ -217,13 +217,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Services/SocketServiceApi/ITPDataCenter.m"
-            timestampString = "490934251.822141"
+            filePath = "IntelligentPacket/Services/SocketServiceApi/ITPScoketManager.m"
+            timestampString = "492355560.953173"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-paramData:command:"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "-crWithEmail:bagId:withTimeout:tag:success:faillure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

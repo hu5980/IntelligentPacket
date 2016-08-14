@@ -80,15 +80,7 @@
         } afterDelay:.1];
     }];
 }
-//
-//- (IBAction)emailValueChange:(UITextField *)sender {
-//
-//}
-//
-//
-//- (IBAction)passwordValueChange:(UITextField *)sender {
-//
-//}
+
 
 - (IBAction)loginAction:(UIButton *)sender {
     
