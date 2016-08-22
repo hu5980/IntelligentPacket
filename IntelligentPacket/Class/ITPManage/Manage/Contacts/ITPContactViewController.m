@@ -11,6 +11,9 @@
 #import "ITPContactEditorVeiwController.h"
 #import "ITPContactsCell.h"
 #import "ITPContactViewModel.h"
+#import "UIImageView+WebCache.h"
+#import "NetServiceApi.h"
+#import "AFNetworking.h"
 
 @interface ITPContactViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -115,6 +118,7 @@
     ITPContactsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ITPContactsCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name.text = self.dataSource[indexPath.row].contactName;
+    [self cell:cell headimage:self.dataSource[indexPath.row].contactEmail];
     cell.phoneNum.text = self.dataSource[indexPath.row].contactPhoneNum;
     return cell;
 }
@@ -155,6 +159,25 @@
     }];
     
     return @[deleteAction];
+}
+
+- (void)cell:(ITPContactsCell *)cell headimage:(NSString *)headStr {
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:[NSString stringWithFormat:@"%@uid=%@", GetHearPortain, headStr] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress)
+     {
+         
+     }
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         NSLog(@"%@", responseObject);
+        NSString * str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        [cell.headImage sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@""]];
+     }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
+         NSLog(@"%@", error.description);
+     }];
+//    [cell.headImage sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@""]];
 }
 
 @end

@@ -94,7 +94,12 @@
              success:(void(^)(NSData *data, long tag))success
             faillure:(void(^)(NSError *error))faillure
 {
-    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[nickName, password] command:ITP_LOGIN];
+    NSString *isChinese = @"zh_CN";
+    if (![ITPLanguageManager sharedInstance].isChinese) {
+        isChinese = @"en";
+    }
+    
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[nickName, password, isChinese] command:ITP_LOGIN];
        
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 }

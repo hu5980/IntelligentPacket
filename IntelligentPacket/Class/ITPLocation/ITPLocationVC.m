@@ -10,6 +10,9 @@
 #import <CoreMotion/CoreMotion.h>
 #import <MapKit/MapKit.h>
 #import "ITPLocationHistoryVC.h"
+#import "ITPPacketBagModel.h"
+#import "ITPLocationViewModel.h"
+#import "ITPLocationModel.h"
 
 @interface ITPLocationVC () <CLLocationManagerDelegate,MKMapViewDelegate> {
     CLLocationManager * locationmanager;
@@ -23,10 +26,14 @@
     NSMutableArray *locationArray;
     
     UIImageView *arrowImageView;
+    
+    ITPPacketBagModel * currentModel;
 }
 
 
 @property (nonatomic) CMMotionManager *motionManager;
+
+@property (nonatomic) NSTimer *locationTimer;
 
 @end
 
@@ -60,19 +67,45 @@
     
     [self getCurPosition];
     
-    @weakify(self)
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketLocation object:nil]subscribeNext:^(id x) {
-        @strongify(self)
-        NSLog(@"%@", x);
-        
-    }];
-    
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:_location.coordinate];
     [_mapView addAnnotation:annotation];
+    
+    @weakify(self)
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketLocation object:nil]subscribeNext:^(id x) {
+        @strongify(self)
+        NSNotification * notification = (NSNotification *)x;
+        currentModel = notification.object;
+        NSString * name = [NSString stringWithFormat:@"%@ Location",currentModel.bagName];
+        self.title = L(name);
+        self.locationTimer.fireDate = [NSDate distantPast]; // start
+        NSLog(@"%@", x);
+        
+    }];
+    self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(queryLocation) userInfo:nil repeats:YES];
+    self.locationTimer.fireDate = [NSDate distantFuture]; // pause
 }
 
 #pragma --mark Action
+
+// 查询地址返回
+- (void)queryLocation {
+    
+    [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:currentModel.bagId withTimeout:10 tag:107 success:^(NSData *data, long tag) {
+        
+        BOOL abool = [ITPLocationViewModel isSuccesss:data];
+        if (abool) {
+            ITPLocationModel * model = [ITPLocationViewModel Locations:data];
+            NSLog(@"longitude = %@   latitude = %@", model.latitude, model.longitude);
+            
+            [self mapView:self.mapView didUpdateUserLocation:nil];
+        }
+    } faillure:^(NSError *error) {
+        if (error) {
+            
+        }
+    }];
+}
 
 - (void) getCurPosition
 {

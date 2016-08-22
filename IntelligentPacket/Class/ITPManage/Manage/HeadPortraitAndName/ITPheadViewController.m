@@ -9,12 +9,17 @@
 #import "ITPheadViewController.h"
 #import "UIImage+Fit.h"
 #import <AVFoundation/AVFoundation.h>
+#import "NetServiceApi.h"
+#import "AFNetworking.h"
 
 @interface ITPheadViewController ()
-
+{
+        NSData * imageData;
+}
 @property (weak, nonatomic) IBOutlet UIButton *headerButton;
 
 @property (nonatomic, strong) UIImagePickerController * imagePickerController;
+
 @end
 
 @implementation ITPheadViewController
@@ -32,6 +37,13 @@
 
 }
 
+- (IBAction)confim:(UIButton *)sender {
+
+    if (!imageData) {
+        return;
+    }
+    [self postImage:imageData];
+}
 
 - (IBAction)modifyHeadimage:(UIButton *)sender {
     [self changeHeadimage];
@@ -160,8 +172,48 @@
         data = UIImagePNGRepresentation(img);
         
     }
-    
+    imageData = data;
     [self.headerButton setBackgroundImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
+}
+
+- (void)postImage:(NSData*)imgData
+{
+    @weakify(self);
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+   
+    [manager POST:UplaodHearPortain parameters:[NSDictionary dictionaryWithObjectsAndKeys:[ITPUserManager ShareInstanceOne].userEmail, @"uid", nil] constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                     // 上传的参数名
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.png", str];
+        [formData appendPartWithFileData:imgData name:@"file" fileName:fileName mimeType:@"image/png"];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        @strongify(self);
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"完成 %@", result);
+        [self performBlock:^{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            if ([result rangeOfString:@"00|"].location != NSNotFound) {
+                [self showAlert:L(@"upload success!") WithDelay:1.];
+            }else [self showAlert:L(@"upload falied!") WithDelay:1.];
+        } afterDelay:.1];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        @strongify(self);
+        [self performBlock:^{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self showAlert:L(@"upload falied!") WithDelay:1.];
+        } afterDelay:.1];
+         NSLog(@"错误 %@", error.localizedDescription);
+    }];
 }
 
 

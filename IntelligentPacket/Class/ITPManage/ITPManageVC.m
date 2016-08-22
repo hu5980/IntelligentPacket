@@ -13,12 +13,15 @@
 #import "FeedBackViewController.h"
 #import "ITPManageCell.h"
 #import "ITPHeadAndNameViewController.h"
+#import "NetServiceApi.h"
+
 
 @interface ITPManageVC ()<UITableViewDelegate, UITableViewDataSource>
 {
 
     UISwitch * __languageSwitch;
     ITPManageCell * headerCell ;
+    NetServiceApi * __api;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -36,6 +39,8 @@
 
     __languageSwitch.on = ![[ITPLanguageManager sharedInstance]isChinese];
     
+    __api = [NetServiceApi new];
+//    NSString * str = [__api getHearPortain];
 }
 
 - (void)viewDidLoad {
@@ -75,11 +80,23 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         [self performBlock:^{
-            [[NSNotificationCenter defaultCenter]postNotificationName:refreshLangugeNotification object:nil];
+            [self refresh:[x boolValue]];
         } afterDelay:.1];
         
     }];
     
+}
+
+- (void)refresh:(BOOL )abool {
+    
+    [[ITPScoketManager shareInstance]loginWith:[ITPUserManager ShareInstanceOne].userEmail password:[ITPUserManager ShareInstanceOne].userPassword withTimeout:10 tag:108 success:^(NSData *data, long tag) {
+        __languageSwitch.on = abool;
+        [[NSNotificationCenter defaultCenter]postNotificationName:refreshLangugeNotification object:nil];
+        
+    } faillure:^(NSError *error) {
+        __languageSwitch.on = !abool;
+    }];
+   
 }
 
 #pragma mark - action

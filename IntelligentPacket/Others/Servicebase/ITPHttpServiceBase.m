@@ -90,7 +90,7 @@ _Pragma("clang diagnostic pop") \
     id __block _targetResponseObject = nil;
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:cCompleteUrl parameters:nil progress:^(NSProgress * _Nonnull downloadProgress)
      {
          

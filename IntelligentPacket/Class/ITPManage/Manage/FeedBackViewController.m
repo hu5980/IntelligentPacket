@@ -7,6 +7,7 @@
 //
 
 #import "FeedBackViewController.h"
+#import "NetServiceApi.h"
 
 @implementation FeedBackViewController
 {
@@ -14,6 +15,8 @@
     __weak IBOutlet UITextView *feedbackTextView;
     
     __weak IBOutlet UIButton *confimButton;
+    
+    NetServiceApi * feedbackApi;
 }
 
 
@@ -23,6 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    feedbackApi = [NetServiceApi new];
     
     [self refreshLanguge];
     
@@ -47,6 +52,21 @@
             
         } afterDelay:.1];
     }];
+}
+
+- (IBAction)feedbackAction:(UIButton *)sender {
+    if (feedbackTextView.text.length == 0) {
+        [self showAlert:L(@"please input some words") WithDelay:1.]; return;
+    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    if ([feedbackApi registerTarget:self andResponseMethod:@selector(feedbackRes:)]) {
+        [feedbackApi getFeedbackServerWithcontent:feedbackTextView.text];
+    }
+}
+
+- (void)feedbackRes:(id)some {
+   [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
 }
 
 @end

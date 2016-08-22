@@ -47,11 +47,9 @@
 
 #define XKDefaultFontWithSize(fontSize)  [UIFont systemFontOfSize:fontSize]
 
-#ifdef DEBUG
-#import <Foundation/Foundation.h>
-#define XKLog(...) NSLog(__VA_ARGS__)
-#else
-#define XKLog(...)
-#endif
+
+// =============================== jpush
+
+#define JPUSHKey  @"281aab12056a652d7c266077" //极光推送key
 
 #endif /* IntelligentPacket_pch */

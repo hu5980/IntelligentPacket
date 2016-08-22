@@ -10,12 +10,16 @@
 		5D05CA551D4640D60073FAD9 /* ITPBagViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA541D4640D60073FAD9 /* ITPBagViewModel.m */; };
 		5D05CA5B1D4640FC0073FAD9 /* AddBagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA581D4640FC0073FAD9 /* AddBagsViewController.m */; };
 		5D05CA5C1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA5A1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m */; };
-		5D41908F1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D41908B1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m */; };
+		5D41908F1D1523A000D9BAF7 /* NetServiceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D41908B1D1523A000D9BAF7 /* NetServiceApi.m */; };
+		5D5294E01D68A39F005C0DF2 /* jpush-ios-2.1.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5294DE1D68A39F005C0DF2 /* jpush-ios-2.1.8.a */; };
+		5D5294E41D68A45B005C0DF2 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D5294E31D68A45B005C0DF2 /* PushConfig.plist */; };
 		5D5577151D28EA150094E72C /* AppUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577141D28EA150094E72C /* AppUtil.m */; };
 		5D5577181D2A96BB0094E72C /* LoginWithRegisterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577171D2A96BB0094E72C /* LoginWithRegisterViewModel.m */; };
 		5D5577251D2ABDA80094E72C /* ITPContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577241D2ABDA80094E72C /* ITPContactViewController.m */; };
 		5D5577281D2ABDBD0094E72C /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5577271D2ABDBD0094E72C /* FeedBackViewController.m */; };
 		5D55772B1D2ABDD70094E72C /* SafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D55772A1D2ABDD70094E72C /* SafeAreaViewController.m */; };
+		5D66F3A21D69A6490018721C /* ITPLocationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D66F3A11D69A6490018721C /* ITPLocationViewModel.m */; };
+		5D66F3A51D69A9550018721C /* ITPLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D66F3A41D69A9550018721C /* ITPLocationModel.m */; };
 		5D6812751D3FC1530041D811 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6812721D3FC1530041D811 /* UIColor+Helper.m */; };
 		5D6812761D3FC1530041D811 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6812741D3FC1530041D811 /* UIViewExt.m */; };
 		5D6812871D3FC1790041D811 /* dotGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6812781D3FC1790041D811 /* dotGreen@2x.png */; };
@@ -110,8 +114,11 @@
 		5D05CA581D4640FC0073FAD9 /* AddBagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBagsViewController.m; sourceTree = "<group>"; };
 		5D05CA591D4640FC0073FAD9 /* ITPAddBabWithIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPAddBabWithIDViewController.h; sourceTree = "<group>"; };
 		5D05CA5A1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAddBabWithIDViewController.m; sourceTree = "<group>"; };
-		5D41908A1D1523A000D9BAF7 /* FitnessShareApi5_1_2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FitnessShareApi5_1_2.h; sourceTree = "<group>"; };
-		5D41908B1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FitnessShareApi5_1_2.m; sourceTree = "<group>"; };
+		5D41908A1D1523A000D9BAF7 /* NetServiceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetServiceApi.h; sourceTree = "<group>"; };
+		5D41908B1D1523A000D9BAF7 /* NetServiceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetServiceApi.m; sourceTree = "<group>"; };
+		5D5294DE1D68A39F005C0DF2 /* jpush-ios-2.1.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.8.a"; sourceTree = "<group>"; };
+		5D5294DF1D68A39F005C0DF2 /* JPUSHService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPUSHService.h; sourceTree = "<group>"; };
+		5D5294E31D68A45B005C0DF2 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		5D5577131D28EA150094E72C /* AppUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppUtil.h; sourceTree = "<group>"; };
 		5D5577141D28EA150094E72C /* AppUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtil.m; sourceTree = "<group>"; };
 		5D5577161D2A96BB0094E72C /* LoginWithRegisterViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginWithRegisterViewModel.h; sourceTree = "<group>"; };
@@ -122,6 +129,10 @@
 		5D5577271D2ABDBD0094E72C /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		5D5577291D2ABDD70094E72C /* SafeAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeAreaViewController.h; sourceTree = "<group>"; };
 		5D55772A1D2ABDD70094E72C /* SafeAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafeAreaViewController.m; sourceTree = "<group>"; };
+		5D66F3A01D69A6490018721C /* ITPLocationViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITPLocationViewModel.h; path = IntelligentPacket/ITPLocationViewModel.h; sourceTree = SOURCE_ROOT; };
+		5D66F3A11D69A6490018721C /* ITPLocationViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITPLocationViewModel.m; path = IntelligentPacket/ITPLocationViewModel.m; sourceTree = SOURCE_ROOT; };
+		5D66F3A31D69A9550018721C /* ITPLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITPLocationModel.h; path = IntelligentPacket/ITPLocationModel.h; sourceTree = SOURCE_ROOT; };
+		5D66F3A41D69A9550018721C /* ITPLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITPLocationModel.m; path = IntelligentPacket/ITPLocationModel.m; sourceTree = SOURCE_ROOT; };
 		5D6812711D3FC1530041D811 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		5D6812721D3FC1530041D811 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		5D6812731D3FC1530041D811 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
@@ -261,6 +272,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D5294E01D68A39F005C0DF2 /* jpush-ios-2.1.8.a in Frameworks */,
 				5DBE37B21D10549500A8F386 /* MapKit.framework in Frameworks */,
 				8F8F305B6E52185108FC867C /* Pods.framework in Frameworks */,
 			);
@@ -306,10 +318,19 @@
 		5D4190891D1523A000D9BAF7 /* FitnessShareApi */ = {
 			isa = PBXGroup;
 			children = (
-				5D41908A1D1523A000D9BAF7 /* FitnessShareApi5_1_2.h */,
-				5D41908B1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m */,
+				5D41908A1D1523A000D9BAF7 /* NetServiceApi.h */,
+				5D41908B1D1523A000D9BAF7 /* NetServiceApi.m */,
 			);
 			path = FitnessShareApi;
+			sourceTree = "<group>";
+		};
+		5D5294DD1D68A39F005C0DF2 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				5D5294DE1D68A39F005C0DF2 /* jpush-ios-2.1.8.a */,
+				5D5294DF1D68A39F005C0DF2 /* JPUSHService.h */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 		5D55771C1D2ABD2D0094E72C /* Manage */ = {
@@ -396,6 +417,8 @@
 		5DA88A701D2D597400C0F8CD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5D66F3A31D69A9550018721C /* ITPLocationModel.h */,
+				5D66F3A41D69A9550018721C /* ITPLocationModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -580,6 +603,8 @@
 		5DB50C7C1D200ECA00F28535 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5D66F3A01D69A6490018721C /* ITPLocationViewModel.h */,
+				5D66F3A11D69A6490018721C /* ITPLocationViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -703,9 +728,11 @@
 				5DD5AFC71D0E9DB000EBDB70 /* LaunchScreen.storyboard */,
 				5DD5AFC21D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld */,
 				5DD5AFCA1D0E9DB000EBDB70 /* Info.plist */,
+				5D5294E31D68A45B005C0DF2 /* PushConfig.plist */,
 				5DD5B0001D0EBDB700EBDB70 /* Images.xcassets */,
 				5DD5AFB71D0E9DB000EBDB70 /* main.m */,
 				5DD5AFF61D0EB51300EBDB70 /* IntelligentPacket.pch */,
+				5D5294DD1D68A39F005C0DF2 /* lib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -954,6 +981,7 @@
 				5DD5AFC91D0E9DB000EBDB70 /* LaunchScreen.storyboard in Resources */,
 				5DB50FB71D27FA6100F28535 /* ITPPacketBagCell.xib in Resources */,
 				5D6812871D3FC1790041D811 /* dotGreen@2x.png in Resources */,
+				5D5294E41D68A45B005C0DF2 /* PushConfig.plist in Resources */,
 				5DD5B0011D0EBDB700EBDB70 /* Images.xcassets in Resources */,
 				5DD5AFF91D0EB7B700EBDB70 /* Localizable.strings in Resources */,
 				5DEA63571D166DF1000D3BBD /* LoginAndRegister.storyboard in Resources */,
@@ -1041,11 +1069,12 @@
 				5DB50C821D200F0900F28535 /* ITPPacketBagCell.m in Sources */,
 				5DB50CA71D269B5B00F28535 /* ITPDataCenter.m in Sources */,
 				5D68128B1D3FC1790041D811 /* KMCalendarItem.m in Sources */,
-				5D41908F1D1523A000D9BAF7 /* FitnessShareApi5_1_2.m in Sources */,
+				5D41908F1D1523A000D9BAF7 /* NetServiceApi.m in Sources */,
 				5DB50C691D20049400F28535 /* ITPPacketBagVC.m in Sources */,
 				5DA88A751D2D599500C0F8CD /* ITPPacketBagModel.m in Sources */,
 				5D7BE9011D313A2200E8C55F /* ITPContactsCell.m in Sources */,
 				5DD5AFC41D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld in Sources */,
+				5D66F3A21D69A6490018721C /* ITPLocationViewModel.m in Sources */,
 				5D05CA551D4640D60073FAD9 /* ITPBagViewModel.m in Sources */,
 				5D5577151D28EA150094E72C /* AppUtil.m in Sources */,
 				5DB50CA11D25591700F28535 /* RealmItem.m in Sources */,
@@ -1071,6 +1100,7 @@
 				5DE3F02B1D16B25400FCAEEF /* ITPHttpServiceBase.m in Sources */,
 				5DB50C5E1D1FAF3C00F28535 /* ITPScoketManager.m in Sources */,
 				5D05CA5C1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m in Sources */,
+				5D66F3A51D69A9550018721C /* ITPLocationModel.m in Sources */,
 				5DB50C751D2005FD00F28535 /* ITPLocationVC.m in Sources */,
 				5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */,
 				5DB50C6F1D2004CE00F28535 /* ITPIntroduceVC.m in Sources */,
@@ -1262,7 +1292,11 @@
 				INFOPLIST_FILE = IntelligentPacket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JianYiMei.IntelligentPacket;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IntelligentPacket/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JianYiMei.SmartPacket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
@@ -1285,7 +1319,11 @@
 				INFOPLIST_FILE = IntelligentPacket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.JianYiMei.IntelligentPacket;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/IntelligentPacket/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.JianYiMei.SmartPacket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";

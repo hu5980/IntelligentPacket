@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ITPLocationModel.h"
 
 @interface ITPLocationViewModel : NSObject
+
++ (NSArray *)paraserData:(NSData *)data ;
+
++ (BOOL )isSuccesss:(NSData *)data ;
+
++ (ITPLocationModel *)Locations:(NSData *)data ;
+
 
 @end
