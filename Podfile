@@ -18,3 +18,5 @@ pod 'Realm'
 pod 'Realm/Headers'
 
 pod 'Masonry', '~> 1.0.1'
+
+pod 'QRCodeReaderViewController', :git => 'https://github.com/zhengjinghua/MQRCodeReaderViewController.git'

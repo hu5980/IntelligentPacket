@@ -8,8 +8,12 @@
 
 #import "ITPAddBabWithIDViewController.h"
 #import "AddBagsViewController.h"
+#import "QRCodeReaderViewController.h"
 
 @interface ITPAddBabWithIDViewController ()
+{
+    QRCodeReaderViewController * _reader;
+}
 @property (weak, nonatomic) IBOutlet UITextField *IDtextfield;
 @property (weak, nonatomic) IBOutlet UIButton *QRcodeButton;
 
@@ -31,7 +35,25 @@
 }
 
 - (IBAction)QRButtonAction:(UIButton *)sender {
-
+   
+    NSArray *types = @[AVMetadataObjectTypeQRCode];
+    _reader = [QRCodeReaderViewController readerWithMetadataObjectTypes:types];
+    
+    // Using delegate methods
+    _reader.delegate = (id)self;
+    
+    // Or by using blocks
+    @weakify(self);
+    [_reader setCompletionWithBlock:^(NSString *resultAsString) {
+        @strongify(self);
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self performBlock:^{
+                self.IDtextfield.text = resultAsString;
+            } afterDelay:.1];
+        }];
+    }];
+    
+    [self presentViewController:_reader animated:YES completion:NULL];
 }
 
 - (IBAction)idhaschanged:(UITextField *)sender {
@@ -50,5 +72,18 @@
     
 }
 
+#pragma mark - QRCodeReader Delegate Methods
+
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"%@", result);
+    }];
+}
+
+- (void)readerDidCancel:(QRCodeReaderViewController *)reader
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 
 @end

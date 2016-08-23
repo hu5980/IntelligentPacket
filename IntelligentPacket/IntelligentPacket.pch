@@ -18,7 +18,8 @@
 #import "BaiduMapHeader.h"
 #import "ConstValue.h"
 #import "ReactiveCocoa.h"
-
+#import "AFNetworking.h"
+#import "UIImageView+WebCache.h"
 #import "Categary.h"
 #import "Masonry.h"
 #import "UIViewExt.h"
@@ -31,6 +32,7 @@
 #import "ITPPacketBagModel.h"
 
 #import "ITPContactModel.h"
+
 
 #define XKAppWidth [UIScreen mainScreen].bounds.size.width
 #define XKAppHeight [UIScreen mainScreen].bounds.size.height

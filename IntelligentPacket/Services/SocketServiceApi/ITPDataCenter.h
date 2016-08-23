@@ -23,8 +23,8 @@
 #define ITP_ACT                            @"ACT"           // 7. 请求终端操作
 #define ITP_GPS                            @"GPS"           // 8. GPS开关功能
 #define ITP_LXR                            @"LXR"           // 9. 获取联系人
-#define ITP_SIMG                           @"SIMG"          // 10. 上传图片
-#define ITP_GIMG                           @"GIMG"          // 11. 获取图片
+#define ITP_DELETEBINDDEV                  @"DELETEBINDDEV" // 10. DELETEBINDDEV
+#define ITP_DELETELXR                      @"DELETELXR"     // 11. 删除联系人
 #define ITP_BANGDING                       @"BANGDING"      // 12. 箱子绑定
 #define ITP_BAGLIST                        @"POSTITIONMODULELIST"  // 13. 箱子列表
 

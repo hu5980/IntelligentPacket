@@ -20,6 +20,10 @@
 		5D55772B1D2ABDD70094E72C /* SafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D55772A1D2ABDD70094E72C /* SafeAreaViewController.m */; };
 		5D66F3A21D69A6490018721C /* ITPLocationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D66F3A11D69A6490018721C /* ITPLocationViewModel.m */; };
 		5D66F3A51D69A9550018721C /* ITPLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D66F3A41D69A9550018721C /* ITPLocationModel.m */; };
+		5D66F3AA1D6B41A90018721C /* NSData+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D66F3A71D6B41A90018721C /* NSData+YYAdd.m */; };
+		5D66F3AB1D6B41A90018721C /* NSString+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D66F3A91D6B41A90018721C /* NSString+YYAdd.m */; };
+		5D66F3B01D6B428A0018721C /* NSNumber+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D66F3AD1D6B428A0018721C /* NSNumber+YYAdd.m */; };
+		5D66F3B11D6B428A0018721C /* UIDevice+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D66F3AF1D6B428A0018721C /* UIDevice+YYAdd.m */; };
 		5D6812751D3FC1530041D811 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6812721D3FC1530041D811 /* UIColor+Helper.m */; };
 		5D6812761D3FC1530041D811 /* UIViewExt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D6812741D3FC1530041D811 /* UIViewExt.m */; };
 		5D6812871D3FC1790041D811 /* dotGreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6812781D3FC1790041D811 /* dotGreen@2x.png */; };
@@ -133,6 +137,15 @@
 		5D66F3A11D69A6490018721C /* ITPLocationViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITPLocationViewModel.m; path = IntelligentPacket/ITPLocationViewModel.m; sourceTree = SOURCE_ROOT; };
 		5D66F3A31D69A9550018721C /* ITPLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITPLocationModel.h; path = IntelligentPacket/ITPLocationModel.h; sourceTree = SOURCE_ROOT; };
 		5D66F3A41D69A9550018721C /* ITPLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITPLocationModel.m; path = IntelligentPacket/ITPLocationModel.m; sourceTree = SOURCE_ROOT; };
+		5D66F3A61D6B41A90018721C /* NSData+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+YYAdd.h"; sourceTree = "<group>"; };
+		5D66F3A71D6B41A90018721C /* NSData+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+YYAdd.m"; sourceTree = "<group>"; };
+		5D66F3A81D6B41A90018721C /* NSString+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YYAdd.h"; sourceTree = "<group>"; };
+		5D66F3A91D6B41A90018721C /* NSString+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YYAdd.m"; sourceTree = "<group>"; };
+		5D66F3AC1D6B428A0018721C /* NSNumber+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+YYAdd.h"; sourceTree = "<group>"; };
+		5D66F3AD1D6B428A0018721C /* NSNumber+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+YYAdd.m"; sourceTree = "<group>"; };
+		5D66F3AE1D6B428A0018721C /* UIDevice+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+YYAdd.h"; sourceTree = "<group>"; };
+		5D66F3AF1D6B428A0018721C /* UIDevice+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+YYAdd.m"; sourceTree = "<group>"; };
+		5D66F3B21D6B42E20018721C /* YYKitMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKitMacro.h; sourceTree = "<group>"; };
 		5D6812711D3FC1530041D811 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
 		5D6812721D3FC1530041D811 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		5D6812731D3FC1530041D811 /* UIViewExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewExt.h; sourceTree = "<group>"; };
@@ -809,6 +822,15 @@
 		5DE3F0241D16B01E00FCAEEF /* ITPCategary */ = {
 			isa = PBXGroup;
 			children = (
+				5D66F3B21D6B42E20018721C /* YYKitMacro.h */,
+				5D66F3AC1D6B428A0018721C /* NSNumber+YYAdd.h */,
+				5D66F3AD1D6B428A0018721C /* NSNumber+YYAdd.m */,
+				5D66F3AE1D6B428A0018721C /* UIDevice+YYAdd.h */,
+				5D66F3AF1D6B428A0018721C /* UIDevice+YYAdd.m */,
+				5D66F3A61D6B41A90018721C /* NSData+YYAdd.h */,
+				5D66F3A71D6B41A90018721C /* NSData+YYAdd.m */,
+				5D66F3A81D6B41A90018721C /* NSString+YYAdd.h */,
+				5D66F3A91D6B41A90018721C /* NSString+YYAdd.m */,
 				5D6812711D3FC1530041D811 /* UIColor+Helper.h */,
 				5D6812721D3FC1530041D811 /* UIColor+Helper.m */,
 				5D6812731D3FC1530041D811 /* UIViewExt.h */,
@@ -1075,9 +1097,11 @@
 				5D7BE9011D313A2200E8C55F /* ITPContactsCell.m in Sources */,
 				5DD5AFC41D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld in Sources */,
 				5D66F3A21D69A6490018721C /* ITPLocationViewModel.m in Sources */,
+				5D66F3B11D6B428A0018721C /* UIDevice+YYAdd.m in Sources */,
 				5D05CA551D4640D60073FAD9 /* ITPBagViewModel.m in Sources */,
 				5D5577151D28EA150094E72C /* AppUtil.m in Sources */,
 				5DB50CA11D25591700F28535 /* RealmItem.m in Sources */,
+				5D66F3B01D6B428A0018721C /* NSNumber+YYAdd.m in Sources */,
 				5DEA635C1D166F8C000D3BBD /* ConstValue.m in Sources */,
 				5DB7A9EB1D3D23B0006BA3D8 /* ITPContactModel.m in Sources */,
 				5DB50FA91D27E68B00F28535 /* ITPLanguageManager.m in Sources */,
@@ -1093,6 +1117,7 @@
 				5DB50FAC1D27F3D200F28535 /* NSObject+Extension.m in Sources */,
 				BC2C9D191D3E0C9C007DC90C /* ITPLocationHistoryVC.m in Sources */,
 				5D6812751D3FC1530041D811 /* UIColor+Helper.m in Sources */,
+				5D66F3AB1D6B41A90018721C /* NSString+YYAdd.m in Sources */,
 				5D5577181D2A96BB0094E72C /* LoginWithRegisterViewModel.m in Sources */,
 				5D5577251D2ABDA80094E72C /* ITPContactViewController.m in Sources */,
 				5DB50FA61D279AAC00F28535 /* CALayer+Ex.m in Sources */,
@@ -1101,6 +1126,7 @@
 				5DB50C5E1D1FAF3C00F28535 /* ITPScoketManager.m in Sources */,
 				5D05CA5C1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m in Sources */,
 				5D66F3A51D69A9550018721C /* ITPLocationModel.m in Sources */,
+				5D66F3AA1D6B41A90018721C /* NSData+YYAdd.m in Sources */,
 				5DB50C751D2005FD00F28535 /* ITPLocationVC.m in Sources */,
 				5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */,
 				5DB50C6F1D2004CE00F28535 /* ITPIntroduceVC.m in Sources */,

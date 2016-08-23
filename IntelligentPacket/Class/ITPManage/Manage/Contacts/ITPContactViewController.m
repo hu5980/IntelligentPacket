@@ -11,11 +11,13 @@
 #import "ITPContactEditorVeiwController.h"
 #import "ITPContactsCell.h"
 #import "ITPContactViewModel.h"
-#import "UIImageView+WebCache.h"
 #import "NetServiceApi.h"
-#import "AFNetworking.h"
+
 
 @interface ITPContactViewController ()<UITableViewDelegate, UITableViewDataSource>
+{
+    NSIndexPath * _Nonnull __selectIndexPath;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray<ITPContactModel *> *dataSource;
@@ -150,16 +152,53 @@
 //            tableView.editing = NO;
 //        }];
     
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:L(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        // 首先改变model
-        [self.dataSource removeObjectAtIndex:indexPath.row];
-        // 接着刷新view
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        // 不需要主动退出编辑模式，上面更新view的操作完成后就会自动退出编辑模式
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+        __selectIndexPath = indexPath;
+        
+        [self deleteContacts];
     }];
     
     return @[deleteAction];
 }
+
+- (void)deleteContacts {
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    @weakify(self);
+    [[ITPScoketManager shareInstance]deleteContactWithEmail:[ITPUserManager ShareInstanceOne].userEmail phone:self.dataSource[__selectIndexPath.row].contactPhoneNum withTimeout:10 tag:110 success:^(NSData *data, long tag) {
+        
+        @strongify(self);
+        if (tag != 110) {
+            return ;
+        }
+        
+        [self performBlock:^{
+            
+            BOOL abool = [ITPContactViewModel isSuccesss:data];
+            if (abool) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                // 首先改变model
+                [self.dataSource removeObjectAtIndex:__selectIndexPath.row];
+                // 接着刷新view
+                [self.tableView deleteRowsAtIndexPaths:@[__selectIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }else {
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self showAlert:L(@"Delete error") WithDelay:1];
+            }
+            
+        } afterDelay:0.1];
+        
+        
+        
+        
+    } faillure:^(NSError *error) {
+        
+        
+    }];
+}
+
 
 - (void)cell:(ITPContactsCell *)cell headimage:(NSString *)headStr {
     
