@@ -129,11 +129,11 @@
     
     [[ITPScoketManager shareInstance]crWithEmail:@"443564222@qq.com" bagId:@"0123456789" withTimeout:10 tag:107 success:^(NSData *data, long tag) {
         if (data) {
-            
+            NSLog(@"%@",data);
         }
     } faillure:^(NSError *error) {
         if (error) {
-            
+            NSLog(@"%@",error.description);
         }
     }];
 }
