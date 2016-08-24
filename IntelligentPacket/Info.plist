@@ -33,6 +33,10 @@
 	<string>只有开启定位功能才能正常使用正常服务</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>只有开启定位功能才能正常使用正常服务</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

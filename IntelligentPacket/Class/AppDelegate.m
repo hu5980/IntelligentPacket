@@ -54,6 +54,7 @@
         UIStoryboard *loginSB = [UIStoryboard storyboardWithName:@"LoginAndRegister" bundle:[NSBundle mainBundle]];
         UINavigationController *loginVC = loginSB.instantiateInitialViewController;
         self.window.rootViewController = loginVC;
+        
     }
 }
 
@@ -62,9 +63,9 @@
     
     [[MapManager shareInstance] configParameter];
     [[UIManager shareInstance] configUI];
-    [[ITPLanguageManager sharedInstance]config];
+    [[ITPLanguageManager sharedInstance] config];
     
-    [[ITPScoketManager shareInstance]startConnect];
+    [[ITPScoketManager shareInstance] startConnect];
     
 //    [self SetUpTheRootViewController];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(SetUpTheRootViewController) name:ITPacketAPPChangeStoreBoard object:nil];
@@ -98,8 +99,8 @@
                                                            channel:@"App store"
                                                   apsForProduction:@"0"
                                              advertisingIdentifier:advertisingId];
-    [JPUSHService setupWithOption:launchOptions appKey:JPUSHKey channel:@"App store"
-                 apsForProduction:@"0"];
+    
+    [self registerJpushNotice];
     //===========================================
     
     return YES;
@@ -161,9 +162,24 @@
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     //Optional
  
-    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error
-          );
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
 }
+
+#pragma mark - jpush notice
+- (void)isLoginSuccess:(NSNotification *)notification
+{
+    if ([ITPUserManager ShareInstanceOne].userEmail.length == 0) {
+        return;
+    }
+    NSString * str = OCSTR(@"A%@",[AppUtil getHexstring:[ITPUserManager ShareInstanceOne].userEmail]);
+    NSSet *set = [[NSSet alloc]initWithObjects:str, nil];
+    [JPUSHService setTags:set alias:str fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+        if (iResCode) {
+            NSLog(@"set success...");
+        }
+    }];
+}
+
 //推送的两种功
 //这里接收自定义（非APNS）信息
 - (void)didRecieveData:(NSNotification *)notification
