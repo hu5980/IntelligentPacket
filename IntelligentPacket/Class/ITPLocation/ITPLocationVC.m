@@ -76,8 +76,8 @@
         @strongify(self)
         NSNotification * notification = (NSNotification *)x;
         currentModel = notification.object;
-        NSString * name = [NSString stringWithFormat:@"%@ Location",currentModel.bagName];
-        self.title = L(name);
+        NSString * name = [NSString stringWithFormat:@"%@ %@",currentModel.bagName?currentModel.bagName:@"", L(@"Location")];
+        self.navigationItem.title = name;
         self.locationTimer.fireDate = [NSDate distantPast]; // start
         NSLog(@"%@", x);
         
@@ -129,8 +129,10 @@
 
 
 - (void)refreshLanguge {
-    self.title = L(@"Location");
     
+    NSString * name = [NSString stringWithFormat:@"%@ %@",currentModel.bagName?currentModel.bagName:@"", L(@"Location")];
+    self.navigationItem.title = name;
+
 }
 
 

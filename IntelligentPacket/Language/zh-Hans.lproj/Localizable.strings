@@ -26,6 +26,8 @@ CFBundleDisplayName="智能箱包";
 ////// 定位 ========================
 "Location" = "定位";
 
+"Add success" = "添加成功";
+"Add failure" = "添加失败";
 ////// 介绍 ========================
 "Introduce" = "介绍";
 
@@ -38,11 +40,15 @@ CFBundleDisplayName="智能箱包";
 "Hong Wang's vision: to do first-class luggage products, to do responsible business, happy work, happy life\n" = "宏旺的愿景：做一流的箱包产品，做负责任的企业，快乐的工作，快乐的生活\n";
 /////管理 =================
 
-"Head and nickname" = "头像和昵称";
+"User information" = "用户资料";
 "Head portrait" = "头像";
 "NickName" = "昵称";
 "Modify head portrait" = "修改头像";
-"Modify NickName" = "修改昵称";
+"Modify user information" = "修改用户资料";
+"Modify success" = "修改成功";
+"Modify falied" = "修改失败";
+"Slightly modified?" = "稍微改动点？";
+
 
 "upload success!" = "上传成功";
 "upload falied!" = "上传失败";

@@ -24,7 +24,7 @@
 @implementation ITPRegisterViewController
 
 - (void)refreshLanguge {
-    
+    self.phoneTF.placeholder = L(@"Please enter phone number");
     self.emailTextField.placeholder = L(@"Please enter your email address");
     self.passwordTextField.placeholder = L(@"Please enter your password");
     self.nickNameTextField.placeholder = L(@"Please enter your nickName");

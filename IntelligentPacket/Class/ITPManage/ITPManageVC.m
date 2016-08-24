@@ -225,7 +225,7 @@ NSString * manageData[manageDataCount___] = {
         {
             
             ITPHeadAndNameViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"headername"];
-            vc.title = L(@"Head and nickname");
+            vc.title = L(@"User information");
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
