@@ -12,6 +12,10 @@ NSString * ITPacketIsLogin = @"ITPacketIsLogin";
 
 NSString * ITPacketUserEmail = @"ITPacketUserEmail";
 
+NSString * ITPacketUserPassword = @"ITPacketUserPassword"; 
+
+NSString * ITPacketUserHeard = @"ITPacketUserHeard";
+
 
 // notice
 NSString const * ITPacketAPPChangeStoreBoard = @"ITPacketAPPChangeStoreBoard";
@@ -19,3 +23,5 @@ NSString const * ITPacketAPPChangeStoreBoard = @"ITPacketAPPChangeStoreBoard";
 NSString const * ITPacketAddbags = @"ITPacketAddbags";
 
 NSString const * ITPacketAddcontacts = @"ITPacketAddcontacts";
+
+NSString const * ITPacketLocation = @"ITPacketLocation";

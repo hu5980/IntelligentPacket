@@ -13,3 +13,7 @@
 #import "CALayer+Ex.h"
 
 #import "NSObject+Extension.h"
+
+#import "NSData+YYAdd.h"
+
+#import "NSString+YYAdd.h"

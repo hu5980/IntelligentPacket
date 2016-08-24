@@ -72,8 +72,8 @@
 // 注册
 - (void)registerWith:(NSString *)emailName
             password:(NSString *)password
-            nickName:(NSString *)nickName
             authCode:(NSString *)authCode
+            nickName:(NSString *)nickName
                phone:(NSString *)phone
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
@@ -94,7 +94,12 @@
              success:(void(^)(NSData *data, long tag))success
             faillure:(void(^)(NSError *error))faillure
 {
-    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[nickName, password] command:ITP_LOGIN];
+    NSString *isChinese = @"zh_CN";
+    if (![ITPLanguageManager sharedInstance].isChinese) {
+        isChinese = @"en";
+    }
+    
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[nickName, password, isChinese] command:ITP_LOGIN];
        
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 }
@@ -202,30 +207,32 @@
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 }
 
-// 上传图片
-- (void)setImageWithEmail:(NSString *)email
-                      img:(UIImage *)img
+// 删除绑定箱子
+- (void)deleteBagWithEmail:(NSString *)email
+                      bagId:(NSString *)bagId
               withTimeout:(NSTimeInterval)timeout
                       tag:(long)tag
                   success:(void(^)(NSData *data, long tag))success
                  faillure:(void(^)(NSError *error))faillure {
-    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email, img] command:ITP_SIMG];
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email, bagId] command:ITP_DELETEBINDDEV];
     
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
     
 }
 
-// 获取图片
-- (void)getImageWithEmail:(NSString *)email
-              withTimeout:(NSTimeInterval)timeout
-                      tag:(long)tag
-                  success:(void(^)(NSData *data, long tag))success
-                 faillure:(void(^)(NSError *error))faillure {
-    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email] command:ITP_GIMG];
+// 删除联系人
+- (void)deleteContactWithEmail:(NSString *)email
+                         phone:(NSString *)phone
+                   withTimeout:(NSTimeInterval)timeout
+                           tag:(long)tag
+                       success:(void(^)(NSData *data, long tag))success
+                      faillure:(void(^)(NSError *error))faillure {
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email, phone] command:ITP_DELETELXR];
     
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
     
 }
+
 
 
 @end

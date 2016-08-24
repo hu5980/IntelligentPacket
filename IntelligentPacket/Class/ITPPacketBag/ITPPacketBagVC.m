@@ -19,6 +19,10 @@
 
 
 @interface ITPPacketBagVC ()<UITableViewDelegate, UITableViewDataSource>
+{
+    NSIndexPath * _Nonnull __selectIndexPath;
+}
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray<ITPPacketBagModel *> *dataSource;
@@ -92,7 +96,7 @@
 }
 
 - (void)configOther {
-    [self setNavBarBarItemWithTitle:@"编辑" target:self action:@selector(edit) atRight:YES];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(edit)];
 }
 
 - (void)configTable {
@@ -123,7 +127,6 @@
 }
 
 - (void)edit {
-    
 //    ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
 //    [self.navigationController pushViewController:vc animated:YES];
     
@@ -136,6 +139,10 @@
             NSLog(@"%@",error.description);
         }
     }];
+
+    ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 #pragma mark - UITableViewDelegate
@@ -172,6 +179,10 @@
     cell.locationBlcok = ^(int indexPath){
         @strongify(self)
         self.tabBarController.selectedIndex = 1;
+        [self performBlock:^{
+            [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketLocation object:self.dataSource[indexPath]];
+        } afterDelay:.3];
+        
     };
     
     cell.weightBlcok = ^(int indexPath){
@@ -213,14 +224,52 @@
 //    }];
     
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        // 首先改变model
-        [self.dataSource removeObjectAtIndex:indexPath.row];
-        // 接着刷新view
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        // 不需要主动退出编辑模式，上面更新view的操作完成后就会自动退出编辑模式
+        
+        __selectIndexPath = indexPath;
+    
+        [self deleteBags];
     }];
     
     return @[deleteAction];
+}
+
+- (void)deleteBags {
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    @weakify(self);
+    [[ITPScoketManager shareInstance]deleteBagWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[__selectIndexPath.row].bagId withTimeout:10 tag:109 success:^(NSData *data, long tag) {
+        
+        @strongify(self);
+        if (tag != 109) {
+            return ;
+        }
+       
+        [self performBlock:^{
+            
+            BOOL abool = [ITPBagViewModel isSuccesss:data];
+            if (abool) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                // 首先改变model
+                [self.dataSource removeObjectAtIndex:__selectIndexPath.row];
+                // 接着刷新view
+                [self.tableView deleteRowsAtIndexPaths:@[__selectIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }else {
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self showAlert:L(@"Delete error") WithDelay:1];
+            }
+            
+        } afterDelay:0.1];
+        
+       
+        
+        
+    } faillure:^(NSError *error) {
+        
+        
+    }];
+    
+    
 }
 
 @end

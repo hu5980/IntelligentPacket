@@ -13,6 +13,10 @@ extern NSString * ITPacketIsLogin;
 
 extern NSString * ITPacketUserEmail;
 
+extern NSString * ITPacketUserPassword;
+
+extern NSString * ITPacketUserHeard;
+
 
 
 
@@ -25,3 +29,5 @@ extern NSString * ITPacketAPPChangeStoreBoard;
 extern NSString * ITPacketAddbags;
 
 extern NSString * ITPacketAddcontacts;
+
+extern NSString * ITPacketLocation;

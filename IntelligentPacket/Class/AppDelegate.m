@@ -10,6 +10,9 @@
 #import "UIManager.h"
 #import "IntelligentPacket-Swift.h"
 #import "ITPLanguageManager.h"
+#import "JPUSHService.h"
+#import <AdSupport/AdSupport.h>
+
 @interface AppDelegate ()
 
 @end
@@ -60,6 +63,9 @@
     [[MapManager shareInstance] configParameter];
     [[UIManager shareInstance] configUI];
     [[ITPLanguageManager sharedInstance]config];
+    
+    [[ITPScoketManager shareInstance]startConnect];
+    
 //    [self SetUpTheRootViewController];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(SetUpTheRootViewController) name:ITPacketAPPChangeStoreBoard object:nil];
 
@@ -69,6 +75,32 @@
     
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLanguge) name:refreshLangugeNotification object:nil];
     
+    //激光推送
+    //===========================================
+    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    //Required
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //       categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    } else {
+        //categories    nil
+        [JPUSHService registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeBadge |
+          UIRemoteNotificationTypeSound |
+          UIRemoteNotificationTypeAlert)   categories:nil];
+    }
+    //Required
+    //
+    [JPUSHService setupWithOption:launchOptions appKey:JPUSHKey
+                                                           channel:@"App store"
+                                                  apsForProduction:@"0"
+                                             advertisingIdentifier:advertisingId];
+    [JPUSHService setupWithOption:launchOptions appKey:JPUSHKey channel:@"App store"
+                 apsForProduction:@"0"];
+    //===========================================
     
     return YES;
 }
@@ -95,6 +127,60 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+
+
+- (void)registerJpushNotice
+{
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(isLoginSuccess:) name:kJPFNetworkDidLoginNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didRecieveData:) name:kJPFNetworkDidReceiveMessageNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(isRegisterSuccess:) name:kJPFNetworkDidRegisterNotification object:nil];
+}
+
+#pragma mark - JPUSH
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    /// Required -    DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // Required,For systems with less than or equal to iOS6
+    [JPUSHService handleRemoteNotification:userInfo];
+}
+
+//这里接收通知（APNS）信息
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // IOS 7 Support Required
+    [JPUSHService handleRemoteNotification:userInfo];
+    [self showAlter:userInfo[@"aps"]];
+//    [[NSNotificationCenter defaultCenter]postNotificationName:reloadTableIndentifier object:nil];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //Optional
+ 
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error
+          );
+}
+//推送的两种功
+//这里接收自定义（非APNS）信息
+- (void)didRecieveData:(NSNotification *)notification
+{
+    NSDictionary * dic = notification.userInfo;
+    //    [self showAlter:dic];
+}
+
+- (void)isRegisterSuccess:(NSNotification *)notification
+{
+    
+}
+
+- (void)showAlter:(NSDictionary *)dic
+{
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:dic[@"alert"]==nil?dic[@"content"]:dic[@"alert"]  message:dic[@"alert"]==nil?dic[@"content"]:dic[@"alert"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 #pragma mark - Core Data stack

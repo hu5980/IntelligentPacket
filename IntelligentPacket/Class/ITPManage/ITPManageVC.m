@@ -13,12 +13,17 @@
 #import "FeedBackViewController.h"
 #import "ITPManageCell.h"
 #import "ITPHeadAndNameViewController.h"
+#import "NetServiceApi.h"
+
 
 @interface ITPManageVC ()<UITableViewDelegate, UITableViewDataSource>
 {
 
     UISwitch * __languageSwitch;
     ITPManageCell * headerCell ;
+    NetServiceApi * __api;
+    
+    UIImageView * headerImageView;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -35,6 +40,7 @@
     [super viewWillAppear:animated];
 
     __languageSwitch.on = ![[ITPLanguageManager sharedInstance]isChinese];
+    [self refreshHeadimage];
     
 }
 
@@ -75,11 +81,23 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         [self performBlock:^{
-            [[NSNotificationCenter defaultCenter]postNotificationName:refreshLangugeNotification object:nil];
+            [self refresh:[x boolValue]];
         } afterDelay:.1];
         
     }];
     
+}
+
+- (void)refresh:(BOOL )abool {
+    
+    [[ITPScoketManager shareInstance]loginWith:[ITPUserManager ShareInstanceOne].userEmail password:[ITPUserManager ShareInstanceOne].userPassword withTimeout:10 tag:108 success:^(NSData *data, long tag) {
+        __languageSwitch.on = abool;
+        [[NSNotificationCenter defaultCenter]postNotificationName:refreshLangugeNotification object:nil];
+        
+    } faillure:^(NSError *error) {
+        __languageSwitch.on = !abool;
+    }];
+   
 }
 
 #pragma mark - action
@@ -140,7 +158,6 @@ NSString * manageData[manageDataCount___] = {
     _loginOutButton.rac_command = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
         
         [ITPUserManager ShareInstanceOne].userEmail = nil;
-//        [[ITPScoketManager shareInstance] disConnect];
         return [RACSignal empty];
     }];
     
@@ -168,9 +185,12 @@ NSString * manageData[manageDataCount___] = {
     if (indexPath.row == 0) {
         
         ITPManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ITPManageCell"];
-        cell.headerImage.image = [UIImage imageNamed:@"已注册商标"];
+        [cell.headerImage sd_setImageWithURL:[NSURL URLWithString:[ITPUserManager ShareInstanceOne].userheardStr] placeholderImage:[UIImage imageNamed:@"已注册商标"]];
+        headerImageView = cell.headerImage;
+        headerImageView.layer.cornerRadius = headerImageView.width/2;
+        headerImageView.layer.masksToBounds = YES;
         
-        cell.nickName.text = @"Seth Chen";
+        cell.nickName.text = [ITPUserManager ShareInstanceOne].userName;
         UIImageView  * arrow  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"展开去到"]];
         cell.accessoryView = arrow;
 
@@ -227,10 +247,12 @@ NSString * manageData[manageDataCount___] = {
             break;
         case 3:
         {
-            SafeAreaViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"safearea"];
+            Class cls = NSClassFromString(@"SafeBagListViewController");
+            ITPBaseViewController * vc = [cls new];
+            vc.hidesBottomBarWhenPushed = YES;
             vc.title = title;
             [self.navigationController pushViewController:vc animated:YES];
-
+            
         }
             break;
         case 5:
@@ -243,6 +265,27 @@ NSString * manageData[manageDataCount___] = {
         default:
             break;
     }
+}
+
+
+- (void)refreshHeadimage {
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:[NSString stringWithFormat:@"%@uid=%@", GetHearPortain, [ITPUserManager ShareInstanceOne].userEmail] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress){
+         
+     }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         NSLog(@"%@", responseObject);
+         NSString * str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+         
+         if ([[ITPUserManager ShareInstanceOne].userheardStr isEqualToString:str]) return ;
+         
+         [ITPUserManager ShareInstanceOne].userheardStr = str;
+         [headerImageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@""]];
+     }failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
+             NSLog(@"%@", error.description);
+      
+     }];
 }
 
 

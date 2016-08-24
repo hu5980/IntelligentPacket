@@ -18,7 +18,8 @@
 #import "BaiduMapHeader.h"
 #import "ConstValue.h"
 #import "ReactiveCocoa.h"
-
+#import "AFNetworking.h"
+#import "UIImageView+WebCache.h"
 #import "Categary.h"
 #import "Masonry.h"
 #import "UIViewExt.h"
@@ -28,10 +29,10 @@
 #import "MBProgressHUD.h"
 
 #import "AppUtil.h"
-#import "ITPPacketBagViewModel.h"
 #import "ITPPacketBagModel.h"
 
 #import "ITPContactModel.h"
+
 
 #define XKAppWidth [UIScreen mainScreen].bounds.size.width
 #define XKAppHeight [UIScreen mainScreen].bounds.size.height
@@ -48,11 +49,9 @@
 
 #define XKDefaultFontWithSize(fontSize)  [UIFont systemFontOfSize:fontSize]
 
-#ifdef DEBUG
-#import <Foundation/Foundation.h>
-#define XKLog(...) NSLog(__VA_ARGS__)
-#else
-#define XKLog(...)
-#endif
+
+// =============================== jpush
+
+#define JPUSHKey  @"281aab12056a652d7c266077" //极光推送key
 
 #endif /* IntelligentPacket_pch */

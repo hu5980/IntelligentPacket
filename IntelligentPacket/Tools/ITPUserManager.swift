@@ -35,7 +35,29 @@ class ITPUserManager: NSObject {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
+    // MARK: Current User Password
+    var userPassword : String!{
+        get {
+            let key = NSUserDefaults.standardUserDefaults().objectForKey(ITPacketUserPassword)
+            return key as? String
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey:ITPacketUserPassword)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
 
+    // MARK: Current User Email
+    var userheardStr : String!{
+        get {
+            let key = NSUserDefaults.standardUserDefaults().objectForKey(ITPacketUserHeard)
+            return key as? String
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey:ITPacketUserHeard)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
     
     // MARK: Single Once 单例
     static let ShareInstanceOne = ITPUserManager();

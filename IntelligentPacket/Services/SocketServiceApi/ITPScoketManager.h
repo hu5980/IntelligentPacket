@@ -91,4 +91,20 @@
                 tag:(long)tag
             success:(void(^)(NSData *data, long tag))success
            faillure:(void(^)(NSError *error))faillure;
+
+
+// 删除绑定箱子
+- (void)deleteBagWithEmail:(NSString *)email
+                     bagId:(NSString *)bagId
+               withTimeout:(NSTimeInterval)timeout
+                       tag:(long)tag
+                   success:(void(^)(NSData *data, long tag))success
+                  faillure:(void(^)(NSError *error))faillure ;
+// 删除联系人
+- (void)deleteContactWithEmail:(NSString *)email
+                         phone:(NSString *)phone
+                   withTimeout:(NSTimeInterval)timeout
+                           tag:(long)tag
+                       success:(void(^)(NSData *data, long tag))success
+                      faillure:(void(^)(NSError *error))faillure ;
 @end

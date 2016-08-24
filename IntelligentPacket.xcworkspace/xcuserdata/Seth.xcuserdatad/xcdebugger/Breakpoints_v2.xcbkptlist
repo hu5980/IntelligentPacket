@@ -105,22 +105,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-            timestampString = "490802744.358497"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "-edit"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "IntelligentPacket/Class/ITPManage/Manage/AddBags/AddBagsViewController.m"
             timestampString = "490802880.067031"
             startingColumnNumber = "9223372036854775807"
@@ -137,13 +121,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Services/SocketServiceApi/ITPScoketManager.m"
-            timestampString = "490803028.44657"
+            filePath = "IntelligentPacket/Others/Servicebase/ITPHttpServiceBase.m"
+            timestampString = "493445127.549272"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "-crWithEmail:bagId:withTimeout:tag:success:faillure:"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
+            landmarkName = "-startAsynchronizedPostMethodwithCompleteUrl:andParamer:andResponseMethod:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -153,13 +137,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Others/SocketService/ITPSocketSDK.m"
-            timestampString = "490803051.677797"
+            filePath = "IntelligentPacket/Services/FitnessShareApi/NetServiceApi.m"
+            timestampString = "493459146.737546"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-socket:didReadData:withTag:"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-getHearPortain:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -169,46 +153,62 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-            timestampString = "490934096.676009"
+            filePath = "IntelligentPacket/Services/FitnessShareApi/NetServiceApi.m"
+            timestampString = "493459146.737546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "-getHearPortain:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Others/Servicebase/ITPHttpServiceBase.m"
+            timestampString = "493453519.055625"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "-startSynchronizedGetMethodwithCompleteUrl:andParamer:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Services/FitnessShareApi/NetServiceApi.m"
+            timestampString = "493459146.737546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-getFeedbackServerWithcontent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Others/Servicebase/ITPHttpServiceBase.m"
+            timestampString = "493459193.615513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "130"
             endingLineNumber = "130"
-            landmarkName = "-edit"
+            landmarkName = "-startSynchronizedGetMethodwithCompleteUrl:andParamer:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ITPPacketBagVC edit]"
-                  moduleName = "IntelligentPacket"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-                  timestampString = "490934352.975231"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "130"
-                  endingLineNumber = "130"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__22-[ITPPacketBagVC edit]_block_invoke"
-                  moduleName = "IntelligentPacket"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-                  timestampString = "490934352.975396"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "60">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -217,13 +217,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Services/SocketServiceApi/ITPDataCenter.m"
-            timestampString = "490934251.822141"
+            filePath = "IntelligentPacket/Others/Servicebase/ITPHttpServiceBase.m"
+            timestampString = "493459224.941518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-paramData:command:"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "-startSynchronizedGetMethodwithCompleteUrl:andParamer:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

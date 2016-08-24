@@ -80,15 +80,7 @@
         } afterDelay:.1];
     }];
 }
-//
-//- (IBAction)emailValueChange:(UITextField *)sender {
-//
-//}
-//
-//
-//- (IBAction)passwordValueChange:(UITextField *)sender {
-//
-//}
+
 
 - (IBAction)loginAction:(UIButton *)sender {
     
@@ -114,6 +106,7 @@
                 [self showAlert:L(@"Login Success!") WithDelay:1.5];
                 
                 [ITPUserManager ShareInstanceOne].userEmail = OCSTR(@"%@", self.emailTextField.text);
+                [ITPUserManager ShareInstanceOne].userPassword = OCSTR(@"%@", self.passwordTextField.text);
             }else {
              
                 [MBProgressHUD hideHUDForView:self.view animated:YES];

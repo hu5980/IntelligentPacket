@@ -11,8 +11,13 @@
 #import "ITPContactEditorVeiwController.h"
 #import "ITPContactsCell.h"
 #import "ITPContactViewModel.h"
+#import "NetServiceApi.h"
+
 
 @interface ITPContactViewController ()<UITableViewDelegate, UITableViewDataSource>
+{
+    NSIndexPath * _Nonnull __selectIndexPath;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableArray<ITPContactModel *> *dataSource;
@@ -115,6 +120,7 @@
     ITPContactsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ITPContactsCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.name.text = self.dataSource[indexPath.row].contactName;
+    [self cell:cell headimage:self.dataSource[indexPath.row].contactEmail];
     cell.phoneNum.text = self.dataSource[indexPath.row].contactPhoneNum;
     return cell;
 }
@@ -146,15 +152,71 @@
 //            tableView.editing = NO;
 //        }];
     
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:L(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        // 首先改变model
-        [self.dataSource removeObjectAtIndex:indexPath.row];
-        // 接着刷新view
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        // 不需要主动退出编辑模式，上面更新view的操作完成后就会自动退出编辑模式
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+        __selectIndexPath = indexPath;
+        
+        [self deleteContacts];
     }];
     
     return @[deleteAction];
+}
+
+- (void)deleteContacts {
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    @weakify(self);
+    [[ITPScoketManager shareInstance]deleteContactWithEmail:[ITPUserManager ShareInstanceOne].userEmail phone:self.dataSource[__selectIndexPath.row].contactPhoneNum withTimeout:10 tag:110 success:^(NSData *data, long tag) {
+        
+        @strongify(self);
+        if (tag != 110) {
+            return ;
+        }
+        
+        [self performBlock:^{
+            
+            BOOL abool = [ITPContactViewModel isSuccesss:data];
+            if (abool) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                // 首先改变model
+                [self.dataSource removeObjectAtIndex:__selectIndexPath.row];
+                // 接着刷新view
+                [self.tableView deleteRowsAtIndexPaths:@[__selectIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }else {
+                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self showAlert:L(@"Delete error") WithDelay:1];
+            }
+            
+        } afterDelay:0.1];
+        
+        
+        
+        
+    } faillure:^(NSError *error) {
+        
+        
+    }];
+}
+
+
+- (void)cell:(ITPContactsCell *)cell headimage:(NSString *)headStr {
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:[NSString stringWithFormat:@"%@uid=%@", GetHearPortain, headStr] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress)
+     {
+         
+     }
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+         NSLog(@"%@", responseObject);
+        NSString * str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        [cell.headImage sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@""]];
+     }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
+         NSLog(@"%@", error.description);
+     }];
+//    [cell.headImage sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@""]];
 }
 
 @end

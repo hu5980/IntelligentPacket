@@ -44,6 +44,9 @@ CFBundleDisplayName="智能箱包";
 "Modify head portrait" = "修改头像";
 "Modify NickName" = "修改昵称";
 
+"upload success!" = "上传成功";
+"upload falied!" = "上传失败";
+
 
 "contacts" = "联系人";
 "edit" = "编辑";
@@ -64,6 +67,7 @@ CFBundleDisplayName="智能箱包";
 
 "Add bags" = "添加箱包";
 "Safe area" = "安全区域";
+"Set Safe area" = "设置安全区域";
 "Language selection" = "语言选择";
 "Complaints and suggestions" = "投诉与建议";
 

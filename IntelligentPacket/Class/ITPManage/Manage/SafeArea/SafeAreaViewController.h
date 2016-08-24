@@ -10,4 +10,6 @@
 
 @interface SafeAreaViewController : ITPBaseViewController
 
+@property (nonatomic, strong) ITPPacketBagModel *model;
+
 @end
