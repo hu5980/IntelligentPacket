@@ -43,6 +43,36 @@
 
 }
 
+
++ (NSDate *)beginingOfDate:(NSDate *)date {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitWeekday |NSCalendarUnitWeekOfMonth | NSCalendarUnitWeekOfYear fromDate:date];
+    [components setHour:0];
+    [components setMinute:0];
+    [components setSecond:0];
+    return [calendar dateFromComponents:components];
+
+}
+
++ (NSDate *)endingOfDate:(NSDate *)date {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay |NSCalendarUnitWeekday |NSCalendarUnitWeekOfMonth | NSCalendarUnitWeekOfYear fromDate:date];
+    [components setHour:23];
+    [components setMinute:59];
+    [components setSecond:59];
+    return [calendar dateFromComponents:components];
+
+}
+
+
++ (BOOL) compareDateIsToday:(NSDate *)date {
+    NSDate *todayDate = [NSDate date];
+    if(todayDate.day == date.day){
+        return YES;
+    }
+    return NO;
+}
+
 + (BOOL)checkSameDay:(NSDate *)date1 another:(NSDate *)date2
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

@@ -22,7 +22,6 @@
     MKPolylineView* routeLineView;
     
     CLGeocoder *geocoder;
-//    NSString *plistPath;
     NSMutableArray *locationArray;
     
     UIImageView *arrowImageView;
@@ -46,6 +45,20 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear: animated];
+    if (self.locationTimer) {
+        [self.locationTimer setFireDate:[NSDate date]];
+    }
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.locationTimer) {
+         [self.locationTimer setFireDate:[NSDate distantFuture]];
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -134,6 +147,7 @@
 
 - (void) entryHistoryLocationAction {
     ITPLocationHistoryVC *historyVC = [[ITPLocationHistoryVC alloc] init];
+    historyVC.model = currentModel;
     [historyVC setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:historyVC animated:YES];
 }
@@ -277,6 +291,10 @@
     CLLocationCoordinate2D pos = userLocation.coordinate;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,1000, 1000);//以pos为中心，显示2000米
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+//    adjustedRegion.center.latitude  = pos.latitude;
+//    adjustedRegion.center.longitude = pos.longitude;
+//    adjustedRegion.span.latitudeDelta = 1000;
+//    adjustedRegion.span.longitudeDelta = 1000;
     [_mapView setRegion:adjustedRegion animated:YES];
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];

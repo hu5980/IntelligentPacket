@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/ITPLocation/ITPLocationVC.m"
-            timestampString = "493717036.969813"
+            filePath = "IntelligentPacket/ITPLocationHistoryViewModel.m"
+            timestampString = "493813385.295191"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "-showCurrentLocationInfo:"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "+getLocationData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

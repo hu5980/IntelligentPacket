@@ -90,6 +90,7 @@
 		5DEA635C1D166F8C000D3BBD /* ConstValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DEA635B1D166F8C000D3BBD /* ConstValue.m */; };
 		8F8F305B6E52185108FC867C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB601F3E5C030D86FD0E9EE0 /* Pods.framework */; };
 		BC2C9D191D3E0C9C007DC90C /* ITPLocationHistoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2C9D181D3E0C9C007DC90C /* ITPLocationHistoryVC.m */; };
+		BCB397301D6EEBC300BE1DB2 /* ITPLocationHistoryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB3972F1D6EEBC300BE1DB2 /* ITPLocationHistoryViewModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -278,6 +279,8 @@
 		AB601F3E5C030D86FD0E9EE0 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2C9D171D3E0C9C007DC90C /* ITPLocationHistoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPLocationHistoryVC.h; sourceTree = "<group>"; };
 		BC2C9D181D3E0C9C007DC90C /* ITPLocationHistoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPLocationHistoryVC.m; sourceTree = "<group>"; };
+		BCB3972E1D6EEBC300BE1DB2 /* ITPLocationHistoryViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ITPLocationHistoryViewModel.h; path = IntelligentPacket/ITPLocationHistoryViewModel.h; sourceTree = SOURCE_ROOT; };
+		BCB3972F1D6EEBC300BE1DB2 /* ITPLocationHistoryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ITPLocationHistoryViewModel.m; path = IntelligentPacket/ITPLocationHistoryViewModel.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -618,6 +621,8 @@
 			children = (
 				5D66F3A01D69A6490018721C /* ITPLocationViewModel.h */,
 				5D66F3A11D69A6490018721C /* ITPLocationViewModel.m */,
+				BCB3972E1D6EEBC300BE1DB2 /* ITPLocationHistoryViewModel.h */,
+				BCB3972F1D6EEBC300BE1DB2 /* ITPLocationHistoryViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1121,6 +1126,7 @@
 				5DB50FAC1D27F3D200F28535 /* NSObject+Extension.m in Sources */,
 				BC2C9D191D3E0C9C007DC90C /* ITPLocationHistoryVC.m in Sources */,
 				5D6812751D3FC1530041D811 /* UIColor+Helper.m in Sources */,
+				BCB397301D6EEBC300BE1DB2 /* ITPLocationHistoryViewModel.m in Sources */,
 				5D66F3AB1D6B41A90018721C /* NSString+YYAdd.m in Sources */,
 				5D5577181D2A96BB0094E72C /* LoginWithRegisterViewModel.m in Sources */,
 				5D5577251D2ABDA80094E72C /* ITPContactViewController.m in Sources */,
