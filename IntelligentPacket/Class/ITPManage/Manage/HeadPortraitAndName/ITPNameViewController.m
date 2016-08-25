@@ -44,6 +44,8 @@
 
 - (IBAction)saveAction:(id)sender {
     
+    [self.view endEditing:YES];
+    
     if ([self.phoneTF.text isEqualToString: [ITPUserManager ShareInstanceOne].userPhone] &&
         [self.emailTextField.text isEqualToString: [ITPUserManager ShareInstanceOne].userEmail]&&
         [self.passwordTextField.text isEqualToString: [ITPUserManager ShareInstanceOne].userPassword]&&
@@ -60,7 +62,8 @@
     [[ITPScoketManager shareInstance] modifyUserInformationWithEmail:[ITPUserManager ShareInstanceOne].userEmail password:self.passwordTextField.text phone:self.phoneTF.text nickName:self.nickNameTextField.text withTimeout:10 tag:113 success:^(NSData *data, long tag) {
         @strongify(self);
                 [self performBlock:^{
-        
+                    @strongify(self);
+                    
                     BOOL abool = [ITPContactViewModel isSuccesss:data];
                     if (abool) {
         
@@ -69,7 +72,6 @@
         
         
                         [ITPUserManager ShareInstanceOne].userPhone = self.phoneTF.text;
-                        [ITPUserManager ShareInstanceOne].userEmail = self.emailTextField.text;
                         [ITPUserManager ShareInstanceOne].userPassword = self.passwordTextField.text;
                         [ITPUserManager ShareInstanceOne].userName = self.nickNameTextField.text;
         
