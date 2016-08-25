@@ -55,7 +55,7 @@
     _mapView.mapType = MKMapTypeStandard;
     _mapView.zoomEnabled = YES;//支持缩放
     _mapView.delegate = self;
-    _mapView .showsUserLocation = YES;
+//    _mapView .showsUserLocation = YES;
     arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 20, 40)];
     arrowImageView.image = [UIImage imageNamed:@"icon_cellphone"];
   //  [_mapView addSubview:arrowImageView];
@@ -65,11 +65,7 @@
     
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    [self getCurPosition];
-    
-    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
-    [annotation setCoordinate:_location.coordinate];
-    [_mapView addAnnotation:annotation];
+//    [self getCurPosition];
     
     @weakify(self)
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketLocation object:nil]subscribeNext:^(id x) {
@@ -96,9 +92,10 @@
         BOOL abool = [ITPLocationViewModel isSuccesss:data];
         if (abool) {
             ITPLocationModel * model = [ITPLocationViewModel Locations:data];
-            NSLog(@"longitude = %@   latitude = %@", model.latitude, model.longitude);
-            
-            [self mapView:self.mapView didUpdateUserLocation:nil];
+            NSLog(@"longitude = %@   latitude = %@", model.longitude, model.latitude);
+            MKUserLocation *userLocation = [[MKUserLocation alloc] init];
+            userLocation.coordinate = CLLocationCoordinate2DMake([model.latitude doubleValue], [model.longitude  doubleValue]);
+            [self showLocationInMapView:userLocation];
         }
     } faillure:^(NSError *error) {
         if (error) {
@@ -122,7 +119,6 @@
         
         [locationmanager requestAlwaysAuthorization];
         [locationmanager startUpdatingLocation];
-//        [locationmanager startUpdatingHeading];
     }
 }
 
@@ -240,14 +236,10 @@
         return nil;
     if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
         MKAnnotationView* aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MKPointAnnotation"];
-        aView.image = [UIImage imageNamed:@"myimage"];
+        aView.image = [UIImage imageNamed:@"ico_bag"];
+        aView.frame =  CGRectMake(0, 0, 25, 33); 
         aView.canShowCallout = YES;
         
-        UIView *view = [[UIView alloc] init];
-        view.frame = CGRectMake(10,10, 100, 30);
-        
-        view.backgroundColor = [UIColor redColor];
-        [aView addSubview:view];
         return aView;
     }
     return nil;
@@ -257,7 +249,6 @@
 - (void)showCurrentLocationInfo:(MKUserLocation *)location {
     CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
     NSLog(@"%f\n%f",location.coordinate.latitude,location.coordinate.longitude);
-    
     //根据经纬度反向地理编译出地址信息
     [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error){
         if (placemarks.count > 0){
@@ -276,6 +267,21 @@
             NSLog(@"An error occurred = %@", error);
         }
     }];
+}
+
+
+
+- (void)showLocationInMapView:(MKUserLocation *)userLocation {
+    CLLocationCoordinate2D pos = userLocation.coordinate;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,1000, 1000);//以pos为中心，显示2000米
+    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+    [_mapView setRegion:adjustedRegion animated:YES];
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:userLocation.coordinate];
+    [_mapView addAnnotation:annotation];
+    
+    [self showCurrentLocationInfo:userLocation];
 }
 
 @end
