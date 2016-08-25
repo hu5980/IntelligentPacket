@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ITPPacketBagModel.h"
 @interface ITPLocationHistoryVC : UIViewController
+
+@property (nonatomic,strong) ITPPacketBagModel *model;
+
 
 @end

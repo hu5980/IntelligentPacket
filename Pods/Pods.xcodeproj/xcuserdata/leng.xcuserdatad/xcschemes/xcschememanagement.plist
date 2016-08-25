@@ -34,6 +34,11 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
+		<key>QRCodeReaderViewController.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>ReactiveCocoa.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -57,6 +62,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>038F431B3D8B9ACAFF08D51C40628AC9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>108D1F14601E351DB02FF1B02272F27A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>12F767345B023E4C811C9B67536E5DF0</key>
 		<dict>
 			<key>primary</key>
@@ -82,6 +97,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8FC0FE930A9FB32DB6F1CCA71A1649B1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>99C7DE48BB40AEAA037188C68244104D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A734F8E97D33D3204B06E07AC1769C77</key>
 		<dict>
 			<key>primary</key>
@@ -93,6 +118,16 @@
 			<true/>
 		</dict>
 		<key>B1D17BA74BEACBD28F897F231B5907A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9F553A666471D940ABEAB6F03FD51CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D93B55BD6314B053F0398536EB561E15</key>
 		<dict>
 			<key>primary</key>
 			<true/>

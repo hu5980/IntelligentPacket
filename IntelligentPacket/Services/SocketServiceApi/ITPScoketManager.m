@@ -141,6 +141,7 @@
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 }
 
+
 // 设置亲情号码
 - (void)phbWithEmail:(NSString *)email
                phone:(NSString *)phone
@@ -263,5 +264,20 @@
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
     
 }
+
+// 获取箱子定位历史信息
+- (void)getHistoryRecordWithEmail:(NSString *)email
+                            bagId:(NSString *)bagId
+                        startDate:(NSString *)startDate           //开始时间
+                          endDate:(NSString *)endDate             //结束时间
+                      withTimeout:(NSTimeInterval)timeout
+                              tag:(long)tag
+                          success:(void(^)(NSData *data, long tag))success
+                         faillure:(void(^)(NSError *error))faillure {
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email, bagId, startDate, endDate] command:ITP_GETHISTORYRECORD];
+    [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
+    
+}
+
 
 @end

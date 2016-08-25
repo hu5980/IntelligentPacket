@@ -9,78 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-            timestampString = "492407169.356636"
+            filePath = "IntelligentPacket/ITPLocationHistoryViewModel.m"
+            timestampString = "493813385.295191"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "-edit"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "+getLocationData:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-            timestampString = "492407172.854108"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "-edit"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-            timestampString = "492407209.497783"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "-edit"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ITPPacketBagVC edit]"
-                  moduleName = "IntelligentPacket"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leng/Desktop/GitHub/IntelligentPacket/IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-                  timestampString = "492407209.508418"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "130"
-                  endingLineNumber = "130"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__22-[ITPPacketBagVC edit]_block_invoke"
-                  moduleName = "IntelligentPacket"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/leng/Desktop/GitHub/IntelligentPacket/IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-                  timestampString = "492407209.508608"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "131"
-                  endingLineNumber = "131"
-                  offsetFromSymbolStart = "60">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

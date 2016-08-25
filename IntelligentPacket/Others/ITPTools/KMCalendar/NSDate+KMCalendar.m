@@ -175,5 +175,12 @@
     return [[calendar dateFromComponents:comps] timeIntervalSince1970];
 }
 
+- (NSString *)dateFormate:(NSString *)formate  {
+    NSDateFormatter *dateFormate = [[NSDateFormatter alloc] init];
+    [dateFormate setDateFormat:formate];
+    return [dateFormate stringFromDate:self];
+
+}
+
 
 @end
