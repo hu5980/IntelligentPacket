@@ -28,6 +28,13 @@
 #define ITP_BANGDING                       @"BANGDING"      // 12. 箱子绑定
 #define ITP_BAGLIST                        @"POSTITIONMODULELIST"  // 13. 箱子列表
 
+
+#define ITP_SETSAFEREGION                  @"SETSAFEREGION"  // 14. 提交安全栏
+
+
+#define ITP_MODIFYPERSONALDATA             @"MODIFYPERSONALDATA"  // 18. 修改用户资料
+
+
 @interface ITPDataCenter : NSObject
 
 + (instancetype)sharedInstance;

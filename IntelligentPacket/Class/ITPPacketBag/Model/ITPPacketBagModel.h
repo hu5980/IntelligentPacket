@@ -14,7 +14,7 @@
 @property (nonatomic, copy) NSString * bagEmail;
 @property (nonatomic, copy) NSString * bagId;
 @property (nonatomic, copy) NSString * bagPhoneNum;
-@property (nonatomic, assign) int   bagType;
+@property (nonatomic, assign) int   bagType; // 0 书包 1 箱子
 @property (nonatomic, assign) int   bagWeight;
 
 @end

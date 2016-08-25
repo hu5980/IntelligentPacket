@@ -46,23 +46,23 @@
             self.backgroundColor = [UIColor whiteColor];
             
             _dateView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, UI_SCREEN_WIDTH, 40.f)];
-            preDayButton = [[UIButton alloc] initWithFrame:CGRectMake(15.f, (40-25.f)/2, 80, 25.f)];
-            [preDayButton setTitle:@"前一天" forState:UIControlStateNormal];
+            preDayButton = [[UIButton alloc] initWithFrame:CGRectMake(15.f, (40-32.f)/2, 32, 32.f)];
+            [preDayButton setImage:[UIImage imageNamed:@"left_arrow"] forState:UIControlStateNormal];
             preDayButton.titleLabel.font = XKDefaultFontWithSize(14.f);
-            preDayButton.layer.borderWidth = 1;
-            preDayButton.layer.cornerRadius = 5;
-            preDayButton.layer.masksToBounds = YES;
-            preDayButton.layer.borderColor = [UIColor colorFromHexString:@"#999999"].CGColor;
+//            preDayButton.layer.borderWidth = 1;
+//            preDayButton.layer.cornerRadius = 5;
+//            preDayButton.layer.masksToBounds = YES;
+//            preDayButton.layer.borderColor = [UIColor colorFromHexString:@"#999999"].CGColor;
             [preDayButton setTitleColor:[UIColor colorFromHexString:@"#666666"] forState:UIControlStateNormal];
             [preDayButton addTarget:self action:@selector(clickPreMonth) forControlEvents:UIControlEventTouchUpInside];
             
-            nextDayButton = [[UIButton alloc] initWithFrame:CGRectMake(XKAppWidth - 80-15, (40-25.f)/2, 80, 25.f)];
-            [nextDayButton setTitle:@"后一天" forState:UIControlStateNormal];
+            nextDayButton = [[UIButton alloc] initWithFrame:CGRectMake(XKAppWidth - 32-15, (40-32.f)/2, 32, 32)];
+            [nextDayButton setImage:[UIImage imageNamed:@"right_arrow"] forState:UIControlStateNormal];
             nextDayButton.titleLabel.font = XKDefaultFontWithSize(14.f);
-            nextDayButton.layer.borderWidth = 1;
-            nextDayButton.layer.cornerRadius = 5;
-            nextDayButton.layer.masksToBounds = YES;
-            nextDayButton.layer.borderColor = [UIColor colorFromHexString:@"#999999"].CGColor;
+//            nextDayButton.layer.borderWidth = 1;
+//            nextDayButton.layer.cornerRadius = 5;
+//            nextDayButton.layer.masksToBounds = YES;
+//            nextDayButton.layer.borderColor = [UIColor colorFromHexString:@"#999999"].CGColor;
             [nextDayButton setTitleColor:[UIColor colorFromHexString:@"#666666"] forState:UIControlStateNormal];
             [nextDayButton addTarget:self action:@selector(clickNextMonth) forControlEvents:UIControlEventTouchUpInside];
             

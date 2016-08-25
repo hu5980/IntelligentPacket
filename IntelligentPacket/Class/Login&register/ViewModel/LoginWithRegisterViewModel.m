@@ -24,6 +24,8 @@
     
     if (((NSString *)dataArr[1]).intValue == 1) {
         [ITPUserManager ShareInstanceOne].userName = OCSTR(@"%@", dataArr[2]);
+        [ITPUserManager ShareInstanceOne].userPhone = [OCSTR(@"%@", dataArr[3]) stringByReplacingOccurrencesOfString:@"]" withString:@""];;
+        
         return YES;
     }
     return NO;

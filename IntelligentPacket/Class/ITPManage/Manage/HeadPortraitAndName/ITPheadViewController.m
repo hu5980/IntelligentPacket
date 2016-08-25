@@ -11,6 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "NetServiceApi.h"
 #import "AFNetworking.h"
+#import "UIButton+WebCache.h"
 
 @interface ITPheadViewController ()
 {
@@ -34,6 +35,9 @@
     [super viewDidLoad];
     
     _imagePickerController  =[[UIImagePickerController alloc]init];
+    
+    [self.headerButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[ITPUserManager ShareInstanceOne].userheardStr] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@""]];
+    
 
 }
 
