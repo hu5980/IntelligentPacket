@@ -173,7 +173,7 @@
     @weakify(self);
     cell.phoneBlcok = ^(int indexPath){
     
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://18617108096"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:OCSTR(@"tel://%@",self.dataSource[indexPath].bagPhoneNum)]];
     };
     
     cell.locationBlcok = ^(int indexPath){

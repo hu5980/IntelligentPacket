@@ -48,7 +48,7 @@ NSString * headAndNameData[headAndNametDataCount___] = {
     @"",
     @"Head portrait",
     @"",
-    @"NickName"
+    @"Modify user information"
 };
 
 #pragma mark - UITableViewDelegate
@@ -108,7 +108,7 @@ NSString * headAndNameData[headAndNametDataCount___] = {
         case 3:
         {
             ITPNameViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"namemodify"];
-            vc.title = L(@"Modify NickName");
+            vc.title = L(@"Modify user information");
             [self.navigationController pushViewController:vc animated:YES];
             break;
         }

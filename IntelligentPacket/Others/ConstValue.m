@@ -12,6 +12,8 @@ NSString * ITPacketIsLogin = @"ITPacketIsLogin";
 
 NSString * ITPacketUserEmail = @"ITPacketUserEmail";
 
+NSString * ITPacketUserPhone = @"ITPacketUserPhone";
+
 NSString * ITPacketUserPassword = @"ITPacketUserPassword"; 
 
 NSString * ITPacketUserHeard = @"ITPacketUserHeard";

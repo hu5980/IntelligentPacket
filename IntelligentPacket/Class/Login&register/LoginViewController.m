@@ -12,6 +12,7 @@
 #import "ITPForgetViewController.h"
 
 #import "LoginWithRegisterViewModel.h"
+#import "JPUSHService.h"
 
 @interface LoginViewController()
 {
@@ -107,6 +108,16 @@
                 
                 [ITPUserManager ShareInstanceOne].userEmail = OCSTR(@"%@", self.emailTextField.text);
                 [ITPUserManager ShareInstanceOne].userPassword = OCSTR(@"%@", self.passwordTextField.text);
+                if ([ITPUserManager ShareInstanceOne].userEmail.length == 0) {
+                    return;
+                }
+                NSString * str = OCSTR(@"A%@",[AppUtil getHexstring:[ITPUserManager ShareInstanceOne].userEmail]);
+                NSSet *set = [[NSSet alloc]initWithObjects:str, nil];
+                [JPUSHService setTags:set alias:str fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+                    if (iResCode) {
+                        NSLog(@"set success...");
+                    }
+                }];
             }else {
              
                 [MBProgressHUD hideHUDForView:self.view animated:YES];

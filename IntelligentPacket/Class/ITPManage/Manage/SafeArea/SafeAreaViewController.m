@@ -10,6 +10,7 @@
 #import "ITPBagViewModel.h"
 #import <CoreMotion/CoreMotion.h>
 #import <MapKit/MapKit.h>
+#import "ITPLocationViewModel.h"
 
 @interface SafeAreaViewController () <CLLocationManagerDelegate,MKMapViewDelegate> {
     CLLocationManager * locationmanager;
@@ -155,6 +156,25 @@
 #pragma mark - action
 
 - (void)save {
+    
+    [[ITPScoketManager shareInstance] setSafeRegion:[ITPUserManager ShareInstanceOne].userEmail bagId:self.model.bagId longitude:OCSTR(@"%f",self.userLocation.coordinate.longitude) latitude:OCSTR(@"%f",self.userLocation.coordinate.latitude) radius:OCSTR(@"%d",self.circleRadiu) withTimeout:10 tag:112 success:^(NSData *data, long tag) {
+        
+        [self performBlock:^{
+            
+            BOOL abool = [ITPLocationViewModel isSuccesss:data];
+            if (abool) {
+                [self showAlert:L(@"Add success") WithDelay:1.2];
+            }
+            
+        } afterDelay:.1];
+        
+    } faillure:^(NSError *error) {
+        [self performBlock:^{
+            
+            [self showAlert:L(@"Add failure") WithDelay:1.2];
+            
+        } afterDelay:.1];
+    }];
     
 }
 

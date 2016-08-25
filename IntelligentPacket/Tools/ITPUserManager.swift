@@ -35,6 +35,19 @@ class ITPUserManager: NSObject {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
+    
+    // MARK: Current User Phone
+    var userPhone : String!{
+        get {
+            let key = NSUserDefaults.standardUserDefaults().objectForKey(ITPacketUserPhone)
+            return key as? String
+        }
+        set {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey:ITPacketUserPhone)
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+
     // MARK: Current User Password
     var userPassword : String!{
         get {
