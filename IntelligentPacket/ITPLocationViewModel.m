@@ -24,9 +24,9 @@
     
     NSArray * dataArr = [self paraserData:data];
     
-    if (((NSString *)dataArr[1]).intValue == 1) {
-        return YES;
-    }
+//    if (((NSString *)dataArr[1]).intValue == 1) {
+//        return YES;
+//    }
     return NO;
 }
 

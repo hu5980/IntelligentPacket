@@ -11,13 +11,9 @@
 
 @interface ITPLocationHistoryVC ()<KMCalendarDelegate> {
     MKMapView *mapView;
-    
     KMCalendar *calendar;
-    
     UILabel *dateLabel;
     UIImageView *arrowImageView;
-    
-    
     NSDate *historyDate;
 }
 
@@ -30,9 +26,7 @@
     
     self.title = @"历史轨迹";
     
-    
     historyDate =[NSDate date];
-    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 64, XKAppWidth, 40)];
     view.backgroundColor = [UIColor whiteColor];
     
@@ -92,11 +86,13 @@
 }
 
 - (void)preDayAction:(UIButton *)button {
-  
+    historyDate = [KMCalendarHelper getPrevisionDate:historyDate];
+    dateLabel.text = [historyDate dateFormate:@"yyyy-MM-dd"];
 }
 
 - (void)nextDayAction:(UIButton *)button {
-    
+    historyDate = [KMCalendarHelper getNextDate:historyDate];
+    dateLabel.text = [historyDate dateFormate:@"yyyy-MM-dd"];
 }
 
 - (void)showCalender:(UIButton *)button {

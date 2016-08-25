@@ -35,4 +35,8 @@
 
 - (NSTimeInterval)km_originTimeOfADay;
 
+
+
+- (NSString *)dateFormate:(NSString *)formate;
+
 @end

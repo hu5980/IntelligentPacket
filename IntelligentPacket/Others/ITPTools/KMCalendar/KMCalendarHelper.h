@@ -40,6 +40,9 @@ typedef NS_ENUM(NSInteger, KMCalendarHeaderType) {
 + (NSDate *)getPreviousMonth:(NSDate *)date;
 + (NSDate *)getNextMonth:(NSDate *)date;
 
++ (NSDate *)getPrevisionDate:(NSDate *)date;
++ (NSDate *)getNextDate:(NSDate *)date;
+
 + (BOOL)checkSameDay:(NSDate *)date1 another:(NSDate *)date2;
 
 @end

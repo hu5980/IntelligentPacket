@@ -32,6 +32,17 @@
     return [calendar dateFromComponents:components];
 }
 
++ (NSDate *)getPrevisionDate:(NSDate *)date {
+    NSDate *yesterday = [NSDate dateWithTimeInterval:-60 * 60 * 24 sinceDate:date];
+    return yesterday;
+}
+
++ (NSDate *)getNextDate:(NSDate *)date{
+    NSDate *tomorrow = [NSDate dateWithTimeInterval:60 * 60 * 24 sinceDate:date];
+    return tomorrow;
+
+}
+
 + (BOOL)checkSameDay:(NSDate *)date1 another:(NSDate *)date2
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
