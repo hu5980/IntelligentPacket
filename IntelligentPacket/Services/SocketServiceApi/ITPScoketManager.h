@@ -130,4 +130,15 @@
                                    tag:(long)tag
                                success:(void(^)(NSData *data, long tag))success
                               faillure:(void(^)(NSError *error))faillure ;
+
+
+// 获取箱子定位历史信息
+- (void)getHistoryRecordWithEmail:(NSString *)email
+                            bagId:(NSString *)bagId
+                        startDate:(NSString *)startDate           //开始时间
+                          endDate:(NSString *)endDate             //结束时间
+                      withTimeout:(NSTimeInterval)timeout
+                              tag:(long)tag
+                          success:(void(^)(NSData *data, long tag))success
+                         faillure:(void(^)(NSError *error))faillure ;
 @end
