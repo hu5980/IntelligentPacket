@@ -10,7 +10,7 @@
 #import "KMCalendar.h"
 #import "ITPScoketManager.h"
 #import "ITPLocationHistoryViewModel.h"
-
+#import "MBProgressHUD.h"
 @interface ITPLocationHistoryVC ()<KMCalendarDelegate,MKMapViewDelegate> {
     MKMapView *mapView;
     KMCalendar *calendar;
@@ -24,6 +24,8 @@
     NSMutableArray *pointsArray;
     MKPolyline* routeLine;
     MKPolylineView* routeLineView;
+    
+//    MBProgressHUD *hud;
 
 }
 
@@ -99,6 +101,9 @@
     
     
     [self getDataFromNetwork];
+    
+//    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    
 
     // Do any additional setup after loading the view.
 }
@@ -131,6 +136,10 @@
 
 
 - (void)getDataFromNetwork {
+    
+    if (!self.model) {
+        return;
+    }
    
     if ([KMCalendarHelper compareDateIsToday:historyDate]) {
         startDate = [[KMCalendarHelper beginingOfDate:[NSDate date]] dateFormate:@"yyyy-MM-dd HH:mm:ss"];
@@ -139,9 +148,9 @@
         startDate = [[KMCalendarHelper beginingOfDate:historyDate] dateFormate:@"yyyy-MM-dd HH:mm:ss"];
         endDate = [[KMCalendarHelper endingOfDate:historyDate] dateFormate:@"yyyy-MM-dd HH:mm:ss"];
     }
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[ITPScoketManager shareInstance] getHistoryRecordWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:_model.bagId startDate:startDate endDate:endDate withTimeout:10 tag:112 success:^(NSData *data, long tag) {
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         BOOL success = [ITPLocationHistoryViewModel isSuccesss:data];
         if (success) {
             pointsArray =  [ITPLocationHistoryViewModel getLocationData:data];

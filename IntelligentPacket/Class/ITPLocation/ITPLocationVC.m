@@ -74,7 +74,7 @@
     _mapView.mapType = MKMapTypeStandard;
     _mapView.zoomEnabled = YES;//支持缩放
     _mapView.delegate = self;
-//    _mapView .showsUserLocation = YES;
+    _mapView .showsUserLocation = YES;
     arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 20, 40)];
     arrowImageView.image = [UIImage imageNamed:@"icon_cellphone"];
   //  [_mapView addSubview:arrowImageView];
@@ -84,7 +84,7 @@
     
     self.navigationItem.rightBarButtonItem = rightItem;
     
-//    [self getCurPosition];
+    [self queryLocation];
     
     @weakify(self)
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketLocation object:nil]subscribeNext:^(id x) {
@@ -95,7 +95,6 @@
         self.navigationItem.title = name;
         self.locationTimer.fireDate = [NSDate distantPast]; // start
         NSLog(@"%@", x);
-        
         [self queryLocation];
         
     }];
@@ -124,6 +123,11 @@
 
 // 查询地址返回
 - (void)queryLocation {
+    
+    if (!currentModel ) {
+        [self getCurPosition];
+        return;
+    }
     
     [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:currentModel.bagId withTimeout:10 tag:107 success:^(NSData *data, long tag) {
         
@@ -225,10 +229,19 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
-   // CLLocation *location=[locations firstObject];//取出第一个位置
     
-    
-    
+    if (!currentModel ) {
+        CLLocation *location=[locations firstObject];//取出第一个位置
+        
+        CLLocationCoordinate2D pos = location.coordinate;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,1000, 1000);//以pos为中心，显示2000米
+        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+        
+        [_mapView setRegion:adjustedRegion animated:YES];
+
+    }else{
+        [self queryLocation];
+    }
     
 }
 
