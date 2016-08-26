@@ -31,6 +31,8 @@
     UILabel *updateTimeLabel;
     
     UIImageView *electricImageView;
+    
+    UIButton *refreshButton;
 }
 
 
@@ -94,9 +96,11 @@
         self.locationTimer.fireDate = [NSDate distantPast]; // start
         NSLog(@"%@", x);
         
+        [self queryLocation];
+        
     }];
-    self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(queryLocation) userInfo:nil repeats:YES];
-    self.locationTimer.fireDate = [NSDate distantFuture]; // pause
+//    self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(queryLocation) userInfo:nil repeats:YES];
+//    self.locationTimer.fireDate = [NSDate distantFuture]; // pause
     
     updateTimeLabel =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
     updateTimeLabel.textColor = [UIColor blueColor];
@@ -105,9 +109,17 @@
     [self.view addSubview:updateTimeLabel];
     
     
-    electricImageView = [[UIImageView alloc] initWithFrame:CGRectMake(XKAppWidth - 15 - 13, 20, 13, 25)];
+    electricImageView = [[UIImageView alloc] initWithFrame:CGRectMake(XKAppWidth - 20 - 13, 20, 13, 25)];
     electricImageView.image = [UIImage imageNamed:@"bat5"];
     [self.view addSubview:electricImageView];
+    
+    refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    refreshButton.frame = CGRectMake(XKAppWidth-15-25, electricImageView.bottom + 15, 25, 21);
+    [refreshButton setBackgroundImage:[UIImage imageNamed:@"reflash"] forState:UIControlStateNormal];
+    [refreshButton addTarget:self action:@selector(refreshAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:refreshButton];
+    
+   
 }
 
 #pragma --mark Action
@@ -132,6 +144,10 @@
             
         }
     }];
+}
+
+- (void)refreshAction:(UIButton *)buton {
+    [self queryLocation];
 }
 
 - (void) getCurPosition
@@ -324,10 +340,7 @@
     CLLocationCoordinate2D pos = userLocation.coordinate;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,1000, 1000);//以pos为中心，显示2000米
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
-//    adjustedRegion.center.latitude  = pos.latitude;
-//    adjustedRegion.center.longitude = pos.longitude;
-//    adjustedRegion.span.latitudeDelta = 1000;
-//    adjustedRegion.span.longitudeDelta = 1000;
+
     [_mapView setRegion:adjustedRegion animated:YES];
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
