@@ -118,8 +118,6 @@
     [refreshButton setBackgroundImage:[UIImage imageNamed:@"reflash"] forState:UIControlStateNormal];
     [refreshButton addTarget:self action:@selector(refreshAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:refreshButton];
-    
-   
 }
 
 #pragma --mark Action
