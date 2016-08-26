@@ -23,10 +23,12 @@
 + (BOOL )isSuccesss:(NSData *)data {
     
     NSArray * dataArr = [self paraserData:data];
-    
-    if (((NSString *)dataArr[1]).intValue == 1) {
-        return YES;
+    if (dataArr.count >= 2) {
+        if (((NSString *)dataArr[1]).intValue == 1) {
+            return YES;
+        }
     }
+    
     return NO;
 }
 

@@ -157,12 +157,20 @@
         }
         
     } faillure:^(NSError *error) {
-        
     }];
-    
 }
 
 #pragma mark - KMCalendarDelegate
+
+- (void)calendarSelectedDate:(NSDate *)date {
+    if ([KMCalendarHelper compareDateIsToday:date]) {
+        historyDate = [NSDate date];
+    }else{
+        historyDate = date;
+    }
+    dateLabel.text = [historyDate dateFormate:@"yyyy-MM-dd"];
+    [self getDataFromNetwork];
+}
 
 
 - (void)setMapRoutes

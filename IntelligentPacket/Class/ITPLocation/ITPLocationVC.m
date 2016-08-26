@@ -27,6 +27,10 @@
     UIImageView *arrowImageView;
     
     ITPPacketBagModel * currentModel;
+    
+    UILabel *updateTimeLabel;
+    
+    UIImageView *electricImageView;
 }
 
 
@@ -93,6 +97,17 @@
     }];
     self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(queryLocation) userInfo:nil repeats:YES];
     self.locationTimer.fireDate = [NSDate distantFuture]; // pause
+    
+    updateTimeLabel =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    updateTimeLabel.textColor = [UIColor blueColor];
+    updateTimeLabel.font = XKDefaultFontWithSize( 14.f);
+    updateTimeLabel.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:updateTimeLabel];
+    
+    
+    electricImageView = [[UIImageView alloc] initWithFrame:CGRectMake(XKAppWidth - 15 - 13, 20, 13, 25)];
+    electricImageView.image = [UIImage imageNamed:@"bat5"];
+    [self.view addSubview:electricImageView];
 }
 
 #pragma --mark Action
@@ -105,7 +120,9 @@
         BOOL abool = [ITPLocationViewModel isSuccesss:data];
         if (abool) {
             ITPLocationModel * model = [ITPLocationViewModel Locations:data];
-            NSLog(@"longitude = %@   latitude = %@", model.longitude, model.latitude);
+            updateTimeLabel.text = [NSString stringWithFormat:@"更新时间%@",model.time];
+            [self setelectricImage:model.electric];
+            NSLog(@"longitude = %@   latitude = %@", model.electric, model.latitude);
             MKUserLocation *userLocation = [[MKUserLocation alloc] init];
             userLocation.coordinate = CLLocationCoordinate2DMake([model.latitude doubleValue], [model.longitude  doubleValue]);
             [self showLocationInMapView:userLocation];
@@ -144,6 +161,22 @@
 
 }
 
+
+- (void)setelectricImage:(NSString *)electric {
+    if ([electric doubleValue] >= 100.0) {
+        electricImageView.image =[UIImage imageNamed:@"bat5" ];
+    }else if ([electric doubleValue] < 100.0 && [electric doubleValue]>= 80.0){
+        electricImageView.image =[UIImage imageNamed:@"bat4" ];
+    }else if ([electric doubleValue] < 80.0 && [electric doubleValue]>= 60.0){
+        electricImageView.image =[UIImage imageNamed:@"bat3" ];
+    }else if ([electric doubleValue] < 60.0 && [electric doubleValue]>= 40.0){
+        electricImageView.image =[UIImage imageNamed:@"bat2" ];
+    }else if ([electric doubleValue] < 40.0 && [electric doubleValue]>= 20.0){
+        electricImageView.image =[UIImage imageNamed:@"bat1" ];
+    }else {
+        electricImageView.image =[UIImage imageNamed:@"bat0" ];
+    }
+}
 
 - (void) entryHistoryLocationAction {
     ITPLocationHistoryVC *historyVC = [[ITPLocationHistoryVC alloc] init];

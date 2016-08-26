@@ -22,8 +22,10 @@
     NSArray * dataArr = [self paraserData:data];
     NSString *headString = (NSString *)dataArr[0];
     NSArray *headDataArr =  [headString componentsSeparatedByString:@","];
-    if (((NSString *)headDataArr[1]).intValue == 1) {
-        return YES;
+    if(headDataArr.count > 2){
+        if (((NSString *)headDataArr[1]).intValue == 1) {
+            return YES;
+        }
     }
     return NO;
 }
@@ -35,10 +37,11 @@
         
         NSString *str = [array objectAtIndex:i];
         NSArray *arr = [str componentsSeparatedByString:@","];
-        
-        MKUserLocation *userlocation =[[MKUserLocation alloc] init];
-        userlocation.coordinate = CLLocationCoordinate2DMake([[arr objectAtIndex:0] doubleValue], [[arr objectAtIndex:1] doubleValue]);
-        [muatbleArr addObject:userlocation];
+        if(arr.count > 2){
+            MKUserLocation *userlocation =[[MKUserLocation alloc] init];
+            userlocation.coordinate = CLLocationCoordinate2DMake([[arr objectAtIndex:0] doubleValue], [[arr objectAtIndex:1] doubleValue]);
+            [muatbleArr addObject:userlocation];
+        }
     }
     
     return muatbleArr;
