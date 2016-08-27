@@ -159,6 +159,9 @@
     
     ITPPacketBagCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ITPPacketBagCell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // UI
+    // ==================================================================
     cell.indexPath_ = (int)indexPath.row;
     cell.bagName.text = self.dataSource[indexPath.row].bagName;
     cell.bagNum.text = self.dataSource[indexPath.row].bagPhoneNum;
@@ -169,6 +172,13 @@
         [cell.bagheadImage setImage:[UIImage imageNamed:@"组-1"]];
     }
     
+    if ([self.dataSource[indexPath.row].bagEmail isEqualToString:[ITPUserManager ShareInstanceOne].userEmail])
+            cell.manangerImage.hidden = NO;
+    else    cell.manangerImage.hidden = YES;
+    // ==================================================================
+    
+    
+    // fouction =========================================================
     
     @weakify(self);
     cell.phoneBlcok = ^(int indexPath){
@@ -197,6 +207,8 @@
             NSLog(@"weight back");
         };
     };
+    
+    // ==================================================================
     
     return cell;
 }

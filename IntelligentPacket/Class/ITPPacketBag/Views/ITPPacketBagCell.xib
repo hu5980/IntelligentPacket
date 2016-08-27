@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -77,6 +77,9 @@
                             <action selector="weightAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MFZ-Yi-b1B"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="备注_" translatesAutoresizingMaskIntoConstraints="NO" id="Eaq-NV-ABm">
+                        <rect key="frame" x="12" y="11" width="22" height="22"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="6z9-Gz-0AM" secondAttribute="trailing" constant="12" id="6bn-SA-A15"/>
@@ -85,6 +88,8 @@
                     <constraint firstItem="6z9-Gz-0AM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PX5-Rl-dyP"/>
                     <constraint firstItem="9Il-GI-lr3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="TwH-QO-MdT"/>
                     <constraint firstItem="7s6-j1-AoQ" firstAttribute="centerY" secondItem="aXO-Xo-GOF" secondAttribute="centerY" id="Yhd-Ne-JoQ"/>
+                    <constraint firstItem="Eaq-NV-ABm" firstAttribute="leading" secondItem="9Il-GI-lr3" secondAttribute="leading" id="b26-eY-KAJ"/>
+                    <constraint firstItem="Eaq-NV-ABm" firstAttribute="top" secondItem="9Il-GI-lr3" secondAttribute="top" id="dSp-fJ-3sg"/>
                     <constraint firstItem="6z9-Gz-0AM" firstAttribute="leading" secondItem="aXO-Xo-GOF" secondAttribute="trailing" constant="12" id="iWD-sy-plI"/>
                     <constraint firstItem="HNX-ce-Nd2" firstAttribute="leading" secondItem="9Il-GI-lr3" secondAttribute="trailing" constant="12" id="oxx-Iu-bEA"/>
                     <constraint firstItem="9Il-GI-lr3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ra8-Ah-1ua"/>
@@ -99,11 +104,13 @@
                 <outlet property="bagNum" destination="HNX-ce-Nd2" id="TUd-wM-UI9"/>
                 <outlet property="bagheadImage" destination="9Il-GI-lr3" id="Otw-cr-jNs"/>
                 <outlet property="bagweight" destination="6z9-Gz-0AM" id="lb1-jo-aqP"/>
+                <outlet property="manangerImage" destination="Eaq-NV-ABm" id="uft-wt-9fw"/>
             </connections>
             <point key="canvasLocation" x="278.5" y="250.5"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="备注_" width="22" height="22"/>
         <image name="定位icon" width="15" height="19"/>
         <image name="电话" width="16" height="18"/>
         <image name="组-1" width="60" height="60"/>

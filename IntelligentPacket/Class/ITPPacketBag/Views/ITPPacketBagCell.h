@@ -17,6 +17,7 @@
 @property (nonatomic, copy) void (^weightBlcok)(int indexPath);
 
 
+@property (weak, nonatomic) IBOutlet UIImageView *manangerImage;
 
 @property (weak, nonatomic) IBOutlet UIImageView *bagheadImage;
 

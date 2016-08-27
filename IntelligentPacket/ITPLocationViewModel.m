@@ -37,6 +37,9 @@
     ITPLocationModel * model = [ITPLocationModel new];
     
     NSArray * dataArr = [self paraserData:data];
+    if (dataArr.count != 7)
+        return model;
+    
     model.result = dataArr[1];
     model.latitude = dataArr[2];
     model.longitude = dataArr[3];

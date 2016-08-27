@@ -150,7 +150,11 @@
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[ITPScoketManager shareInstance] getHistoryRecordWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:_model.bagId startDate:startDate endDate:endDate withTimeout:10 tag:112 success:^(NSData *data, long tag) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        [self performBlock:^{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        } afterDelay:.1];
+        
         BOOL success = [ITPLocationHistoryViewModel isSuccesss:data];
         if (success) {
             pointsArray =  [ITPLocationHistoryViewModel getLocationData:data];
