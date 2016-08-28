@@ -14,7 +14,7 @@
 #import "ITPManageCell.h"
 #import "ITPHeadAndNameViewController.h"
 #import "NetServiceApi.h"
-
+#import "SafeBagListViewController.h"
 
 @interface ITPManageVC ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -247,10 +247,9 @@ NSString * manageData[manageDataCount___] = {
             break;
         case 3:
         {
-            Class cls = NSClassFromString(@"SafeBagListViewController");
-            ITPBaseViewController * vc = [cls new];
+            SafeBagListViewController * vc = [SafeBagListViewController new];
             vc.hidesBottomBarWhenPushed = YES;
-            vc.title = title;
+            vc.title = title;   vc.isSafebagList = YES;
             [self.navigationController pushViewController:vc animated:YES];
             
         }

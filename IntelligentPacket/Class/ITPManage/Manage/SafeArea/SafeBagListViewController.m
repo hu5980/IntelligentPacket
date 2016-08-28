@@ -9,7 +9,7 @@
 #import "SafeBagListViewController.h"
 #import "ITPBagViewModel.h"
 #import "SafeAreaViewController.h"
-
+#import "ITPLocationViewModel.h"
 
 @interface SafeBagListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -29,15 +29,31 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [self loaddata];
+    [self.tableView reloadData];
     //    __languageSwitch.on = ![[ITPLanguageManager sharedInstance]isChinese];
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setupTools];
     [self loaddata];
+    
+    @weakify(self) //刷新全局的数据
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketAddSafebags object:nil]subscribeNext:^(id x) {
+        
+        @strongify(self)
+        [self loadNetdata];
+        
+    }];
+}
+
+- (void)loaddata {
+    if (self.isSafebagList) {  // 从全局拿数据
+        self.dataSource = [DataSingleManager sharedInstance].safeBags;
+    }else self.dataSource = [DataSingleManager sharedInstance].noneSafeBags;
 }
 
 - (void)setupTools {
@@ -54,9 +70,8 @@
 
 #pragma mark - action
 
--(void)loaddata {
+-(void)loadNetdata {
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
     [[ITPScoketManager shareInstance]bagListWithTimeout:10 tag:106 success:^(NSData *data, long tag) {
         @strongify(self);
@@ -68,17 +83,14 @@
             
             [self performBlock:^{
                 
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                self.dataSource = [ITPBagViewModel managerBags:data];
+                [DataSingleManager sharedInstance].bags = [ITPBagViewModel managerBags:data];
+                [self loaddata];
                 [self.tableView reloadData];
-                NSLog(@"%@", self.dataSource);
                 
             } afterDelay:0.1];
             
         }else {
             
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self showAlert:@"获取数据失败" WithDelay:1];
         }
         
     } faillure:^(NSError *error) {
@@ -94,12 +106,37 @@
 }
 
 - (void)edit {
+    SafeBagListViewController * vc = [SafeBagListViewController new];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.title = L(@"No security zone set");   vc.isSafebagList = NO;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - // 反地理编码
+- (void)showCurrent:(UILabel *)label LocationInfo:(ITPPacketBagModel *)model {
     
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:model.safeLongitude.doubleValue longitude:model.safeLatitude.doubleValue];
+    NSLog(@"%f\n%f",location.coordinate.latitude,location.coordinate.longitude);
+    
+    CLLocation * newlocation = [location locationMarsFromEarth];
+    
+    //根据经纬度反向地理编译出地址信息
+    [[CLGeocoder new] reverseGeocodeLocation:newlocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error){
+        if (error||placemarks.count == 0) {
+            label.text = OCSTR(@"%@\n%@", model.bagName, L(@"the address you entered was not found, possibly on the moon"));
+        }else//编码成功
+        {
+            //显示最前面的地标信息
+            CLPlacemark *placemark = [placemarks firstObject];
+            label.text = OCSTR(@"%@\n%@", model.bagName, placemark.name);
+        }
+    }];
 }
 
 
 #pragma mark - UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return self.dataSource.count;
 }
 
@@ -115,7 +152,13 @@
 //    cell.bagName.text = self.dataSource[indexPath.row].bagName;
 //    cell.bagNum.text = self.dataSource[indexPath.row].bagPhoneNum;
 
-    cell.textLabel.text = self.dataSource[indexPath.row].bagName;
+    if (self.isSafebagList) {
+        cell.textLabel.text = L(@"get in...");
+        [self showCurrent:cell.textLabel LocationInfo:self.dataSource[indexPath.row]];
+    }else {
+        cell.textLabel.text = self.dataSource[indexPath.row].bagName;
+    }
+    cell.textLabel.numberOfLines = 0;
     
     if (self.dataSource[indexPath.row].bagType == 1) {
         [cell.imageView setImage:[UIImage imageNamed:@"组-2"]];
@@ -130,10 +173,75 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    SafeAreaViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"safearea"];
-    vc.title = L(@"Set Safe area");
-    vc.model = self.dataSource[indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (!self.isSafebagList) {
+        SafeAreaViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"safearea"];
+        vc.title = L(@"Set Safe area");
+        vc.model = self.dataSource[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (!self.isSafebagList) {
+        return NO;
+    }
+    return YES;
+}
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    @weakify(self)
+    UITableViewRowAction *editAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:L(@"edit") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        @strongify(self)
+        tableView.editing = NO;
+        
+        
+        SafeAreaViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"safearea"];
+        vc.title = L(@"Set Safe area");
+        vc.model = self.dataSource[indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }];
+    
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:L(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+         @strongify(self)
+        
+        [self deleteAction:indexPath];
+    }];
+    
+    return @[deleteAction, editAction];
+}
+
+- (void)deleteAction:(NSIndexPath *)indexPath {
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    @weakify(self);
+    [[ITPScoketManager shareInstance] setSafeRegion:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[indexPath.row].bagId longitude:OCSTR(@"%d",0) latitude:OCSTR(@"%d",0) radius:OCSTR(@"%d",0) withTimeout:10 tag:112 success:^(NSData *data, long tag) {
+        @strongify(self);
+        [self performBlock:^{
+            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            BOOL abool = [ITPLocationViewModel isSuccesss:data];
+            if (abool) {
+                [self showAlert:L(@"delete success") WithDelay:1.2];
+                [self loadNetdata];
+            }
+            
+        } afterDelay:.1];
+        
+    } faillure:^(NSError *error) {
+        [self performBlock:^{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            [self showAlert:L(@"delete failure") WithDelay:1.2];
+            
+        } afterDelay:.1];
+    }];
+
+}
+
+- (void)dealloc {
+
 }
 
 @end

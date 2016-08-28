@@ -244,7 +244,7 @@
                   tag:(long)tag
                        success:(void(^)(NSData *data, long tag))success
                       faillure:(void(^)(NSError *error))faillure {
-    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email, bagId, longitude, latitude, radius] command:ITP_SETSAFEREGION];
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email, bagId, latitude, longitude, radius] command:ITP_SETSAFEREGION];
     
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
     

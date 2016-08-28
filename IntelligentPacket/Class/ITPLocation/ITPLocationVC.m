@@ -13,6 +13,7 @@
 #import "ITPPacketBagModel.h"
 #import "ITPLocationViewModel.h"
 #import "ITPLocationModel.h"
+#import "CLLocation+SethSwitch.h"
 
 @interface ITPLocationVC () <CLLocationManagerDelegate,MKMapViewDelegate> {
     CLLocationManager * locationmanager;
@@ -26,13 +27,15 @@
     
     UIImageView *arrowImageView;
     
-    ITPPacketBagModel * currentModel;
-    
     UILabel *updateTimeLabel;
     
     UIImageView *electricImageView;
     
     UIButton *refreshButton;
+    
+    //计算2点之间的距离
+    CLLocation  * newLocation;
+    CLLocation  * oldLocation;
 }
 
 
@@ -75,6 +78,7 @@
     _mapView.zoomEnabled = YES;//支持缩放
     _mapView.delegate = self;
     _mapView .showsUserLocation = YES;
+    
     arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 20, 40)];
     arrowImageView.image = [UIImage imageNamed:@"icon_cellphone"];
   //  [_mapView addSubview:arrowImageView];
@@ -90,8 +94,14 @@
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketLocation object:nil]subscribeNext:^(id x) {
         @strongify(self)
         NSNotification * notification = (NSNotification *)x;
-        currentModel = notification.object;
-        NSString * name = [NSString stringWithFormat:@"%@ %@",currentModel.bagName?currentModel.bagName:@"", L(@"Location")];
+        self.currentModel = notification.object;
+        
+        if (!self.currentModel.bagId || !self.currentModel.lastOnlineTime )
+            self.mapView .showsUserLocation = YES;
+        else
+            self.mapView .showsUserLocation = NO;
+        
+        NSString * name = [NSString stringWithFormat:@"%@ %@",self.currentModel.bagName?self.currentModel.bagName:@"", L(@"Location")];
         self.navigationItem.title = name;
         self.locationTimer.fireDate = [NSDate distantPast]; // start
         NSLog(@"%@", x);
@@ -117,6 +127,19 @@
     [refreshButton setBackgroundImage:[UIImage imageNamed:@"reflash"] forState:UIControlStateNormal];
     [refreshButton addTarget:self action:@selector(refreshAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:refreshButton];
+    
+    [RACObserve(self, currentModel)subscribeNext:^(id x) {
+        ITPPacketBagModel * model = x;
+            if (model.bagId&&model.bagPhoneNum) {
+                updateTimeLabel.hidden = NO;
+                electricImageView.hidden = NO;
+                refreshButton.hidden = NO;
+            } else {
+                updateTimeLabel.hidden = YES;
+                electricImageView.hidden = YES;
+                refreshButton.hidden = YES;
+            }
+    }];
 }
 
 #pragma --mark Action
@@ -124,12 +147,12 @@
 // 查询地址返回
 - (void)queryLocation {
     
-    if (!currentModel ) {
+    if (!self.currentModel ) {
         [self getCurPosition];
         return;
     }
     
-    [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:currentModel.bagId withTimeout:10 tag:107 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.currentModel.bagId withTimeout:10 tag:107 success:^(NSData *data, long tag) {
         
         BOOL abool = [ITPLocationViewModel isSuccesss:data];
         if (abool) {
@@ -137,9 +160,25 @@
             updateTimeLabel.text = [NSString stringWithFormat:@"更新时间%@",model.time];
             [self setelectricImage:model.electric];
             NSLog(@"longitude = %@   latitude = %@", model.electric, model.latitude);
+            
             MKUserLocation *userLocation = [[MKUserLocation alloc] init];
             userLocation.coordinate = CLLocationCoordinate2DMake([model.latitude doubleValue], [model.longitude  doubleValue]);
+            
+            // 地球转火星
+            CLLocation * location = [[CLLocation alloc] initWithCoordinate:userLocation.coordinate
+                                                                  altitude:userLocation.location.altitude
+                                                        horizontalAccuracy:userLocation.location.horizontalAccuracy
+                                                          verticalAccuracy:userLocation.location.verticalAccuracy
+                                                                    course:userLocation.location.course
+                                                                     speed:userLocation.location.speed
+                                                                 timestamp:userLocation.location.timestamp];
+            CLLocation * newlocation = [location locationMarsFromEarth];
+            // =========================
+            userLocation.coordinate = newlocation.coordinate;
+            
             [self showLocationInMapView:userLocation];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
         }
     } faillure:^(NSError *error) {
         if (error) {
@@ -174,7 +213,7 @@
 
 - (void)refreshLanguge {
     
-    NSString * name = [NSString stringWithFormat:@"%@ %@",currentModel.bagName?currentModel.bagName:@"", L(@"Location")];
+    NSString * name = [NSString stringWithFormat:@"%@ %@",self.currentModel.bagName?self.currentModel.bagName:@"", L(@"Location")];
     self.navigationItem.title = name;
 
 }
@@ -198,7 +237,7 @@
 
 - (void) entryHistoryLocationAction {
     ITPLocationHistoryVC *historyVC = [[ITPLocationHistoryVC alloc] init];
-    historyVC.model = currentModel;
+    historyVC.model = self.currentModel;
     [historyVC setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:historyVC animated:YES];
 }
@@ -230,7 +269,7 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     
-    if (!currentModel ) {
+    if (!self.currentModel ) {
         CLLocation *location=[locations firstObject];//取出第一个位置
         
         CLLocationCoordinate2D pos = location.coordinate;
@@ -329,10 +368,8 @@
     [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error){
         if (placemarks.count > 0){
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
-            NSString *locationString = [NSString stringWithFormat:@"%@%@%@附近",[[placemark addressDictionary] objectForKey:@"City"],[[placemark addressDictionary] objectForKey:@"SubLocality"],[[placemark addressDictionary] objectForKey:@"Thoroughfare"]];
-            
-            self.locationLabel.text = locationString;
-      
+//            NSString *locationString = [NSString stringWithFormat:@"%@%@%@附近",[[placemark addressDictionary] objectForKey:@"City"],[[placemark addressDictionary] objectForKey:@"SubLocality"],[[placemark addressDictionary] objectForKey:@"Thoroughfare"]];
+            self.locationLabel.text = placemark.name;
         }
         else if (error == nil && [placemarks count] == 0)
         {
@@ -348,11 +385,15 @@
 
 
 - (void)showLocationInMapView:(MKUserLocation *)userLocation {
+    
     CLLocationCoordinate2D pos = userLocation.coordinate;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,1000, 1000);//以pos为中心，显示2000米
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
-
     [_mapView setRegion:adjustedRegion animated:YES];
+    
+    if (_mapView.annotations.count>0) {
+        [_mapView removeAnnotations:_mapView.annotations];
+    }
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:userLocation.coordinate];
@@ -361,4 +402,11 @@
     [self showCurrentLocationInfo:userLocation];
 }
 
+//计算2点之间的距离
+- (CGFloat)calculationDistance {
+    
+    CGFloat distance = [newLocation distanceFromLocation:oldLocation];
+    NSLog(@"distance = %f", distance);
+    return distance;
+}
 @end

@@ -10,6 +10,9 @@
 
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MKFoundation.h>
+#import <MapKit/MKAnnotation.h>
 
 @interface ITPBaseViewController : UIViewController
 
@@ -19,4 +22,7 @@
 
 // 语言切换通知
 - (void)refreshLanguge ;
+
+- (CLLocationCoordinate2D)earthFromMars:(MKUserLocation * _Nullable)userLocation;
+- (CLLocationCoordinate2D)marsFromEarth:(MKUserLocation * _Nullable)userLocation;
 @end

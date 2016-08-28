@@ -69,4 +69,33 @@
     }
 }
 
+#pragma mark - 火星转地球
+
+- (CLLocationCoordinate2D)earthFromMars:(MKUserLocation *)userLocation {
+    // 火星转地球
+    CLLocation * location = [[CLLocation alloc] initWithCoordinate:userLocation.coordinate
+                                                          altitude:userLocation.location.altitude
+                                                horizontalAccuracy:userLocation.location.horizontalAccuracy
+                                                  verticalAccuracy:userLocation.location.verticalAccuracy
+                                                            course:userLocation.location.course
+                                                             speed:userLocation.location.speed
+                                                         timestamp:userLocation.location.timestamp];
+    CLLocation * newlocation = [location locationEarthFromMars];
+    return newlocation.coordinate;
+}
+
+#pragma mark - 地球转火星
+- (CLLocationCoordinate2D)marsFromEarth:(MKUserLocation *)userLocation {
+    // 地球转火星
+    CLLocation * location = [[CLLocation alloc] initWithCoordinate:userLocation.coordinate
+                                                          altitude:userLocation.location.altitude
+                                                horizontalAccuracy:userLocation.location.horizontalAccuracy
+                                                  verticalAccuracy:userLocation.location.verticalAccuracy
+                                                            course:userLocation.location.course
+                                                             speed:userLocation.location.speed
+                                                         timestamp:userLocation.location.timestamp];
+    CLLocation * newlocation = [location locationMarsFromEarth];
+    return newlocation.coordinate;
+}
+
 @end

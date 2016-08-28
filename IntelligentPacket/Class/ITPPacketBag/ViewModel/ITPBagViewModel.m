@@ -51,6 +51,13 @@
         model.bagName = (NSString *)temp[2];
         model.bagPhoneNum = (NSString *)temp[3];
         model.bagType = [model.bagId substringToIndex:1].intValue;
+        model.lastOnlineTime = (NSString *)temp[4];
+        model.lastLongitude = (NSString *)temp[5];
+        model.lastLatitude = (NSString *)temp[6];
+        model.lastAccuracy = (NSString *)temp[7];
+        model.safeLongitude = (NSString *)temp[8];
+        model.safeLatitude = (NSString *)temp[9];
+        model.safeRadius = (NSString *)temp[10];
         [bags addObject:model];
     }
     
@@ -61,6 +68,9 @@
     
     NSMutableArray * bags = [NSMutableArray array];
     NSArray * dataArr = [self paraserData:data];
+    if (dataArr.count <3) {
+        return bags;
+    }
     NSString * bagstr = dataArr[2];
     NSArray * bagTemp = [bagstr componentsSeparatedByString:@"\n"];
     
@@ -77,9 +87,14 @@
         model.bagName = (NSString *)temp[2];
         model.bagPhoneNum = (NSString *)temp[3];
         model.bagType = [model.bagId substringToIndex:1].intValue;
-        if ([model.bagEmail isEqualToString:[ITPUserManager ShareInstanceOne].userEmail]) {
-            [bags addObject:model];
-        }
+        model.lastOnlineTime = (NSString *)temp[4];
+        model.lastLongitude = (NSString *)temp[5];
+        model.lastLatitude = (NSString *)temp[6];
+        model.lastAccuracy = (NSString *)temp[7];
+        model.safeLongitude = (NSString *)temp[8];
+        model.safeLatitude = (NSString *)temp[9];
+        model.safeRadius = (NSString *)temp[10];
+        [bags addObject:model];
     }
     
     return bags;

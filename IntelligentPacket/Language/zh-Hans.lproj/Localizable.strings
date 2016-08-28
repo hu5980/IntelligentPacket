@@ -23,6 +23,11 @@ CFBundleDisplayName="智能箱包";
 "nickname" = "昵称";
 "Add bags success" = "添加成功";
 "Add bags failure" = "添加失败";
+
+"delete success" = "删除成功";
+"delete failure" = "删除失败";
+"Can't delete someone else's bags" = "不能删除别人的箱包";
+
 ////// 定位 ========================
 "Location" = "定位";
 
@@ -49,6 +54,17 @@ CFBundleDisplayName="智能箱包";
 "Modify falied" = "修改失败";
 "Slightly modified?" = "稍微改动点？";
 
+// 安全栏 。。。。
+
+"No security zone set" = "未设置安全区";
+"get in..." = "获取中...";
+"current Location:" = "当前位置:";
+"Safe zone radius" = "安全区半径";
+
+"the address you entered was not found, possibly on the moon" = "你输入的地址没找到，可能在月球上";
+
+"current longitude" = "当前经度";
+"current latitude" = "当前纬度";
 
 "upload success!" = "上传成功";
 "upload falied!" = "上传失败";

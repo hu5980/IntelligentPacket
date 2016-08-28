@@ -111,7 +111,7 @@
                 if ([ITPUserManager ShareInstanceOne].userEmail.length == 0) {
                     return;
                 }
-                NSString * str = OCSTR(@"A%@",[AppUtil getHexstring:[ITPUserManager ShareInstanceOne].userEmail]);
+                NSString * str = OCSTR(@"%@",[AppUtil getHexstring:[ITPUserManager ShareInstanceOne].userEmail]);
                 NSSet *set = [[NSSet alloc]initWithObjects:str, nil];
                 [JPUSHService setTags:set alias:str fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
                     if (iResCode) {

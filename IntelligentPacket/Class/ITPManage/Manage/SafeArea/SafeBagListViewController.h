@@ -10,4 +10,6 @@
 
 @interface SafeBagListViewController : ITPBaseViewController
 
+@property (nonatomic, assign) BOOL isSafebagList;
+
 @end

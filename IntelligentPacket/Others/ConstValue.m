@@ -27,3 +27,5 @@ NSString const * ITPacketAddbags = @"ITPacketAddbags";
 NSString const * ITPacketAddcontacts = @"ITPacketAddcontacts";
 
 NSString const * ITPacketLocation = @"ITPacketLocation";
+
+NSString const * ITPacketAddSafebags = @"ITPacketAddSafebags";

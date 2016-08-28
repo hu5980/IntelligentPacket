@@ -12,7 +12,7 @@
 
 @property (nonatomic, assign) int indexPath_;
 
-@property (nonatomic, copy) void (^phoneBlcok)(int indexPath);
+@property (nonatomic, copy) void (^phoneBlcok)(int indexPath , UIButton *but);
 @property (nonatomic, copy) void (^locationBlcok)(int indexPath);
 @property (nonatomic, copy) void (^weightBlcok)(int indexPath);
 
@@ -27,4 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *bagweight;
 
+@property (weak, nonatomic) IBOutlet UIButton *bagPhone;
+
+@property (weak, nonatomic) IBOutlet UIImageView *warning;
 @end

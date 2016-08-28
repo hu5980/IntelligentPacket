@@ -17,3 +17,5 @@
 #import "NSData+YYAdd.h"
 
 #import "NSString+YYAdd.h"
+
+#import "CLLocation+SethSwitch.h"

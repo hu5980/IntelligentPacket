@@ -80,9 +80,14 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="备注_" translatesAutoresizingMaskIntoConstraints="NO" id="Eaq-NV-ABm">
                         <rect key="frame" x="12" y="11" width="22" height="22"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="danger" translatesAutoresizingMaskIntoConstraints="NO" id="TMB-88-Ew5">
+                        <rect key="frame" x="53" y="14" width="12" height="12"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="6z9-Gz-0AM" secondAttribute="trailing" constant="12" id="6bn-SA-A15"/>
+                    <constraint firstItem="TMB-88-Ew5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="45" id="A9Q-0Z-hCr"/>
+                    <constraint firstItem="TMB-88-Ew5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="BO8-n8-zyI"/>
                     <constraint firstItem="aXO-Xo-GOF" firstAttribute="leading" secondItem="7s6-j1-AoQ" secondAttribute="trailing" constant="7" id="FwP-zK-RUN"/>
                     <constraint firstItem="AkP-mg-8ln" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="NMN-AG-eXd"/>
                     <constraint firstItem="6z9-Gz-0AM" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PX5-Rl-dyP"/>
@@ -102,14 +107,17 @@
             <connections>
                 <outlet property="bagName" destination="AkP-mg-8ln" id="t5s-G6-bvk"/>
                 <outlet property="bagNum" destination="HNX-ce-Nd2" id="TUd-wM-UI9"/>
+                <outlet property="bagPhone" destination="7s6-j1-AoQ" id="UgC-dF-sxu"/>
                 <outlet property="bagheadImage" destination="9Il-GI-lr3" id="Otw-cr-jNs"/>
                 <outlet property="bagweight" destination="6z9-Gz-0AM" id="lb1-jo-aqP"/>
                 <outlet property="manangerImage" destination="Eaq-NV-ABm" id="uft-wt-9fw"/>
+                <outlet property="warning" destination="TMB-88-Ew5" id="RZo-DK-wgo"/>
             </connections>
             <point key="canvasLocation" x="278.5" y="250.5"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="danger" width="12" height="12"/>
         <image name="备注_" width="22" height="22"/>
         <image name="定位icon" width="15" height="19"/>
         <image name="电话" width="16" height="18"/>

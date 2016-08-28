@@ -17,6 +17,7 @@
 #import "ITPAddBabWithIDViewController.h"
 #import "ITPBagViewModel.h"
 
+#import "DataSingleManager.h"
 
 @interface ITPPacketBagVC ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -72,6 +73,8 @@
                 
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 self.dataSource = [ITPBagViewModel bags:data];
+                [DataSingleManager sharedInstance].bags = [ITPBagViewModel bags:data];
+                
                 [self.tableView reloadData];
                 NSLog(@"%@", self.dataSource);
                 
@@ -166,10 +169,21 @@
     cell.bagName.text = self.dataSource[indexPath.row].bagName;
     cell.bagNum.text = self.dataSource[indexPath.row].bagPhoneNum;
     
-    if (self.dataSource[indexPath.row].bagType == 1) {
+   CGFloat distance = [[DataSingleManager sharedInstance]calculationDistance:self.dataSource[indexPath.row]];
+    if (distance > self.dataSource[indexPath.row].safeRadius.floatValue) {
+        cell.warning.hidden = NO;
+    }else cell.warning.hidden = YES;
+    
+    
+    if (self.dataSource[indexPath.row].bagType == 1) {  //箱子
         [cell.bagheadImage setImage:[UIImage imageNamed:@"组-2"]];
+        cell.bagweight.hidden = NO;
+        [cell.bagPhone setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+        [cell.bagPhone setImage:[UIImage imageNamed:@"open"] forState:UIControlStateSelected];
     }else {
         [cell.bagheadImage setImage:[UIImage imageNamed:@"组-1"]];
+        cell.bagweight.hidden = YES;
+        [cell.bagPhone setImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
     }
     
     if ([self.dataSource[indexPath.row].bagEmail isEqualToString:[ITPUserManager ShareInstanceOne].userEmail])
@@ -181,9 +195,12 @@
     // fouction =========================================================
     
     @weakify(self);
-    cell.phoneBlcok = ^(int indexPath){
-    
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:OCSTR(@"tel://%@",self.dataSource[indexPath].bagPhoneNum)]];
+    cell.phoneBlcok = ^(int indexPath, UIButton * but){
+        if (self.dataSource[indexPath].bagType == 1) {  //箱子
+            but.selected = !but.selected;
+        }else {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:OCSTR(@"tel://%@",self.dataSource[indexPath].bagPhoneNum)]];
+        }
     };
     
     cell.locationBlcok = ^(int indexPath){
@@ -234,11 +251,15 @@
 //        // 在最后希望cell可以自动回到默认状态，所以需要退出编辑模式
 //        tableView.editing = NO;
 //    }];
-    
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        
+    @weakify(self);
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:L(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+    @strongify(self);
         __selectIndexPath = indexPath;
-    
+        if (![self.dataSource[indexPath.row].bagEmail isEqualToString:[ITPUserManager ShareInstanceOne].userEmail]) {
+            [self showAlert:L(@"Can't delete someone else's bags") WithDelay:1.];
+            tableView.editing = NO;
+            return ;
+        }
         [self deleteBags];
     }];
     

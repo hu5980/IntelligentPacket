@@ -10,6 +10,8 @@
 		5D05CA551D4640D60073FAD9 /* ITPBagViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA541D4640D60073FAD9 /* ITPBagViewModel.m */; };
 		5D05CA5B1D4640FC0073FAD9 /* AddBagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA581D4640FC0073FAD9 /* AddBagsViewController.m */; };
 		5D05CA5C1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA5A1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m */; };
+		5D0C71801D728EA600C86697 /* DataSingleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0C717F1D728EA600C86697 /* DataSingleManager.m */; };
+		5D0C71831D72FBCF00C86697 /* CLLocation+SethSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0C71821D72FBCF00C86697 /* CLLocation+SethSwitch.m */; };
 		5D41908F1D1523A000D9BAF7 /* NetServiceApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D41908B1D1523A000D9BAF7 /* NetServiceApi.m */; };
 		5D5294E01D68A39F005C0DF2 /* jpush-ios-2.1.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D5294DE1D68A39F005C0DF2 /* jpush-ios-2.1.8.a */; };
 		5D5294E41D68A45B005C0DF2 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D5294E31D68A45B005C0DF2 /* PushConfig.plist */; };
@@ -119,6 +121,10 @@
 		5D05CA581D4640FC0073FAD9 /* AddBagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBagsViewController.m; sourceTree = "<group>"; };
 		5D05CA591D4640FC0073FAD9 /* ITPAddBabWithIDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPAddBabWithIDViewController.h; sourceTree = "<group>"; };
 		5D05CA5A1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAddBabWithIDViewController.m; sourceTree = "<group>"; };
+		5D0C717E1D728EA600C86697 /* DataSingleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSingleManager.h; sourceTree = "<group>"; };
+		5D0C717F1D728EA600C86697 /* DataSingleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSingleManager.m; sourceTree = "<group>"; };
+		5D0C71811D72FBCF00C86697 /* CLLocation+SethSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+SethSwitch.h"; sourceTree = "<group>"; };
+		5D0C71821D72FBCF00C86697 /* CLLocation+SethSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+SethSwitch.m"; sourceTree = "<group>"; };
 		5D41908A1D1523A000D9BAF7 /* NetServiceApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetServiceApi.h; sourceTree = "<group>"; };
 		5D41908B1D1523A000D9BAF7 /* NetServiceApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetServiceApi.m; sourceTree = "<group>"; };
 		5D5294DE1D68A39F005C0DF2 /* jpush-ios-2.1.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "jpush-ios-2.1.8.a"; sourceTree = "<group>"; };
@@ -792,6 +798,8 @@
 				5DE3F0211D16850700FCAEEF /* UIManager.h */,
 				5DE3F0221D16850700FCAEEF /* UIManager.m */,
 				5DD5A7711D167717006D771E /* ITPUserManager.swift */,
+				5D0C717E1D728EA600C86697 /* DataSingleManager.h */,
+				5D0C717F1D728EA600C86697 /* DataSingleManager.m */,
 			);
 			name = ITPManager;
 			path = Tools;
@@ -851,6 +859,8 @@
 				5DB50C871D201E5A00F28535 /* Categary.h */,
 				5DB50FA41D279AAC00F28535 /* CALayer+Ex.h */,
 				5DB50FA51D279AAC00F28535 /* CALayer+Ex.m */,
+				5D0C71811D72FBCF00C86697 /* CLLocation+SethSwitch.h */,
+				5D0C71821D72FBCF00C86697 /* CLLocation+SethSwitch.m */,
 			);
 			name = ITPCategary;
 			path = Categary;
@@ -1128,6 +1138,7 @@
 				BCB397301D6EEBC300BE1DB2 /* ITPLocationHistoryViewModel.m in Sources */,
 				5D66F3AB1D6B41A90018721C /* NSString+YYAdd.m in Sources */,
 				5D5577181D2A96BB0094E72C /* LoginWithRegisterViewModel.m in Sources */,
+				5D0C71801D728EA600C86697 /* DataSingleManager.m in Sources */,
 				5D5577251D2ABDA80094E72C /* ITPContactViewController.m in Sources */,
 				5DB50FA61D279AAC00F28535 /* CALayer+Ex.m in Sources */,
 				5D7BE9051D31E0B000E8C55F /* ITPAddContactViewController.m in Sources */,
@@ -1151,6 +1162,7 @@
 				5DA8B3351D4C4D8500078217 /* SafeBagListViewController.m in Sources */,
 				5D5577281D2ABDBD0094E72C /* FeedBackViewController.m in Sources */,
 				5DB50C9D1D25585400F28535 /* ITPRealmStore.m in Sources */,
+				5D0C71831D72FBCF00C86697 /* CLLocation+SethSwitch.m in Sources */,
 				5DABF9EF1D3B370B006ADBE3 /* ITPNameViewController.m in Sources */,
 				5DB50C661D20043400F28535 /* ITPBaseViewController.m in Sources */,
 				5DD5AFF41D0EB48F00EBDB70 /* AppDelegate.m in Sources */,
@@ -1333,7 +1345,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IntelligentPacket/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbags;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
@@ -1360,7 +1372,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IntelligentPacket/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbags;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";

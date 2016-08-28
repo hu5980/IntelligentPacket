@@ -25,6 +25,9 @@
     
     UILabel * curlocationLabel;
     UIButton * selCycleRadiuBtn;
+    UILabel * curlocationDesLabel;
+    
+    CLLocationCoordinate2D _touchMapCoordinate;
 }
 
 @property (nonatomic) CMMotionManager *motionManager;
@@ -63,16 +66,22 @@
     [super viewDidLoad];
     
     [self setupTools];
+    self.userLocation = [MKUserLocation new];
     self.circleRadiu = 1000;
     locationArray = [NSMutableArray array];
     pointsArray = [NSMutableArray array];
     
+    geocoder = [[CLGeocoder alloc] init];
     _mapView = [[MKMapView alloc]initWithFrame:self.view.bounds];
     _mapView.mapType = MKMapTypeStandard;
     _mapView.zoomEnabled = YES;//支持缩放
     _mapView.delegate = self;
-    _mapView .showsUserLocation = YES;
+    if (!_model.lastLongitude || !_model.lastLatitude)
+        _mapView .showsUserLocation = YES;
     [self.view addSubview:_mapView];
+    
+    UITapGestureRecognizer *mTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
+    [self.mapView addGestureRecognizer:mTap];
     
     [self getBagsLocatinDetail];
     [self getCurPosition];
@@ -88,7 +97,7 @@
         make.top.equalTo(@0);
         make.width.equalTo(@(UI_WIDTH));
         make.centerX.equalTo(@0);
-        make.height.equalTo(@(44));
+        make.height.equalTo(@(64));
     }];
     
     
@@ -96,7 +105,7 @@
     [bagsLocatinDetailView addSubview:locImg];
     [locImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@5);
-        make.centerY.equalTo(@0);
+        make.centerY.equalTo(@-10);
     }];
     UILabel * bagNameLab = [UILabel new];
     bagNameLab.text = self.model.bagName;
@@ -105,7 +114,7 @@
     [bagNameLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(locImg.mas_right).offset(10);
         make.top.equalTo(@0);
-        make.bottom.equalTo(@0);
+        make.bottom.equalTo(@-20);
         make.right.equalTo(@(-UI_WIDTH/2));
     }];
     
@@ -118,22 +127,42 @@
     [curlocationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(bagNameLab.mas_right);
         make.top.equalTo(@0);
-        make.bottom.equalTo(@0);
+        make.bottom.equalTo(@-20);
         make.right.equalTo(@0);
     }];
-    curlocationLabel.text = OCSTR(@"当前经度:%f\n当前纬度:%f",self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude);
+    curlocationLabel.text = OCSTR(@"%@:%f\n%@:%f",L(@"current longitude"), self.userLocation.coordinate.latitude, L(@"current latitude"), self.userLocation.coordinate.longitude);
     
     @weakify(self)
     [RACObserve(self, userLocation)subscribeNext:^(id x) {
         @strongify(self)
-        curlocationLabel.text = OCSTR(@"当前经度:%f\n当前纬度:%f",self.userLocation.coordinate.latitude, self.userLocation.coordinate.longitude);
+        curlocationLabel.text = OCSTR(@"%@:%f\n%@:%f",L(@"current longitude"), self.userLocation.coordinate.latitude, L(@"current latitude"), self.userLocation.coordinate.longitude);
     }];
+    
+    curlocationDesLabel = [UILabel new];
+    curlocationDesLabel.text = self.model.bagName;
+    curlocationDesLabel.numberOfLines = 0;
+    curlocationDesLabel.textAlignment = NSTextAlignmentLeft;
+    curlocationDesLabel.font = [UIFont systemFontOfSize:15];
+    [bagsLocatinDetailView addSubview:curlocationDesLabel];
+    [curlocationDesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@15);
+        make.height.equalTo(@20);
+        make.bottom.equalTo(@0);
+        make.right.equalTo(@0);
+    }];
+    curlocationDesLabel.text = OCSTR(@"%@%@",L(@"current Location:"), L(@"get in..."));
+    
+    [RACObserve(self, userLocation)subscribeNext:^(id x) {
+        @strongify(self)
+        curlocationDesLabel.text = OCSTR(@"%@%@",L(@"current Location:"), L(@"get in..."));
+    }];
+
     
     selCycleRadiuBtn = [UIButton new];
     selCycleRadiuBtn.backgroundColor = mainSchemeColor;
     selCycleRadiuBtn.alpha = .8;
     [self.view addSubview:selCycleRadiuBtn];
-    [selCycleRadiuBtn setTitle:OCSTR(@"安全区域半径为:%dm",self.circleRadiu) forState:UIControlStateNormal];
+    [selCycleRadiuBtn setTitle:OCSTR(@"%@:%dm",L(@"Safe zone radius"),self.circleRadiu) forState:UIControlStateNormal];
     [selCycleRadiuBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@0);
         make.right.equalTo(@0);
@@ -142,7 +171,7 @@
     }];
     [RACObserve(self, circleRadiu)subscribeNext:^(id x) {
         @strongify(self)
-        [selCycleRadiuBtn setTitle:OCSTR(@"安全区域半径为:%dm",self.circleRadiu) forState:UIControlStateNormal];
+        [selCycleRadiuBtn setTitle:OCSTR(@"%@:%dm",L(@"Safe zone radius"),self.circleRadiu) forState:UIControlStateNormal];
     }];
     
     [selCycleRadiuBtn addTarget:self action:@selector(showRadiuSelect) forControlEvents:UIControlEventTouchUpInside];
@@ -150,20 +179,33 @@
 
 - (void)setupTools {
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:L(@"save") style:UIBarButtonItemStylePlain target:self action:@selector(save)];
+    UIBarButtonItem * save = [[UIBarButtonItem alloc] initWithTitle:L(@"save") style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];;
+    
+    UIBarButtonItem * search = [[UIBarButtonItem alloc] initWithTitle:L(@"search") style:UIBarButtonItemStylePlain target:self action:@selector(searchAction)];
+    self.navigationItem.rightBarButtonItems = @[search, save];
+
 }
 
 #pragma mark - action
 
-- (void)save {
+- (void)searchAction {
+
+}
+
+- (void)saveAction {
     
-    [[ITPScoketManager shareInstance] setSafeRegion:[ITPUserManager ShareInstanceOne].userEmail bagId:self.model.bagId longitude:OCSTR(@"%f",self.userLocation.coordinate.longitude) latitude:OCSTR(@"%f",self.userLocation.coordinate.latitude) radius:OCSTR(@"%d",self.circleRadiu) withTimeout:10 tag:112 success:^(NSData *data, long tag) {
+    //转为地球坐标 提交
+    CLLocationCoordinate2D coordinate = [self earthFromMars:self.userLocation];
+    
+    [[ITPScoketManager shareInstance] setSafeRegion:[ITPUserManager ShareInstanceOne].userEmail bagId:self.model.bagId longitude:OCSTR(@"%f",coordinate.longitude) latitude:OCSTR(@"%f",coordinate.latitude) radius:OCSTR(@"%d",self.circleRadiu) withTimeout:10 tag:112 success:^(NSData *data, long tag) {
         
         [self performBlock:^{
             
             BOOL abool = [ITPLocationViewModel isSuccesss:data];
             if (abool) {
                 [self showAlert:L(@"Add success") WithDelay:1.2];
+                [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddSafebags object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
             }
             
         } afterDelay:.1];
@@ -188,61 +230,22 @@
     if ([CLLocationManager locationServicesEnabled])
     {
         locationmanager.delegate = self;
-        locationmanager.desiredAccuracy = kCLLocationAccuracyBest;
-        locationmanager.distanceFilter = 0.5f;
+        locationmanager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        locationmanager.distanceFilter = 50;
         
         [locationmanager requestAlwaysAuthorization];
         [locationmanager startUpdatingLocation];
-        //        [locationmanager startUpdatingHeading];
+//                [locationmanager startUpdatingHeading];
     }
 }
 
-- (void)showRadiuSelect {
-    @weakify(self);
-    UIAlertController * alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction * firstAction = [UIAlertAction actionWithTitle:@"1000m" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        @strongify(self);
-        self.circleRadiu = 1000;
-//        [self updateCycleOverlay:self.userLocation];
-        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
-    }];
-    UIAlertAction * secondAction = [UIAlertAction actionWithTitle:@"2000m" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        @strongify(self);
-        self.circleRadiu = 2000;
-//        [self updateCycleOverlay:self.userLocation];
-        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
-    }];
-    UIAlertAction * thirdAction = [UIAlertAction actionWithTitle:@"3000m" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        @strongify(self);
-        self.circleRadiu = 3000;
-//        [self updateCycleOverlay:self.userLocation];
-        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
-    }];
-    UIAlertAction * forthAction = [UIAlertAction actionWithTitle:@"4000m" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        @strongify(self);
-        self.circleRadiu = 4000;
-//        [self updateCycleOverlay:self.userLocation];
-        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
-    }];
-    UIAlertAction * fifthAction = [UIAlertAction actionWithTitle:@"5000m" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        @strongify(self);
-        self.circleRadiu = 5000;
-//        [self updateCycleOverlay:self.userLocation];
-        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
-    }];
-    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:L(@"cancel") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [alert addAction:firstAction];[alert addAction:secondAction];
-    [alert addAction:thirdAction];[alert addAction:forthAction];
-    [alert addAction:fifthAction];[alert addAction:cancelAction];
-    [self presentViewController:alert animated:YES completion:nil];
+// 停止地位
+- (void) stopLoaction {
+    [locationmanager stopUpdatingLocation];
 }
 
-
 - (void)updateCycleOverlay:(MKUserLocation *)userLocation {
-    [self.mapView removeOverlay:self.circle];
-    self.circle = nil;
+    [self.mapView removeOverlay:self.circle];self.circle = nil;
     if (!self.circle) {
         self.circle = [MKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude) radius:_circleRadiu];
         [_mapView addOverlay:self.circle];
@@ -274,15 +277,71 @@
     }];
 }
 
+// 定位机制 根据你的设置来刷新定位信息  交互到map map做出相应的反应
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
-    // CLLocation *location=[locations firstObject];//取出第一个位置
-    
-    
+    if ((_model.safeLongitude.intValue != 0 &&  _model.safeLatitude.intValue != 0) || !_model.safeRadius) { // 手动显示  存在安全栏
+        
+        CLLocationCoordinate2D pos ;
+        pos.longitude = _model.safeLatitude.doubleValue; pos.latitude = _model.safeLongitude.doubleValue;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,_model.safeRadius.longLongValue, _model.safeRadius.longLongValue);//以pos为中心，显示2000米
+        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+        
+        [_mapView setRegion:adjustedRegion animated:YES];
+        
+        self.circleRadiu = (int)_model.safeRadius.longLongValue;
+        self.userLocation.coordinate = pos;
+        self.userLocation.coordinate = [self marsFromEarth:self.userLocation];
+        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+        [self showAnnotationInMapView:self.userLocation];
+        [self showCurrentLocationInfo:self.userLocation];
+        
+        
+    }else if (!_model.lastLongitude || !_model.lastLatitude) {              // 走用户定位
+        CLLocation *location=[locations firstObject];//取出第一个位置
+        
+        CLLocationCoordinate2D pos = location.coordinate;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,1000, 1000);//以pos为中心，显示2000米
+        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+        
+        [_mapView setRegion:adjustedRegion animated:YES];
+        
+    } else {                                                                // 手动显示 以最后的停留地点为起始点
+        
+        CLLocationCoordinate2D pos ;
+        pos.longitude = _model.lastLatitude.doubleValue; pos.latitude = _model.lastLongitude.doubleValue;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,1000, 1000);//以pos为中心，显示2000米
+        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+        
+        [_mapView setRegion:adjustedRegion animated:YES];
+        
+        self.userLocation.coordinate = pos;
+        self.userLocation.coordinate = [self marsFromEarth:self.userLocation];
+        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+        [self showAnnotationInMapView:self.userLocation];
+        [self showCurrentLocationInfo:self.userLocation];
+    }
     
     
 }
 
+#pragma mark - mapview delegate
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    
+//     If the annotation is the user location, just return nil.
+//    if ([annotation isKindOfClass:[MKUserLocation class]])
+//        return nil;
+    if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
+        MKAnnotationView* aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MKPointAnnotation"];
+        aView.image = [UIImage imageNamed:@"ico_bag"];
+        aView.frame =  CGRectMake(0, 0, 25, 33);
+        aView.canShowCallout = YES;
+        
+        return aView;
+    }
+    return nil;
+}
 
 - (void)setMapRoutes
 {
@@ -328,7 +387,7 @@
     return nil;
 }
 
-
+// 更新用户位置
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     if(userLocation.coordinate.latitude == 0.0f || userLocation.coordinate.longitude == 0.0f){
@@ -337,7 +396,7 @@
     self.userLocation = userLocation;
     [self updateCycleOverlay:userLocation];
     
-//    [self showCurrentLocationInfo:userLocation];
+    [self showCurrentLocationInfo:userLocation];
     [pointsArray addObject:userLocation];
     
     NSMutableDictionary *locationDic = [[NSMutableDictionary alloc]init];
@@ -346,58 +405,51 @@
     
     [locationArray addObject:locationDic];
     
-    //    BOOL isSuccess =  [locationArray writeToFile:plistPath atomically:YES];
-    //
-    //    if (isSuccess) {
-    //        NSLog(@"写入成功");
-    //    }else{
-    //        NSLog(@"写入失败");
-    //    }
     
     CLLocationCoordinate2D pos = userLocation.coordinate;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,self.circleRadiu * 3, self.circleRadiu * 3);//以pos为中心，显示2000米
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,self.circleRadiu * 2.5, self.circleRadiu * 2.5);//以pos为中心，显示2000米
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
     [_mapView setRegion:adjustedRegion animated:YES];
     
     [self setMapRoutes];
-    [geocoder reverseGeocodeLocation:userLocation.location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        NSLog(@"%@", placemarks[0]);
-    }];
-    
 }
 
+#pragma mark - // 显示大头针
+- (void)showAnnotationInMapView:(MKUserLocation *)userLocation {
+    
+    if (_mapView.annotations.count > 0) {
+        [_mapView removeAnnotations:_mapView.annotations];
+    }
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:userLocation.coordinate];
+    [_mapView addAnnotation:annotation];
+    
+//    [self showCurrentLocationInfo:userLocation];
+}
 
-//- (void)showCurrentLocationInfo:(MKUserLocation *)location {
-//    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
-//    NSLog(@"%f\n%f",location.coordinate.latitude,location.coordinate.longitude);
-//    
-//    //根据经纬度反向地理编译出地址信息
-//    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error){
-//        if (placemarks.count > 0){
-//            CLPlacemark *placemark = [placemarks objectAtIndex:0];
-//            //将获得的所有信息显示到label上
-////            self.locationLabel.text = placemark.name;
-//            //获取城市
-//            NSString *city = placemark.locality;
-//            if (!city) {
-//                //四大直辖市的城市信息无法通过locality获得，只能通过获取省份的方法来获得（如果city为空，则可知为直辖市）
-//                city = placemark.administrativeArea;
-//            }
-//            NSLog(@"city = %@", city);
-////            self.locationLabel.text = city;
-//            
-//        }
-//        else if (error == nil && [placemarks count] == 0)
-//        {
-//            NSLog(@"No results were returned.");
-//        }
-//        else if (error != nil)
-//        {
-//            NSLog(@"An error occurred = %@", error);
-//        }
-//    }];
-//}
-
+#pragma mark - // 反地理编码
+- (void)showCurrentLocationInfo:(MKUserLocation *)location {
+    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
+    NSLog(@"%f\n%f",location.coordinate.latitude,location.coordinate.longitude);
+    //根据经纬度反向地理编译出地址信息
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error){
+        if (error||placemarks.count == 0) {
+            curlocationDesLabel.text = L(@"the address you entered was not found, possibly on the moon");
+        }else//编码成功
+        {
+            //显示最前面的地标信息
+            CLPlacemark *placemark = [placemarks firstObject];
+            curlocationDesLabel.text=placemark.name;
+            
+            // 拆分位置
+            //            NSString *locationString = [NSString stringWithFormat:@"%@%@%@%@",([[placemark addressDictionary] objectForKey:@"City"] == nil?@"":[[placemark addressDictionary] objectForKey:@"City"]),([[placemark addressDictionary] objectForKey:@"SubLocality"] == nil?@"":[[placemark addressDictionary] objectForKey:@"SubLocality"]),([[placemark addressDictionary] objectForKey:@"Thoroughfare"] == nil?@"":[[placemark addressDictionary] objectForKey:@"Thoroughfare"]), ([[placemark addressDictionary] objectForKey:@"subThoroughfare"] == nil?@"":[[placemark addressDictionary] objectForKey:@"subThoroughfare"])];
+            //经纬度
+            //            CLLocationDegrees latitude=firstPlacemark.location.coordinate.latitude;
+            //            CLLocationDegrees longitude=firstPlacemark.location.coordinate.longitude;
+        }
+    }];
+}
 
 //- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay{
 //    MKCircleRenderer * render=[[MKCircleRenderer alloc]initWithCircle:overlay];
@@ -406,5 +458,113 @@
 //    render.strokeColor=[UIColor redColor];
 //    return render;
 //}
+
+#pragma mark - touches ....
+
+// 触摸
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+}
+
+long long previousTimeSamp = 0;
+long long currentTimeSamp = 0;
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+//    currentTimeSamp = CFAbsoluteTimeGetCurrent();
+//    if (currentTimeSamp - previousTimeSamp < 1) {
+//        return;
+//    }
+//    previousTimeSamp = currentTimeSamp;
+//    self.userLocation.coordinate = _mapView.centerCoordinate;
+//    [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+//    [self showAnnotationInMapView:self.userLocation];
+//
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+//    currentTimeSamp = CFAbsoluteTimeGetCurrent();
+//    if (currentTimeSamp - previousTimeSamp < 1) {
+//        return;
+//    }
+//    previousTimeSamp = currentTimeSamp;
+//    
+//    self.userLocation.coordinate = _mapView.centerCoordinate;
+//    [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+//    [self showAnnotationInMapView:self.userLocation];
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+
+}
+
+// 点击
+
+- (void)tapPress:(UIGestureRecognizer*)gestureRecognizer {
+    
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];//这里touchPoint是点击的某点在地图控件中的位置
+    CLLocationCoordinate2D touchMapCoordinate =
+    [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];//这里touchMapCoordinate就是该点的经纬度了
+    
+    self.userLocation.coordinate = touchMapCoordinate;
+    [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+    [self showAnnotationInMapView:self.userLocation];
+    [self showCurrentLocationInfo:self.userLocation];
+}
+
+- (void)showRadiuSelect {
+    @weakify(self);
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction * firstAction = [UIAlertAction actionWithTitle:@"1000m" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        @strongify(self);
+        self.circleRadiu = 1000;
+        //        [self updateCycleOverlay:self.userLocation];
+        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+    }];
+    UIAlertAction * secondAction = [UIAlertAction actionWithTitle:@"2000m" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        @strongify(self);
+        self.circleRadiu = 2000;
+        //        [self updateCycleOverlay:self.userLocation];
+        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+    }];
+    UIAlertAction * thirdAction = [UIAlertAction actionWithTitle:@"3000m" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        @strongify(self);
+        self.circleRadiu = 3000;
+        //        [self updateCycleOverlay:self.userLocation];
+        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+    }];
+    UIAlertAction * forthAction = [UIAlertAction actionWithTitle:@"4000m" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        @strongify(self);
+        self.circleRadiu = 4000;
+        //        [self updateCycleOverlay:self.userLocation];
+        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+    }];
+    UIAlertAction * fifthAction = [UIAlertAction actionWithTitle:@"5000m" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        @strongify(self);
+        self.circleRadiu = 5000;
+        //        [self updateCycleOverlay:self.userLocation];
+        [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+    }];
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:L(@"cancel") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [alert addAction:firstAction];[alert addAction:secondAction];
+    [alert addAction:thirdAction];[alert addAction:forthAction];
+    [alert addAction:fifthAction];[alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark 地理编码
+-(void)location{
+    //根据“北京市”进行地理编码
+    [geocoder geocodeAddressString:@"北京市" completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark *clPlacemark=[placemarks firstObject];//获取第一个地标
+        MKPlacemark *mkplacemark=[[MKPlacemark alloc]initWithPlacemark:clPlacemark];//定位地标转化为地图的地标
+        NSDictionary *options=@{MKLaunchOptionsMapTypeKey:@(MKMapTypeStandard)};
+        MKMapItem *mapItem=[[MKMapItem alloc]initWithPlacemark:mkplacemark];
+        [mapItem openInMapsWithLaunchOptions:options];
+    }];
+}
 
 @end

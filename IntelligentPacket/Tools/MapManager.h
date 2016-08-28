@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "BaiduMapHeader.h"
-
+#import <MapKit/MapKit.h>
 
 @interface MapManager : NSObject
 
@@ -18,5 +18,5 @@
 
 
 + (instancetype)shareInstance;
-- (void)configParameter;
+
 @end

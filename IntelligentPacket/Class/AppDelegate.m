@@ -60,8 +60,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    [[MapManager shareInstance] configParameter];
+
     [[UIManager shareInstance] configUI];
     [[ITPLanguageManager sharedInstance] config];
     
@@ -171,7 +170,7 @@
     if ([ITPUserManager ShareInstanceOne].userEmail.length == 0) {
         return;
     }
-    NSString * str = OCSTR(@"A%@",[AppUtil getHexstring:[ITPUserManager ShareInstanceOne].userEmail]);
+    NSString * str = OCSTR(@"%@",[AppUtil getHexstring:[ITPUserManager ShareInstanceOne].userEmail]);
     NSSet *set = [[NSSet alloc]initWithObjects:str, nil];
     [JPUSHService setTags:set alias:str fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
         if (iResCode) {

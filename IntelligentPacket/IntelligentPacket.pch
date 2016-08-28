@@ -33,6 +33,7 @@
 
 #import "ITPContactModel.h"
 
+#import "DataSingleManager.h" // 全局数据 箱包 安全栏
 
 #define XKAppWidth [UIScreen mainScreen].bounds.size.width
 #define XKAppHeight [UIScreen mainScreen].bounds.size.height
@@ -52,6 +53,6 @@
 
 // =============================== jpush
 
-#define JPUSHKey  @"d67bb90d43a1fcc14236aede" //极光推送key   // bc1ab08a6236184fd36c79ee 个人版本的应用 //d67bb90d43a1fcc14236aede 企业版本的应用
+#define JPUSHKey  @"bc1ab08a6236184fd36c79ee" //极光推送key   // bc1ab08a6236184fd36c79ee 个人版本的应用 //d67bb90d43a1fcc14236aede 企业版本的应用
 
 #endif /* IntelligentPacket_pch */

@@ -30,6 +30,8 @@ extern NSString * ITPacketAPPChangeStoreBoard;
 
 extern NSString * ITPacketAddbags;
 
+extern NSString * ITPacketAddSafebags;
+
 extern NSString * ITPacketAddcontacts;
 
 extern NSString * ITPacketLocation;
