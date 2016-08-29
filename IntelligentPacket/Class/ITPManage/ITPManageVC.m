@@ -158,6 +158,9 @@ NSString * manageData[manageDataCount___] = {
     _loginOutButton.rac_command = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
         
         [ITPUserManager ShareInstanceOne].userEmail = nil;
+        [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
+        [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketRefreshAddSafebags object:nil];
+        
         return [RACSignal empty];
     }];
     

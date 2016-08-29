@@ -234,7 +234,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPRegisterViewController.m"
-                  timestampString = "494146027.053746"
+                  timestampString = "494147033.767873"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -249,7 +249,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPRegisterViewController.m"
-                  timestampString = "494146027.054273"
+                  timestampString = "494147033.767998"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -282,7 +282,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPRegisterViewController.m"
-                  timestampString = "494146134.219113"
+                  timestampString = "494147033.768759"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "155"
@@ -297,7 +297,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPRegisterViewController.m"
-                  timestampString = "494146134.219365"
+                  timestampString = "494147033.768871"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "155"
@@ -312,7 +312,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPRegisterViewController.m"
-                  timestampString = "494146134.219565"
+                  timestampString = "494147033.768972"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "155"
@@ -320,6 +320,134 @@
                   offsetFromSymbolStart = "36">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
+            timestampString = "494147032.629973"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "-loaddata"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
+            timestampString = "494147032.629973"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "-loaddata"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Class/Login&amp;register/LoginViewController.m"
+            timestampString = "494147121.428285"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-loginAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Class/Login&amp;register/LoginViewController.m"
+            timestampString = "494147140.859915"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-loginAction:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__35-[LoginViewController loginAction:]_block_invoke.150"
+                  moduleName = "IntelligentPacket"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/LoginViewController.m"
+                  timestampString = "494147140.865545"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__35-[LoginViewController loginAction:]_block_invoke_2.151"
+                  moduleName = "IntelligentPacket"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/LoginViewController.m"
+                  timestampString = "494147140.865701"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
+            timestampString = "494147521.833633"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-loaddata"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
+            timestampString = "494147605.961024"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-loaddata"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

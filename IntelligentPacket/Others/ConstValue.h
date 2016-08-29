@@ -35,3 +35,7 @@ extern NSString * ITPacketAddSafebags;
 extern NSString * ITPacketAddcontacts;
 
 extern NSString * ITPacketLocation;
+
+extern NSString * ITPacketRefreshAddSafebags;
+
+

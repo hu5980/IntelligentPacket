@@ -57,6 +57,14 @@
 //        @strongify(self)
         shouldRefresh = true;
     }];
+    
+    // 退出登录 用重新刷新 初始化
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketRefreshAddSafebags object:nil]subscribeNext:^(id x) {
+        
+        shouldRefresh = true;
+        previousTimeSamp = 0;
+        currentTimeSamp = 0;
+    }];
 
     
 }
@@ -82,7 +90,7 @@ long long currentTimeSamp = 0;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
-    [[ITPScoketManager shareInstance]bagListWithTimeout:10 tag:106 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance] bagListWithTimeout:10 tag:106 success:^(NSData *data, long tag) {
         @strongify(self);
         if (tag != 106) {
             return ;
