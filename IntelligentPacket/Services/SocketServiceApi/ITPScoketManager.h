@@ -29,14 +29,13 @@
 ///< 注册
 - (void)registerWith:(NSString *)emailName
             password:(NSString *)password
-            nickName:(NSString *)nickName
             authCode:(NSString *)authCode
+            nickName:(NSString *)nickName
                phone:(NSString *)phone
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
              success:(void(^)(NSData *data, long tag))success
             faillure:(void(^)(NSError *error))faillure;
-
 // 登录
 - (void)loginWith:(NSString *)nickName
          password:(NSString *)password

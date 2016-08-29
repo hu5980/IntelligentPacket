@@ -129,13 +129,13 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [[ITPScoketManager shareInstance]registerWith:self.emailTextField.text password:self.passwordTextField.text nickName:self.nickNameTextField.text authCode:self.codeTextFeild.text phone:self.phoneTF.text withTimeout:10 tag:101 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance]registerWith:self.emailTextField.text password:self.passwordTextField.text authCode:self.codeTextFeild.text nickName:self.nickNameTextField.text  phone:self.phoneTF.text withTimeout:10 tag:101 success:^(NSData *data, long tag) {
         
         [self performBlock:^{
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            if ([LoginWithRegisterViewModel isAuthRegisterSuccess:data]) {
+            BOOL abool = [LoginWithRegisterViewModel isAuthRegisterSuccess:data];
+            if (abool) {
                 
                 [self showAlert:L(@"register success") WithDelay:1.0];
                 

@@ -78,8 +78,7 @@
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
              success:(void(^)(NSData *data, long tag))success
-            faillure:(void(^)(NSError *error))faillure;
-
+            faillure:(void(^)(NSError *error))faillure
 {
     NSData * data = [[ITPDataCenter sharedInstance] paramData:@[emailName, password, authCode, nickName, phone] command:ITP_REGISTER_CONFIM];
     

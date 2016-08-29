@@ -92,7 +92,7 @@ long long currentTimeSamp = 0;
             
             [self performBlock:^{
                 
-//                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 self.dataSource = [ITPBagViewModel bags:data];
                 [DataSingleManager sharedInstance].bags = [ITPBagViewModel bags:data];
                 
@@ -118,7 +118,7 @@ long long currentTimeSamp = 0;
     }];
     [self performBlock:^{
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    } afterDelay:5];
+    } afterDelay:2];
     
 }
 
