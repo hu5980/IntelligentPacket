@@ -64,7 +64,7 @@
 #pragma mark - // 两点求距离
 - (CGFloat )calculationDistance:(ITPPacketBagModel *)model {
     
-    if (model.safeRadius.integerValue == 0 || model.safeRadius.length == 0 || model.lastOnlineTime.length == 0) {
+    if (model.safeRadius.integerValue == 0 || model.safeRadius.length == 0 || model.lastLatitude.length == 0 || model.lastLongitude.length == 0) {
         return 0;
     }
     

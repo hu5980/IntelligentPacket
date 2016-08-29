@@ -37,15 +37,17 @@
     NSArray * dataArr = [self paraserData:data];
     NSString * bagstr = dataArr[2];
     NSArray * bagTemp = [bagstr componentsSeparatedByString:@"\n"];
-    
+    if (bagstr.length == 0 ) return bags;
     for (NSString * bag in bagTemp) {
         
         NSString * _bag = [bag stringByReplacingOccurrencesOfString:@" " withString:@""];
-        if (_bag.length == 0) break;
+        if (_bag.length == 0) break; //数据不合法跳出
         
         NSArray * temp = [bag componentsSeparatedByString:@"/"];
-        
         ITPPacketBagModel * model = [ITPPacketBagModel new];
+        if (temp.count < 11) {  //数据不合法跳过 去下一个
+            goto Next;
+        }
         model.bagId = (NSString *)temp[0];
         model.bagEmail = (NSString *)temp[1];
         model.bagName = (NSString *)temp[2];
@@ -58,6 +60,8 @@
         model.safeLongitude = (NSString *)temp[8];
         model.safeLatitude = (NSString *)temp[9];
         model.safeRadius = (NSString *)temp[10];
+        
+    Next:
         [bags addObject:model];
     }
     
