@@ -226,6 +226,7 @@
             if (abool) {
                 [self showAlert:L(@"delete success") WithDelay:1.2];
                 [self loadNetdata];
+                [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
             }
             
         } afterDelay:.1];

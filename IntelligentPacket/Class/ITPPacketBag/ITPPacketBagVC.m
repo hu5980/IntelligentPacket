@@ -36,6 +36,11 @@
     [super viewWillAppear:animated];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+     [self loaddata];
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -44,30 +49,37 @@
     
     [self configOther];
     
-    [self loaddata];
+   
     
-    @weakify(self)
+//    @weakify(self)
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketAddbags object:nil]subscribeNext:^(id x) {
         
-        @strongify(self)
-        [self loaddata];
-//        [self.tableView reloadData];
+//        @strongify(self)
+        shouldRefresh = true;
     }];
 
     
 }
+bool shouldRefresh = true;
 
 long long previousTimeSamp = 0;
 long long currentTimeSamp = 0;
 
 - (void)loaddata {
    
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     currentTimeSamp = CFAbsoluteTimeGetCurrent();
-    if (currentTimeSamp - previousTimeSamp < 60) {
+    if (currentTimeSamp - previousTimeSamp < 10) {
         return;
     }
     previousTimeSamp = currentTimeSamp;
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
+    if (!shouldRefresh) {
+        return;
+    }
+    shouldRefresh = false;
+    
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
     [[ITPScoketManager shareInstance]bagListWithTimeout:10 tag:106 success:^(NSData *data, long tag) {
@@ -80,7 +92,7 @@ long long currentTimeSamp = 0;
             
             [self performBlock:^{
                 
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 self.dataSource = [ITPBagViewModel bags:data];
                 [DataSingleManager sharedInstance].bags = [ITPBagViewModel bags:data];
                 
@@ -104,6 +116,9 @@ long long currentTimeSamp = 0;
         }
         
     }];
+    [self performBlock:^{
+        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    } afterDelay:5];
     
 }
 
