@@ -57,8 +57,17 @@
     
 }
 
+long long previousTimeSamp = 0;
+long long currentTimeSamp = 0;
+
 - (void)loaddata {
    
+    currentTimeSamp = CFAbsoluteTimeGetCurrent();
+    if (currentTimeSamp - previousTimeSamp < 60) {
+        return;
+    }
+    previousTimeSamp = currentTimeSamp;
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
     [[ITPScoketManager shareInstance]bagListWithTimeout:10 tag:106 success:^(NSData *data, long tag) {
@@ -71,7 +80,7 @@
             
             [self performBlock:^{
                 
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 self.dataSource = [ITPBagViewModel bags:data];
                 [DataSingleManager sharedInstance].bags = [ITPBagViewModel bags:data];
                 
@@ -82,7 +91,7 @@
         
         }else {
             
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             [self showAlert:@"获取数据失败" WithDelay:1];
         }
         

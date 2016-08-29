@@ -466,16 +466,11 @@
     
 }
 
-long long previousTimeSamp = 0;
-long long currentTimeSamp = 0;
+
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
-//    currentTimeSamp = CFAbsoluteTimeGetCurrent();
-//    if (currentTimeSamp - previousTimeSamp < 1) {
-//        return;
-//    }
-//    previousTimeSamp = currentTimeSamp;
+
 //    self.userLocation.coordinate = _mapView.centerCoordinate;
 //    [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
 //    [self showAnnotationInMapView:self.userLocation];
