@@ -384,17 +384,15 @@
     }];
 }
 
-
-
 - (void)showLocationInMapView:(MKUserLocation *)userLocation {
-    
-    CLLocationCoordinate2D pos = userLocation.coordinate;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
-    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
-    [_mapView setRegion:adjustedRegion animated:YES];
-    
     if (_mapView.annotations.count>0) {
         [_mapView removeAnnotations:_mapView.annotations];
+    }else{
+        
+        CLLocationCoordinate2D pos = userLocation.coordinate;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
+        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+        [_mapView setRegion:adjustedRegion animated:YES];
     }
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
@@ -403,6 +401,9 @@
     
     [self showCurrentLocationInfo:userLocation];
 }
+
+
+
 
 //计算2点之间的距离
 - (CGFloat)calculationDistance {
