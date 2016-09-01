@@ -106,6 +106,36 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [[ITPScoketManager shareInstance]registerWith:self.emaiTF.text password:self.firstpasswordTF.text authCode:self.codeTF.text nickName:@""  phone:@"" withTimeout:10 tag:101 success:^(NSData *data, long tag) {
+        
+        [self performBlock:^{
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            BOOL abool = [LoginWithRegisterViewModel isAuthRegisterSuccess:data];
+            if (abool) {
+                
+                [self showAlert:L(@"find password success") WithDelay:1.0];
+                
+                [self performBlock:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                } afterDelay:.5];
+                
+            } else [self showAlert:L(@"find password failed") WithDelay:1.0];
+            
+        } afterDelay:.1];
+        
+    } faillure:^(NSError *error) {
+        
+        [self performBlock:^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self showAlert:L(@"find password failed") WithDelay:1.0];
+        } afterDelay:.1];
+        
+    }];
+
+    
 }
 
 - (IBAction)getCodeAction:(UIButton *)sender {

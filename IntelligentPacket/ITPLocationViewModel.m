@@ -37,7 +37,7 @@
     ITPLocationModel * model = [ITPLocationModel new];
     
     NSArray * dataArr = [self paraserData:data];
-    if (dataArr.count != 7)
+    if (dataArr.count < 7)
         return model;
     
     model.result = dataArr[1];

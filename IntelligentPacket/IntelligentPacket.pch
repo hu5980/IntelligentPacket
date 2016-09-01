@@ -52,7 +52,10 @@
 
 
 // =============================== jpush
-
+#if DEBUG
 #define JPUSHKey  @"bc1ab08a6236184fd36c79ee" //极光推送key   // bc1ab08a6236184fd36c79ee 个人版本的应用 //d67bb90d43a1fcc14236aede 企业版本的应用
+#else
+#define JPUSHKey  @"d67bb90d43a1fcc14236aede" //极光推送key   // bc1ab08a6236184fd36c79ee 个人版本的应用 //d67bb90d43a1fcc14236aede 企业版本的应用
+#endif
 
 #endif /* IntelligentPacket_pch */

@@ -36,15 +36,19 @@
     NSMutableArray * contacts = [NSMutableArray array];
     NSArray * dataArr = [self paraserData:data];
     NSString * contactstr = dataArr[2];
-    if (contactstr.length == 0) return nil;
     NSArray * contactsTemp = [contactstr componentsSeparatedByString:@"\n"];
-    
+    if (contactstr.length == 0) return contacts;
     for (NSString * contact in contactsTemp) {
         NSArray * temp = [contact componentsSeparatedByString:@"/"];
+       
         ITPContactModel * model = [ITPContactModel new];
+        if (temp.count < 3) {  //数据不合法跳过 去下一个
+            goto Next;
+        }
         model.contactName = (NSString *)temp[0];
         model.contactEmail = (NSString *)temp[1];
         model.contactPhoneNum = (NSString *)temp[2];
+    Next:
         [contacts addObject:model];
     }
     

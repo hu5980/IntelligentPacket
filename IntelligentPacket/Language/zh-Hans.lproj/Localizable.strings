@@ -123,6 +123,7 @@ CFBundleDisplayName="智能箱包";
 ////// forget ==========================
 "Find password" = "找回密码";
 "Please confim your password" = "请确认密码";
-
+"find password success" = "找回密码成功";
+"find password failed" = "找回密码失败";
 
 

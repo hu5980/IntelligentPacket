@@ -153,7 +153,9 @@
     }
     
     [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.currentModel.bagId withTimeout:10 tag:107 success:^(NSData *data, long tag) {
-        
+        if (tag != 107) {
+            return ;
+        }
         BOOL abool = [ITPLocationViewModel isSuccesss:data];
         if (abool) {
             ITPLocationModel * model = [ITPLocationViewModel Locations:data];
