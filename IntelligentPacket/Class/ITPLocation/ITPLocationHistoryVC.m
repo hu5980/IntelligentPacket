@@ -151,9 +151,9 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [[ITPScoketManager shareInstance] getHistoryRecordWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:_model.bagId startDate:startDate endDate:endDate withTimeout:10 tag:112 success:^(NSData *data, long tag) {
         
-        [self performBlock:^{
+         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        } afterDelay:.1];
+         });
         
         BOOL success = [ITPLocationHistoryViewModel isSuccesss:data];
         if (success) {
@@ -167,10 +167,35 @@
                 
                 [self setMapRoutes];
             }
+        }else{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [self showAlert:@"获取数据失败" WithDelay:1];
+
+            });
         }
         
     } faillure:^(NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+      
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        });
+        
+        
     }];
+    
+   
+}
+
+
+- (void)showAlert:(NSString *)message WithDelay:(NSTimeInterval)d
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = message;
+    hud.mode = MBProgressHUDModeCustomView;
+//    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:d];
 }
 
 #pragma mark - KMCalendarDelegate
