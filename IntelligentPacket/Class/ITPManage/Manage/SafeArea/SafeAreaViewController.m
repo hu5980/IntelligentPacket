@@ -12,7 +12,10 @@
 #import <MapKit/MapKit.h>
 #import "ITPLocationViewModel.h"
 
-@interface SafeAreaViewController () <CLLocationManagerDelegate,MKMapViewDelegate> {
+#import "SearchResultTableVC.h"
+#import <AMapSearchKit/AMapSearchKit.h>
+
+@interface SafeAreaViewController () <CLLocationManagerDelegate,MKMapViewDelegate,AMapSearchDelegate> {
     CLLocationManager * locationmanager;
     
     NSMutableArray  *pointsArray;
@@ -28,6 +31,12 @@
     UILabel * curlocationDesLabel;
     
     CLLocationCoordinate2D _touchMapCoordinate;
+    
+    UISearchController *_searchController;
+    UITableView *_searchTableView;
+    SearchResultTableVC *_searchResultTableVC;
+    AMapSearchAPI *_searchAPI;  // 搜索API
+    NSInteger searchPage;       // 搜索页数
 }
 
 @property (nonatomic) CMMotionManager *motionManager;
@@ -83,8 +92,37 @@
     UITapGestureRecognizer *mTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPress:)];
     [self.mapView addGestureRecognizer:mTap];
     
+    [self initSearch];
     [self getBagsLocatinDetail];
     [self getCurPosition];
+}
+
+- (void)initSearch
+{
+    _searchResultTableVC = [[SearchResultTableVC alloc] init];
+    _searchResultTableVC.delegate = (id)self;
+    _searchController = [[UISearchController alloc] initWithSearchResultsController:_searchResultTableVC];
+    _searchController.searchResultsUpdater = (id)_searchResultTableVC;
+    
+//    int SearchBarStyle = 1;
+//    switch (SearchBarStyle) {
+//        case 0:  // 放在NavigationBar底部
+//            [self.view addSubview:_searchController.searchBar];
+//            self.edgesForExtendedLayout = UIRectEdgeNone;
+//            break;
+//        case 1:  // 点击搜索按钮显示SearchBar
+//            self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(searchAction)];
+//            self.navigationItem.rightBarButtonItem = nil;
+//            _searchController.searchBar.delegate = (id)self;
+//            break;
+//        case 2:  // 放在NavigationBar内部
+//            _searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+//            _searchController.hidesNavigationBarDuringPresentation = NO;
+//            self.navigationItem.titleView = _searchController.searchBar;
+//            self.definesPresentationContext = YES;
+//        default:
+//            break;
+//    }
 }
 
 - (void)getBagsLocatinDetail {
@@ -189,7 +227,14 @@
 #pragma mark - action
 
 - (void)searchAction {
-
+    
+    _searchController.searchBar.showsCancelButton = YES;
+    _searchController.hidesNavigationBarDuringPresentation = NO;
+    [self presentViewController:_searchController animated:YES completion:^{
+        
+    }];
+//    [self.navigationController.navigationBar addSubview:_searchController.searchBar];
+    
 }
 
 - (void)saveAction {
@@ -412,6 +457,18 @@
     [_mapView setRegion:adjustedRegion animated:YES];
     
     [self setMapRoutes];
+}
+
+#pragma mark - SearchResultTableVCDelegate
+- (void)setSelectedLocationWithLocation:(AMapPOI *)poi {
+    CLLocationCoordinate2D pos ;
+    pos.longitude = poi.location.longitude; pos.latitude = poi.location.latitude;
+    self.userLocation.coordinate = pos;
+//    self.userLocation.coordinate = [self earthFromMars:self.userLocation];
+    [self mapView:self.mapView didUpdateUserLocation:self.userLocation];
+    [self showAnnotationInMapView:self.userLocation];
+    [self showCurrentLocationInfo:self.userLocation];
+    
 }
 
 #pragma mark - // 显示大头针

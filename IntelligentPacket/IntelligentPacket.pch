@@ -51,11 +51,13 @@
 #define XKDefaultFontWithSize(fontSize)  [UIFont systemFontOfSize:fontSize]
 
 
-// =============================== jpush
+// =============================== jpush  未上线前先这样
 #if DEBUG
 #define JPUSHKey  @"bc1ab08a6236184fd36c79ee" //极光推送key   // bc1ab08a6236184fd36c79ee 个人版本的应用 //d67bb90d43a1fcc14236aede 企业版本的应用
+#define LIBApiKey @"38219391090dc7ff1ec09625feac8726"
 #else
 #define JPUSHKey  @"d67bb90d43a1fcc14236aede" //极光推送key   // bc1ab08a6236184fd36c79ee 个人版本的应用 //d67bb90d43a1fcc14236aede 企业版本的应用
+#define LIBApiKey @"6582167eb8553b11342c1cd17f5d75ec"
 #endif
 
 #endif /* IntelligentPacket_pch */

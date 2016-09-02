@@ -234,7 +234,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPRegisterViewController.m"
-                  timestampString = "494175258.675433"
+                  timestampString = "494438012.431363"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -249,7 +249,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPRegisterViewController.m"
-                  timestampString = "494175258.675595"
+                  timestampString = "494438012.431504"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -282,7 +282,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPRegisterViewController.m"
-                  timestampString = "494175258.676546"
+                  timestampString = "494438012.4325"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "155"
@@ -297,7 +297,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPRegisterViewController.m"
-                  timestampString = "494175258.676707"
+                  timestampString = "494438012.432657"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "155"
@@ -312,7 +312,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPRegisterViewController.m"
-                  timestampString = "494175258.67686"
+                  timestampString = "494438012.432787"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "155"
@@ -361,7 +361,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/LoginViewController.m"
-                  timestampString = "494175258.678758"
+                  timestampString = "494438012.435049"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -376,7 +376,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/LoginViewController.m"
-                  timestampString = "494175258.678926"
+                  timestampString = "494438012.435202"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "132"
@@ -425,7 +425,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-                  timestampString = "494175258.679881"
+                  timestampString = "494438012.436037"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "172"
@@ -440,7 +440,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/ITPPacketBag/ITPPacketBagVC.m"
-                  timestampString = "494175258.680047"
+                  timestampString = "494438012.436177"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
@@ -448,22 +448,6 @@
                   offsetFromSymbolStart = "60">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/AppDelegate.m"
-            timestampString = "494174128.873271"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "-isLoginSuccess:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -505,7 +489,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPForgetViewController.m"
-                  timestampString = "494175258.682236"
+                  timestampString = "494438012.437766"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
@@ -520,7 +504,7 @@
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPForgetViewController.m"
-                  timestampString = "494175258.682408"
+                  timestampString = "494438012.437959"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "131"
@@ -528,6 +512,16 @@
                   offsetFromSymbolStart = "32">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
