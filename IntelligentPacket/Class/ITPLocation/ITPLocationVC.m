@@ -36,12 +36,20 @@
     //计算2点之间的距离
     CLLocation  * newLocation;
     CLLocation  * oldLocation;
+    
+    UIStepper *stepper ;
+    
+    MKUserLocation *bagLocation;
+    
+    NSArray *rangeArray;
+    
+    BOOL  ishandRefresh;
 }
 
 
 @property (nonatomic) CMMotionManager *motionManager;
 
-@property (nonatomic) NSTimer *locationTimer;
+//@property (nonatomic) NSTimer *locationTimer;
 
 @end
 
@@ -56,24 +64,24 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
-    if (self.locationTimer) {
-        [self.locationTimer setFireDate:[NSDate date]];
-    }
+//    if (self.locationTimer) {
+//        [self.locationTimer setFireDate:[NSDate date]];
+//    }
 }
 
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    if (self.locationTimer) {
-         [self.locationTimer setFireDate:[NSDate distantFuture]];
-    }
+//    if (self.locationTimer) {
+//         [self.locationTimer setFireDate:[NSDate distantFuture]];
+//    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     locationArray = [NSMutableArray array];
     pointsArray = [NSMutableArray array];
-    
+    ishandRefresh = NO;
     _mapView.mapType = MKMapTypeStandard;
     _mapView.zoomEnabled = YES;//支持缩放
     _mapView.delegate = self;
@@ -103,12 +111,12 @@
         
         NSString * name = [NSString stringWithFormat:@"%@ %@",self.currentModel.bagName?self.currentModel.bagName:@"", L(@"Location")];
         self.navigationItem.title = name;
-        self.locationTimer.fireDate = [NSDate distantPast]; // start
+//        self.locationTimer.fireDate = [NSDate distantPast]; // start
         NSLog(@"%@", x);
         [self queryLocation];
         
     }];
-    self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(aotoQueryLocation) userInfo:nil repeats:YES];
+//    self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(aotoQueryLocation) userInfo:nil repeats:YES];
 //    self.locationTimer.fireDate = [NSDate distantFuture]; // pause
     
     updateTimeLabel =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
@@ -140,6 +148,20 @@
                 refreshButton.hidden = YES;
             }
     }];
+    
+    rangeArray = @[@5,@10,@20,@50,@100,@200,@500,@1000,@2000,@5000,@10000,@20000,@50000,@100000,@200000,@500000,@1000000,@2000000];
+    
+    stepper = [[UIStepper alloc] initWithFrame:CGRectMake(XKAppWidth -120, XKAppHeight - 200, 120, 60)];
+   
+    stepper.backgroundColor =[UIColor whiteColor];
+    stepper.minimumValue = 0;
+    stepper.maximumValue = rangeArray.count - 1;
+    stepper.value = 6;
+    [stepper addTarget:self action:@selector(changRange:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_mapView addSubview:stepper];
+    
+    
 }
 
 #pragma --mark Action
@@ -147,49 +169,68 @@
 // 查询地址返回
 
 
-- (void)aotoQueryLocation {
-    if (!self.currentModel ) {
-        [self getCurPosition];
-        return;
-    }
+- (void)changRange:(UIStepper *)steper {
+    NSLog(@"%f",[[rangeArray objectAtIndex:stepper.value] floatValue]);
+    [_mapView removeAnnotations:_mapView.annotations];
+    CLLocationCoordinate2D pos = bagLocation.coordinate;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,[[rangeArray objectAtIndex:stepper.value] floatValue],[[rangeArray objectAtIndex:stepper.value] floatValue]);//以pos为中心，显示2000米
+    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+    [_mapView setRegion:adjustedRegion animated:YES];
     
-    [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.currentModel.bagId withTimeout:10 tag:107 success:^(NSData *data, long tag) {
-        if (tag != 107) {
-            return ;
-        }
-        BOOL abool = [ITPLocationViewModel isSuccesss:data];
-        if (abool) {
-            ITPLocationModel * model = [ITPLocationViewModel Locations:data];
-            updateTimeLabel.text = [NSString stringWithFormat:@"更新时间%@",model.time];
-            [self setelectricImage:model.electric];
-            NSLog(@"longitude = %@   latitude = %@", model.electric, model.latitude);
-            
-            MKUserLocation *userLocation = [[MKUserLocation alloc] init];
-            userLocation.coordinate = CLLocationCoordinate2DMake([model.latitude doubleValue], [model.longitude  doubleValue]);
-            
-            // 地球转火星
-            CLLocation * location = [[CLLocation alloc] initWithCoordinate:userLocation.coordinate
-                                                                  altitude:userLocation.location.altitude
-                                                        horizontalAccuracy:userLocation.location.horizontalAccuracy
-                                                          verticalAccuracy:userLocation.location.verticalAccuracy
-                                                                    course:userLocation.location.course
-                                                                     speed:userLocation.location.speed
-                                                                 timestamp:userLocation.location.timestamp];
-            CLLocation * newlocation = [location locationMarsFromEarth];
-            // =========================
-            userLocation.coordinate = newlocation.coordinate;
-            
-            [self showLocationInMapView:userLocation andisAoto:YES];
-            
-            [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
-        }
-    } faillure:^(NSError *error) {
-        if (error) {
-            
-        }
-    }];
-
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:bagLocation.coordinate];
+    [_mapView addAnnotation:annotation];
+    
+    [self showCurrentLocationInfo:bagLocation];
 }
+
+
+//- (void)aotoQueryLocation {
+//    if (!self.currentModel ) {
+//        [self getCurPosition];
+//        return;
+//    }
+//    
+//    [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.currentModel.bagId withTimeout:10 tag:107 success:^(NSData *data, long tag) {
+//        if (tag != 107) {
+//            return ;
+//        }
+//        BOOL abool = [ITPLocationViewModel isSuccesss:data];
+//        if (abool) {
+//            ITPLocationModel * model = [ITPLocationViewModel Locations:data];
+//            updateTimeLabel.text = [NSString stringWithFormat:@"更新时间%@",model.time];
+//            [self setelectricImage:model.electric];
+//            NSLog(@"longitude = %@   latitude = %@", model.electric, model.latitude);
+//            
+//            MKUserLocation *userLocation = [[MKUserLocation alloc] init];
+//            userLocation.coordinate = CLLocationCoordinate2DMake([model.latitude doubleValue], [model.longitude  doubleValue]);
+//            
+//            bagLocation = userLocation;
+//            
+//            // 地球转火星
+//            CLLocation * location = [[CLLocation alloc] initWithCoordinate:userLocation.coordinate
+//                                                                  altitude:userLocation.location.altitude
+//                                                        horizontalAccuracy:userLocation.location.horizontalAccuracy
+//                                                          verticalAccuracy:userLocation.location.verticalAccuracy
+//                                                                    course:userLocation.location.course
+//                                                                     speed:userLocation.location.speed
+//                                                                 timestamp:userLocation.location.timestamp];
+//            CLLocation * newlocation = [location locationMarsFromEarth];
+//            // =========================
+//            userLocation.coordinate = newlocation.coordinate;
+//            
+//            [self showLocationInMapView:userLocation andisAoto:YES];
+//            
+//            [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
+//        }
+//    } faillure:^(NSError *error) {
+//        if (error) {
+//            
+//        }
+//    }];
+//
+//}
 
 - (void)queryLocation {
     
@@ -212,6 +253,8 @@
             MKUserLocation *userLocation = [[MKUserLocation alloc] init];
             userLocation.coordinate = CLLocationCoordinate2DMake([model.latitude doubleValue], [model.longitude  doubleValue]);
             
+            bagLocation = userLocation;
+            
             // 地球转火星
             CLLocation * location = [[CLLocation alloc] initWithCoordinate:userLocation.coordinate
                                                                   altitude:userLocation.location.altitude
@@ -224,7 +267,11 @@
             // =========================
             userLocation.coordinate = newlocation.coordinate;
             
-            [self showLocationInMapView:userLocation andisAoto:NO];
+            [self showLocationInMapView:userLocation andisAoto:!ishandRefresh];
+            
+            if(ishandRefresh){
+                ishandRefresh = NO;
+            }
             
             [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
         }
@@ -236,6 +283,7 @@
 }
 
 - (void)refreshAction:(UIButton *)buton {
+    ishandRefresh = YES;
     [self queryLocation];
 }
 
@@ -437,6 +485,7 @@
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
         MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
         [_mapView setRegion:adjustedRegion animated:YES];
+        stepper.value = 6;
     }else{
         if (_mapView.annotations.count>0) {
             [_mapView removeAnnotations:_mapView.annotations];
@@ -446,6 +495,7 @@
             MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
             MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
             [_mapView setRegion:adjustedRegion animated:YES];
+            stepper.value = 6;
         }
 
     }
