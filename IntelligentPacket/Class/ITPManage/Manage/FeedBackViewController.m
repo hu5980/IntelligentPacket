@@ -11,24 +11,39 @@
 #import "AFNetworking.h"
 #import <AVFoundation/AVFoundation.h>
 #import "UIImage+Fit.h"
+#import "ITPFeedBackItem.h"
 
-@interface FeedBackViewController()
+@interface FeedBackViewController() <UITextViewDelegate>
 
 @property (nonatomic, strong) UIImagePickerController * imagePickerController;
+@property (weak, nonatomic) IBOutlet UITextView *feedbackTextView;
 
 @end
 
 @implementation FeedBackViewController
 {
-    __weak IBOutlet UIButton *feedbackImage;
+    __weak IBOutlet UIButton *feedbackImage1;
+    __weak IBOutlet UIButton *feedbackImage2;
+    __weak IBOutlet UIButton *feedbackImage3;
+    __weak IBOutlet UIButton *feedbackImage4;
+    
+    __weak IBOutlet NSLayoutConstraint *contact1;
+    __weak IBOutlet NSLayoutConstraint *contact2;
+    __weak IBOutlet NSLayoutConstraint *contact0;
+    __weak IBOutlet NSLayoutConstraint *contact3;
 
-    __weak IBOutlet UITextView *feedbackTextView;
+    
+    __weak IBOutlet UILabel *textViewPlaceholder;
+    __weak IBOutlet UILabel *contentnumber;
     
     __weak IBOutlet UIButton *confimButton;
     
     NSData * imageData;
     
     NetServiceApi * feedbackApi;
+    
+    NSMutableArray <ITPFeedBackItem*>* imagesDataSource;
+    
 }
 
 
@@ -36,54 +51,74 @@
     [confimButton setTitle:L(@"confim") forState:UIControlStateNormal];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    contact1.constant = contact2.constant = contact3.constant = contact0.constant = ([UIScreen mainScreen].bounds.size.width - 40 - 60*4)/5;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     feedbackApi = [NetServiceApi new];
-    
+    imagesDataSource = [NSMutableArray array];
     _imagePickerController  =[[UIImagePickerController alloc]init];
+    self.feedbackTextView.delegate = self;
     
     [self refreshLanguge];
     
     @weakify(self)
-    RAC(confimButton, enabled) = [RACSignal combineLatest:@[feedbackTextView.rac_textSignal]
+    RAC(confimButton, enabled) = [RACSignal combineLatest:@[self.feedbackTextView.rac_textSignal]
                                                    reduce:^(NSString *weight) {
                                                        return @(weight.length );
                                                    }];
     
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillShowNotification object:nil]subscribeNext:^(id x) {
-        @strongify(self)
-        NSLog(@"%@", x);
-        self.view.transform = CGAffineTransformMakeTranslation(0, -30);
-    }];
+//    [RACObserve(self.feedbackTextView, text)subscribeNext:^(id x) {
+//        NSString * _text = x;
+//        if (_text.length > 0) {
+//            textViewPlaceholder.hidden = YES;
+//        }else textViewPlaceholder.hidden = NO;
+//    }];
     
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillHideNotification object:nil]subscribeNext:^(id x) {
-        @strongify(self)
-        NSLog(@"%@", x);
-        [self performBlock:^{
-            
-            self.view.transform = CGAffineTransformMakeTranslation(0, 0);;
-            
-        } afterDelay:.1];
-    }];
+//    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillShowNotification object:nil]subscribeNext:^(id x) {
+//        @strongify(self)
+//        NSLog(@"%@", x);
+//        self.view.transform = CGAffineTransformMakeTranslation(0, -30);
+//    }];
+//    
+//    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillHideNotification object:nil]subscribeNext:^(id x) {
+//        @strongify(self)
+//        NSLog(@"%@", x);
+//        [self performBlock:^{
+//            self.view.transform = CGAffineTransformMakeTranslation(0, 0);;
+//        } afterDelay:.1];
+//    }];
 }
 
 #pragma mark - action
 - (IBAction)feedbackAction:(UIButton *)sender {
-    
     if (!imageData) {
         [self showAlert:L(@"please input a image") WithDelay:1.]; return;
     }
-    
-    if (feedbackTextView.text.length == 0) {
+    if (self.feedbackTextView.text.length == 0) {
         [self showAlert:L(@"please input some words") WithDelay:1.]; return;
     }
-    
-    [self feedback:feedbackTextView.text.base64EncodedString];
+    [self feedback:self.feedbackTextView.text.base64EncodedString];
 }
 
 - (IBAction)feedbackImageAction:(UIButton *)sender {
     
+    if (sender.tag == 10) {
+        
+    }
+    else if (sender.tag == 11) {
+    
+    }
+    else if (sender.tag == 12) {
+        
+    }
+    else if (sender.tag == 13) {
+        
+    }
     [self changeHeadimage];
 }
 
@@ -180,17 +215,39 @@
     }
     [actionSheet dismissWithClickedButtonIndex:buttonIndex animated:YES];
 }
+#pragma mark - UITextView Change
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    textViewPlaceholder.hidden = YES;
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if (textView.text.length > 0) {
+        textViewPlaceholder.hidden = YES;
+    }else textViewPlaceholder.hidden = NO;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+
+    contentnumber.text = OCSTR(@"%lu/200", (unsigned long)textView.text.length);
+    if (textView.text.length > 200 && range.location > 200) {
+        [textView.text substringToIndex:200];
+        contentnumber.text = OCSTR(@"%lu/200", (unsigned long)textView.text.length);
+        return NO;
+    }else return YES;
+}
 
 #pragma mark - 拍照选择照片协议方法
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    ITPFeedBackItem * item = [ITPFeedBackItem new];
+    item.originalImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     CGSize size = CGSizeMake(200,200);// 切图
-    UIImage *__image = [UIImage createRoundedRectImage:image size:size radius:0];//切角处理
+    item.smallImage = [UIImage createRoundedRectImage:item.originalImage size:size radius:0];//切角处理
     @weakify(self)
     [picker dismissViewControllerAnimated:YES completion:^{
         @strongify(self)
-        [self saveThePhotoToiPhone:__image];
+        [self saveThePhotoToiPhone:item.originalImage];
     }];
 }
 
@@ -199,21 +256,16 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)saveThePhotoToiPhone:(UIImage *)img
-{
-    
+- (void)saveThePhotoToiPhone:(UIImage *)img{
     NSData *data;
     if (UIImagePNGRepresentation(img) == nil) {
-        
         data = UIImageJPEGRepresentation(img, 1);
-        
-    } else {
-        
+    }
+    else {
         data = UIImagePNGRepresentation(img);
-        
     }
     imageData = data;
-    [feedbackImage setBackgroundImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
+    [feedbackImage1 setBackgroundImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
 }
 
 
@@ -256,5 +308,17 @@
     }];
 }
 
+// 多图拼接
+- (UIImage *)imageApend {
+
+    CGSize size = CGSizeMake(300, imagesDataSource.count * 300);
+    UIGraphicsBeginImageContext(size);
+    for (int index; index < imagesDataSource.count; index++) {
+        [[UIImage createRoundedRectImage:imagesDataSource[index].originalImage size:CGSizeMake(300, 300) radius:0] drawInRect:CGRectMake(0, index*300, 300, 300)];
+    }
+    UIImage *resultingImage =UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return resultingImage;
+}
 
 @end

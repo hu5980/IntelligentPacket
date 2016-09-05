@@ -202,9 +202,9 @@
     
     if ([CLLocationManager locationServicesEnabled])
     {
-        locationmanager.delegate=self;
-        locationmanager.desiredAccuracy=kCLLocationAccuracyBest;
-        locationmanager.distanceFilter=0.5f;
+        locationmanager.delegate = self;
+        locationmanager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationmanager.distanceFilter = .5f;
         
         [locationmanager requestAlwaysAuthorization];
         [locationmanager startUpdatingLocation];
@@ -268,6 +268,9 @@
     }];
 }
 
+long long _previousTimeSamp = 0;
+long long _currentTimeSamp = 0;
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     
@@ -280,7 +283,12 @@
         
         [_mapView setRegion:adjustedRegion animated:YES];
 
-    }else{
+    } else { // 最少5s 间隔
+        _currentTimeSamp = CFAbsoluteTimeGetCurrent();
+        if (_currentTimeSamp - _previousTimeSamp < 5) {
+            return;
+        }
+        _previousTimeSamp = _currentTimeSamp;
         [self queryLocation];
     }
     
@@ -385,15 +393,15 @@
 }
 
 - (void)showLocationInMapView:(MKUserLocation *)userLocation {
-    if (_mapView.annotations.count>0) {
+    
+    if (_mapView.annotations.count > 0) {
         [_mapView removeAnnotations:_mapView.annotations];
-    }else{
-        
-        CLLocationCoordinate2D pos = userLocation.coordinate;
-        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
-        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
-        [_mapView setRegion:adjustedRegion animated:YES];
     }
+    
+    CLLocationCoordinate2D pos = userLocation.coordinate;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
+    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+    [_mapView setRegion:adjustedRegion animated:YES];
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:userLocation.coordinate];

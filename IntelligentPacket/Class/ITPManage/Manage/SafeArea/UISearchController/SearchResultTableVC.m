@@ -131,9 +131,9 @@
     [super viewDidLoad];
     _searchAPI = [[AMapSearchAPI alloc] init];
     _searchAPI.delegate = self;
-    if ([[ITPLanguageManager sharedInstance]isChinese])
+    if ([[ITPLanguageManager sharedInstance] isChinese])
         [_searchAPI setLanguage:AMapSearchLanguageZhCN];
-    [_searchAPI setLanguage:AMapSearchLanguageEn];
+    else [_searchAPI setLanguage:AMapSearchLanguageEn];
     
     _searchResultArray = [NSMutableArray array];
     // 解决tableview无法正常显示的问题
