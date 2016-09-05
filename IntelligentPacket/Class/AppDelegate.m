@@ -12,6 +12,7 @@
 #import "ITPLanguageManager.h"
 #import "JPUSHService.h"
 #import <AdSupport/AdSupport.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
 
 @interface AppDelegate ()
 
@@ -98,6 +99,8 @@
                                                            channel:@"App store"
                                                   apsForProduction:@"0"
                                              advertisingIdentifier:advertisingId];
+    
+    [AMapServices sharedServices].apiKey = LIBApiKey; // 高德key
     
     [self registerJpushNotice];
     //===========================================
