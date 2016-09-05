@@ -26,7 +26,7 @@
     self.title = L(@"Add bags");
     [confimButton setTitle:L(@"add") forState:UIControlStateNormal];
     phoneTextFiled.placeholder = L(@"phone number");
-    nicknameTF.placeholder = L(@"nickname");
+    nicknameTF.placeholder = L(@"Remarks");
 
 }
 
@@ -35,6 +35,8 @@
     confimImage.hidden = YES;
     
     [self refreshLanguge];
+    phoneTextFiled.delegate = (id)self;
+    nicknameTF.delegate = (id)self;
     
     @weakify(self)
     RAC(confimButton, enabled) = [RACSignal combineLatest:@[phoneTextFiled.rac_textSignal]
@@ -52,9 +54,7 @@
         @strongify(self)
         NSLog(@"%@", x);
         [self performBlock:^{
-            
             self.view.transform = CGAffineTransformMakeTranslation(0, 0);;
-            
         } afterDelay:.1];
     }];
     
@@ -106,13 +106,18 @@
             } afterDelay:.1];
         }
     }];
-    
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+   }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
     confimImage.hidden = YES;
+    [self performBlock:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);;
+    } afterDelay:.1];
+
 }
 
 @end

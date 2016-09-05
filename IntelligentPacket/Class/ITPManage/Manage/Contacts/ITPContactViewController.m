@@ -166,7 +166,7 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
-    [[ITPScoketManager shareInstance]deleteContactWithEmail:[ITPUserManager ShareInstanceOne].userEmail phone:self.dataSource[__selectIndexPath.row].contactPhoneNum withTimeout:10 tag:110 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance]deleteContactWithEmail:[ITPUserManager ShareInstanceOne].userEmail phone:self.dataSource[__selectIndexPath.row].contactEmail withTimeout:10 tag:110 success:^(NSData *data, long tag) {
         
         @strongify(self);
         if (tag != 110) {

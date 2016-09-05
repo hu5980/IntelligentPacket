@@ -172,7 +172,7 @@
 - (void)changRange:(UIStepper *)steper {
     NSLog(@"%f",[[rangeArray objectAtIndex:stepper.value] floatValue]);
     [_mapView removeAnnotations:_mapView.annotations];
-    CLLocationCoordinate2D pos = bagLocation.coordinate;
+    CLLocationCoordinate2D pos = _mapView.centerCoordinate;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,[[rangeArray objectAtIndex:stepper.value] floatValue],[[rangeArray objectAtIndex:stepper.value] floatValue]);//以pos为中心，显示2000米
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
     [_mapView setRegion:adjustedRegion animated:YES];
@@ -268,11 +268,10 @@
             userLocation.coordinate = newlocation.coordinate;
             
             [self showLocationInMapView:userLocation andisAoto:!ishandRefresh];
-            
+            [self showAnnotationInMapView:userLocation];
             if(ishandRefresh){
                 ishandRefresh = NO;
             }
-            
             [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
         }
     } faillure:^(NSError *error) {
@@ -455,7 +454,7 @@ long long _currentTimeSamp = 0;
         return nil;
     if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
         MKAnnotationView* aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MKPointAnnotation"];
-        aView.image = [UIImage imageNamed:@"ico_bag"];
+        aView.image = self.currentModel.bagType == 2?[UIImage imageNamed:@"ico_bag"]:[UIImage imageNamed:@"箱子"];
         aView.frame =  CGRectMake(0, 0, 25, 33); 
         aView.canShowCallout = YES;
         
@@ -464,6 +463,19 @@ long long _currentTimeSamp = 0;
     return nil;
 }
 
+#pragma mark - // 显示大头针
+- (void)showAnnotationInMapView:(MKUserLocation *)userLocation {
+    
+    if (_mapView.annotations.count > 0) {
+        [_mapView removeAnnotations:_mapView.annotations];
+    }
+    
+    MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+    [annotation setCoordinate:userLocation.coordinate];
+    [_mapView addAnnotation:annotation];
+    
+    //    [self showCurrentLocationInfo:userLocation];
+}
 
 - (void)showCurrentLocationInfo:(MKUserLocation *)location {
     CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:location.coordinate.latitude longitude:location.coordinate.longitude];
@@ -505,10 +517,8 @@ long long _currentTimeSamp = 0;
             [_mapView setRegion:adjustedRegion animated:YES];
             stepper.value = 6;
         }
+    }
 }
-
-
-
 
 //计算2点之间的距离
 - (CGFloat)calculationDistance {

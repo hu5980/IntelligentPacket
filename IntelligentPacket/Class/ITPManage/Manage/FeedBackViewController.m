@@ -65,7 +65,7 @@
     self.feedbackTextView.delegate = self;
     
     [self refreshLanguge];
-    
+
     @weakify(self)
     RAC(confimButton, enabled) = [RACSignal combineLatest:@[self.feedbackTextView.rac_textSignal]
                                                    reduce:^(NSString *weight) {
@@ -129,9 +129,9 @@
     
     UIActionSheet *choose=[[UIActionSheet alloc]initWithTitle:nil
                                                      delegate:(id)self
-                                            cancelButtonTitle:@"取消"
+                                            cancelButtonTitle:L(@"cancel")
                                        destructiveButtonTitle:nil
-                                            otherButtonTitles:@"拍照",@"从相册中选择", nil ];
+                                            otherButtonTitles:L(@"Take a picture"),L(@"Select from album"), nil ];
     [choose showInView:self.view];
     
 }
@@ -161,9 +161,9 @@
 {
     UIActionSheet *choose=[[UIActionSheet alloc]initWithTitle:nil
                                                      delegate:(id)self
-                                            cancelButtonTitle:@"取消"
+                                            cancelButtonTitle:L(@"cancel")
                                        destructiveButtonTitle:nil
-                                            otherButtonTitles:@"拍照",@"从相册中选择", nil ];
+                                            otherButtonTitles:L(@"Take a picture"),L(@"Select from album"), nil ];
     [choose showInView:self.view];
 }
 
@@ -177,7 +177,7 @@
         [self presentViewController:_imagePickerController animated:YES completion:nil];
     }
     else
-        [self showAlert:@"该设备不支持照相功能" WithDelay:1.];
+        [self showAlert:L(@"The device does not support the camera function") WithDelay:1.];
 }
 
 -(void)selectPhoto
@@ -194,7 +194,7 @@
         }];
     }
     else
-        [self showAlert:@"该设备无法访问相册" WithDelay:1.];
+        [self showAlert:L(@"The device could not access the album") WithDelay:1.];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -217,14 +217,20 @@
 }
 #pragma mark - UITextView Change
 
+- (void)textViewDidChange:(UITextView *)textView {
+    contentnumber.text = OCSTR(@"%lu/200", (unsigned long)textView.text.length);
+}
+
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     textViewPlaceholder.hidden = YES;
+    contentnumber.text = OCSTR(@"%lu/200", (unsigned long)textView.text.length);
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
     if (textView.text.length > 0) {
         textViewPlaceholder.hidden = YES;
     }else textViewPlaceholder.hidden = NO;
+    contentnumber.text = OCSTR(@"%lu/200", (unsigned long)textView.text.length);
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {

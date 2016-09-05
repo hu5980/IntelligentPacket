@@ -116,7 +116,7 @@ long long currentTimeSamp = 0;
         }else {
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            [self showAlert:@"获取数据失败" WithDelay:1];
+//            [self showAlert:@"获取数据失败" WithDelay:1];
         }
         
     } faillure:^(NSError *error) {
@@ -168,16 +168,16 @@ long long currentTimeSamp = 0;
 - (void)edit {
 //    ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
 //    [self.navigationController pushViewController:vc animated:YES];
-    
-    [[ITPScoketManager shareInstance]crWithEmail:@"443564222@qq.com" bagId:@"0123456789" withTimeout:10 tag:107 success:^(NSData *data, long tag) {
-        if (data) {
-            NSLog(@"%@",data);
-        }
-    } faillure:^(NSError *error) {
-        if (error) {
-            NSLog(@"%@",error.description);
-        }
-    }];
+//    
+//    [[ITPScoketManager shareInstance]crWithEmail:@"443564222@qq.com" bagId:@"0123456789" withTimeout:10 tag:107 success:^(NSData *data, long tag) {
+//        if (data) {
+//            NSLog(@"%@",data);
+//        }
+//    } faillure:^(NSError *error) {
+//        if (error) {
+//            NSLog(@"%@",error.description);
+//        }
+//    }];
 
     ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
     [self.navigationController pushViewController:vc animated:YES];

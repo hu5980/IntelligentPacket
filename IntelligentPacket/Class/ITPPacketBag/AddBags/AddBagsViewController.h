@@ -11,7 +11,7 @@
 /*
  * 添加箱包
  */
-@interface AddBagsViewController : ITPBaseViewController
+@interface AddBagsViewController : ITPBaseViewController<UITextFieldDelegate>
 
 
 @property (nonatomic, strong) ITPPacketBagModel * model;

@@ -122,11 +122,12 @@ static const float ReaderViewLengthRatio = 0.72;
     //说明label
     UILabel *labIntroudction = [[UILabel alloc] init];
     labIntroudction.backgroundColor = [UIColor clearColor];
-    labIntroudction.frame = CGRectMake(CGRectGetMaxX(maskLeftView.frame), CGRectGetMinY(maskBottomView.frame) + 25, self.readerViewSideLength, 20);
+    labIntroudction.frame = CGRectMake(CGRectGetMaxX(maskLeftView.frame), CGRectGetMinY(maskBottomView.frame) + 25, self.readerViewSideLength, 35);
     labIntroudction.textAlignment = NSTextAlignmentCenter;
+    labIntroudction.numberOfLines = 0;
     labIntroudction.font = [UIFont boldSystemFontOfSize:13.0];
     labIntroudction.textColor = [UIColor whiteColor];
-    labIntroudction.text = @"将二维码置于框内, 即可自动扫描";
+    labIntroudction.text = L(@"The two-dimensional code in the box, you can automatically scan");
     [self addSubview:labIntroudction];
     
 

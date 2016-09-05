@@ -12,6 +12,7 @@ CFBundleDisplayName="智能箱包";
 "Luggage and bags" = "箱包";
 "Bag weighing" = "箱包称重";
 "confim" = "确认";
+"cancel" = "取消";
 
 "Add bags" = "添加箱包";
 "Manual input box ID" = "手动输入箱包ID";
@@ -23,11 +24,12 @@ CFBundleDisplayName="智能箱包";
 "nickname" = "昵称";
 "Add bags success" = "添加成功";
 "Add bags failure" = "添加失败";
+"Remarks" = "备注";
 
 "delete success" = "删除成功";
 "delete failure" = "删除失败";
 "Can't delete someone else's bags" = "不能删除别人的箱包";
-
+"The two-dimensional code in the box, you can automatically scan" = "将二维码置于框内, 即可自动扫描";
 ////// 定位 ========================
 "Location" = "定位";
 
@@ -53,6 +55,11 @@ CFBundleDisplayName="智能箱包";
 "Modify success" = "修改成功";
 "Modify falied" = "修改失败";
 "Slightly modified?" = "稍微改动点？";
+"Take a picture" = "拍照";
+"Select from album" = "从相册中选择";
+"The device does not support the camera function" = "该设备不支持照相功能";
+"The device could not access the album" = "该设备无法访问相册";
+
 
 // 安全栏 。。。。
 

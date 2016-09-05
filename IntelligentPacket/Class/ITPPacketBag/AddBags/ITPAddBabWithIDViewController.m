@@ -49,6 +49,7 @@
         [self dismissViewControllerAnimated:YES completion:^{
             [self performBlock:^{
                 self.IDtextfield.text = resultAsString;
+                [self idhaschanged:self.IDtextfield];
             } afterDelay:.1];
         }];
     }];
