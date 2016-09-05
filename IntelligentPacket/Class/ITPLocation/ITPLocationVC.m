@@ -108,7 +108,7 @@
         [self queryLocation];
         
     }];
-//    self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(queryLocation) userInfo:nil repeats:YES];
+    self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(aotoQueryLocation) userInfo:nil repeats:YES];
 //    self.locationTimer.fireDate = [NSDate distantFuture]; // pause
     
     updateTimeLabel =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
@@ -145,6 +145,52 @@
 #pragma --mark Action
 
 // 查询地址返回
+
+
+- (void)aotoQueryLocation {
+    if (!self.currentModel ) {
+        [self getCurPosition];
+        return;
+    }
+    
+    [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.currentModel.bagId withTimeout:10 tag:107 success:^(NSData *data, long tag) {
+        if (tag != 107) {
+            return ;
+        }
+        BOOL abool = [ITPLocationViewModel isSuccesss:data];
+        if (abool) {
+            ITPLocationModel * model = [ITPLocationViewModel Locations:data];
+            updateTimeLabel.text = [NSString stringWithFormat:@"更新时间%@",model.time];
+            [self setelectricImage:model.electric];
+            NSLog(@"longitude = %@   latitude = %@", model.electric, model.latitude);
+            
+            MKUserLocation *userLocation = [[MKUserLocation alloc] init];
+            userLocation.coordinate = CLLocationCoordinate2DMake([model.latitude doubleValue], [model.longitude  doubleValue]);
+            
+            // 地球转火星
+            CLLocation * location = [[CLLocation alloc] initWithCoordinate:userLocation.coordinate
+                                                                  altitude:userLocation.location.altitude
+                                                        horizontalAccuracy:userLocation.location.horizontalAccuracy
+                                                          verticalAccuracy:userLocation.location.verticalAccuracy
+                                                                    course:userLocation.location.course
+                                                                     speed:userLocation.location.speed
+                                                                 timestamp:userLocation.location.timestamp];
+            CLLocation * newlocation = [location locationMarsFromEarth];
+            // =========================
+            userLocation.coordinate = newlocation.coordinate;
+            
+            [self showLocationInMapView:userLocation andisAoto:YES];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
+        }
+    } faillure:^(NSError *error) {
+        if (error) {
+            
+        }
+    }];
+
+}
+
 - (void)queryLocation {
     
     if (!self.currentModel ) {
@@ -178,7 +224,7 @@
             // =========================
             userLocation.coordinate = newlocation.coordinate;
             
-            [self showLocationInMapView:userLocation];
+            [self showLocationInMapView:userLocation andisAoto:NO];
             
             [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
         }
@@ -384,15 +430,24 @@
     }];
 }
 
-- (void)showLocationInMapView:(MKUserLocation *)userLocation {
-    if (_mapView.annotations.count>0) {
+- (void)showLocationInMapView:(MKUserLocation *)userLocation andisAoto:(BOOL) aoto {
+    if (!aoto) {
         [_mapView removeAnnotations:_mapView.annotations];
-    }else{
-        
         CLLocationCoordinate2D pos = userLocation.coordinate;
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
         MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
         [_mapView setRegion:adjustedRegion animated:YES];
+    }else{
+        if (_mapView.annotations.count>0) {
+            [_mapView removeAnnotations:_mapView.annotations];
+        }else{
+            
+            CLLocationCoordinate2D pos = userLocation.coordinate;
+            MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
+            MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+            [_mapView setRegion:adjustedRegion animated:YES];
+        }
+
     }
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
