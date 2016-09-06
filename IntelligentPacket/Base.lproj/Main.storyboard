@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fFB-Qs-N4Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fFB-Qs-N4Y">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -750,14 +750,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uk0-UR-vup">
                                 <rect key="frame" x="15" y="92" width="290" height="44"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="邮箱_" translatesAutoresizingMaskIntoConstraints="NO" id="Xh8-Kg-NBz">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="密码_" translatesAutoresizingMaskIntoConstraints="NO" id="Xh8-Kg-NBz">
                                         <rect key="frame" x="8" y="12" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="XQc-Bz-7Z7"/>
                                             <constraint firstAttribute="height" constant="20" id="dd0-C7-mNE"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EQ8-y8-vNB">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EQ8-y8-vNB">
                                         <rect key="frame" x="48" y="0.0" width="234" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
@@ -919,9 +919,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="EQ8-y8-vNB" id="o9d-pt-lAV"/>
+                        <outlet property="conifmPasswordTextField" destination="NXu-Yt-e9a" id="hqy-os-3jG"/>
                         <outlet property="nickNameTextField" destination="fit-iD-OSw" id="e6W-QQ-pZF"/>
-                        <outlet property="passwordTextField" destination="NXu-Yt-e9a" id="Eqr-RZ-oGM"/>
+                        <outlet property="oldPasswordTextField" destination="EQ8-y8-vNB" id="hbB-MR-V2p"/>
                         <outlet property="phoneTF" destination="b1J-rV-HZq" id="nOo-bv-4lE"/>
                         <outlet property="saveButton" destination="ysJ-1F-KGm" id="Egc-RZ-bvb"/>
                     </connections>
@@ -1258,8 +1258,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailBackView" destination="0xr-Xe-ceA" id="4lq-EF-FeK"/>
                         <outlet property="nameTextField" destination="3lf-Ud-Iu9" id="dlq-Gh-lbZ"/>
+                        <outlet property="passwordBackView" destination="OvX-Ey-fGn" id="5Y8-5P-8R9"/>
                         <outlet property="passwordTextField" destination="OTm-rF-Dgm" id="RSU-YO-E31"/>
+                        <outlet property="phoneBackView" destination="PnQ-ph-ceM" id="0Bo-iU-SFh"/>
                         <outlet property="phoneTextFeild" destination="PpV-QO-bjS" id="wI4-rR-Ijy"/>
                         <outlet property="saveButton" destination="eHk-0x-uIH" id="iLT-gv-bay"/>
                     </connections>

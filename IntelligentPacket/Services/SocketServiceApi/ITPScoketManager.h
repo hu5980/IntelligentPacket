@@ -47,7 +47,7 @@
 
 // 设置亲情号码
 - (void)phbWithEmail:(NSString *)email
-               phone:(NSString *)phone
+               /*phone:(NSString *)phone*/
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
              success:(void(^)(NSData *data, long tag))success
@@ -119,16 +119,17 @@
              faillure:(void(^)(NSError *error))faillure ;
 
 
-//邮箱号,原密码,新密码,原电话号码,新电话号码,新昵称
+//邮箱号,原密码,新密码,新电话号码,新昵称
 // 修改用户信息
 - (void)modifyUserInformationWithEmail:(NSString *)email
-                              password:(NSString *)password
+                           oldPassword:(NSString *)oldPassword
+                           newPassword:(NSString *)newPassword
                                  phone:(NSString *)phone                //电话
                               nickName:(NSString *)nickName             //昵称
                            withTimeout:(NSTimeInterval)timeout
                                    tag:(long)tag
                                success:(void(^)(NSData *data, long tag))success
-                              faillure:(void(^)(NSError *error))faillure ;
+                              faillure:(void(^)(NSError *error))faillure;
 
 
 // 获取箱子定位历史信息

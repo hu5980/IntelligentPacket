@@ -11,10 +11,15 @@
 
 @interface ITPAddContactViewController ()
 {
-    __weak IBOutlet UITextField *phoneTextFeild;
-
-    __weak IBOutlet UITextField *nameTextField;
     
+    
+    __weak IBOutlet UIView *phoneBackView;
+    __weak IBOutlet UIView *emailBackView;
+    __weak IBOutlet UIView *passwordBackView;
+    
+    
+    __weak IBOutlet UITextField *phoneTextFeild;
+    __weak IBOutlet UITextField *nameTextField;
     __weak IBOutlet UITextField *passwordTextField;
     __weak IBOutlet UIButton *saveButton;
 }
@@ -27,13 +32,13 @@
     [super viewDidLoad];
     
     [self refreshLanguge];
-    
+    phoneBackView.hidden = passwordBackView.hidden = YES;
     
     RAC(saveButton, enabled) =
-    [RACSignal combineLatest:@[phoneTextFeild.rac_textSignal,
-                               nameTextField.rac_textSignal,passwordTextField.rac_textSignal]
-                      reduce:^(NSString *phone, NSString *username, NSString *password) {
-                          return @(phone.length && username.length && password.length);
+    [RACSignal combineLatest:@[
+                               nameTextField.rac_textSignal]//phoneTextFeild.rac_textSignal,,passwordTextField.rac_textSignal
+                      reduce:^( NSString *username) {
+                          return @(username.length);
                       }];
     
 }
@@ -43,17 +48,17 @@
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
-    [[ITPScoketManager shareInstance]phbWithEmail:nameTextField.text phone:phoneTextFeild.text withTimeout:10 tag:102 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance]phbWithEmail:nameTextField.text withTimeout:10 tag:102 success:^(NSData *data, long tag) {
         @strongify(self);
         [self performBlock:^{
-            
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             BOOL abool = [ITPContactViewModel isSuccesss:data];
             if (abool) {
                 
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 [self showAlert:L(@"add contacts success") WithDelay:1.];
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:ITPacketAddcontacts object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:ITPacketAddbags object:nil];
                 
                 [self performBlock:^{
                     [self.navigationController popViewControllerAnimated:YES];

@@ -116,6 +116,8 @@ CFBundleDisplayName="智能箱包";
 
 "Please enter your email address" = "请输入邮箱";
 "Please enter your password" = "请输入密码";
+"Please enter your old password" = "请输入旧密码";
+"Please enter your new password" = "请输入新密码";
 "login" = "登录";
 "fast register" = "快速注册";
 "find password" = "找回密码";

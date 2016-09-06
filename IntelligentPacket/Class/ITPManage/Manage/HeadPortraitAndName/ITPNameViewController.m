@@ -15,8 +15,8 @@
     __weak IBOutlet UIButton *saveButton;
 }
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *oldPasswordTextField;
+@property (weak, nonatomic) IBOutlet UITextField *conifmPasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *nickNameTextField;
 @end
 
@@ -25,8 +25,8 @@
 - (void)refreshLanguge {
     
     self.phoneTF.placeholder = L(@"Please enter phone number");
-    self.emailTextField.placeholder = L(@"Please enter your email address");
-    self.passwordTextField.placeholder = L(@"Please enter your password");
+    self.oldPasswordTextField.placeholder = L(@"Please enter your old password");
+    self.conifmPasswordTextField.placeholder = L(@"Please enter your new password");
     self.nickNameTextField.placeholder = L(@"Please enter your nickName");
 
     [saveButton setTitle:L(@"save") forState:UIControlStateNormal];
@@ -35,10 +35,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.phoneTF.text = [ITPUserManager ShareInstanceOne].userPhone;
-    self.emailTextField.text = [ITPUserManager ShareInstanceOne].userEmail;
-    self.passwordTextField.text = [ITPUserManager ShareInstanceOne].userPassword;
-    self.nickNameTextField.text = [ITPUserManager ShareInstanceOne].userName;
+//    self.phoneTF.text = [ITPUserManager ShareInstanceOne].userPhone;
+//    self.emailTextField.text = [ITPUserManager ShareInstanceOne].userEmail;
+//    self.oldPasswordTextField.text = [ITPUserManager ShareInstanceOne].userPassword;
+//    self.nickNameTextField.text = [ITPUserManager ShareInstanceOne].userName;
     
 }
 
@@ -47,8 +47,7 @@
     [self.view endEditing:YES];
     
     if ([self.phoneTF.text isEqualToString: [ITPUserManager ShareInstanceOne].userPhone] &&
-        [self.emailTextField.text isEqualToString: [ITPUserManager ShareInstanceOne].userEmail]&&
-        [self.passwordTextField.text isEqualToString: [ITPUserManager ShareInstanceOne].userPassword]&&
+        [self.oldPasswordTextField.text isEqualToString: [ITPUserManager ShareInstanceOne].userPassword]&&
         [self.nickNameTextField.text isEqualToString: [ITPUserManager ShareInstanceOne].userName]) {
         [self showAlert:L(@"Slightly modified?") WithDelay:1.];
         return;
@@ -59,7 +58,7 @@
    
     @weakify(self);
     
-    [[ITPScoketManager shareInstance] modifyUserInformationWithEmail:[ITPUserManager ShareInstanceOne].userEmail password:self.passwordTextField.text phone:self.phoneTF.text nickName:self.nickNameTextField.text withTimeout:10 tag:113 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance] modifyUserInformationWithEmail:[ITPUserManager ShareInstanceOne].userEmail oldPassword:self.oldPasswordTextField.text newPassword:self.conifmPasswordTextField.text phone:self.phoneTF.text nickName:self.nickNameTextField.text withTimeout:10 tag:113 success:^(NSData *data, long tag) {
         @strongify(self);
                 [self performBlock:^{
                     @strongify(self);
@@ -72,7 +71,7 @@
         
         
                         [ITPUserManager ShareInstanceOne].userPhone = self.phoneTF.text;
-                        [ITPUserManager ShareInstanceOne].userPassword = self.passwordTextField.text;
+                        [ITPUserManager ShareInstanceOne].userPassword = self.conifmPasswordTextField.text;
                         [ITPUserManager ShareInstanceOne].userName = self.nickNameTextField.text;
         
                         [self performBlock:^{
@@ -89,18 +88,6 @@
     } faillure:^(NSError *error) {
         
     }];
-    
-//    [[ITPScoketManager shareInstance]phbWithEmail:nameTextField.text phone:phoneTextFeild.text withTimeout:10 tag:102 success:^(NSData *data, long tag) {
-//       //
-//    } faillure:^(NSError *error) {
-//        
-//        [self performBlock:^{
-//            if (error) {
-//                [self showAlert:L(@"add contacts failure") WithDelay:1.];
-//            }
-//        } afterDelay:.1];
-//        
-//    }];
     
 }
 
