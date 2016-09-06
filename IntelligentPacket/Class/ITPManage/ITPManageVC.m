@@ -22,8 +22,9 @@
     UISwitch * __languageSwitch;
     ITPManageCell * headerCell ;
     NetServiceApi * __api;
-    
     UIImageView * headerImageView;
+    
+    BOOL isEnglish;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -40,6 +41,7 @@
     [super viewWillAppear:animated];
 
     __languageSwitch.on = ![[ITPLanguageManager sharedInstance]isChinese];
+    isEnglish = ![[ITPLanguageManager sharedInstance]isChinese];
     [self refreshHeadimage];
     
 }
@@ -70,15 +72,6 @@
     @weakify(self)
     [__languageSwitch.rac_newOnChannel subscribeNext:^(id x) {
         @strongify(self)
-        if ([x boolValue]) {
-            
-            [[NSUserDefaults standardUserDefaults] setObject:@"en" forKey:AppLanguage];
-            
-        }else {
-            
-            [[NSUserDefaults standardUserDefaults] setObject:@"zh-Hans" forKey:AppLanguage];
-        }
-        [[NSUserDefaults standardUserDefaults] synchronize];
         
         [self performBlock:^{
             [self refresh:[x boolValue]];
@@ -92,6 +85,12 @@
     
     [[ITPScoketManager shareInstance]loginWith:[ITPUserManager ShareInstanceOne].userEmail password:[ITPUserManager ShareInstanceOne].userPassword withTimeout:10 tag:108 success:^(NSData *data, long tag) {
         __languageSwitch.on = abool;
+        if (abool) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"en" forKey:AppLanguage];
+        }else {
+            [[NSUserDefaults standardUserDefaults] setObject:@"zh-Hans" forKey:AppLanguage];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [[NSNotificationCenter defaultCenter]postNotificationName:refreshLangugeNotification object:nil];
         
     } faillure:^(NSError *error) {
@@ -109,6 +108,129 @@
     [_loginOutButton setTitle:L(@"Sign out") forState:UIControlStateNormal];
 }
 
+
+- (void)showLanguage {
+
+    @weakify(self);
+    isEnglish = ![[ITPLanguageManager sharedInstance]isChinese];
+    
+    UIButton * backWindowGoundView = [[UIButton alloc]initWithFrame:[[UIApplication sharedApplication].delegate window].bounds];
+    backWindowGoundView.backgroundColor = [UIColor blackColor];
+    backWindowGoundView.alpha = 0.4;
+    [[[UIApplication sharedApplication].delegate window] addSubview:backWindowGoundView];
+   
+    UIView * backGoundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UI_WIDTH - 40, 300)];
+    backGoundView.backgroundColor = [UIColor whiteColor];
+    backGoundView.alpha = 1;
+    backGoundView.center = [[UIApplication sharedApplication].delegate window].center;
+    [[[UIApplication sharedApplication].delegate window] addSubview:backGoundView];
+    
+   
+    UILabel * titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, backGoundView.width, 50)];
+    titleLabel.text = L(@"Select Language");
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [backGoundView addSubview:titleLabel];
+    
+    UIView * topLine = [[UIView alloc]initWithFrame:CGRectMake(0, titleLabel.bottom, backGoundView.width, 0.5)];
+    topLine.backgroundColor = RGB(210, 210, 210);
+    [backGoundView addSubview:topLine];
+    
+    // 中文
+    UIButton * ChineseCtl = [[UIButton alloc]initWithFrame:CGRectMake(0, topLine.bottom, backGoundView.width, 65)];
+    ChineseCtl.backgroundColor = RGB(230, 230, 230);
+    [backGoundView addSubview:ChineseCtl];
+    UIImageView * indictorOne = [[UIImageView alloc]initWithFrame:CGRectMake(30, (ChineseCtl.height - 25)/2, 25, 25)];
+    indictorOne.image = [UIImage imageNamed:@"select"];
+    [ChineseCtl addSubview:indictorOne];
+    UILabel * ChineseLable = [[UILabel alloc]initWithFrame:CGRectMake(indictorOne.right + 20, 0, backGoundView.width - (indictorOne.right + 20), ChineseCtl.height)];
+    ChineseLable.text = @"中文";
+    ChineseLable.font = [UIFont systemFontOfSize:16];
+    [ChineseCtl addSubview:ChineseLable];
+    
+    
+    UIView * middleLine = [[UIView alloc]initWithFrame:CGRectMake(0, ChineseCtl.bottom, backGoundView.width, 0.5)];
+    middleLine.backgroundColor = RGB(210, 210, 210);
+    [backGoundView addSubview:middleLine];
+    
+    // English
+    UIButton * EnglishCtl = [[UIButton alloc]initWithFrame:CGRectMake(0, middleLine.bottom, backGoundView.width, 65)];
+    EnglishCtl.backgroundColor = RGB(230, 230, 230);
+    [backGoundView addSubview:EnglishCtl];
+    UIImageView * indictorTwo = [[UIImageView alloc]initWithFrame:CGRectMake(30, (EnglishCtl.height - 25)/2, 25, 25)];
+    indictorTwo.image = [UIImage imageNamed:@"select"];
+    [EnglishCtl addSubview:indictorTwo];
+    UILabel * EnglishLable = [[UILabel alloc]initWithFrame:CGRectMake(indictorTwo.right + 20, 0, backGoundView.width - (indictorTwo.right + 20), EnglishCtl.height)];
+    EnglishLable.text = @"English";
+    EnglishLable.font = [UIFont systemFontOfSize:16];
+    [EnglishCtl addSubview:EnglishLable];
+    
+    
+    ChineseCtl.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        indictorOne.hidden = NO;
+        indictorTwo.hidden = YES;
+        isEnglish = NO;
+        return [RACSignal empty];
+    }];
+    
+    EnglishCtl.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        indictorTwo.hidden = NO;
+        indictorOne.hidden = YES;
+        isEnglish = YES;
+        return [RACSignal empty];
+    }];
+    
+    if (isEnglish) {
+        indictorTwo.hidden = NO;
+        indictorOne.hidden = YES;
+    }
+    else {
+        indictorOne.hidden = NO;
+        indictorTwo.hidden = YES;   
+    }
+    
+    UIView * bottomLine = [[UIView alloc]initWithFrame:CGRectMake(0, EnglishCtl.bottom, backGoundView.width, 0.5)];
+    bottomLine.backgroundColor = RGB(210, 210, 210);
+    [backGoundView addSubview:bottomLine];
+    
+    UIButton * cancleButton = [[UIButton alloc]initWithFrame:CGRectMake(0, bottomLine.bottom, backGoundView.width/2-.25, 50)];
+    [cancleButton setTitle:L(@"Cancel") forState:UIControlStateNormal];
+    [backGoundView addSubview:cancleButton];
+    [cancleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    cancleButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        [backWindowGoundView removeFromSuperview];
+        [backGoundView removeFromSuperview];
+        return [RACSignal empty];
+    }];
+    
+    UIView * hLine = [[UIView alloc]initWithFrame:CGRectMake(cancleButton.right, bottomLine.bottom, .5, cancleButton.height)];
+    hLine.backgroundColor = RGB(210, 210, 210);
+    [backGoundView addSubview:hLine];
+    
+    UIButton * okButton = [[UIButton alloc]initWithFrame:CGRectMake(backGoundView.width/2+.25, bottomLine.bottom, backGoundView.width/2-.25, 50)];
+    [okButton setTitle:L(@"OK") forState:UIControlStateNormal];
+    [okButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [backGoundView addSubview:okButton];
+    okButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        [backWindowGoundView removeFromSuperview];
+        [backGoundView removeFromSuperview];
+        
+        [self performBlock:^{
+            [self refresh:isEnglish];
+        } afterDelay:.1];
+
+        return [RACSignal empty];
+    }];
+    
+    backWindowGoundView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        [backWindowGoundView removeFromSuperview];
+        [backGoundView removeFromSuperview];
+        return [RACSignal empty];
+    }];
+    
+    backGoundView.height = cancleButton.bottom;
+    backGoundView.center = [[UIApplication sharedApplication].delegate window].center;
+}
 
 #pragma mark - UITableViewDelegate
 const int manageDataCount___ = 5;
@@ -255,6 +377,11 @@ NSString * manageData[manageDataCount___] = {
             vc.title = title;   vc.isSafebagList = YES;
             [self.navigationController pushViewController:vc animated:YES];
             
+        }
+            break;
+        case 4:
+        {
+            [self showLanguage];
         }
             break;
         case 5:

@@ -30,6 +30,8 @@ CFBundleDisplayName="智能箱包";
 "delete failure" = "删除失败";
 "Can't delete someone else's bags" = "不能删除别人的箱包";
 "The two-dimensional code in the box, you can automatically scan" = "将二维码置于框内, 即可自动扫描";
+"Whether to dial" = "是否拨打";
+
 ////// 定位 ========================
 "Location" = "定位";
 
@@ -59,7 +61,11 @@ CFBundleDisplayName="智能箱包";
 "Select from album" = "从相册中选择";
 "The device does not support the camera function" = "该设备不支持照相功能";
 "The device could not access the album" = "该设备无法访问相册";
-
+"Submit falied!" = "提交失败";
+"Submit success!" = "提交成功";
+"Select Language" = "选择语言";
+"Cancel" = "取消";
+"OK" = "确认";
 
 // 安全栏 。。。。
 

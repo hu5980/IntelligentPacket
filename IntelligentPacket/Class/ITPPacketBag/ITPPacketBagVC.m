@@ -235,7 +235,7 @@ long long currentTimeSamp = 0;
         if (self.dataSource[indexPath].bagType == 1) {  //箱子
             but.selected = !but.selected;
         }else {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:OCSTR(@"tel://%@",self.dataSource[indexPath].bagPhoneNum)]];
+            [self showCallPhone:self.dataSource[indexPath]];
         }
     };
     
@@ -252,7 +252,6 @@ long long currentTimeSamp = 0;
         @strongify(self)
         
         ITPPacketBagModel * _model = [ITPPacketBagModel new];
-        _model.bagType = indexPath/2 == 0?1:0;
         ITPPacketbagWeightVeiwController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"weight"];
         vc.model = _model;
         [self.navigationController pushViewController:vc animated:YES];
@@ -307,14 +306,9 @@ long long currentTimeSamp = 0;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
     [[ITPScoketManager shareInstance]deleteBagWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[__selectIndexPath.row].bagId withTimeout:10 tag:109 success:^(NSData *data, long tag) {
-        
         @strongify(self);
-        if (tag != 109) {
-            return ;
-        }
-       
+        if (tag != 109) {return ;}
         [self performBlock:^{
-            
             BOOL abool = [ITPBagViewModel isSuccesss:data];
             if (abool) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -323,22 +317,92 @@ long long currentTimeSamp = 0;
                 // 接着刷新view
                 [self.tableView deleteRowsAtIndexPaths:@[__selectIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             }else {
-                
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self showAlert:L(@"Delete error") WithDelay:1];
             }
-            
         } afterDelay:0.1];
-        
-       
-        
-        
-    } faillure:^(NSError *error) {
-        
-        
+    } faillure:^(NSError *error) {}];
+}
+
+- (void)showCallPhone:(ITPPacketBagModel *)model {
+    
+    @weakify(self);
+    
+    UIButton * backWindowGoundView = [[UIButton alloc]initWithFrame:[[UIApplication sharedApplication].delegate window].bounds];
+    backWindowGoundView.backgroundColor = [UIColor blackColor];
+    backWindowGoundView.alpha = 0.4;
+    [[[UIApplication sharedApplication].delegate window] addSubview:backWindowGoundView];
+    
+    UIView * backGoundView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UI_WIDTH - 40, 300)];
+    backGoundView.backgroundColor = [UIColor whiteColor];
+    backGoundView.alpha = 1;
+    backGoundView.center = [[UIApplication sharedApplication].delegate window].center;
+    [[[UIApplication sharedApplication].delegate window] addSubview:backGoundView];
+    
+    
+    UILabel * titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, backGoundView.width, 50)];
+    titleLabel.text = OCSTR(@"%@%@",L(@"Whether to dial"),model.bagName);
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [backGoundView addSubview:titleLabel];
+    
+    UIView * topLine = [[UIView alloc]initWithFrame:CGRectMake(0, titleLabel.bottom, backGoundView.width, 0.5)];
+    topLine.backgroundColor = RGB(210, 210, 210);
+    [backGoundView addSubview:topLine];
+    
+    
+    UIImageView * phoneImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"callphone"]];
+    [backGoundView addSubview:phoneImageView];
+    phoneImageView.centerX = backGoundView.width/2;
+    phoneImageView.centerY = 90;
+    
+    UILabel * phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, phoneImageView.bottom + 10, backGoundView.width, 65)];
+    phoneLabel.text = model.bagPhoneNum;
+    phoneLabel.textAlignment = NSTextAlignmentCenter;
+    [backGoundView addSubview:phoneLabel];
+
+    
+    UIView * bottomLine = [[UIView alloc]initWithFrame:CGRectMake(0, phoneLabel.bottom, backGoundView.width, 0.5)];
+    bottomLine.backgroundColor = RGB(210, 210, 210);
+    [backGoundView addSubview:bottomLine];
+    
+    UIButton * cancleButton = [[UIButton alloc]initWithFrame:CGRectMake(0, bottomLine.bottom, backGoundView.width/2-.25, 50)];
+    [cancleButton setTitle:L(@"Cancel") forState:UIControlStateNormal];
+    [backGoundView addSubview:cancleButton];
+    [cancleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    cancleButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        [backWindowGoundView removeFromSuperview];
+        [backGoundView removeFromSuperview];
+        return [RACSignal empty];
     }];
     
+    UIView * hLine = [[UIView alloc]initWithFrame:CGRectMake(cancleButton.right, bottomLine.bottom, .5, cancleButton.height)];
+    hLine.backgroundColor = RGB(210, 210, 210);
+    [backGoundView addSubview:hLine];
     
+    UIButton * okButton = [[UIButton alloc]initWithFrame:CGRectMake(backGoundView.width/2+.25, bottomLine.bottom, backGoundView.width/2-.25, 50)];
+    [okButton setTitle:L(@"OK") forState:UIControlStateNormal];
+    [okButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [backGoundView addSubview:okButton];
+    okButton.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        [backWindowGoundView removeFromSuperview];
+        [backGoundView removeFromSuperview];
+        
+        [self performBlock:^{
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:OCSTR(@"tel://%@",model.bagPhoneNum)]];
+        } afterDelay:.1];
+        
+        return [RACSignal empty];
+    }];
+    
+    backWindowGoundView.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        [backWindowGoundView removeFromSuperview];
+        [backGoundView removeFromSuperview];
+        return [RACSignal empty];
+    }];
+    
+    backGoundView.height = cancleButton.bottom;
+    backGoundView.center = [[UIApplication sharedApplication].delegate window].center;
 }
 
 @end

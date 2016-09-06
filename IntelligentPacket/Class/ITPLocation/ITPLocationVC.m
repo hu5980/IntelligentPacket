@@ -44,6 +44,7 @@
     NSArray *rangeArray;
     
     BOOL  ishandRefresh;
+    UIView * rightTopbackView;
 }
 
 
@@ -125,24 +126,36 @@
     updateTimeLabel.backgroundColor = [UIColor clearColor];
     [self.view addSubview:updateTimeLabel];
     
+    // top right
+    rightTopbackView = [[UIView alloc]initWithFrame:CGRectMake(UI_WIDTH - 65, 20, 50, 105)];
+    rightTopbackView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"locback"]];
+    [_mapView addSubview:rightTopbackView];
     
-    electricImageView = [[UIImageView alloc] initWithFrame:CGRectMake(XKAppWidth - 20 - 13, 20, 13, 25)];
+    electricImageView = [[UIImageView alloc] initWithFrame:CGRectMake(17.5, 15, 15, 30)];
     electricImageView.image = [UIImage imageNamed:@"bat5"];
-    [self.view addSubview:electricImageView];
+    [rightTopbackView addSubview:electricImageView];
     
     refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    refreshButton.frame = CGRectMake(XKAppWidth-15-25, electricImageView.bottom + 15, 25, 21);
-    [refreshButton setBackgroundImage:[UIImage imageNamed:@"reflash"] forState:UIControlStateNormal];
-    [refreshButton addTarget:self action:@selector(refreshAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:refreshButton];
+    refreshButton.frame = CGRectMake(7.5, electricImageView.bottom + 10, 35, 50);
+    [refreshButton setImage:[UIImage imageNamed:@"fresh"] forState:UIControlStateNormal];
+    [refreshButton addTarget:self action:@selector(refreshAction) forControlEvents:UIControlEventTouchUpInside];
+    [rightTopbackView addSubview:refreshButton];
+    refreshButton.rac_command = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+        @strongify(self);
+        [self refreshAction];
+        return [RACSignal empty];
+    }];
     
     [RACObserve(self, currentModel)subscribeNext:^(id x) {
         ITPPacketBagModel * model = x;
             if (model.bagId&&model.bagPhoneNum) {
                 updateTimeLabel.hidden = NO;
+                rightTopbackView.hidden = NO;
                 electricImageView.hidden = NO;
                 refreshButton.hidden = NO;
-            } else {
+            }
+            else {
+                rightTopbackView.hidden = YES;
                 updateTimeLabel.hidden = YES;
                 electricImageView.hidden = YES;
                 refreshButton.hidden = YES;
@@ -281,7 +294,7 @@
     }];
 }
 
-- (void)refreshAction:(UIButton *)buton {
+- (void)refreshAction { //:(UIButton *)buton
     ishandRefresh = YES;
     [self queryLocation];
 }
@@ -317,14 +330,12 @@
 - (void)setelectricImage:(NSString *)electric {
     if ([electric doubleValue] >= 100.0) {
         electricImageView.image =[UIImage imageNamed:@"bat5" ];
-    }else if ([electric doubleValue] < 100.0 && [electric doubleValue]>= 80.0){
+    }else if ([electric doubleValue] < 100.0 && [electric doubleValue]>= 75.0){
         electricImageView.image =[UIImage imageNamed:@"bat4" ];
-    }else if ([electric doubleValue] < 80.0 && [electric doubleValue]>= 60.0){
+    }else if ([electric doubleValue] < 75.0 && [electric doubleValue]>= 50.0){
         electricImageView.image =[UIImage imageNamed:@"bat3" ];
-    }else if ([electric doubleValue] < 60.0 && [electric doubleValue]>= 40.0){
+    }else if ([electric doubleValue] < 50.0 && [electric doubleValue]>= 25.0){
         electricImageView.image =[UIImage imageNamed:@"bat2" ];
-    }else if ([electric doubleValue] < 40.0 && [electric doubleValue]>= 20.0){
-        electricImageView.image =[UIImage imageNamed:@"bat1" ];
     }else {
         electricImageView.image =[UIImage imageNamed:@"bat0" ];
     }
@@ -454,7 +465,7 @@ long long _currentTimeSamp = 0;
         return nil;
     if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
         MKAnnotationView* aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MKPointAnnotation"];
-        aView.image = self.currentModel.bagType == 2?[UIImage imageNamed:@"ico_bag"]:[UIImage imageNamed:@"箱子"];
+        aView.image = self.currentModel.bagType != 1?[UIImage imageNamed:@"ico_bag"]:[UIImage imageNamed:@"箱子"];
         aView.frame =  CGRectMake(0, 0, 25, 33); 
         aView.canShowCallout = YES;
         
@@ -509,14 +520,12 @@ long long _currentTimeSamp = 0;
     }else{
         if (_mapView.annotations.count>0) {
             [_mapView removeAnnotations:_mapView.annotations];
-        }else{
-            
-            CLLocationCoordinate2D pos = userLocation.coordinate;
-            MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
-            MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
-            [_mapView setRegion:adjustedRegion animated:YES];
-            stepper.value = 6;
         }
+        CLLocationCoordinate2D pos = userLocation.coordinate;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
+        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+        [_mapView setRegion:adjustedRegion animated:YES];
+        stepper.value = 6;
     }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fFB-Qs-N4Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fFB-Qs-N4Y">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -558,14 +558,13 @@
                                     </label>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3D6-H0-rHn">
                                         <rect key="frame" x="8" y="32" width="60" height="60"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="OnN-hm-lSQ"/>
                                             <constraint firstAttribute="height" constant="60" id="X6f-gD-exo"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="背包"/>
                                         <connections>
-                                            <action selector="feedbackImageAction:" destination="C81-IK-EK1" eventType="touchUpInside" id="EpI-37-3Vv"/>
+                                            <action selector="buttonClickAction:" destination="C81-IK-EK1" eventType="touchUpInside" id="4Au-rN-zWv"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1/4" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1c3-fc-JJQ">
@@ -576,38 +575,35 @@
                                     </label>
                                     <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3Q-Fl-vhR">
                                         <rect key="frame" x="144" y="32" width="60" height="60"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="5xQ-1E-jkJ"/>
                                             <constraint firstAttribute="width" constant="60" id="8se-cz-87D"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="背包"/>
                                         <connections>
-                                            <action selector="feedbackImageAction:" destination="C81-IK-EK1" eventType="touchUpInside" id="dpb-bn-8Bu"/>
+                                            <action selector="buttonClickAction:" destination="C81-IK-EK1" eventType="touchUpInside" id="uLR-2F-VZi"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="13" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1N-KU-smX">
                                         <rect key="frame" x="212" y="32" width="60" height="60"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="DZb-nN-zBO"/>
                                             <constraint firstAttribute="height" constant="60" id="W86-T1-Wqb"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="背包"/>
                                         <connections>
-                                            <action selector="feedbackImageAction:" destination="C81-IK-EK1" eventType="touchUpInside" id="2dn-fq-QUc"/>
+                                            <action selector="buttonClickAction:" destination="C81-IK-EK1" eventType="touchUpInside" id="ri7-bn-CvP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0r-XS-xuN">
                                         <rect key="frame" x="76" y="32" width="60" height="60"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="Cab-cF-FRa"/>
                                             <constraint firstAttribute="width" constant="60" id="yqx-Cx-BGL"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="背包"/>
                                         <connections>
-                                            <action selector="feedbackImageAction:" destination="C81-IK-EK1" eventType="touchUpInside" id="6QI-gQ-6xI"/>
+                                            <action selector="buttonClickAction:" destination="C81-IK-EK1" eventType="touchUpInside" id="Gah-Uj-TlG"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -649,6 +645,9 @@
                                 <state key="normal" title="确定">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="3"/>
@@ -688,6 +687,8 @@
                         <outlet property="feedbackImage3" destination="H3Q-Fl-vhR" id="g7t-ch-FPE"/>
                         <outlet property="feedbackImage4" destination="f1N-KU-smX" id="j22-gb-j4F"/>
                         <outlet property="feedbackTextView" destination="DWj-AS-xWP" id="dWM-YW-mFK"/>
+                        <outlet property="numberImages" destination="1c3-fc-JJQ" id="OiH-vG-dpI"/>
+                        <outlet property="secondBackGroudView" destination="2Ej-kP-Kim" id="9TT-e1-GSl"/>
                         <outlet property="textViewPlaceholder" destination="8dq-3w-OH2" id="uvA-g2-qSI"/>
                     </connections>
                 </viewController>
@@ -1431,7 +1432,6 @@
         <image name="箱包" width="15" height="22"/>
         <image name="箱包_p" width="15" height="22"/>
         <image name="箱子" width="171" height="171"/>
-        <image name="背包" width="171" height="171"/>
         <image name="邮箱_" width="22" height="22"/>
     </resources>
 </document>

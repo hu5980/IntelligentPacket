@@ -58,7 +58,7 @@
         } afterDelay:.1];
     }];
     
-    if (self.model.bagType == 0) {
+    if (self.model.bagType == 1) {
         animationImages = @[[UIImage imageNamed:@"箱子点击00"],[UIImage imageNamed:@"箱子点击01"],[UIImage imageNamed:@"箱子点击02"],[UIImage imageNamed:@"箱子点击03"],[UIImage imageNamed:@"箱子点击04"],[UIImage imageNamed:@"箱子点击05"],[UIImage imageNamed:@"箱子点击06"]];
     }else {
         animationImages = @[[UIImage imageNamed:@"背包点击00"],[UIImage imageNamed:@"背包点击01"],[UIImage imageNamed:@"背包点击02"],[UIImage imageNamed:@"背包点击03"],[UIImage imageNamed:@"背包点击04"],[UIImage imageNamed:@"背包点击05"],[UIImage imageNamed:@"背包点击06"]];

@@ -25,7 +25,7 @@
 @property (nonatomic, copy) NSString * safeLatitude;    ///< 安全栏纬度
 @property (nonatomic, copy) NSString * safeRadius;      ///< 安全栏半径
 
-@property (nonatomic, assign) int   bagType; // 0 书包 1 箱子
+@property (nonatomic, assign) int   bagType; // 其他是 书包          1 是箱子
 @property (nonatomic, assign) int   bagWeight;
 
 @end

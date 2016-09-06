@@ -26,7 +26,12 @@
     __weak IBOutlet UIButton *feedbackImage2;
     __weak IBOutlet UIButton *feedbackImage3;
     __weak IBOutlet UIButton *feedbackImage4;
+    __weak IBOutlet UILabel  *numberImages;
     
+    UIButton     *indictorImageButton;
+    NSInteger    imageIndex;
+    
+    __weak IBOutlet UIView *secondBackGroudView;
     __weak IBOutlet NSLayoutConstraint *contact1;
     __weak IBOutlet NSLayoutConstraint *contact2;
     __weak IBOutlet NSLayoutConstraint *contact0;
@@ -52,21 +57,51 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+   
     contact1.constant = contact2.constant = contact3.constant = contact0.constant = ([UIScreen mainScreen].bounds.size.width - 40 - 60*4)/5;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    switch (imageIndex) {
+        case 0:
+            indictorImageButton.frame = feedbackImage1.frame;
+            break;
+        case 1:
+            indictorImageButton.frame = feedbackImage2.frame;
+            break;
+        case 2:
+            indictorImageButton.frame = feedbackImage3.frame;
+            break;
+        case 3:
+            indictorImageButton.frame = feedbackImage4.frame;
+            break;
+        case 4:
+            indictorImageButton.hidden = YES;
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    imageIndex = 0;
     feedbackApi = [NetServiceApi new];
     imagesDataSource = [NSMutableArray array];
+    numberImages.text = OCSTR(@"%lu/4",(unsigned long)(int)imagesDataSource.count);
+    
+    indictorImageButton = [[UIButton alloc]initWithFrame:feedbackImage1.frame];
+    [indictorImageButton setBackgroundImage:[UIImage imageNamed:@"背包"] forState:UIControlStateNormal];
+    [secondBackGroudView addSubview:indictorImageButton];
+    [indictorImageButton addTarget:self action:@selector(changeHeadimage) forControlEvents:UIControlEventTouchUpInside];
     _imagePickerController  =[[UIImagePickerController alloc]init];
     self.feedbackTextView.delegate = self;
     
     [self refreshLanguge];
 
-    @weakify(self)
+//    @weakify(self)
     RAC(confimButton, enabled) = [RACSignal combineLatest:@[self.feedbackTextView.rac_textSignal]
                                                    reduce:^(NSString *weight) {
                                                        return @(weight.length );
@@ -96,6 +131,7 @@
 
 #pragma mark - action
 - (IBAction)feedbackAction:(UIButton *)sender {
+    [self imageTodata:[self imageApend]];
     if (!imageData) {
         [self showAlert:L(@"please input a image") WithDelay:1.]; return;
     }
@@ -135,6 +171,10 @@
     [choose showInView:self.view];
     
 }
+- (IBAction)buttonClickAction:(id)sender {
+
+}
+
 
 #pragma mark photo picker..
 + (BOOL)CameraPermissions/**<判断是否已授权*/
@@ -253,7 +293,9 @@
     @weakify(self)
     [picker dismissViewControllerAnimated:YES completion:^{
         @strongify(self)
-        [self saveThePhotoToiPhone:item.originalImage];
+        [imagesDataSource addObject:item];
+        [self showWithButton];
+//        [self saveThePhotoToiPhone:item.originalImage];
     }];
 }
 
@@ -262,7 +304,52 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)saveThePhotoToiPhone:(UIImage *)img{
+- (void)showWithButton {
+    imageIndex = imagesDataSource.count;
+    switch (imageIndex) {
+        case 0:
+        {
+            [feedbackImage1 setBackgroundImage:nil forState:UIControlStateNormal];
+            [self imageIndictorAnimation:feedbackImage1.frame];
+            break;
+        }
+        case 1:
+        {
+            [feedbackImage1 setBackgroundImage:imagesDataSource[0].smallImage forState:UIControlStateNormal];
+            [self imageIndictorAnimation:feedbackImage2.frame];
+            break;
+        }
+        case 2:
+        {
+            [feedbackImage2 setBackgroundImage:imagesDataSource[1].smallImage forState:UIControlStateNormal];
+            [self imageIndictorAnimation:feedbackImage3.frame];
+            break;
+        }
+        case 3:
+        {
+            [feedbackImage3 setBackgroundImage:imagesDataSource[2].smallImage forState:UIControlStateNormal];
+            [self imageIndictorAnimation:feedbackImage4.frame];
+            break;
+        }
+        case 4:
+        {
+            [feedbackImage4 setBackgroundImage:imagesDataSource[3].smallImage forState:UIControlStateNormal];
+            indictorImageButton.hidden = YES;
+            break;
+        }
+        default:
+            break;
+    }
+    numberImages.text = OCSTR(@"%lu/4",(unsigned long)(int)imagesDataSource.count);
+}
+
+- (void)imageIndictorAnimation:(CGRect)toFrame {
+    [UIView animateWithDuration:.1 animations:^{
+        indictorImageButton.frame = toFrame;
+    }];
+}
+
+- (void)imageTodata:(UIImage *)img{
     NSData *data;
     if (UIImagePNGRepresentation(img) == nil) {
         data = UIImageJPEGRepresentation(img, 1);
@@ -271,7 +358,6 @@
         data = UIImagePNGRepresentation(img);
     }
     imageData = data;
-    [feedbackImage1 setBackgroundImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
 }
 
 
@@ -317,10 +403,10 @@
 // 多图拼接
 - (UIImage *)imageApend {
 
-    CGSize size = CGSizeMake(300, imagesDataSource.count * 300);
+    CGSize size = CGSizeMake(300, imagesDataSource.count * 250);
     UIGraphicsBeginImageContext(size);
-    for (int index; index < imagesDataSource.count; index++) {
-        [[UIImage createRoundedRectImage:imagesDataSource[index].originalImage size:CGSizeMake(300, 300) radius:0] drawInRect:CGRectMake(0, index*300, 300, 300)];
+    for (int index = 0; index < imagesDataSource.count; index++) {
+        [[UIImage createRoundedRectImage:imagesDataSource[index].originalImage size:CGSizeMake(300, 250) radius:0] drawInRect:CGRectMake(0, index*250, 300, 250)];
     }
     UIImage *resultingImage =UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
