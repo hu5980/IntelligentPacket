@@ -76,6 +76,7 @@
     
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshLanguge) name:refreshLangugeNotification object:nil];
     
+    
     //激光推送
     //===========================================
     NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
@@ -88,6 +89,7 @@
                                               categories:nil];
     } else {
         //categories    nil
+        
         [JPUSHService registerForRemoteNotificationTypes:
          (UIRemoteNotificationTypeBadge |
           UIRemoteNotificationTypeSound |
@@ -101,6 +103,8 @@
                                              advertisingIdentifier:advertisingId];
     
     [AMapServices sharedServices].apiKey = LIBApiKey; // 高德key
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
     [self registerJpushNotice];
     //===========================================

@@ -8,6 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum
+{
+    IS_ONLINE,
+    DIS_ONLINE
+} ONLINE_TYPE;
+
+typedef enum
+{
+    IS_SAFE,
+    DIS_SAFE
+} SAFETYPE;
+
+typedef struct
+{
+    ONLINE_TYPE  onlinetype;
+    SAFETYPE   safetype;
+} BAGSTATUS;
+
+
 @interface ITPPacketBagModel : NSObject
 
 @property (nonatomic, copy) NSString * bagName;
@@ -28,4 +47,5 @@
 @property (nonatomic, assign) int   bagType; // 其他是 书包          1 是箱子
 @property (nonatomic, assign) int   bagWeight;
 
+@property (nonatomic, assign) BAGSTATUS status;
 @end

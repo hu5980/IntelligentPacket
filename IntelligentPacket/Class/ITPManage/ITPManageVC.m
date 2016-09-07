@@ -310,7 +310,7 @@ NSString * manageData[manageDataCount___] = {
     if (indexPath.row == 0) {
         
         ITPManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ITPManageCell"];
-        [cell.headerImage sd_setImageWithURL:[NSURL URLWithString:[ITPUserManager ShareInstanceOne].userheardStr] placeholderImage:[UIImage imageNamed:@"已注册商标"]];
+        [cell.headerImage sd_setImageWithURL:[NSURL URLWithString:[ITPUserManager ShareInstanceOne].userheardStr] placeholderImage:[UIImage imageNamed:@"默认头像"]];
         headerImageView = cell.headerImage;
         headerImageView.layer.cornerRadius = headerImageView.width/2;
         headerImageView.layer.masksToBounds = YES;
@@ -330,7 +330,7 @@ NSString * manageData[manageDataCount___] = {
         cell.textLabel.text = L(manageData[indexPath.row-1]);
         
         if (indexPath.row == 4) {
-            cell.accessoryView = __languageSwitch;
+            cell.accessoryView = nil;//__languageSwitch;
         }else {
             UIImageView  * arrow  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"展开去到"]];
             cell.accessoryView = arrow;

@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ITPPacketBagModel.h"
 
 @interface ITPPacketBagCell : UITableViewCell
+
 
 @property (nonatomic, assign) int indexPath_;
 
@@ -16,6 +18,7 @@
 @property (nonatomic, copy) void (^locationBlcok)(int indexPath);
 @property (nonatomic, copy) void (^weightBlcok)(int indexPath);
 
+@property (nonatomic, assign) BAGSTATUS status;
 
 @property (weak, nonatomic) IBOutlet UIImageView *manangerImage;
 

@@ -60,7 +60,7 @@
         model.safeLongitude = (NSString *)temp[8];
         model.safeLatitude = (NSString *)temp[9];
         model.safeRadius = (NSString *)temp[10];
-        
+        model.status = [self isONline:model];
     Next:
         [bags addObject:model];
     }
@@ -98,11 +98,48 @@
         model.safeLongitude = (NSString *)temp[8];
         model.safeLatitude = (NSString *)temp[9];
         model.safeRadius = (NSString *)temp[10];
+        model.status = [self isONline:model];
         [bags addObject:model];
     }
     
     return bags;
 }
 
++(BAGSTATUS)isONline:(ITPPacketBagModel *)model {
+    BAGSTATUS status;
+    CGFloat distance = [[DataSingleManager sharedInstance]calculationDistance:model];
+    if (distance > model.safeRadius.floatValue) {
+        status.safetype = DIS_SAFE;
+    } else {
+        status.safetype = IS_SAFE;
+    }
+    
+    NSDate * date = [NSDate date];
+    NSTimeZone * zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:date];
+    NSDate * nowDate = [date dateByAddingTimeInterval:interval];
+    long currentTimeStamp = [nowDate timeIntervalSince1970];
+    long timeStamp = [self getLastTimeStamp:model.lastOnlineTime];
+    
+    if (currentTimeStamp - timeStamp >300) { // > 5 min
+        status.onlinetype = DIS_ONLINE;
+    } else {
+        status.onlinetype = IS_ONLINE;
+    }
+    return status;
+}
+
++ (long)getLastTimeStamp:(NSString *)time {
+    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-M-dd HH:mm:ss"];
+    NSDate * date = [formatter dateFromString:time];
+    
+    NSTimeZone * zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:date];
+    NSDate * nowDate = [date dateByAddingTimeInterval:interval];
+   
+    long timeStamp = [nowDate timeIntervalSince1970];
+    return timeStamp;
+}
 
 @end

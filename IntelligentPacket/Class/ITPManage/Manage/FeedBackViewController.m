@@ -93,7 +93,7 @@
     numberImages.text = OCSTR(@"%lu/4",(unsigned long)(int)imagesDataSource.count);
     
     indictorImageButton = [[UIButton alloc]initWithFrame:feedbackImage1.frame];
-    [indictorImageButton setBackgroundImage:[UIImage imageNamed:@"背包"] forState:UIControlStateNormal];
+    [indictorImageButton setBackgroundImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
     [secondBackGroudView addSubview:indictorImageButton];
     [indictorImageButton addTarget:self action:@selector(changeHeadimage) forControlEvents:UIControlEventTouchUpInside];
     _imagePickerController  =[[UIImagePickerController alloc]init];

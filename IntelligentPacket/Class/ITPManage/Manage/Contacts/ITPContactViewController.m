@@ -189,14 +189,7 @@
             }
             
         } afterDelay:0.1];
-        
-        
-        
-        
-    } faillure:^(NSError *error) {
-        
-        
-    }];
+    } faillure:^(NSError *error) {}];
 }
 
 
@@ -211,7 +204,7 @@
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          NSLog(@"%@", responseObject);
         NSString * str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        [cell.headImage sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@""]];
+        [cell.headImage sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:[UIImage imageNamed:@"默认头像"]];
      }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
          NSLog(@"%@", error.description);

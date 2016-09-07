@@ -6,7 +6,7 @@
   Copyright © 2016年 detu. All rights reserved.
 */
 
-CFBundleDisplayName="智能箱包";
+CFBundleDisplayName="定位箱包";
 
 /////  箱包 =================
 "Luggage and bags" = "箱包";

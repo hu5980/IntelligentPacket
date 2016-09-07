@@ -29,4 +29,5 @@
 #pragma mark - // 两点求距离
 - (CGFloat )calculationDistance:(ITPPacketBagModel *)model;
 
+-(BOOL )isONline:(NSString *)time ;
 @end

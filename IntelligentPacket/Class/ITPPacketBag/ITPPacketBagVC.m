@@ -204,20 +204,33 @@ long long currentTimeSamp = 0;
     cell.indexPath_ = (int)indexPath.row;
     cell.bagName.text = self.dataSource[indexPath.row].bagName;
     cell.bagNum.text = self.dataSource[indexPath.row].bagPhoneNum;
-    
-   CGFloat distance = [[DataSingleManager sharedInstance]calculationDistance:self.dataSource[indexPath.row]];
-    if (distance > self.dataSource[indexPath.row].safeRadius.floatValue) {
+        
+    if (self.dataSource[indexPath.row].status.safetype == IS_SAFE) {
+        cell.warning.hidden = YES;
+    }else {
         cell.warning.hidden = NO;
-    }else cell.warning.hidden = YES;
-    
+    }
     
     if (self.dataSource[indexPath.row].bagType == 1) {  //箱子
-        [cell.bagheadImage setImage:[UIImage imageNamed:@"组-2"]];
+        
+        if (self.dataSource[indexPath.row].status.onlinetype == IS_ONLINE) {
+            [cell.bagheadImage setImage:[UIImage imageNamed:@"组-2"]];
+        }else{
+            [cell.bagheadImage setImage:[UIImage imageNamed:@"xiangzi_dontonline"]];
+        }
+        
         cell.bagweight.hidden = NO;
         [cell.bagPhone setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
         [cell.bagPhone setImage:[UIImage imageNamed:@"open"] forState:UIControlStateSelected];
+        
     }else {
-        [cell.bagheadImage setImage:[UIImage imageNamed:@"组-1"]];
+        
+        if (self.dataSource[indexPath.row].status.onlinetype == IS_ONLINE) {
+            [cell.bagheadImage setImage:[UIImage imageNamed:@"组-1"]];
+        }else{
+            [cell.bagheadImage setImage:[UIImage imageNamed:@"bag_dontonline"]];
+        }
+        
         cell.bagweight.hidden = YES;
         [cell.bagPhone setImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
     }
