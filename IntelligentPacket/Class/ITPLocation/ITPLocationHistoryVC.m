@@ -166,6 +166,13 @@
                 [mapView setRegion:adjustedRegion animated:YES];
                 
                 [self setMapRoutes];
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                    [self showAlert:@"没有历史数据" WithDelay:1];
+                    
+                });
+
             }
         }else{
             
@@ -181,10 +188,15 @@
       
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         });
-        
-        
     }];
     
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        });
+
+    });
    
 }
 
