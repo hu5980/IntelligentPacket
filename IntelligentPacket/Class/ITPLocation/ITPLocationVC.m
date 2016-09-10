@@ -280,6 +280,12 @@
             // =========================
             userLocation.coordinate = newlocation.coordinate;
             NSLog(@"+++++++%f,%f",newlocation.coordinate.latitude,newlocation.coordinate.longitude);
+            
+            if(newlocation.coordinate.latitude > 180 || newlocation.coordinate.latitude < -180 || newlocation.coordinate.longitude > 180 || newlocation.coordinate.longitude < -180){
+                [self queryLocation];
+                return;
+            }
+            
             [self showLocationInMapView:userLocation andisAoto:!ishandRefresh];
             [self showAnnotationInMapView:userLocation];
             if(ishandRefresh){
