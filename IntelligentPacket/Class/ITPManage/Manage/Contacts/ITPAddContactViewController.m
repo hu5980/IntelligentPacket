@@ -48,7 +48,7 @@
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
-    [[ITPScoketManager shareInstance]phbWithEmail:nameTextField.text withTimeout:10 tag:102 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance]phbWithEmail:nameTextField.text phone:phoneTextFeild.text withTimeout:10 tag:102 success:^(NSData *data, long tag) {
         @strongify(self);
         [self performBlock:^{
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];

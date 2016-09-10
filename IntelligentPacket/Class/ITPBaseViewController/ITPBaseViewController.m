@@ -47,7 +47,7 @@
 - (void)showAlert:(NSString *)message WithDelay:(NSTimeInterval)d
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = message;
+    hud.detailsLabelText = message;
     hud.mode = MBProgressHUDModeCustomView;
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:d];

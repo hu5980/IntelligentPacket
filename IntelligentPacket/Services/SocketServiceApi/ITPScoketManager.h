@@ -47,7 +47,7 @@
 
 // 设置亲情号码
 - (void)phbWithEmail:(NSString *)email
-               /*phone:(NSString *)phone*/
+               phone:(NSString *)phone
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
              success:(void(^)(NSData *data, long tag))success
@@ -137,6 +137,15 @@
                             bagId:(NSString *)bagId
                         startDate:(NSString *)startDate           //开始时间
                           endDate:(NSString *)endDate             //结束时间
+                      withTimeout:(NSTimeInterval)timeout
+                              tag:(long)tag
+                          success:(void(^)(NSData *data, long tag))success
+                         faillure:(void(^)(NSError *error))faillure ;
+// 箱子称重开锁
+- (void)setLockAndWeightWithEmail:(NSString *)email
+                            bagId:(NSString *)bagId
+                         isWeight:(BOOL )isWeight
+                          isUlock:(BOOL )isUlock
                       withTimeout:(NSTimeInterval)timeout
                               tag:(long)tag
                           success:(void(^)(NSData *data, long tag))success

@@ -18,5 +18,7 @@
 
 + (NSMutableArray *)managerBags:(NSData *)data ;
 
++ (float)weight:(NSData *)data ;
+
 +(BAGSTATUS)isONline:(ITPPacketBagModel *)model ;
 @end

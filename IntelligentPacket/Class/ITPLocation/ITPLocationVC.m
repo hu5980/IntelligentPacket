@@ -65,6 +65,10 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear: animated];
+    if (locationmanager)
+    {
+        [locationmanager stopUpdatingLocation];
+    }
 //    if (self.locationTimer) {
 //        [self.locationTimer setFireDate:[NSDate date]];
 //    }
@@ -73,6 +77,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    if (locationmanager)
+    {
+        [locationmanager stopUpdatingLocation];
+    }
 //    if (self.locationTimer) {
 //         [self.locationTimer setFireDate:[NSDate distantFuture]];
 //    }
@@ -471,7 +479,7 @@ long long _currentTimeSamp = 0;
         return nil;
     if ([annotation isKindOfClass:[MKPointAnnotation class]]) {
         MKAnnotationView* aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MKPointAnnotation"];
-        aView.image = self.currentModel.bagType != 1?[UIImage imageNamed:@"ico_bag"]:[UIImage imageNamed:@"箱子"];
+        aView.image = self.currentModel.bagType != 1?[UIImage imageNamed:@"ico_bag"]:[UIImage imageNamed:@"ico_suitcases"];
         aView.frame =  CGRectMake(0, 0, 25, 33); 
         aView.canShowCallout = YES;
         

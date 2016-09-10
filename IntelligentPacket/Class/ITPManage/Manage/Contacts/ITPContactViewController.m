@@ -40,7 +40,7 @@
     
     [self configTable];
     
-    [self setNavBarBarItemWithTitle:@"➕" target:self action:@selector(addContacts) atRight:YES];
+     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addContacts)];
     
     @weakify(self)
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:ITPacketAddcontacts object:nil]subscribeNext:^(id x) {

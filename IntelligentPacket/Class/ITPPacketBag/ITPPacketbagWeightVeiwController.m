@@ -7,11 +7,15 @@
 //
 
 #import "ITPPacketbagWeightVeiwController.h"
+#import "ITPBagViewModel.h"
+
+@interface ITPPacketbagWeightVeiwController()
+@property (weak, nonatomic) IBOutlet UITextField *weightTextFiled;
+
+@end
 
 @implementation ITPPacketbagWeightVeiwController
 {
-
-    __weak IBOutlet UITextField *weightTextFiled;
     
     __weak IBOutlet UIButton *confimButton;
 
@@ -21,7 +25,7 @@
 - (void)refreshLanguge {
 
     self.title = L(@"Bag weighing");
-    [confimButton setTitle:L(@"confim") forState:UIControlStateNormal];
+    [confimButton setTitle:L(@"Start") forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad {
@@ -35,10 +39,11 @@
         [bagPacketImageView setImage:[UIImage imageNamed:@"背包"]];
     
     @weakify(self)
-    RAC(confimButton, enabled) = [RACSignal combineLatest:@[weightTextFiled.rac_textSignal]
-                                                         reduce:^(NSString *weight) {
-                                                             return @(weight.length );
-                                                         }];
+    self.weightTextFiled.enabled = NO;
+//    RAC(confimButton, enabled) = [RACSignal combineLatest:@[self.weightTextFiled.rac_textSignal]
+//                                                         reduce:^(NSString *weight) {
+//                                                             return @(weight.length );
+//                                                         }];
     
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillShowNotification object:nil]subscribeNext:^(id x) {
         @strongify(self)
@@ -70,10 +75,37 @@
 
 
 - (IBAction)confimAction:(UIButton *)sender {
-    if (self.weighingBlock) {
-        self.weighingBlock(11.1);
-    }
+//    if (self.weighingBlock) {
+//        self.weighingBlock(11.1);
+//    }
+    [self getWieghtfromService];
 }
 
+
+- (void)getWieghtfromService {
+    @weakify(self);
+    [[ITPScoketManager shareInstance] setLockAndWeightWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.model.bagId isWeight:YES isUlock:NO withTimeout:10 tag:115 success:^(NSData *data, long tag) {
+        @strongify(self);
+        BOOL abool = [ITPBagViewModel isSuccesss:data];
+        if (abool) {
+            
+            [self performBlock:^{
+                float weight = [ITPBagViewModel weight:data];
+                self.weightTextFiled.text = OCSTR(@"%f",weight);
+            } afterDelay:.01];
+            
+            [self performBlock:^{
+                @strongify(self);
+                [self getWieghtfromService];
+            } afterDelay:.5];
+        }
+    } faillure:^(NSError *error) {
+        @strongify(self);
+        [self performBlock:^{
+            @strongify(self);
+            [self getWieghtfromService];
+        } afterDelay:.5];
+    }];
+}
 
 @end

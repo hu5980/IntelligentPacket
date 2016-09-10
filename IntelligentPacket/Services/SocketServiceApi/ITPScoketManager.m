@@ -143,12 +143,12 @@
 
 // 设置亲情号码
 - (void)phbWithEmail:(NSString *)email
-//               phone:(NSString *)phone
+               phone:(NSString *)phone
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
              success:(void(^)(NSData *data, long tag))success
             faillure:(void(^)(NSError *error))faillure {
-    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[[ITPUserManager ShareInstanceOne].userEmail/*@"355567207@qq.com"*/, email] command:ITP_PHB];
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[[ITPUserManager ShareInstanceOne].userEmail/*@"355567207@qq.com"*/, email, phone] command:ITP_PHB];
     
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
 }
@@ -278,6 +278,19 @@
     [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
     
 }
-
-
+//[ABE5DA8890BC9E8C*APP1*LB*0005*000E* MCUDATA,443564333@qq.com,L11B,7]
+// 箱子称重开锁
+- (void)setLockAndWeightWithEmail:(NSString *)email
+                            bagId:(NSString *)bagId
+                         isWeight:(BOOL )isWeight
+                          isUlock:(BOOL )isUlock
+                      withTimeout:(NSTimeInterval)timeout
+                              tag:(long)tag
+                          success:(void(^)(NSData *data, long tag))success
+                         faillure:(void(^)(NSError *error))faillure {
+    NSString * statu = [[ITPDataCenter sharedInstance] Ulock:isUlock AndWeight:isWeight];
+    NSData * data = [[ITPDataCenter sharedInstance] paramData:@[email, bagId, statu, @"7"] command:ITP_MCUDATA];
+    [self.ITPSocket writeData:data withTimeout:timeout tag:tag success:success faillure:faillure];
+    
+}
 @end

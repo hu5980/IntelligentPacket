@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -58,13 +58,12 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6z9-Gz-0AM">
                         <rect key="frame" x="315" y="31" width="40" height="20"/>
-                        <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Dov-RC-ht1"/>
                             <constraint firstAttribute="width" constant="40" id="QYo-rI-EpB"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <state key="normal" title="称重">
+                        <state key="normal" backgroundImage="ico_weight">
                             <color key="titleColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <userDefinedRuntimeAttributes>
@@ -81,7 +80,7 @@
                         <rect key="frame" x="12" y="11" width="22" height="22"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="danger" translatesAutoresizingMaskIntoConstraints="NO" id="TMB-88-Ew5">
-                        <rect key="frame" x="53" y="14" width="12" height="12"/>
+                        <rect key="frame" x="53" y="14" width="21" height="21"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -117,7 +116,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="danger" width="12" height="12"/>
+        <image name="danger" width="21" height="21"/>
+        <image name="ico_weight" width="53" height="25"/>
         <image name="备注_" width="22" height="22"/>
         <image name="定位icon" width="15" height="19"/>
         <image name="电话" width="16" height="18"/>

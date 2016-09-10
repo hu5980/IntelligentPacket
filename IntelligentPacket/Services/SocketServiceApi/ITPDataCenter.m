@@ -37,6 +37,22 @@
     return instance;
 }
 
+- (NSString *)Ulock:(BOOL)ulock AndWeight:(BOOL)weight {
+    
+    NSString * str ;
+    
+    if (ulock && weight) {
+        str = @"L114";
+    } else if (ulock && !weight) {
+        str = @"L103";
+    } else if (!ulock && weight) {
+        str = @"L10A";
+    } else if (!ulock && !weight) {
+        str = @"L002";
+    }
+    return str;
+}
+
 - (NSData *)paramData :(NSArray *)param command:(NSString *)command{
   
     @try

@@ -166,18 +166,6 @@ long long currentTimeSamp = 0;
 }
 
 - (void)edit {
-//    ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
-//    [self.navigationController pushViewController:vc animated:YES];
-//    
-//    [[ITPScoketManager shareInstance]crWithEmail:@"443564222@qq.com" bagId:@"0123456789" withTimeout:10 tag:107 success:^(NSData *data, long tag) {
-//        if (data) {
-//            NSLog(@"%@",data);
-//        }
-//    } faillure:^(NSError *error) {
-//        if (error) {
-//            NSLog(@"%@",error.description);
-//        }
-//    }];
 
     ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
     [self.navigationController pushViewController:vc animated:YES];
@@ -245,9 +233,36 @@ long long currentTimeSamp = 0;
     
     @weakify(self);
     cell.phoneBlcok = ^(int indexPath, UIButton * but){
-        if (self.dataSource[indexPath].bagType == 1) {  //箱子
-            but.selected = !but.selected;
-        }else {
+        if (self.dataSource[indexPath].bagType == 1) {  //箱子  开锁
+            @weakify(but);
+            // selected = yes  是开锁状态
+            if (!but.selected) {
+               [self performBlock:^{
+                   [[ITPScoketManager shareInstance] setLockAndWeightWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[indexPath].bagId isWeight:NO isUlock:YES withTimeout:10 tag:115 success:^(NSData *data, long tag) {
+                       
+                       BOOL abool = [ITPBagViewModel isSuccesss:data];
+                       if (abool) {
+                           [self performBlock:^{
+                               but.selected = YES;
+                               [self showAlert:L(@"Successfully unlock automatically shut down after ten seconds") WithDelay:1.3];
+                               // 十秒之后自动关闭。
+                               [self performBlock:^{
+                                   but.selected = NO;
+                               } afterDelay:10];
+                           } afterDelay:.01];
+                       }
+                   } faillure:^(NSError *error) {
+                       @strongify(but);
+                       but.selected = NO;
+                   }];
+               } afterDelay:0];
+            } else {
+                [self performBlock:^{
+                    [self showAlert:L(@"Lock has been turned on") WithDelay:1.3];
+                } afterDelay:.01];
+            }
+        }
+        else {
             [self showCallPhone:self.dataSource[indexPath]];
         }
     };
@@ -263,10 +278,8 @@ long long currentTimeSamp = 0;
     
     cell.weightBlcok = ^(int indexPath){
         @strongify(self)
-        
-        ITPPacketBagModel * _model = [ITPPacketBagModel new];
         ITPPacketbagWeightVeiwController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"weight"];
-        vc.model = _model;
+        vc.model = self.dataSource[indexPath];
         [self.navigationController pushViewController:vc animated:YES];
         vc.weighingBlock = ^(float weight){
             NSLog(@"weight back");
@@ -277,6 +290,8 @@ long long currentTimeSamp = 0;
     
     return cell;
 }
+
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	

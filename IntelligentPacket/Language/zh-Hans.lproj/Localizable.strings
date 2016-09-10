@@ -31,7 +31,9 @@ CFBundleDisplayName="定位箱包";
 "Can't delete someone else's bags" = "不能删除别人的箱包";
 "The two-dimensional code in the box, you can automatically scan" = "将二维码置于框内, 即可自动扫描";
 "Whether to dial" = "是否拨打";
-
+"Successfully unlock automatically shut down after ten seconds" = "已成功开锁，十秒之后自动关闭";
+"Lock has been turned on" = "锁已经开启";
+"Start" = "开始";
 ////// 定位 ========================
 "Location" = "定位";
 

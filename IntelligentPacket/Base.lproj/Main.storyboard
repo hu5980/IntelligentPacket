@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fFB-Qs-N4Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fFB-Qs-N4Y">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -119,7 +119,7 @@
                                 <rect key="frame" x="16" y="305" width="288" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="KG" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5lT-Wd-WYo">
-                                        <rect key="frame" x="9" y="14" width="270" height="17"/>
+                                        <rect key="frame" x="9" y="13" width="270" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
@@ -182,7 +182,7 @@
                     <connections>
                         <outlet property="bagPacketImageView" destination="W6R-uk-Bs4" id="frX-Ql-eDK"/>
                         <outlet property="confimButton" destination="ktt-fl-xh7" id="nxG-Ld-cWh"/>
-                        <outlet property="weightTextFiled" destination="5lT-Wd-WYo" id="fyk-X3-491"/>
+                        <outlet property="weightTextFiled" destination="5lT-Wd-WYo" id="9pm-Hp-ro2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dpq-Hc-gbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,7 +225,7 @@
                                     <action selector="confimAction:" destination="stJ-9m-T1C" eventType="touchUpInside" id="cwd-MW-Eib"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQj-8B-zvz">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQj-8B-zvz">
                                 <rect key="frame" x="16" y="301" width="288" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="昵称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v32-eb-UEg">
@@ -262,7 +262,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAE-dJ-KO2">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wAE-dJ-KO2">
                                 <rect key="frame" x="16" y="240" width="288" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KwC-2X-F3O">
@@ -298,7 +298,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="箱子" translatesAutoresizingMaskIntoConstraints="NO" id="rIg-Tc-3sy">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="箱子" translatesAutoresizingMaskIntoConstraints="NO" id="rIg-Tc-3sy">
                                 <rect key="frame" x="75" y="20" width="171" height="171"/>
                             </imageView>
                         </subviews>
@@ -717,9 +717,11 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="电话" translatesAutoresizingMaskIntoConstraints="NO" id="BeC-Fd-1Vu">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_phone_e" translatesAutoresizingMaskIntoConstraints="NO" id="BeC-Fd-1Vu">
                                         <rect key="frame" x="8" y="12" width="20" height="20"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="6WG-ef-war"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="aCw-yi-lqf"/>
                                             <constraint firstAttribute="width" constant="20" id="tJk-V5-Zyv"/>
                                             <constraint firstAttribute="height" constant="20" id="v4W-Mw-fDX"/>
                                         </constraints>
@@ -1103,10 +1105,12 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="电话" translatesAutoresizingMaskIntoConstraints="NO" id="ZJx-Kz-W10">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_phone_e" translatesAutoresizingMaskIntoConstraints="NO" id="ZJx-Kz-W10">
                                         <rect key="frame" x="8" y="12" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="7Of-tw-Pck"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="LlT-4J-dPy"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="TQk-m6-cLo"/>
                                             <constraint firstAttribute="height" constant="20" id="et8-54-Opa"/>
                                         </constraints>
                                     </imageView>
@@ -1421,6 +1425,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ico_phone_e" width="98" height="98"/>
         <image name="介绍" width="16" height="21"/>
         <image name="介绍_p" width="16" height="21"/>
         <image name="备注_" width="22" height="22"/>

@@ -129,6 +129,23 @@
     return status;
 }
 
++ (float)weight:(NSData *)data {
+    
+    NSArray * arr = [self paraserData:data];
+    NSString * weightStr = arr.lastObject;
+    NSMutableArray * temp = [NSMutableArray array];
+    
+    for (int i = 0; i < weightStr.length; i=i+2) {
+        
+        NSString * str = [weightStr substringWithRange:NSMakeRange(i, 2)];
+        unsigned int red = strtoul([str UTF8String],0,16);
+        [temp addObject:OCSTR(@"%d",red)];
+    }
+    
+    float weight = ((NSString *)temp[1]).floatValue*10000 + ((NSString *)temp[2]).floatValue*100 + ((NSString *)temp[3]).floatValue;
+    return weight;
+}
+
 + (long)getLastTimeStamp:(NSString *)time {
     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-M-dd HH:mm:ss"];
