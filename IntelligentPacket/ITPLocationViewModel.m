@@ -14,6 +14,7 @@
 + (NSArray *)paraserData:(NSData *)data {
     
     NSString * dataStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"QQQQQQ%@,%@",dataStr,data);
     dataStr = [dataStr stringByReplacingOccurrencesOfString:@"[" withString:@""];
     dataStr = [dataStr stringByReplacingOccurrencesOfString:@"]" withString:@""];
     NSArray * dataArr = [dataStr componentsSeparatedByString:@","];
