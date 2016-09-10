@@ -187,8 +187,8 @@
     [_mapView removeAnnotations:_mapView.annotations];
     CLLocationCoordinate2D pos = _mapView.centerCoordinate;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,[[rangeArray objectAtIndex:stepper.value] floatValue],[[rangeArray objectAtIndex:stepper.value] floatValue]);//以pos为中心，显示2000米
-    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
-    [_mapView setRegion:adjustedRegion animated:YES];
+//    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+    [_mapView setRegion:viewRegion animated:YES];
     
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
@@ -279,6 +279,12 @@
             CLLocation * newlocation = [location locationMarsFromEarth];
             // =========================
             userLocation.coordinate = newlocation.coordinate;
+            NSLog(@"+++++++%f,%f",newlocation.coordinate.latitude,newlocation.coordinate.longitude);
+            
+            if(newlocation.coordinate.latitude > 180 || newlocation.coordinate.latitude < -180 || newlocation.coordinate.longitude > 180 || newlocation.coordinate.longitude < -180){
+                [self queryLocation];
+                return;
+            }
             
             [self showLocationInMapView:userLocation andisAoto:!ishandRefresh];
             [self showAnnotationInMapView:userLocation];
@@ -383,9 +389,9 @@ long long _currentTimeSamp = 0;
         
         CLLocationCoordinate2D pos = location.coordinate;
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,1000, 1000);//以pos为中心，显示2000米
-        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+      //  MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
         
-        [_mapView setRegion:adjustedRegion animated:YES];
+        [_mapView setRegion:viewRegion animated:YES];
 
     } else { // 最少5s 间隔
         _currentTimeSamp = CFAbsoluteTimeGetCurrent();
@@ -451,8 +457,8 @@ long long _currentTimeSamp = 0;
 
     CLLocationCoordinate2D pos = userLocation.coordinate;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
-    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
-    [_mapView setRegion:adjustedRegion animated:YES];
+//    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+    [_mapView setRegion:viewRegion animated:YES];
     
     [self setMapRoutes];
     
@@ -514,8 +520,8 @@ long long _currentTimeSamp = 0;
         [_mapView removeAnnotations:_mapView.annotations];
         CLLocationCoordinate2D pos = userLocation.coordinate;
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
-        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
-        [_mapView setRegion:adjustedRegion animated:YES];
+//        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+        [_mapView setRegion:viewRegion animated:YES];
         stepper.value = 6;
     }else{
         if (_mapView.annotations.count>0) {
@@ -523,8 +529,8 @@ long long _currentTimeSamp = 0;
         }
         CLLocationCoordinate2D pos = userLocation.coordinate;
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
-        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
-        [_mapView setRegion:adjustedRegion animated:YES];
+//        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+        [_mapView setRegion:viewRegion animated:YES];
         stepper.value = 6;
     }
 }

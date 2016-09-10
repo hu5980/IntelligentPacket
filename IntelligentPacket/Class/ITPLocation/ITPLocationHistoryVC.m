@@ -172,6 +172,11 @@
                     [self showAlert:@"没有历史数据" WithDelay:1];
                     
                 });
+                
+                if (routeLine) {
+                    [mapView removeOverlay:routeLine];
+                }
+
 
             }
         }else{
@@ -181,6 +186,10 @@
                 [self showAlert:@"获取数据失败" WithDelay:1];
 
             });
+            
+            if (routeLine) {
+                [mapView removeOverlay:routeLine];
+            }
         }
         
     } faillure:^(NSError *error) {
