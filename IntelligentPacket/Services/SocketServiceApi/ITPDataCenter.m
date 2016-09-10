@@ -51,7 +51,7 @@
         
         NSString * indata = OCSTR(@"%@*%@*%04X*%04lX*%@,%@", APPID, KM, self.index, (command.length + paramStr.length + 1), command, paramStr);
         
-        char outData[16] = "0C9D8AD545B0C5F4";
+        char outData[16] = "0C9D8AD545B0C5F4";  
         
         EncryptDate((char *)indata.UTF8String, outData);
         
