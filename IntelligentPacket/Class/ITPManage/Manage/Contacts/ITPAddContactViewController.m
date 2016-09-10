@@ -32,13 +32,13 @@
     [super viewDidLoad];
     
     [self refreshLanguge];
-    phoneBackView.hidden = passwordBackView.hidden = YES;
+    passwordBackView.hidden = YES;
     
     RAC(saveButton, enabled) =
-    [RACSignal combineLatest:@[
-                               nameTextField.rac_textSignal]//phoneTextFeild.rac_textSignal,,passwordTextField.rac_textSignal
-                      reduce:^( NSString *username) {
-                          return @(username.length);
+    [RACSignal combineLatest:@[phoneTextFeild.rac_textSignal,
+                               nameTextField.rac_textSignal]//,passwordTextField.rac_textSignal
+                      reduce:^( NSString *phone , NSString *username) {
+                          return @(phone.length > 0&&username.length > 0);
                       }];
     
 }
