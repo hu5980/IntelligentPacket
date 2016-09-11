@@ -44,9 +44,9 @@
     if (ulock && weight) {
         str = @"L114";
     } else if (ulock && !weight) {
-        str = @"L103";
+        str = @"L013";
     } else if (!ulock && weight) {
-        str = @"L10A";
+        str = @"L103";
     } else if (!ulock && !weight) {
         str = @"L002";
     }

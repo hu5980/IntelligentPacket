@@ -32,11 +32,11 @@
 
 
 ///< 写数据入口
+
 - (void)writeData:(NSData *)data
       withTimeout:(NSTimeInterval)timeout
               tag:(long)tag
-          success:(void(^)(NSData *data, long tag))success
-         faillure:(void(^)(NSError *error))faillure;
+          result:(void(^)(NSData *data, long tag, NSError*error))result ;
 
 
 

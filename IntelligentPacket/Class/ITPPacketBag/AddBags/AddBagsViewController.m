@@ -76,35 +76,25 @@
 
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[ITPScoketManager shareInstance]bingWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.model.bagId bagNum:phoneTextFiled.text bagName:nicknameTF.text withTimeout:10 tag:104 success:^(NSData *data, long tag) {
-        
-        BOOL abool = [ITPBagViewModel isSuccesss:data];
-        if (abool) {
-            [self performBlock:^{
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    @weakify(self);
+    [[ITPScoketManager shareInstance]bingWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.model.bagId bagNum:phoneTextFiled.text bagName:nicknameTF.text withTimeout:10 tag:104 result:^(NSData *data, long tag, NSError *error) {
+        @strongify(self);
+        [self performBlock:^{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            BOOL abool = [ITPBagViewModel isSuccesss:data];
+            if (!error&&abool) {
+                @strongify(self);
                 [self showAlert:L(@"Add bags success") WithDelay:1.];
-                
                 [[NSNotificationCenter defaultCenter] postNotificationName:ITPacketAddbags object:nil];
-                
                 [self performBlock:^{
+                    @strongify(self);
                     [self.navigationController popViewControllerAnimated:YES];
                 } afterDelay:1.5];
                 
-            } afterDelay:.1];
-        }else {
-            [self performBlock:^{
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            }else {
                 [self showAlert:L(@"Add bags failure") WithDelay:1.];;
-                
-            } afterDelay:.1];
-        }
-    } faillure:^(NSError *error) {
-        if (error) {
-            [self performBlock:^{
-                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                [self showAlert:L(@"Add bags failure") WithDelay:1.];
-            } afterDelay:.1];
-        }
+            }
+        } afterDelay:.1];
     }];
 }
 

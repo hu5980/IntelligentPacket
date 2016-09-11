@@ -98,11 +98,10 @@
     
 //    [ITPUserManager ShareInstanceOne].userEmail = OCSTR(@"%@", self.emailTextField.text);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[ITPScoketManager shareInstance]loginWith:self.emailTextField.text password:self.passwordTextField.text withTimeout:10 tag:101 success:^(NSData *data, long tag) {
-        
+    [[ITPScoketManager shareInstance]loginWith:self.emailTextField.text password:self.passwordTextField.text withTimeout:10 tag:101 result:^(NSData *data, long tag, NSError *error) {
         [self performBlock:^{
             BOOL abool = [LoginWithRegisterViewModel isLoginSuccess:data];
-            if (abool) {
+            if (!error&&abool) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self showAlert:L(@"Login Success!") WithDelay:1.5];
                 
@@ -119,20 +118,9 @@
                     }
                 }];
             }else {
-             
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self showAlert:L(@"Login error!") WithDelay:1.5];
-                
             }
-            
-        } afterDelay:.1];
-        
-    } faillure:^(NSError *error) {
-        
-        [self performBlock:^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self showAlert:L(@"Login error!") WithDelay:1.5];
-            
         } afterDelay:.1];
     }];
 }

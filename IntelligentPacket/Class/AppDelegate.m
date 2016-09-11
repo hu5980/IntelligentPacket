@@ -99,7 +99,7 @@
     //
     [JPUSHService setupWithOption:launchOptions appKey:JPUSHKey
                                                            channel:@"App store"
-                                                  apsForProduction:@"0"
+                                                  apsForProduction:NO
                                              advertisingIdentifier:advertisingId];
     
     [AMapServices sharedServices].apiKey = LIBApiKey; // 高德key

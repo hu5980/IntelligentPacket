@@ -24,8 +24,7 @@
 - (void)registerAuthWith:(NSString *)nickName
              withTimeout:(NSTimeInterval)timeout
                      tag:(long)tag
-                 success:(void(^)(NSData *data, long tag))success
-                faillure:(void(^)(NSError *error))faillure;
+                 result:(void(^)(NSData *data, long tag, NSError*error))result;
 ///< 注册
 - (void)registerWith:(NSString *)emailName
             password:(NSString *)password
@@ -34,15 +33,13 @@
                phone:(NSString *)phone
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
-             success:(void(^)(NSData *data, long tag))success
-            faillure:(void(^)(NSError *error))faillure;
+             result:(void(^)(NSData *data, long tag, NSError*error))result;
 // 登录
 - (void)loginWith:(NSString *)nickName
          password:(NSString *)password
       withTimeout:(NSTimeInterval)timeout
               tag:(long)tag
-          success:(void(^)(NSData *data, long tag))success
-         faillure:(void(^)(NSError *error))faillure;
+          result:(void(^)(NSData *data, long tag, NSError*error))result;
 
 
 // 设置亲情号码
@@ -50,16 +47,14 @@
                phone:(NSString *)phone
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
-             success:(void(^)(NSData *data, long tag))success
-            faillure:(void(^)(NSError *error))faillure;
+             result:(void(^)(NSData *data, long tag, NSError*error))result;
 
 // 获取联系人
 - (void)lxrWithEmail:(NSString *)email
 //               bagId:(NSString *)bagId
          withTimeout:(NSTimeInterval)timeout
                  tag:(long)tag
-             success:(void(^)(NSData *data, long tag))success
-            faillure:(void(^)(NSError *error))faillure;
+             result:(void(^)(NSData *data, long tag, NSError*error))result;
 
 
 /*!
@@ -71,16 +66,14 @@
               bagName:(NSString *)bagName
           withTimeout:(NSTimeInterval)timeout
                   tag:(long)tag
-              success:(void(^)(NSData *data, long tag))success
-             faillure:(void(^)(NSError *error))faillure;
+              result:(void(^)(NSData *data, long tag, NSError*error))result;
 
 /*!
  * 箱子列表
  */
 - (void)bagListWithTimeout:(NSTimeInterval)timeout
                        tag:(long)tag
-                   success:(void(^)(NSData *data, long tag))success
-                  faillure:(void(^)(NSError *error))faillure;
+                   result:(void(^)(NSData *data, long tag, NSError*error))result;
 
 
 // 实时查询
@@ -88,8 +81,7 @@
               bagId:(NSString *)bagId
         withTimeout:(NSTimeInterval)timeout
                 tag:(long)tag
-            success:(void(^)(NSData *data, long tag))success
-           faillure:(void(^)(NSError *error))faillure;
+            result:(void(^)(NSData *data, long tag, NSError*error))result;
 
 
 // 删除绑定箱子
@@ -97,15 +89,13 @@
                      bagId:(NSString *)bagId
                withTimeout:(NSTimeInterval)timeout
                        tag:(long)tag
-                   success:(void(^)(NSData *data, long tag))success
-                  faillure:(void(^)(NSError *error))faillure ;
+                   result:(void(^)(NSData *data, long tag, NSError*error))result ;
 // 删除联系人
 - (void)deleteContactWithEmail:(NSString *)email
                          phone:(NSString *)phone
                    withTimeout:(NSTimeInterval)timeout
                            tag:(long)tag
-                       success:(void(^)(NSData *data, long tag))success
-                      faillure:(void(^)(NSError *error))faillure ;
+                      result:(void(^)(NSData *data, long tag, NSError*error))result ;
 
 // 提交安全栏
 - (void)setSafeRegion:(NSString *)email
@@ -115,8 +105,7 @@
                radius:(NSString *)radius        //半径
           withTimeout:(NSTimeInterval)timeout
                   tag:(long)tag
-              success:(void(^)(NSData *data, long tag))success
-             faillure:(void(^)(NSError *error))faillure ;
+              result:(void(^)(NSData *data, long tag, NSError*error))result ;
 
 
 //邮箱号,原密码,新密码,新电话号码,新昵称
@@ -128,8 +117,7 @@
                               nickName:(NSString *)nickName             //昵称
                            withTimeout:(NSTimeInterval)timeout
                                    tag:(long)tag
-                               success:(void(^)(NSData *data, long tag))success
-                              faillure:(void(^)(NSError *error))faillure;
+                               result:(void(^)(NSData *data, long tag, NSError*error))result;
 
 
 // 获取箱子定位历史信息
@@ -139,8 +127,7 @@
                           endDate:(NSString *)endDate             //结束时间
                       withTimeout:(NSTimeInterval)timeout
                               tag:(long)tag
-                          success:(void(^)(NSData *data, long tag))success
-                         faillure:(void(^)(NSError *error))faillure ;
+                         result:(void(^)(NSData *data, long tag, NSError*error))result ;
 // 箱子称重开锁
 - (void)setLockAndWeightWithEmail:(NSString *)email
                             bagId:(NSString *)bagId
@@ -148,6 +135,5 @@
                           isUlock:(BOOL )isUlock
                       withTimeout:(NSTimeInterval)timeout
                               tag:(long)tag
-                          success:(void(^)(NSData *data, long tag))success
-                         faillure:(void(^)(NSError *error))faillure ;
+                          result:(void(^)(NSData *data, long tag, NSError*error))result ;
 @end

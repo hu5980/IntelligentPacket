@@ -191,7 +191,6 @@
     curlocationDesLabel.text = OCSTR(@"%@%@",L(@"current Location:"), L(@"get in..."));
     
     [RACObserve(self, userLocation)subscribeNext:^(id x) {
-        @strongify(self)
         curlocationDesLabel.text = OCSTR(@"%@%@",L(@"current Location:"), L(@"get in..."));
     }];
 
@@ -241,29 +240,23 @@
     
     //转为地球坐标 提交
     CLLocationCoordinate2D coordinate = [self earthFromMars:self.userLocation];
-    
-    [[ITPScoketManager shareInstance] setSafeRegion:[ITPUserManager ShareInstanceOne].userEmail bagId:self.model.bagId longitude:OCSTR(@"%f",coordinate.longitude) latitude:OCSTR(@"%f",coordinate.latitude) radius:OCSTR(@"%d",self.circleRadiu) withTimeout:10 tag:112 success:^(NSData *data, long tag) {
-        
+    @weakify(self);
+    [[ITPScoketManager shareInstance] setSafeRegion:[ITPUserManager ShareInstanceOne].userEmail bagId:self.model.bagId longitude:OCSTR(@"%f",coordinate.longitude) latitude:OCSTR(@"%f",coordinate.latitude) radius:OCSTR(@"%d",self.circleRadiu) withTimeout:10 tag:112 result:^(NSData *data, long tag, NSError *error) {
+        @strongify(self);
         [self performBlock:^{
-            
+            @strongify(self);
             BOOL abool = [ITPLocationViewModel isSuccesss:data];
             if (abool) {
                 [self showAlert:L(@"Add success") WithDelay:1.2];
                 [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddSafebags object:nil];
                 [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
+            }else {
+                [self showAlert:L(@"Add failure") WithDelay:1.2];
             }
-            
-        } afterDelay:.1];
-        
-    } faillure:^(NSError *error) {
-        [self performBlock:^{
-            
-            [self showAlert:L(@"Add failure") WithDelay:1.2];
-            
         } afterDelay:.1];
     }];
-    
 }
+
 
 - (void) getCurPosition
 {
@@ -497,13 +490,31 @@
         {
             //显示最前面的地标信息
             CLPlacemark *placemark = [placemarks firstObject];
-            curlocationDesLabel.text=placemark.name;
             
-            // 拆分位置
-            //            NSString *locationString = [NSString stringWithFormat:@"%@%@%@%@",([[placemark addressDictionary] objectForKey:@"City"] == nil?@"":[[placemark addressDictionary] objectForKey:@"City"]),([[placemark addressDictionary] objectForKey:@"SubLocality"] == nil?@"":[[placemark addressDictionary] objectForKey:@"SubLocality"]),([[placemark addressDictionary] objectForKey:@"Thoroughfare"] == nil?@"":[[placemark addressDictionary] objectForKey:@"Thoroughfare"]), ([[placemark addressDictionary] objectForKey:@"subThoroughfare"] == nil?@"":[[placemark addressDictionary] objectForKey:@"subThoroughfare"])];
-            //经纬度
-            //            CLLocationDegrees latitude=firstPlacemark.location.coordinate.latitude;
-            //            CLLocationDegrees longitude=firstPlacemark.location.coordinate.longitude;
+            
+//            NSDictionary *addressDictionary = [placemark addressDictionary];
+//            NSString *name = placemark.name;
+            NSString *thoroughfare = placemark.thoroughfare;
+            NSString *subThoroughfare = placemark.subThoroughfare;
+            NSString *locality = placemark.locality;
+            NSString *subLocality = placemark.subLocality;
+            NSString *administrativeArea = placemark.administrativeArea;
+//            NSString *subAdministrativeArea = placemark.subAdministrativeArea;
+//            NSString *ISOcountryCode = placemark.ISOcountryCode;
+            NSString *country = placemark.country;
+//            NSString *inlandWater = placemark.inlandWater;
+//            NSString *ocean = placemark.ocean;
+//            NSArray *areasOfInterest = placemark.areasOfInterest;
+            
+            
+            NSArray * arr = [[placemark addressDictionary] objectForKey:@"FormattedAddressLines"];
+//            NSDictionary * dic = [arr firstObject];
+//            NSArray * _arr = [dic objectForKey:@"FormattedAddressLines"];
+            NSString *locationString = [arr firstObject];
+            if (locationString.length <= 0) {
+                locationString = [NSString stringWithFormat:@"%@%@%@%@%@%@附近",country.length==0?@"":country, administrativeArea.length==0?@"":administrativeArea, locality.length==0?@"":locality, subLocality.length==0?@"":subLocality, thoroughfare.length==0?@"":thoroughfare, subThoroughfare.length==0?@"":subThoroughfare];
+            }
+            curlocationDesLabel.text = locationString;
         }
     }];
 }

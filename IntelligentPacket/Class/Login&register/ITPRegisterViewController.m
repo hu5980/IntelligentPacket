@@ -83,24 +83,17 @@
     }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-    [[ITPScoketManager shareInstance]registerAuthWith:self.emailTextField.text withTimeout:10 tag:101 success:^(NSData *data, long tag) {
+    @weakify(self);
+    [[ITPScoketManager shareInstance]registerAuthWith:self.emailTextField.text withTimeout:10 tag:101 result:^(NSData *data, long tag, NSError *error) {
+        @strongify(self);
         // 提交注册
         [self performBlock:^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if ([LoginWithRegisterViewModel isAuthRegisterSuccess:data]) {
+            
+            if (!error&&[LoginWithRegisterViewModel isAuthRegisterSuccess:data]) {
                 [self showAlert:L(@"To get the verification code, please check the mailbox.") WithDelay:1.0];
             } else [self showAlert:L(@"get the verification code failed.") WithDelay:1.0];
         } afterDelay:.1];
-        
-    } faillure:^(NSError *error) {
-        
-        [self performBlock:^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self showAlert:L(@"get the verification code failed.") WithDelay:1.0];
-            
-        } afterDelay:.1];
-        
     }];
     
 }
@@ -128,14 +121,14 @@
 //    }
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [[ITPScoketManager shareInstance]registerWith:self.emailTextField.text password:self.passwordTextField.text authCode:self.codeTextFeild.text nickName:self.nickNameTextField.text  phone:self.phoneTF.text withTimeout:10 tag:101 success:^(NSData *data, long tag) {
-        
+    @weakify(self);
+    [[ITPScoketManager shareInstance]registerWith:self.emailTextField.text password:self.passwordTextField.text authCode:self.codeTextFeild.text nickName:self.nickNameTextField.text  phone:self.phoneTF.text withTimeout:10 tag:101 result:^(NSData *data, long tag, NSError *error) {
+        @strongify(self);
         [self performBlock:^{
-            
+            @strongify(self);
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             BOOL abool = [LoginWithRegisterViewModel isAuthRegisterSuccess:data];
-            if (abool) {
+            if (!error&&abool) {
                 
                 [self showAlert:L(@"register success") WithDelay:1.0];
                 
@@ -146,14 +139,6 @@
             } else [self showAlert:L(@"register failed") WithDelay:1.0];
             
         } afterDelay:.1];
-        
-    } faillure:^(NSError *error) {
-       
-        [self performBlock:^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self showAlert:L(@"register failed") WithDelay:1.0];
-        } afterDelay:.1];
-        
     }];
 
 }

@@ -6,13 +6,12 @@
   Copyright © 2016年 detu. All rights reserved.
 */
 
-CFBundleDisplayName="定位箱包";
-
 /////  箱包 =================
 "Luggage and bags" = "箱包";
 "Bag weighing" = "箱包称重";
 "confim" = "确认";
 "cancel" = "取消";
+"Stop" = "结束";
 
 "Add bags" = "添加箱包";
 "Manual input box ID" = "手动输入箱包ID";
@@ -68,6 +67,10 @@ CFBundleDisplayName="定位箱包";
 "Select Language" = "选择语言";
 "Cancel" = "取消";
 "OK" = "确认";
+
+"Problems and suggestions" = "问题和建议";
+"Picture (topics, provide a screenshot)" = "图片（选题，提供问题截图";
+"Please briefly describe your suggestions and comments" = "请简要描叙你的建议和意见";
 
 // 安全栏 。。。。
 

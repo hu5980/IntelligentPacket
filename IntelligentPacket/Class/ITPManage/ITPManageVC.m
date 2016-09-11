@@ -83,18 +83,20 @@
 
 - (void)refresh:(BOOL )abool {
     
-    [[ITPScoketManager shareInstance]loginWith:[ITPUserManager ShareInstanceOne].userEmail password:[ITPUserManager ShareInstanceOne].userPassword withTimeout:10 tag:108 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance]loginWith:[ITPUserManager ShareInstanceOne].userEmail password:[ITPUserManager ShareInstanceOne].userPassword withTimeout:10 tag:108 result:^(NSData *data, long tag, NSError *error) {
         __languageSwitch.on = abool;
+        if (error) {
+            __languageSwitch.on = !abool; return ;
+        }
+        
         if (abool) {
             [[NSUserDefaults standardUserDefaults] setObject:@"en" forKey:AppLanguage];
         }else {
             [[NSUserDefaults standardUserDefaults] setObject:@"zh-Hans" forKey:AppLanguage];
         }
+        
         [[NSUserDefaults standardUserDefaults] synchronize];
         [[NSNotificationCenter defaultCenter]postNotificationName:refreshLangugeNotification object:nil];
-        
-    } faillure:^(NSError *error) {
-        __languageSwitch.on = !abool;
     }];
    
 }
@@ -230,6 +232,11 @@
     
     backGoundView.height = cancleButton.bottom;
     backGoundView.center = [[UIApplication sharedApplication].delegate window].center;
+    
+    [UIView animateWithDuration:1 animations:^{
+        [[[UIApplication sharedApplication].delegate window] addSubview:backWindowGoundView];
+        [[[UIApplication sharedApplication].delegate window] addSubview:backGoundView];
+    }];
 }
 
 #pragma mark - UITableViewDelegate

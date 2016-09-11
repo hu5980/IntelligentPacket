@@ -56,30 +56,18 @@
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
-   [[ITPScoketManager shareInstance]lxrWithEmail:[ITPUserManager ShareInstanceOne].userEmail withTimeout:10 tag:103 success:^(NSData *data, long tag) {
-       
+   [[ITPScoketManager shareInstance]lxrWithEmail:[ITPUserManager ShareInstanceOne].userEmail withTimeout:10 tag:103 result:^(NSData *data, long tag, NSError *error) {
        @strongify(self);
        [self performBlock:^{
+           [MBProgressHUD hideHUDForView:self.view animated:YES];
            BOOL abool = [ITPContactViewModel isSuccesss:data];
-           if (abool) {
-               
-               [MBProgressHUD hideHUDForView:self.view animated:YES];
-               
+           if (!error&&abool) {
                self.dataSource = [ITPContactViewModel contacts:data];
                [self.tableView reloadData];
                NSLog(@"%@", self.dataSource);
            }
        } afterDelay:0.1];
-       
-   } faillure:^(NSError *error) {
-       
-       if (error) {
-           [self performBlock:^{
-               [MBProgressHUD hideHUDForView:self.view animated:YES];
-           } afterDelay:.1];
-       }
-       
-   } ];
+    }];
 }
 
 - (void)addContacts {
@@ -166,17 +154,12 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
-    [[ITPScoketManager shareInstance]deleteContactWithEmail:[ITPUserManager ShareInstanceOne].userEmail phone:self.dataSource[__selectIndexPath.row].contactEmail withTimeout:10 tag:110 success:^(NSData *data, long tag) {
-        
+    [[ITPScoketManager shareInstance]deleteContactWithEmail:[ITPUserManager ShareInstanceOne].userEmail phone:self.dataSource[__selectIndexPath.row].contactEmail withTimeout:10 tag:110 result:^(NSData *data, long tag, NSError *error) {
         @strongify(self);
-        if (tag != 110) {
-            return ;
-        }
-        
         [self performBlock:^{
-            
+            @strongify(self);
             BOOL abool = [ITPContactViewModel isSuccesss:data];
-            if (abool) {
+            if (!error&&abool) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 // 首先改变model
                 [self.dataSource removeObjectAtIndex:__selectIndexPath.row];
@@ -189,7 +172,7 @@
             }
             
         } afterDelay:0.1];
-    } faillure:^(NSError *error) {}];
+    }];
 }
 
 

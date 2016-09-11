@@ -43,6 +43,8 @@
     
     __weak IBOutlet UIButton *confimButton;
     
+    __weak IBOutlet UILabel *tipOne;
+    __weak IBOutlet UILabel *tipTwo;
     NSData * imageData;
     
     NetServiceApi * feedbackApi;
@@ -53,6 +55,9 @@
 
 
 - (void)refreshLanguge {
+    textViewPlaceholder.text = L(@"Please briefly describe your suggestions and comments");
+    tipOne.text = L(@"Problems and suggestions");
+    tipTwo.text = L(@"Picture (topics, provide a screenshot)");
     [confimButton setTitle:L(@"confim") forState:UIControlStateNormal];
 }
 
@@ -403,14 +408,48 @@
 // 多图拼接
 - (UIImage *)imageApend {
 
-    CGSize size = CGSizeMake(300, imagesDataSource.count * 250);
+    CGSize size = CGSizeMake(250, imagesDataSource.count * 250);
     UIGraphicsBeginImageContext(size);
     for (int index = 0; index < imagesDataSource.count; index++) {
-        [[UIImage createRoundedRectImage:imagesDataSource[index].originalImage size:CGSizeMake(300, 250) radius:0] drawInRect:CGRectMake(0, index*250, 300, 250)];
+        [[UIImage createRoundedRectImage:imagesDataSource[index].originalImage size:CGSizeMake(250, 250) radius:0] drawInRect:CGRectMake(0, index*250, 250, 250)];
     }
     UIImage *resultingImage =UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+//    NSData *data;
+//    if (UIImagePNGRepresentation(resultingImage) == nil) {
+//        data = UIImageJPEGRepresentation(resultingImage, 0.75);
+//    } else {
+//        data = UIImagePNGRepresentation(resultingImage);
+//    }
+//    resultingImage = [self pngTwojpg:resultingImage];
+//    
+//    if (UIImagePNGRepresentation(resultingImage) == nil) {
+//        data = UIImageJPEGRepresentation(resultingImage, 0.75);
+//    } else {
+//        data = UIImagePNGRepresentation(resultingImage);
+//    }
     return resultingImage;
+}
+
+-(UIImage *)pngTwojpg:(UIImage *)image{
+    NSData *data;
+    
+    if (UIImagePNGRepresentation(image) == nil) {
+        data = UIImageJPEGRepresentation(image, 0.75);
+    } else {
+        data = UIImagePNGRepresentation(image);
+    }
+    NSString *tempPath = NSTemporaryDirectory();
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *filePath = [tempPath stringByAppendingPathComponent:@"imageBox"];         //将图片存储到本地temp
+    [fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    [fileManager createFileAtPath:[filePath stringByAppendingString:@"/image.jpg"] contents:data attributes:nil];
+    
+    [data writeToFile:filePath atomically:YES];
+    return [UIImage imageWithContentsOfFile:filePath];
 }
 
 @end

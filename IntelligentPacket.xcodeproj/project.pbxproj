@@ -11,6 +11,8 @@
 		5D05CA5B1D4640FC0073FAD9 /* AddBagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA581D4640FC0073FAD9 /* AddBagsViewController.m */; };
 		5D05CA5C1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D05CA5A1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m */; };
 		5D08B85F1D7BE05C008C7FCC /* ITPFeedBackItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D08B85E1D7BE05C008C7FCC /* ITPFeedBackItem.m */; };
+		5D0B46E11D8523AF00BD8DD3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5D0B46E31D8523AF00BD8DD3 /* InfoPlist.strings */; };
+		5D0B46EA1D8582C600BD8DD3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D0B46E81D8582C600BD8DD3 /* LaunchScreen.storyboard */; };
 		5D0C71801D728EA600C86697 /* DataSingleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0C717F1D728EA600C86697 /* DataSingleManager.m */; };
 		5D0C71831D72FBCF00C86697 /* CLLocation+SethSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D0C71821D72FBCF00C86697 /* CLLocation+SethSwitch.m */; };
 		5D0E25F91D7DBCC5007B7FD1 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 5D0E25DD1D7DBCC5007B7FD1 /* LICENSE */; };
@@ -102,7 +104,6 @@
 		5DD5AFB81D0E9DB000EBDB70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5AFB71D0E9DB000EBDB70 /* main.m */; };
 		5DD5AFC11D0E9DB000EBDB70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DD5AFBF1D0E9DB000EBDB70 /* Main.storyboard */; };
 		5DD5AFC41D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5AFC21D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld */; };
-		5DD5AFC91D0E9DB000EBDB70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DD5AFC71D0E9DB000EBDB70 /* LaunchScreen.storyboard */; };
 		5DD5AFD41D0E9DB000EBDB70 /* IntelligentPacketTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5AFD31D0E9DB000EBDB70 /* IntelligentPacketTests.m */; };
 		5DD5AFDF1D0E9DB000EBDB70 /* IntelligentPacketUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5AFDE1D0E9DB000EBDB70 /* IntelligentPacketUITests.m */; };
 		5DD5AFF41D0EB48F00EBDB70 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD5AFF11D0EB48F00EBDB70 /* AppDelegate.m */; };
@@ -145,6 +146,9 @@
 		5D05CA5A1D4640FC0073FAD9 /* ITPAddBabWithIDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAddBabWithIDViewController.m; sourceTree = "<group>"; };
 		5D08B85D1D7BE05C008C7FCC /* ITPFeedBackItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPFeedBackItem.h; sourceTree = "<group>"; };
 		5D08B85E1D7BE05C008C7FCC /* ITPFeedBackItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPFeedBackItem.m; sourceTree = "<group>"; };
+		5D0B46E21D8523AF00BD8DD3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5D0B46E41D8523B000BD8DD3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		5D0B46E91D8582C600BD8DD3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D0C717E1D728EA600C86697 /* DataSingleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSingleManager.h; sourceTree = "<group>"; };
 		5D0C717F1D728EA600C86697 /* DataSingleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSingleManager.m; sourceTree = "<group>"; };
 		5D0C71811D72FBCF00C86697 /* CLLocation+SethSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+SethSwitch.h"; sourceTree = "<group>"; };
@@ -308,7 +312,6 @@
 		5DD5AFB71D0E9DB000EBDB70 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5DD5AFC01D0E9DB000EBDB70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5DD5AFC31D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IntelligentPacket.xcdatamodel; sourceTree = "<group>"; };
-		5DD5AFC81D0E9DB000EBDB70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DD5AFCA1D0E9DB000EBDB70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DD5AFCF1D0E9DB000EBDB70 /* IntelligentPacketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IntelligentPacketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DD5AFD31D0E9DB000EBDB70 /* IntelligentPacketTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntelligentPacketTests.m; sourceTree = "<group>"; };
@@ -321,12 +324,9 @@
 		5DD5AFF61D0EB51300EBDB70 /* IntelligentPacket.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntelligentPacket.pch; sourceTree = "<group>"; };
 		5DD5AFFA1D0EB7B700EBDB70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5DD5AFFC1D0EB7F600EBDB70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		5DD5AFFD1D0EB7F600EBDB70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		5DD5AFFE1D0EB7F600EBDB70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		5DD5AFFF1D0EBA0900EBDB70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5DD5B0001D0EBDB700EBDB70 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5DD5B0031D0ECA5700EBDB70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		5DD5B0051D0ECA6200EBDB70 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5DE3F0211D16850700FCAEEF /* UIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIManager.h; sourceTree = "<group>"; };
 		5DE3F0221D16850700FCAEEF /* UIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIManager.m; sourceTree = "<group>"; };
 		5DE3F0291D16B25400FCAEEF /* ITPHttpServiceBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPHttpServiceBase.h; sourceTree = "<group>"; };
@@ -874,8 +874,8 @@
 		5DD5AFB61D0E9DB000EBDB70 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5D0B46E81D8582C600BD8DD3 /* LaunchScreen.storyboard */,
 				5DEA63611D1672E7000D3BBD /* IntelligentPacket-Bridging-Header.h */,
-				5DD5AFC71D0E9DB000EBDB70 /* LaunchScreen.storyboard */,
 				5DD5AFC21D0E9DB000EBDB70 /* IntelligentPacket.xcdatamodeld */,
 				5DD5AFCA1D0E9DB000EBDB70 /* Info.plist */,
 				5D5294E31D68A45B005C0DF2 /* PushConfig.plist */,
@@ -910,6 +910,7 @@
 			children = (
 				5DB50FA71D27E68B00F28535 /* ITPLanguageManager.h */,
 				5DB50FA81D27E68B00F28535 /* ITPLanguageManager.m */,
+				5D0B46E31D8523AF00BD8DD3 /* InfoPlist.strings */,
 				5DD5AFFB1D0EB7B700EBDB70 /* Localizable.strings */,
 			);
 			name = ITPLanguage;
@@ -1146,11 +1147,12 @@
 				5D0E26021D7DBCC5007B7FD1 /* QRCodeBottomRight@2x.png in Resources */,
 				5D0E26011D7DBCC5007B7FD1 /* QRCodeBottomLeft@3x.png in Resources */,
 				5DABF9E51D3A14CB006ADBE3 /* EditContactTableViewCell.xib in Resources */,
-				5DD5AFC91D0E9DB000EBDB70 /* LaunchScreen.storyboard in Resources */,
 				5D0E26061D7DBCC5007B7FD1 /* QRCodeTopLeft@2x.png in Resources */,
 				5DB50FB71D27FA6100F28535 /* ITPPacketBagCell.xib in Resources */,
 				5D6812871D3FC1790041D811 /* dotGreen@2x.png in Resources */,
 				5D0E26051D7DBCC5007B7FD1 /* QRCodeLine@3x.png in Resources */,
+				5D0B46E11D8523AF00BD8DD3 /* InfoPlist.strings in Resources */,
+				5D0B46EA1D8582C600BD8DD3 /* LaunchScreen.storyboard in Resources */,
 				5D0E26031D7DBCC5007B7FD1 /* QRCodeBottomRight@3x.png in Resources */,
 				5D5294E41D68A45B005C0DF2 /* PushConfig.plist in Resources */,
 				5D0E25F91D7DBCC5007B7FD1 /* LICENSE in Resources */,
@@ -1350,6 +1352,23 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		5D0B46E31D8523AF00BD8DD3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5D0B46E21D8523AF00BD8DD3 /* en */,
+				5D0B46E41D8523B000BD8DD3 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		5D0B46E81D8582C600BD8DD3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5D0B46E91D8582C600BD8DD3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		5DD5AFBF1D0E9DB000EBDB70 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1361,22 +1380,11 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		5DD5AFC71D0E9DB000EBDB70 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5DD5AFC81D0E9DB000EBDB70 /* Base */,
-				5DD5AFFD1D0EB7F600EBDB70 /* zh-Hans */,
-				5DD5B0051D0ECA6200EBDB70 /* en */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 		5DD5AFFB1D0EB7B700EBDB70 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5DD5AFFA1D0EB7B700EBDB70 /* en */,
 				5DD5AFFE1D0EB7F600EBDB70 /* zh-Hans */,
-				5DD5AFFF1D0EBA0900EBDB70 /* Base */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1477,7 +1485,7 @@
 			baseConfigurationReference = 36671EB56609768BCE3AC3C7 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1495,7 +1503,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IntelligentPacket/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.detu.smartbags;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
@@ -1509,9 +1517,9 @@
 			baseConfigurationReference = 5CA47F56F8288657024A364D /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1527,7 +1535,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IntelligentPacket/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.detu.smartbags;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";

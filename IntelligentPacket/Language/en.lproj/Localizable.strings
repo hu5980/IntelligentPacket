@@ -6,8 +6,6 @@
   Copyright © 2016年 detu. All rights reserved.
 */
 
-CFBundleDisplayName="Smart Bags";
-
 //箱包
 "Luggage and bags" = "Luggage and bags";
 "Bag weighing" = "Bag weighing";
@@ -41,8 +39,9 @@ CFBundleDisplayName="Smart Bags";
 "Sign out" = "Sign out";
 "Manage" = "Manage";
 
-
-
+"Problems and suggestions" = "Problems and suggestions";
+"Picture (topics, provide a screenshot)" = "Picture (topics, provide a screenshot)";
+"Please briefly describe your suggestions and comments" = "Please briefly describe your suggestions and comments";
 
 // login
 

@@ -134,15 +134,19 @@
     NSArray * arr = [self paraserData:data];
     NSString * weightStr = arr.lastObject;
     NSMutableArray * temp = [NSMutableArray array];
-    
+    NSLog(@"%@", weightStr);
     for (int i = 0; i < weightStr.length; i=i+2) {
         
         NSString * str = [weightStr substringWithRange:NSMakeRange(i, 2)];
-        unsigned int red = strtoul([str UTF8String],0,16);
-        [temp addObject:OCSTR(@"%d",red)];
+        unsigned long int red = strtoul([str UTF8String],0,16);
+        [temp addObject:OCSTR(@"%ld",red)];
     }
     
-    float weight = ((NSString *)temp[1]).floatValue*10000 + ((NSString *)temp[2]).floatValue*100 + ((NSString *)temp[3]).floatValue;
+    float weight = ((NSString *)temp[1]).floatValue*0x10000 + ((NSString *)temp[2]).floatValue*0x100 + ((NSString *)temp[3]).floatValue; //单位10g.
+    if (weight >10000) {
+        return 0;
+    }
+    weight = weight*10/1000.0; // 转为kg.
     return weight;
 }
 

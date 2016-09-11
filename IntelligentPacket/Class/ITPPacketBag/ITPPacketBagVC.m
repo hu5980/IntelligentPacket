@@ -94,16 +94,14 @@ long long currentTimeSamp = 0;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
-    [[ITPScoketManager shareInstance] bagListWithTimeout:10 tag:106 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance] bagListWithTimeout:10 tag:106 result:^(NSData *data, long tag, NSError *error) {
         @strongify(self);
-        if (tag != 106) {
-            return ;
-        }
-        BOOL abool = [ITPBagViewModel isSuccesss:data];
-        if (abool) {
+      
+        [self performBlock:^{
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            BOOL abool = [ITPBagViewModel isSuccesss:data];
             
-            [self performBlock:^{
-                
+            if (abool) {
                 [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 self.dataSource = [ITPBagViewModel bags:data];
                 [DataSingleManager sharedInstance].bags = [ITPBagViewModel bags:data];
@@ -111,23 +109,13 @@ long long currentTimeSamp = 0;
                 [self.tableView reloadData];
                 NSLog(@"%@", self.dataSource);
                 
-            } afterDelay:0.1];
-        
-        }else {
-            
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//            [self showAlert:@"获取数据失败" WithDelay:1];
-        }
-        
-    } faillure:^(NSError *error) {
-    
-        if (error) {
-            [self performBlock:^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            } afterDelay:.1];
-        }
+            }else {
+                //                        [self showAlert:@"获取数据失败" WithDelay:1];
+            }
+        } afterDelay:0.1];
         
     }];
+   
     [self performBlock:^{
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     } afterDelay:2];
@@ -238,8 +226,8 @@ long long currentTimeSamp = 0;
             // selected = yes  是开锁状态
             if (!but.selected) {
                [self performBlock:^{
-                   [[ITPScoketManager shareInstance] setLockAndWeightWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[indexPath].bagId isWeight:NO isUlock:YES withTimeout:10 tag:115 success:^(NSData *data, long tag) {
-                       
+                   [[ITPScoketManager shareInstance] setLockAndWeightWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[indexPath].bagId isWeight:NO isUlock:YES withTimeout:10 tag:115 result:^(NSData *data, long tag, NSError *error) {
+                       @strongify(but);
                        BOOL abool = [ITPBagViewModel isSuccesss:data];
                        if (abool) {
                            [self performBlock:^{
@@ -250,14 +238,15 @@ long long currentTimeSamp = 0;
                                    but.selected = NO;
                                } afterDelay:10];
                            } afterDelay:.01];
+                       }else {
+                           but.selected = NO;
                        }
-                   } faillure:^(NSError *error) {
-                       @strongify(but);
-                       but.selected = NO;
                    }];
                } afterDelay:0];
+                
             } else {
                 [self performBlock:^{
+                    @strongify(self);
                     [self showAlert:L(@"Lock has been turned on") WithDelay:1.3];
                 } afterDelay:.01];
             }
@@ -333,10 +322,10 @@ long long currentTimeSamp = 0;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
-    [[ITPScoketManager shareInstance]deleteBagWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[__selectIndexPath.row].bagId withTimeout:10 tag:109 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance]deleteBagWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[__selectIndexPath.row].bagId withTimeout:10 tag:109 result:^(NSData *data, long tag, NSError *error) {
         @strongify(self);
-        if (tag != 109) {return ;}
         [self performBlock:^{
+            @strongify(self);
             BOOL abool = [ITPBagViewModel isSuccesss:data];
             if (abool) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -349,7 +338,7 @@ long long currentTimeSamp = 0;
                 [self showAlert:L(@"Delete error") WithDelay:1];
             }
         } afterDelay:0.1];
-    } faillure:^(NSError *error) {}];
+    }];
 }
 
 - (void)showCallPhone:(ITPPacketBagModel *)model {

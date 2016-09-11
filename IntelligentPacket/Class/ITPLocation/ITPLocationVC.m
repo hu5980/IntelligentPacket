@@ -259,13 +259,11 @@
         [self getCurPosition];
         return;
     }
-    
-    [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.currentModel.bagId withTimeout:10 tag:107 success:^(NSData *data, long tag) {
-        if (tag != 107) {
-            return ;
-        }
+    @weakify(self);
+    [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.currentModel.bagId withTimeout:10 tag:107 result:^(NSData *data, long tag, NSError *error) {
+        @strongify(self);
         BOOL abool = [ITPLocationViewModel isSuccesss:data];
-        if (abool) {
+        if (!error&&abool) {
             ITPLocationModel * model = [ITPLocationViewModel Locations:data];
             updateTimeLabel.text = [NSString stringWithFormat:@"更新时间%@",model.time];
             [self setelectricImage:model.electric];
@@ -300,10 +298,6 @@
                 ishandRefresh = NO;
             }
             [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
-        }
-    } faillure:^(NSError *error) {
-        if (error) {
-            
         }
     }];
 }
@@ -499,7 +493,7 @@ long long _currentTimeSamp = 0;
     [annotation setCoordinate:userLocation.coordinate];
     [_mapView addAnnotation:annotation];
     
-    //    [self showCurrentLocationInfo:userLocation];
+    [self showCurrentLocationInfo:userLocation];
 }
 
 - (void)showCurrentLocationInfo:(MKUserLocation *)location {
@@ -508,9 +502,33 @@ long long _currentTimeSamp = 0;
     //根据经纬度反向地理编译出地址信息
     [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error){
         if (placemarks.count > 0){
-            CLPlacemark *placemark = [placemarks objectAtIndex:0];
-//            NSString *locationString = [NSString stringWithFormat:@"%@%@%@附近",[[placemark addressDictionary] objectForKey:@"City"],[[placemark addressDictionary] objectForKey:@"SubLocality"],[[placemark addressDictionary] objectForKey:@"Thoroughfare"]];
-            self.locationLabel.text = placemark.name;
+            //显示最前面的地标信息
+            CLPlacemark *placemark = [placemarks firstObject];
+            
+            
+            //            NSDictionary *addressDictionary = [placemark addressDictionary];
+            //            NSString *name = placemark.name;
+            NSString *thoroughfare = placemark.thoroughfare;
+            NSString *subThoroughfare = placemark.subThoroughfare;
+            NSString *locality = placemark.locality;
+            NSString *subLocality = placemark.subLocality;
+            NSString *administrativeArea = placemark.administrativeArea;
+            //            NSString *subAdministrativeArea = placemark.subAdministrativeArea;
+            //            NSString *ISOcountryCode = placemark.ISOcountryCode;
+            NSString *country = placemark.country;
+            //            NSString *inlandWater = placemark.inlandWater;
+            //            NSString *ocean = placemark.ocean;
+            //            NSArray *areasOfInterest = placemark.areasOfInterest;
+            
+            
+            NSArray * arr = [[placemark addressDictionary] objectForKey:@"FormattedAddressLines"];
+            //            NSDictionary * dic = [arr firstObject];
+            //            NSArray * _arr = [dic objectForKey:@"FormattedAddressLines"];
+            NSString *locationString = [arr firstObject];
+            if (locationString.length <= 0) {
+                locationString = [NSString stringWithFormat:@"%@%@%@%@%@%@附近",country.length==0?@"":country, administrativeArea.length==0?@"":administrativeArea, locality.length==0?@"":locality, subLocality.length==0?@"":subLocality, thoroughfare.length==0?@"":thoroughfare, subThoroughfare.length==0?@"":subThoroughfare];
+            }
+            self.locationLabel.text = locationString;
         }
         else if (error == nil && [placemarks count] == 0)
         {

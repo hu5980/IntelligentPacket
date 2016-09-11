@@ -73,34 +73,23 @@
 -(void)loadNetdata {
     
     @weakify(self);
-    [[ITPScoketManager shareInstance]bagListWithTimeout:10 tag:106 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance]bagListWithTimeout:10 tag:106 result:^(NSData *data, long tag, NSError *error) {
         @strongify(self);
-        if (tag != 106) {
-            return ;
-        }
-        BOOL abool = [ITPBagViewModel isSuccesss:data];
-        if (abool) {
-            
-            [self performBlock:^{
+        [self performBlock:^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            BOOL abool = [ITPBagViewModel isSuccesss:data];
+            if (!error&&abool) {
                 
                 [DataSingleManager sharedInstance].bags = [ITPBagViewModel managerBags:data];
                 [self loaddata];
                 [self.tableView reloadData];
                 
-            } afterDelay:0.1];
+            }else {
+                
+               
+            }
             
-        }else {
-            
-        }
-        
-    } faillure:^(NSError *error) {
-        
-        if (error) {
-            [self performBlock:^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-            } afterDelay:.1];
-        }
-        
+        } afterDelay:0.1];
     }];
     
 }
@@ -126,9 +115,34 @@
             label.text = OCSTR(@"%@\n%@", model.bagName, L(@"the address you entered was not found, possibly on the moon"));
         }else//编码成功
         {
+            
             //显示最前面的地标信息
             CLPlacemark *placemark = [placemarks firstObject];
-            label.text = OCSTR(@"%@\n%@", model.bagName, placemark.name);
+            
+            
+            //            NSDictionary *addressDictionary = [placemark addressDictionary];
+            //            NSString *name = placemark.name;
+            NSString *thoroughfare = placemark.thoroughfare;
+            NSString *subThoroughfare = placemark.subThoroughfare;
+            NSString *locality = placemark.locality;
+            NSString *subLocality = placemark.subLocality;
+            NSString *administrativeArea = placemark.administrativeArea;
+            //            NSString *subAdministrativeArea = placemark.subAdministrativeArea;
+            //            NSString *ISOcountryCode = placemark.ISOcountryCode;
+            NSString *country = placemark.country;
+            //            NSString *inlandWater = placemark.inlandWater;
+            //            NSString *ocean = placemark.ocean;
+            //            NSArray *areasOfInterest = placemark.areasOfInterest;
+            
+            
+            NSArray * arr = [[placemark addressDictionary] objectForKey:@"FormattedAddressLines"];
+            //            NSDictionary * dic = [arr firstObject];
+            //            NSArray * _arr = [dic objectForKey:@"FormattedAddressLines"];
+            NSString *locationString = [arr firstObject];
+            if (locationString.length <= 0) {
+                locationString = [NSString stringWithFormat:@"%@%@%@%@%@%@附近",country.length==0?@"":country, administrativeArea.length==0?@"":administrativeArea, locality.length==0?@"":locality, subLocality.length==0?@"":subLocality, thoroughfare.length==0?@"":thoroughfare, subThoroughfare.length==0?@"":subThoroughfare];
+            }
+            label.text = OCSTR(@"%@\n%@", model.bagName, locationString);
         }
     }];
 }
@@ -217,28 +231,22 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);
-    [[ITPScoketManager shareInstance] setSafeRegion:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[indexPath.row].bagId longitude:OCSTR(@"%d",0) latitude:OCSTR(@"%d",0) radius:OCSTR(@"%d",0) withTimeout:10 tag:112 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance] setSafeRegion:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[indexPath.row].bagId longitude:OCSTR(@"%d",0) latitude:OCSTR(@"%d",0) radius:OCSTR(@"%d",0) withTimeout:10 tag:112 result:^(NSData *data, long tag, NSError *error) {
         @strongify(self);
         [self performBlock:^{
             
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
             BOOL abool = [ITPLocationViewModel isSuccesss:data];
-            if (abool) {
+            if (!error&&abool) {
                 [self showAlert:L(@"delete success") WithDelay:1.2];
                 [self loadNetdata];
                 [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
+            }else {
+                [self showAlert:L(@"delete failure") WithDelay:1.2];
             }
             
         } afterDelay:.1];
-        
-    } faillure:^(NSError *error) {
-        [self performBlock:^{
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            [self showAlert:L(@"delete failure") WithDelay:1.2];
-            
-        } afterDelay:.1];
     }];
-
 }
 
 - (void)dealloc {

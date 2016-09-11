@@ -58,35 +58,32 @@
    
     @weakify(self);
     
-    [[ITPScoketManager shareInstance] modifyUserInformationWithEmail:[ITPUserManager ShareInstanceOne].userEmail oldPassword:self.oldPasswordTextField.text newPassword:self.conifmPasswordTextField.text phone:self.phoneTF.text nickName:self.nickNameTextField.text withTimeout:10 tag:113 success:^(NSData *data, long tag) {
+    [[ITPScoketManager shareInstance] modifyUserInformationWithEmail:[ITPUserManager ShareInstanceOne].userEmail oldPassword:self.oldPasswordTextField.text newPassword:self.conifmPasswordTextField.text phone:self.phoneTF.text nickName:self.nickNameTextField.text withTimeout:10 tag:113 result:^(NSData *data, long tag, NSError *error) {
         @strongify(self);
+        [self performBlock:^{
+            @strongify(self);
+            
+            BOOL abool = [ITPContactViewModel isSuccesss:data];
+            if (!error&&abool) {
+                
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [self showAlert:L(@"Modify success") WithDelay:1.];
+                
+                
+                [ITPUserManager ShareInstanceOne].userPhone = self.phoneTF.text;
+                [ITPUserManager ShareInstanceOne].userPassword = self.conifmPasswordTextField.text;
+                [ITPUserManager ShareInstanceOne].userName = self.nickNameTextField.text;
+                
                 [self performBlock:^{
-                    @strongify(self);
-                    
-                    BOOL abool = [ITPContactViewModel isSuccesss:data];
-                    if (abool) {
-        
-                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                        [self showAlert:L(@"Modify success") WithDelay:1.];
-        
-        
-                        [ITPUserManager ShareInstanceOne].userPhone = self.phoneTF.text;
-                        [ITPUserManager ShareInstanceOne].userPassword = self.conifmPasswordTextField.text;
-                        [ITPUserManager ShareInstanceOne].userName = self.nickNameTextField.text;
-        
-                        [self performBlock:^{
-                            [self.navigationController popViewControllerAnimated:YES];
-                        } afterDelay:1.5];
-                        
-                    }else {
-                        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                        [self showAlert:L(@"Modify falied") WithDelay:1.];
-                    }
-                    
-                } afterDelay:.1];
-
-    } faillure:^(NSError *error) {
-        
+                    [self.navigationController popViewControllerAnimated:YES];
+                } afterDelay:1.5];
+                
+            }else {
+                [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+                [self showAlert:L(@"Modify falied") WithDelay:1.];
+            }
+            
+        } afterDelay:.1];
     }];
     
 }

@@ -112,12 +112,26 @@
     historyDate = [KMCalendarHelper getPrevisionDate:historyDate];
     dateLabel.text = [historyDate dateFormate:@"yyyy-MM-dd"];
     [self getDataFromNetwork];
+    [button setTitleColor:RGB(220, 220, 220) forState:UIControlStateDisabled];
+    button.enabled = NO;
+    
+    [self performBlock:^{
+        button.enabled = YES;
+        [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    } afterDelay:2];
 }
 
 - (void)nextDayAction:(UIButton *)button {
     historyDate = [KMCalendarHelper getNextDate:historyDate];
     dateLabel.text = [historyDate dateFormate:@"yyyy-MM-dd"];
     [self getDataFromNetwork];
+    [button setTitleColor:RGB(220, 220, 220) forState:UIControlStateDisabled];
+    button.enabled = NO;
+    
+    [self performBlock:^{
+        button.enabled = YES;
+        [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    } afterDelay:2];
 }
 
 - (void)showCalender:(UIButton *)button {
@@ -149,14 +163,15 @@
         endDate = [[KMCalendarHelper endingOfDate:historyDate] dateFormate:@"yyyy-MM-dd HH:mm:ss"];
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [[ITPScoketManager shareInstance] getHistoryRecordWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:_model.bagId startDate:startDate endDate:endDate withTimeout:10 tag:112 success:^(NSData *data, long tag) {
-        
-         dispatch_async(dispatch_get_main_queue(), ^{
+    @weakify(self);
+    [[ITPScoketManager shareInstance] getHistoryRecordWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:_model.bagId startDate:startDate endDate:endDate withTimeout:10 tag:112 result:^(NSData *data, long tag, NSError *error) {
+        @strongify(self);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-         });
+        });
         
         BOOL success = [ITPLocationHistoryViewModel isSuccesss:data];
-        if (success) {
+        if (!error&&success) {
             pointsArray =  [ITPLocationHistoryViewModel getLocationData:data];
             if(pointsArray .count > 0){
                 MKUserLocation *userLocation =[pointsArray objectAtIndex:0];
@@ -168,35 +183,30 @@
                 [self setMapRoutes];
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    @strongify(self);
                     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-                    [self showAlert:@"没有历史数据" WithDelay:1];
+                    [self showAlert:@"没有历史数据" WithDelay:2];
                     
                 });
                 
                 if (routeLine) {
                     [mapView removeOverlay:routeLine];
                 }
-
-
+                
+                
             }
         }else{
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
                 [self showAlert:@"获取数据失败" WithDelay:1];
-
+                
             });
             
             if (routeLine) {
                 [mapView removeOverlay:routeLine];
             }
         }
-        
-    } faillure:^(NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-      
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        });
     }];
     
     
