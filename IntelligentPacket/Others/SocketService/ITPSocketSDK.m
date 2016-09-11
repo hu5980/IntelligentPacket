@@ -117,7 +117,7 @@
             REGISTER_REQUEST_BLOCK = result;
             break;
         case ITP_REGISTER_CONFIM_TAG:
-            REGISTER_REQUEST_BLOCK = result;
+            REGISTER_CONFIM_BLOCK = result;
             break;
         case ITP_LOGIN_TAG:
             LOGIN_BLOCK = result;

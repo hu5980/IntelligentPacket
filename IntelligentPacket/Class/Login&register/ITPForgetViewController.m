@@ -34,7 +34,7 @@
     self.firstpasswordTF.placeholder = L(@"Please enter your password");
     self.seconpasswordTF.placeholder = L(@"Please confim your password");
     self.codeTF.placeholder = L(@"Please enter your code");
-    [self.confimButton setTitle:L(@"register") forState:UIControlStateNormal];
+    [self.confimButton setTitle:L(@"confim") forState:UIControlStateNormal];
     [self.getCode setTitle:L(@"get code") forState:UIControlStateNormal];
 }
 
@@ -103,8 +103,6 @@
     //        [self showAlert:@"昵称格式不正确" WithDelay:1.0];
     //        return;
     //    }
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     @weakify(self);

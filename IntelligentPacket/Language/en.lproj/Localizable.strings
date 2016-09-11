@@ -58,6 +58,9 @@
 "fast register" = "fast register";
 "find password" = "find password";
 
+"Account or password error" = "账号或密码错误";
+"Server exception" = "服务器异常";
+
 // register
 "Please enter your code" = "Please enter your code";
 "Please enter your nickName" = "Please enter your nickName";

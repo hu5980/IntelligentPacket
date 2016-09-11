@@ -117,9 +117,12 @@
                         NSLog(@"set success...");
                     }
                 }];
+            } else if(error) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self showAlert:L(@"Server exception!") WithDelay:1.5];
             }else {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [self showAlert:L(@"Login error!") WithDelay:1.5];
+                [self showAlert:L(@"Account or password error!") WithDelay:1.5];
             }
         } afterDelay:.1];
     }];

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ucB-Dg-LdV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ucB-Dg-LdV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,10 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5S1-Qh-0OP">
-                                <rect key="frame" x="20" y="13" width="30" height="30"/>
-                                <state key="normal" title="🍵"/>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="已注册商标" translatesAutoresizingMaskIntoConstraints="NO" id="dOy-xg-ZOs">
                                 <rect key="frame" x="111" y="70" width="98" height="98"/>
                             </imageView>
@@ -155,7 +151,6 @@
                             <constraint firstAttribute="trailingMargin" secondItem="ILk-3x-2jJ" secondAttribute="trailing" constant="-5" id="Gve-6E-kKE"/>
                             <constraint firstItem="ILk-3x-2jJ" firstAttribute="centerY" secondItem="6Zj-jo-b8J" secondAttribute="centerY" id="J9k-aI-d9g"/>
                             <constraint firstItem="lIE-Ik-eET" firstAttribute="top" secondItem="ZGn-1D-Ofz" secondAttribute="bottom" constant="8" id="Nic-EF-oFI"/>
-                            <constraint firstItem="5S1-Qh-0OP" firstAttribute="top" secondItem="idm-Vv-DDe" secondAttribute="bottom" constant="-7" id="PT7-kz-GNZ"/>
                             <constraint firstItem="Qii-2i-PIV" firstAttribute="trailing" secondItem="ILk-3x-2jJ" secondAttribute="trailing" id="PVx-bi-SCB"/>
                             <constraint firstItem="ZGn-1D-Ofz" firstAttribute="leading" secondItem="6Zj-jo-b8J" secondAttribute="leadingMargin" constant="-5" id="TdU-9F-6hQ"/>
                             <constraint firstItem="lIE-Ik-eET" firstAttribute="trailing" secondItem="ZGn-1D-Ofz" secondAttribute="trailing" id="aQq-Nt-Qui"/>
@@ -167,7 +162,6 @@
                             <constraint firstItem="phv-hv-eQv" firstAttribute="top" secondItem="ZGn-1D-Ofz" secondAttribute="bottom" constant="8" id="p4X-f4-fbg"/>
                             <constraint firstItem="Qii-2i-PIV" firstAttribute="top" secondItem="ILk-3x-2jJ" secondAttribute="bottom" constant="17" id="qjs-0d-Z9u"/>
                             <constraint firstItem="dOy-xg-ZOs" firstAttribute="centerX" secondItem="6Zj-jo-b8J" secondAttribute="centerX" id="rQR-Wf-7b3"/>
-                            <constraint firstItem="5S1-Qh-0OP" firstAttribute="leading" secondItem="6Zj-jo-b8J" secondAttribute="leadingMargin" constant="4" id="viF-kp-8Ky"/>
                             <constraint firstItem="Kf7-st-SZd" firstAttribute="centerY" secondItem="ILk-3x-2jJ" secondAttribute="centerY" id="xQH-1g-az2"/>
                         </constraints>
                     </view>
@@ -597,7 +591,7 @@
                                         </constraints>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="用户名_" translatesAutoresizingMaskIntoConstraints="NO" id="YW2-CY-qq9">
                                         <rect key="frame" x="8" y="11" width="22" height="22"/>
