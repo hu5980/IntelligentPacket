@@ -1098,6 +1098,8 @@
 				TargetAttributes = {
 					5DD5AFB21D0E9DB000EBDB70 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = KXFKF6GJJP;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1489,6 +1491,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = KXFKF6GJJP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1503,11 +1506,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IntelligentPacket/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.detu.smartbags;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5a30a9c2-afed-4857-98a7-e4c84a5719bd";
+				PROVISIONING_PROFILE_SPECIFIER = per_dev_sam.smartbags;
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1521,6 +1526,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = KXFKF6GJJP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1535,10 +1541,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IntelligentPacket/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.detu.smartbags;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "38f33f4e-0689-45cc-a75d-db3f735154b1";
+				PROVISIONING_PROFILE_SPECIFIER = per_dis_sam.smartbags;
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
