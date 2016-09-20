@@ -170,7 +170,8 @@
             }
     }];
     
-    rangeArray = @[@5,@10,@20,@50,@100,@200,@500,@1000,@2000,@5000,@10000,@20000,@50000,@100000,@200000,@500000,@1000000,@2000000];
+//    rangeArray = @[@5,@10,@20,@50,@100,@200,@500,@1000,@2000,@5000,@10000,@20000,@50000,@100000,@200000,@500000,@1000000,@2000000];
+    rangeArray = @[@2000000,@1000000,@500000,@200000,@100000,@50000,@20000,@10000,@5000,@2000,@1000,@500,@200,@100,@50,@20,@10,@5];
     
     stepper = [[UIStepper alloc] initWithFrame:CGRectMake(XKAppWidth -120, XKAppHeight - 200, 120, 60)];
    
@@ -193,6 +194,7 @@
 - (void)changRange:(UIStepper *)steper {
     NSLog(@"%f",[[rangeArray objectAtIndex:stepper.value] floatValue]);
     [_mapView removeAnnotations:_mapView.annotations];
+    
     CLLocationCoordinate2D pos = _mapView.centerCoordinate;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,[[rangeArray objectAtIndex:stepper.value] floatValue],[[rangeArray objectAtIndex:stepper.value] floatValue]);//以pos为中心，显示2000米
 //    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
