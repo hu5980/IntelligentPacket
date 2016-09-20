@@ -22,7 +22,9 @@
 }
 
 + (BOOL )isSuccesss:(NSData *)data {
-    
+    if (!data) {
+        return NO;
+    }
     NSArray * dataArr = [self paraserData:data];
     if (dataArr.count >= 2) {
         if (((NSString *)dataArr[1]).intValue == 1) {

@@ -222,6 +222,10 @@ long long currentTimeSamp = 0;
     @weakify(self);
     cell.phoneBlcok = ^(int indexPath, UIButton * but){
         if (self.dataSource[indexPath].bagType == 1) {  //箱子  开锁
+            @strongify(self)
+            if (self.dataSource[indexPath].status.onlinetype == DIS_ONLINE) {
+                [self showAlert:L(@"The current bag has been offline") WithDelay:1.2]; return ;
+            }
             @weakify(but);
             // selected = yes  是开锁状态
             if (!but.selected) {
@@ -267,6 +271,9 @@ long long currentTimeSamp = 0;
     
     cell.weightBlcok = ^(int indexPath){
         @strongify(self)
+        if (self.dataSource[indexPath].status.onlinetype == DIS_ONLINE) {
+            [self showAlert:L(@"The current bag has been offline") WithDelay:1.2]; return ;
+        }
         ITPPacketbagWeightVeiwController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"weight"];
         vc.model = self.dataSource[indexPath];
         [self.navigationController pushViewController:vc animated:YES];
@@ -274,7 +281,6 @@ long long currentTimeSamp = 0;
             NSLog(@"weight back");
         };
     };
-    
     // ==================================================================
     
     return cell;
@@ -405,6 +411,10 @@ long long currentTimeSamp = 0;
         [backWindowGoundView removeFromSuperview];
         [backGoundView removeFromSuperview];
         
+        if (model.status.onlinetype == DIS_ONLINE) {
+            [self showAlert:L(@"The current bag has been offline") WithDelay:1.2]; return [RACSignal empty];
+        }
+
         [self performBlock:^{
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:OCSTR(@"tel://%@",model.bagPhoneNum)]];
         } afterDelay:.1];

@@ -20,6 +20,9 @@
 
 + (BOOL)isLoginSuccess:(NSData *)data {
 
+    if (!data) {
+        return NO;
+    }
     NSArray * dataArr = [self paraserData:data];
     
     if (((NSString *)dataArr[1]).intValue == 1) {

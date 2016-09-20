@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/CocoaAsyncSocket/Source/GCD/GCDAsyncSocket.m"
-            timestampString = "489070820.326555"
+            timestampString = "496053761.170304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2109"
-            endingLineNumber = "2109"
-            landmarkName = "-preConnectWithUrl:error:"
+            startingLineNumber = "2110"
+            endingLineNumber = "2110"
+            landmarkName = "-preConnectWithInterface:error:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -259,8 +259,8 @@
                   symbolName = "-[ITPForgetViewController confimAction:]"
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPForgetViewController.m"
-                  timestampString = "495291070.760099"
+                  urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPForgetViewController.m"
+                  timestampString = "496063061.635163"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
@@ -274,8 +274,8 @@
                   symbolName = "__40-[ITPForgetViewController confimAction:]_block_invoke"
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPForgetViewController.m"
-                  timestampString = "495291070.760235"
+                  urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPForgetViewController.m"
+                  timestampString = "496063061.635568"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "110"
@@ -292,12 +292,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IntelligentPacket/Others/SocketService/ITPSocketSDK.m"
-            timestampString = "495290738.998039"
+            timestampString = "495290745.197537"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
-            landmarkName = "-socket:didReadData:withTag:"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-writeData:withTimeout:tag:result:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Class/Login&amp;register/LoginViewController.m"
+            timestampString = "496043023.014031"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-loginAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/CocoaAsyncSocket/Source/GCD/GCDAsyncSocket.m"
+            timestampString = "496053737.841852"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "2542"
+            endingLineNumber = "2542"
+            landmarkName = "-lookup:didFail:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -308,12 +340,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IntelligentPacket/Others/SocketService/ITPSocketSDK.m"
-            timestampString = "495290745.197537"
+            timestampString = "496062646.753698"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-writeData:withTimeout:tag:result:"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "-socket:didReadData:withTag:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

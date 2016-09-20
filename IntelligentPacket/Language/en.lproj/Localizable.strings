@@ -15,6 +15,7 @@
 "add" = "add";
 "phone number" = "phone number";
 "Please select type" = "Please select type";
+"The current bag has been offline" = "The current bag has been offline";
 
 //定位
 "Location" = "Location";

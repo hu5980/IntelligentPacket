@@ -178,7 +178,7 @@
     stepper.backgroundColor =[UIColor whiteColor];
     stepper.minimumValue = 0;
     stepper.maximumValue = rangeArray.count - 1;
-    stepper.value = 6;
+    stepper.value = 11;
     [stepper addTarget:self action:@selector(changRange:) forControlEvents:UIControlEventTouchUpInside];
     
     [_mapView addSubview:stepper];

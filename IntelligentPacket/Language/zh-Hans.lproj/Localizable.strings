@@ -33,6 +33,7 @@
 "Successfully unlock automatically shut down after ten seconds" = "已成功开锁，十秒之后自动关闭";
 "Lock has been turned on" = "锁已经开启";
 "Start" = "开始";
+"The current bag has been offline" = "当前箱包已经离线";
 ////// 定位 ========================
 "Location" = "定位";
 

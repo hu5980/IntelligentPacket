@@ -18,7 +18,9 @@
 }
 
 + (BOOL )isSuccesss:(NSData *)data {
-    
+    if (!data) {
+        return NO;
+    }
     NSArray * dataArr = [self paraserData:data];
     NSString *headString = (NSString *)dataArr[0];
     NSArray *headDataArr =  [headString componentsSeparatedByString:@","];

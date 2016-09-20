@@ -38,8 +38,8 @@
     return _sigton;
 }
 
-- (BOOL)startConnect {
-    BOOL abool = [self.ITPSocket socketConnectToHost:@"www.jsscom.com" port:23000];
+- (BOOL)startConnect { // www.jsscom.com
+    BOOL abool = [self.ITPSocket socketConnectToHost:@"120.76.217.157" port:23000];
     return abool;
 }
 

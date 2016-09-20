@@ -13,7 +13,7 @@ pod 'ReactiveCocoa', '~> 4.1.0'
 pod 'MJRefresh', '~> 3.1.9'
 
 use_frameworks! # Add this if you are targeting iOS 8+ or using Swift
-pod 'CocoaAsyncSocket', '~> 7.4.3'
+pod 'CocoaAsyncSocket', '~> 7.5.0'
 
 pod 'Realm', '~> 1.0.1'
 pod 'Realm/Headers'

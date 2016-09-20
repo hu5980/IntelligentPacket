@@ -85,6 +85,7 @@
 
 - (IBAction)loginAction:(UIButton *)sender {
     
+    [self.view endEditing:YES];
     if (![AppUtil isEmailString:self.emailTextField.text]) {
         [self showAlert:L(@"email error") WithDelay:1.0];
         return;
