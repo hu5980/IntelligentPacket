@@ -303,15 +303,15 @@ long long currentTimeSamp = 0;
 
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UITableViewRowAction *likeAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"喜欢" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-//        // 实现相关的逻辑代码
-//        // ...
-//        // 在最后希望cell可以自动回到默认状态，所以需要退出编辑模式
-//        tableView.editing = NO;
-//    }];
     @weakify(self);
+    UITableViewRowAction *likeAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:L(@"edit") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        @strongify(self);
+        tableView.editing = NO;
+        [self editBags:self.dataSource[indexPath.row]];
+    }];
+    
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:L(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-    @strongify(self);
+        @strongify(self);
         __selectIndexPath = indexPath;
         if (![self.dataSource[indexPath.row].bagEmail isEqualToString:[ITPUserManager ShareInstanceOne].userEmail]) {
             [self showAlert:L(@"Can't delete someone else's bags") WithDelay:1.];
@@ -321,7 +321,16 @@ long long currentTimeSamp = 0;
         [self deleteBags];
     }];
     
-    return @[deleteAction];
+    return @[likeAction, deleteAction];
+}
+
+- (void)editBags:(ITPPacketBagModel *)model{
+    
+    AddBagsViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbags"];
+    vc.model = model;
+    vc.title = L(@"edit bags");
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 - (void)deleteBags {

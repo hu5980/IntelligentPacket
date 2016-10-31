@@ -23,8 +23,11 @@
 }
 
 - (void)refreshLanguge {
-    self.title = L(@"Add bags");
-    [confimButton setTitle:L(@"add") forState:UIControlStateNormal];
+    
+    if (self.model.bagPhoneNum.length >10 ) {
+        [confimButton setTitle:L(@"save") forState:UIControlStateNormal];
+    }[confimButton setTitle:L(@"add") forState:UIControlStateNormal];
+    
     phoneTextFiled.placeholder = L(@"phone number");
     nicknameTF.placeholder = L(@"Remarks");
 
@@ -37,6 +40,8 @@
     [self refreshLanguge];
     phoneTextFiled.delegate = (id)self;
     nicknameTF.delegate = (id)self;
+    phoneTextFiled.text = self.model.bagPhoneNum;
+    nicknameTF.text = self.model.bagName;
     
     @weakify(self)
     RAC(confimButton, enabled) = [RACSignal combineLatest:@[phoneTextFiled.rac_textSignal]

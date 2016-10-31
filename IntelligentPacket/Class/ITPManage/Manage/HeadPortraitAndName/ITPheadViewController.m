@@ -36,7 +36,7 @@
     
     _imagePickerController  =[[UIImagePickerController alloc]init];
     
-    [self.headerButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[ITPUserManager ShareInstanceOne].userheardStr] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@""]];
+    [self.headerButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[ITPUserManager ShareInstanceOne].userheardStr] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认头像"]];
     
 
 }

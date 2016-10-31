@@ -68,6 +68,7 @@
         model.bagId = sender.text;
         AddBagsViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbags"];
         vc.model = model;
+        vc.title = L(@"Add bags");
         [self.navigationController pushViewController:vc animated:YES];
     }
     

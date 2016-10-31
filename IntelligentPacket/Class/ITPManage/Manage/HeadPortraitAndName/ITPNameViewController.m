@@ -35,10 +35,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.phoneTF.text = [ITPUserManager ShareInstanceOne].userPhone;
+    self.phoneTF.text = [ITPUserManager ShareInstanceOne].userPhone;
 //    self.emailTextField.text = [ITPUserManager ShareInstanceOne].userEmail;
 //    self.oldPasswordTextField.text = [ITPUserManager ShareInstanceOne].userPassword;
-//    self.nickNameTextField.text = [ITPUserManager ShareInstanceOne].userName;
+    self.nickNameTextField.text = [ITPUserManager ShareInstanceOne].userName;
     
 }
 
