@@ -35,11 +35,15 @@
 "Lock has been turned on" = "锁已经开启";
 "Start" = "开始";
 "The current bag has been offline" = "当前箱包已经离线";
+
+"Has been bound to the user:%@" = "已绑定用户:%@";
 ////// 定位 ========================
 "Location" = "定位";
 
 "Add success" = "添加成功";
 "Add failure" = "添加失败";
+"Not yet positioned" = "尚未定位";
+"Update Time" = "更新时间";
 ////// 介绍 ========================
 "Introduce" = "介绍";
 

@@ -11,8 +11,10 @@
 @implementation LoginWithRegisterViewModel
 
 + (NSArray *)paraserData:(NSData *)data {
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
+    NSString * dataStr = [[NSString alloc]initWithData:data encoding:enc];
+//    NSString * dataStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     
-    NSString * dataStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     NSArray * dataArr = [dataStr componentsSeparatedByString:@","];
     return dataArr;
 }

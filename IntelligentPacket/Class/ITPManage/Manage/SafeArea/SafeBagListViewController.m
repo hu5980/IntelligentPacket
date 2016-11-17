@@ -79,7 +79,7 @@
         @strongify(self);
         [self performBlock:^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            BOOL abool = [ITPBagViewModel isSuccesss:data];
+            BOOL abool = [ITPBagViewModel isSuccesss:data callback:nil];
             if (!error&&abool) {
                 
                 [DataSingleManager sharedInstance].bags = [ITPBagViewModel managerBags:data];

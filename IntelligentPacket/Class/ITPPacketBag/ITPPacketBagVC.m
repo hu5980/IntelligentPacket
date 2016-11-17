@@ -99,7 +99,7 @@ long long currentTimeSamp = 0;
       
         [self performBlock:^{
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            BOOL abool = [ITPBagViewModel isSuccesss:data];
+            BOOL abool = [ITPBagViewModel isSuccesss:data callback:nil];
             
             if (abool) {
                 [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
@@ -232,7 +232,7 @@ long long currentTimeSamp = 0;
                [self performBlock:^{
                    [[ITPScoketManager shareInstance] setLockAndWeightWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.dataSource[indexPath].bagId isWeight:NO isUlock:YES withTimeout:10 tag:115 result:^(NSData *data, long tag, NSError *error) {
                        @strongify(but);
-                       BOOL abool = [ITPBagViewModel isSuccesss:data];
+                       BOOL abool = [ITPBagViewModel isSuccesss:data callback:nil];
                        if (abool) {
                            [self performBlock:^{
                                but.selected = YES;
@@ -341,7 +341,7 @@ long long currentTimeSamp = 0;
         @strongify(self);
         [self performBlock:^{
             @strongify(self);
-            BOOL abool = [ITPBagViewModel isSuccesss:data];
+            BOOL abool = [ITPBagViewModel isSuccesss:data callback:nil];
             if (abool) {
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 // 首先改变model

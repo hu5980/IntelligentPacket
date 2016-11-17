@@ -128,7 +128,7 @@
 //    self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(aotoQueryLocation) userInfo:nil repeats:YES];
 //    self.locationTimer.fireDate = [NSDate distantFuture]; // pause
     
-    updateTimeLabel =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+    updateTimeLabel =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 250, 30)];
     updateTimeLabel.textColor = [UIColor blueColor];
     updateTimeLabel.font = XKDefaultFontWithSize( 14.f);
     updateTimeLabel.backgroundColor = [UIColor clearColor];
@@ -265,9 +265,9 @@
     [[ITPScoketManager shareInstance] crWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.currentModel.bagId withTimeout:10 tag:107 result:^(NSData *data, long tag, NSError *error) {
         @strongify(self);
         BOOL abool = [ITPLocationViewModel isSuccesss:data];
-        if (!error&&abool) {
+        if (!error&&abool) { //更新时间 尚未定位
             ITPLocationModel * model = [ITPLocationViewModel Locations:data];
-            updateTimeLabel.text = [NSString stringWithFormat:@"更新时间%@",model.time];
+            updateTimeLabel.text = [NSString stringWithFormat:@"%@:%@",L(@"Update Time"), model.time.intValue>0?model.time:L(@"Not yet positioned")];
             [self setelectricImage:model.electric];
             NSLog(@"longitude = %@   latitude = %@", model.electric, model.latitude);
             
