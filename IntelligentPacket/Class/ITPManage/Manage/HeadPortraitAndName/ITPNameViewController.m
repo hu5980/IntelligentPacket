@@ -14,6 +14,7 @@
 {
     __weak IBOutlet UIButton *saveButton;
 }
+@property (weak, nonatomic) IBOutlet UITextField *emailTF;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;
 @property (weak, nonatomic) IBOutlet UITextField *oldPasswordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *conifmPasswordTextField;
@@ -36,7 +37,7 @@
     [super viewDidLoad];
     
     self.phoneTF.text = [ITPUserManager ShareInstanceOne].userPhone;
-//    self.emailTextField.text = [ITPUserManager ShareInstanceOne].userEmail;
+    self.emailTF.text = [ITPUserManager ShareInstanceOne].userEmail;
 //    self.oldPasswordTextField.text = [ITPUserManager ShareInstanceOne].userPassword;
     self.nickNameTextField.text = [ITPUserManager ShareInstanceOne].userName;
     
@@ -46,12 +47,20 @@
     
     [self.view endEditing:YES];
     
+    if (![self.oldPasswordTextField.text isEqualToString: [ITPUserManager ShareInstanceOne].userPassword]) {
+        [self showAlert:L(@"Password error") WithDelay:1.];
+        return;
+    }
+
+    
     if ([self.phoneTF.text isEqualToString: [ITPUserManager ShareInstanceOne].userPhone] &&
-        [self.oldPasswordTextField.text isEqualToString: [ITPUserManager ShareInstanceOne].userPassword]&&
+        [self.conifmPasswordTextField.text isEqualToString: [ITPUserManager ShareInstanceOne].userPassword]&&
         [self.nickNameTextField.text isEqualToString: [ITPUserManager ShareInstanceOne].userName]) {
         [self showAlert:L(@"Slightly modified?") WithDelay:1.];
         return;
     }
+    
+    
     
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
