@@ -86,19 +86,24 @@
         @strongify(self);
         [self performBlock:^{
             [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-            BOOL abool = [ITPBagViewModel isSuccesss:data];
-            if (!error&&abool) {
-                @strongify(self);
-                [self showAlert:L(@"Add bags success") WithDelay:1.];
-                [[NSNotificationCenter defaultCenter] postNotificationName:ITPacketAddbags object:nil];
-                [self performBlock:^{
+            BOOL abool = [ITPBagViewModel isSuccesss:data callback:^(int statu, NSString *rec) {
+                if (statu == 1) {
                     @strongify(self);
-                    [self.navigationController popViewControllerAnimated:YES];
-                } afterDelay:1.5];
-                
-            }else {
-                [self showAlert:L(@"Add bags failure") WithDelay:1.];;
-            }
+                    [self showAlert:L(@"Add bags success") WithDelay:2.];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ITPacketAddbags object:nil];
+                    [self performBlock:^{
+                        @strongify(self);
+                        [self.navigationController popViewControllerAnimated:YES];
+                    } afterDelay:1.5];
+                    
+                }else if(statu == 3){
+                    NSString * string = L(@"Has been bound to the user:%@");
+                    string = [string stringByReplacingOccurrencesOfString:@"%@" withString:rec];
+                    [self showAlert:string WithDelay:2.];;
+                }else {
+                    [self showAlert:L(@"Add bags failure") WithDelay:2.];;
+                }
+            }];
         } afterDelay:.1];
     }];
 }

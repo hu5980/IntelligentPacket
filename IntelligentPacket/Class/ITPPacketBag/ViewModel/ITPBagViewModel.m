@@ -19,18 +19,23 @@
     return dataArr;
 }
 
-+ (BOOL )isSuccesss:(NSData *)data {
++ (BOOL )isSuccesss:(NSData *)data callback:(void(^)(int statu, NSString *rec))call {
     if (!data) {
         return NO;
     }
     NSArray * dataArr = [self paraserData:data];
     
     if (((NSString *)dataArr[1]).intValue == 1) {
+        if(call) call(((NSString *)dataArr[1]).intValue, (NSString *)dataArr[2]);
         return YES;
+    }else if (((NSString *)dataArr[1]).intValue == 3) {
+        if(call) call(((NSString *)dataArr[1]).intValue, (NSString *)dataArr[2]);
+        return NO;
     }
     return NO;
-    
 }
+
+
 
 
 + (NSMutableArray *)bags:(NSData *)data {

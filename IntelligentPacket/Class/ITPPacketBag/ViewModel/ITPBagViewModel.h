@@ -12,7 +12,7 @@
 
 + (NSArray *)paraserData:(NSData *)data ;
 
-+ (BOOL )isSuccesss:(NSData *)data ;
++ (BOOL )isSuccesss:(NSData *)data callback:(void(^)(int statu, NSString *rec))call ;
 
 + (NSMutableArray *)bags:(NSData *)data ;
 

@@ -7,6 +7,7 @@
 //
 
 #import "ITPPacketbagWeightVeiwController.h"
+#import "ITPLocationHistoryViewModel.h"
 #import "ITPBagViewModel.h"
 
 @interface ITPPacketbagWeightVeiwController()
@@ -110,7 +111,7 @@
     @weakify(self);
     [[ITPScoketManager shareInstance] setLockAndWeightWithEmail:[ITPUserManager ShareInstanceOne].userEmail bagId:self.model.bagId isWeight:YES isUlock:NO withTimeout:10 tag:115 result:^(NSData *data, long tag, NSError *error) {
         @strongify(self);
-        BOOL abool = [ITPBagViewModel isSuccesss:data];
+        BOOL abool = [ITPLocationHistoryViewModel isSuccesss:data];
         if (abool) {
             
             [self performBlock:^{

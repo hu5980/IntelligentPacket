@@ -1100,8 +1100,8 @@
 				TargetAttributes = {
 					5DD5AFB21D0E9DB000EBDB70 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = KXFKF6GJJP;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 2T4W7AYHBZ;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1512,7 +1512,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IntelligentPacket/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbags;
+				PRODUCT_BUNDLE_IDENTIFIER = com.detu.smartbags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5b526399-e506-42a2-b251-8aa7682f6328";
 				PROVISIONING_PROFILE_SPECIFIER = com.sam.smartbags.dev.per;
@@ -1548,7 +1548,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IntelligentPacket/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbags;
+				PRODUCT_BUNDLE_IDENTIFIER = com.detu.smartbags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "38f33f4e-0689-45cc-a75d-db3f735154b1";
 				PROVISIONING_PROFILE_SPECIFIER = com.sam.smartbags.dis.per;
