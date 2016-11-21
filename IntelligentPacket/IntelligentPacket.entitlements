@@ -2,11 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>APS_FOR_PRODUCTION</key>
-	<string>1</string>
-	<key>APP_KEY</key>
-	<string>c4e4b11189540a869334426f</string>
-	<key>CHANNEL</key>
-	<string>App store</string>
+	<key>aps-environment</key>
+	<string>development</string>
 </dict>
 </plist>

@@ -96,7 +96,7 @@
             startingLineNumber = "99"
             endingLineNumber = "99"
             landmarkName = "-startAsynchronizedPostMethodwithCompleteUrl:andParamer:andResponseMethod:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -144,7 +144,7 @@
             startingLineNumber = "135"
             endingLineNumber = "135"
             landmarkName = "-startSynchronizedGetMethodwithCompleteUrl:andParamer:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -176,7 +176,7 @@
             startingLineNumber = "130"
             endingLineNumber = "130"
             landmarkName = "-startSynchronizedGetMethodwithCompleteUrl:andParamer:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -192,7 +192,7 @@
             startingLineNumber = "141"
             endingLineNumber = "141"
             landmarkName = "-startSynchronizedGetMethodwithCompleteUrl:andParamer:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -259,8 +259,8 @@
                   symbolName = "-[ITPForgetViewController confimAction:]"
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPForgetViewController.m"
-                  timestampString = "500882366.946594"
+                  urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPForgetViewController.m"
+                  timestampString = "501314169.858752"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "109"
@@ -274,8 +274,8 @@
                   symbolName = "__40-[ITPForgetViewController confimAction:]_block_invoke"
                   moduleName = "IntelligentPacket"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/detu/Desktop/%E6%89%8B%E7%8E%AF/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPForgetViewController.m"
-                  timestampString = "500882366.947852"
+                  urlString = "file:///Users/Seth/Desktop/IntelligentPacket/IntelligentPacket/Class/Login&amp;register/ITPForgetViewController.m"
+                  timestampString = "501314169.860532"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "110"
@@ -283,6 +283,22 @@
                   offsetFromSymbolStart = "88">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IntelligentPacket/Class/Login&amp;register/LoginViewController.m"
+            timestampString = "496043023.014031"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-loginAction:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -307,13 +323,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/ITPPacketBag/ViewModel/ITPBagViewModel.m"
-            timestampString = "500874829.249467"
+            filePath = "IntelligentPacket/Class/ITPIntroduce/ITPIntroduceVC.m"
+            timestampString = "501308950.528914"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "+isSuccesss:callback:"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -323,13 +339,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IntelligentPacket/Class/Login&amp;register/LoginViewController.m"
-            timestampString = "500882236.327367"
+            filePath = "IntelligentPacket/Class/ITPLocation/ITPLocationVC.m"
+            timestampString = "501314247.53284"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "-loginAction:"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "-queryLocation"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

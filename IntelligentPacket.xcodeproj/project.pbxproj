@@ -255,6 +255,7 @@
 		5DABF9EE1D3B370B006ADBE3 /* ITPNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPNameViewController.m; sourceTree = "<group>"; };
 		5DABF9F01D3B4397006ADBE3 /* UIImage+Fit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Fit.h"; sourceTree = "<group>"; };
 		5DABF9F11D3B4397006ADBE3 /* UIImage+Fit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Fit.m"; sourceTree = "<group>"; };
+		5DB312111DCEDE7800B4D19A /* IntelligentPacket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntelligentPacket.entitlements; sourceTree = "<group>"; };
 		5DB50C5C1D1FAF3C00F28535 /* ITPScoketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPScoketManager.h; sourceTree = "<group>"; };
 		5DB50C5D1D1FAF3C00F28535 /* ITPScoketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPScoketManager.m; sourceTree = "<group>"; };
 		5DB50C641D20043400F28535 /* ITPBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPBaseViewController.h; sourceTree = "<group>"; };
@@ -861,6 +862,7 @@
 		5DD5AFB51D0E9DB000EBDB70 /* IntelligentPacket */ = {
 			isa = PBXGroup;
 			children = (
+				5DB312111DCEDE7800B4D19A /* IntelligentPacket.entitlements */,
 				5DBE37B31D10588000A8F386 /* ITPOthers */,
 				5DD5AFEF1D0EB37100EBDB70 /* ITPServices */,
 				5DD5AFED1D0EB2FF00EBDB70 /* ITPManager */,
@@ -1105,6 +1107,9 @@
 								enabled = 1;
 							};
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -1489,9 +1494,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2T4W7AYHBZ;
+				CODE_SIGN_ENTITLEMENTS = IntelligentPacket/IntelligentPacket.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: xinqiao zhu (N94F7UZ97W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xinqiao zhu (N94F7UZ97W)";
+				DEVELOPMENT_TEAM = KXFKF6GJJP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1508,8 +1514,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.detu.smartbags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5b526399-e506-42a2-b251-8aa7682f6328";
+				PROVISIONING_PROFILE_SPECIFIER = com.sam.smartbags.dev.per;
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
@@ -1524,9 +1530,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2T4W7AYHBZ;
+				CODE_SIGN_ENTITLEMENTS = IntelligentPacket/IntelligentPacket.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shenzhen Lianlian Smart Technology Co., Ltd. (KXFKF6GJJP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shenzhen Lianlian Smart Technology Co., Ltd. (KXFKF6GJJP)";
+				DEVELOPMENT_TEAM = KXFKF6GJJP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1543,8 +1550,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.detu.smartbags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "38f33f4e-0689-45cc-a75d-db3f735154b1";
+				PROVISIONING_PROFILE_SPECIFIER = com.sam.smartbags.dis.per;
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -8,7 +8,7 @@
 
 #import "ITPIntroduceVC.h"
 
-@interface ITPIntroduceVC ()
+@interface ITPIntroduceVC ()<UIWebViewDelegate>
 {
     UILabel * introduceLabel;
     
@@ -16,6 +16,9 @@
     
     NSMutableAttributedString * introduceStr;
 }
+
+@property (weak, nonatomic) IBOutlet UIWebView *contWeb;
+
 @end
 
 @implementation ITPIntroduceVC
@@ -33,9 +36,35 @@
     introduceLabel.backgroundColor  = self.view.backgroundColor;
     introduceLabel.numberOfLines = 0;
     [self.view addSubview:introduceLabel];
+    
+    [self.contWeb setDelegate:(id)self];
+    
+    
+    self.contWeb.scalesPageToFit = YES;
+    [self.contWeb loadRequest:[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.hwhandbag.com"]]];
+    
+//    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+//    [self.contWeb loadData:data MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[NSURL URLWithString:@"www.baidu.com"]];
+}
+
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+
+    
 }
 
 - (void)setupUI {
+    
+    
+   
+    
+    
+    
+    return;
     
     NSMutableArray <NSDictionary *>* mutAttributesArr = [NSMutableArray array];
     NSMutableArray <NSValue *>* mutRange = [NSMutableArray array];

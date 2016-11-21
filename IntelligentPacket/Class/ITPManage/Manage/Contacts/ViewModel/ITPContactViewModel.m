@@ -12,7 +12,11 @@
 
 + (NSArray *)paraserData:(NSData *)data {
     
+    unsigned long encode = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     NSString * dataStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    if (!dataStr) {
+        dataStr = [[NSString alloc]initWithData:data encoding:encode];
+    }
     dataStr = [dataStr stringByReplacingOccurrencesOfString:@"[" withString:@""];
     dataStr = [dataStr stringByReplacingOccurrencesOfString:@"]" withString:@""];
     NSArray * dataArr = [dataStr componentsSeparatedByString:@","];

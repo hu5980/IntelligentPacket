@@ -50,6 +50,8 @@
 
 @property (nonatomic) CMMotionManager *motionManager;
 
+@property (nonatomic, strong) MKCircle *circle;
+@property (nonatomic, assign) int circleRadiu;
 //@property (nonatomic) NSTimer *locationTimer;
 
 @end
@@ -94,7 +96,7 @@
     _mapView.mapType = MKMapTypeStandard;
     _mapView.zoomEnabled = YES;//支持缩放
     _mapView.delegate = self;
-    _mapView .showsUserLocation = YES;
+    _mapView.showsUserLocation = YES;
     
     arrowImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 20, 40)];
     arrowImageView.image = [UIImage imageNamed:@"icon_cellphone"];
@@ -190,15 +192,26 @@
 
 // 查询地址返回
 
+static int stepValue = 11;
 
 - (void)changRange:(UIStepper *)steper {
-    NSLog(@"%f",[[rangeArray objectAtIndex:stepper.value] floatValue]);
-    [_mapView removeAnnotations:_mapView.annotations];
     
-    CLLocationCoordinate2D pos = _mapView.centerCoordinate;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,[[rangeArray objectAtIndex:stepper.value] floatValue],[[rangeArray objectAtIndex:stepper.value] floatValue]);//以pos为中心，显示2000米
-//    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
-    [_mapView setRegion:viewRegion animated:YES];
+    
+    MKCoordinateRegion theRegion = _mapView.region;
+    // Zoom out
+    
+    if (steper.value > stepValue) {
+        theRegion.span.longitudeDelta /= 2.0;
+        theRegion.span.latitudeDelta /= 2.0;
+    }else if(steper.value < stepValue) {
+        theRegion.span.longitudeDelta *= 2.0;
+        theRegion.span.latitudeDelta *= 2.0;
+    }else {
+    
+    }
+    stepValue = steper.value;
+    
+    [_mapView setRegion:theRegion animated:YES];
     
     
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
@@ -206,6 +219,19 @@
     [_mapView addAnnotation:annotation];
     
     [self showCurrentLocationInfo:bagLocation];
+    
+    
+    /*
+     NSLog(@"%f",[[rangeArray objectAtIndex:stepper.value] floatValue]);
+     [_mapView removeAnnotations:_mapView.annotations];
+     
+     CLLocationCoordinate2D pos = _mapView.centerCoordinate;
+     
+     float posStance = [[rangeArray objectAtIndex:stepper.value] floatValue];
+     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos, posStance, posStance);//以pos为中心，显示2000米
+     //    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
+     [_mapView setRegion:viewRegion animated:YES];
+     */
 }
 
 
@@ -270,7 +296,7 @@
             updateTimeLabel.text = [NSString stringWithFormat:@"%@:%@",L(@"Update Time"), model.time.intValue>0?model.time:L(@"Not yet positioned")];
             [self setelectricImage:model.electric];
             NSLog(@"longitude = %@   latitude = %@", model.electric, model.latitude);
-            
+            self.circleRadiu = model.accuracy.intValue;
             MKUserLocation *userLocation = [[MKUserLocation alloc] init];
             userLocation.coordinate = CLLocationCoordinate2DMake([model.latitude doubleValue], [model.longitude  doubleValue]);
             
@@ -392,7 +418,7 @@ long long _currentTimeSamp = 0;
         CLLocation *location=[locations firstObject];//取出第一个位置
         
         CLLocationCoordinate2D pos = location.coordinate;
-        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,1000, 1000);//以pos为中心，显示2000米
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
       //  MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
         
         [_mapView setRegion:viewRegion animated:YES];
@@ -434,15 +460,15 @@ long long _currentTimeSamp = 0;
     free(pointArray);
 }
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-    if ([overlay isKindOfClass:[MKPolyline class]]) {
-        MKPolylineRenderer *renderer=[[MKPolylineRenderer alloc]initWithOverlay:overlay];
-        renderer.strokeColor=[[UIColor blueColor]colorWithAlphaComponent:0.5];
-        renderer.lineWidth=5.0;
-        return renderer;
-    }
-    return nil;
-}
+//- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+//    if ([overlay isKindOfClass:[MKPolyline class]]) {
+//        MKPolylineRenderer *renderer=[[MKPolylineRenderer alloc]initWithOverlay:overlay];
+//        renderer.strokeColor=[[UIColor blueColor]colorWithAlphaComponent:0.5];
+//        renderer.lineWidth=5.0;
+//        return renderer;
+//    }
+//    return nil;
+//}
 
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -484,6 +510,35 @@ long long _currentTimeSamp = 0;
     return nil;
 }
 
+#pragma mark - 覆盖物
+
+- (void)updateCycleOverlay:(MKUserLocation *)userLocation {
+    [self.mapView removeOverlay:self.circle];self.circle = nil;
+    if (!self.circle) {
+        self.circle = [MKCircle circleWithCenterCoordinate:CLLocationCoordinate2DMake(userLocation.coordinate.latitude, userLocation.coordinate.longitude) radius:_circleRadiu];
+        [_mapView addOverlay:self.circle];
+    }
+}
+
+
+// 覆盖物
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    
+    if ([overlay isKindOfClass:[MKPolyline class]]) {
+        MKPolylineRenderer *renderer=[[MKPolylineRenderer alloc]initWithOverlay:overlay];
+        renderer.strokeColor=[[UIColor blueColor]colorWithAlphaComponent:0.5];
+        renderer.lineWidth=5.0;
+        return renderer;
+    }else if([overlay isKindOfClass:[MKCircle class]])
+    {
+        MKCircleRenderer * render=[[MKCircleRenderer alloc]initWithCircle:overlay];
+        render.lineWidth = .5;
+        render.fillColor = [[UIColor redColor]colorWithAlphaComponent:.2];    //填充颜色
+        render.strokeColor = [[UIColor redColor]colorWithAlphaComponent:0.5]; //线条颜色
+        return render;
+    }
+    return nil;
+}
 #pragma mark - // 显示大头针
 - (void)showAnnotationInMapView:(MKUserLocation *)userLocation {
     
@@ -494,7 +549,7 @@ long long _currentTimeSamp = 0;
     MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
     [annotation setCoordinate:userLocation.coordinate];
     [_mapView addAnnotation:annotation];
-    
+    [self updateCycleOverlay:userLocation];
     [self showCurrentLocationInfo:userLocation];
 }
 
@@ -550,7 +605,7 @@ long long _currentTimeSamp = 0;
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
 //        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
         [_mapView setRegion:viewRegion animated:YES];
-        stepper.value = 6;
+        stepper.value = 11;
     }else{
         if (_mapView.annotations.count>0) {
             [_mapView removeAnnotations:_mapView.annotations];
@@ -559,7 +614,7 @@ long long _currentTimeSamp = 0;
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(pos,500, 500);//以pos为中心，显示2000米
 //        MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];//适配map view的尺寸
         [_mapView setRegion:viewRegion animated:YES];
-        stepper.value = 6;
+        stepper.value = 11;
     }
 }
 
