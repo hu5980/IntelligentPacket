@@ -15,6 +15,8 @@
 #import "ITPHeadAndNameViewController.h"
 #import "NetServiceApi.h"
 #import "SafeBagListViewController.h"
+#import "PostViewController.h"
+#import "SettingViewController.h"
 
 @interface ITPManageVC ()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -48,7 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = viewColor;
     [self configTable];
 }
 
@@ -56,7 +58,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = viewColor;
+    self.tableView.backgroundColor = [UIColor clearColor];
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }else [self.tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -106,7 +108,7 @@
 - (void)refreshLanguge {
     
     [self.tableView reloadData];
-    self.title = L(@"Manage");
+    self.title = L(@"Mine");
     [_loginOutButton setTitle:L(@"Sign out") forState:UIControlStateNormal];
 }
 
@@ -240,13 +242,42 @@
 }
 
 #pragma mark - UITableViewDelegate
-const int manageDataCount___ = 5;
+const int manageDataCount___ = 10;
 NSString * manageData[manageDataCount___] = {
-    @"contacts",
+    @"",
+    @"My good friend",
+    @"",
+    @"My collection of Posts",
+    @"My post.",
+    @"",
     @"Add bags",
-    @"Safe area",
-    @"Language selection",
-    @"Complaints and suggestions"
+    @"My fence info",
+    @"",
+    @"Setting"
+//    @"contacts",
+//    @"Add bags",
+//    @"Safe area",
+//    @"Language selection",
+//    @"Complaints and suggestions"
+};
+
+NSString * manageImage[11] = {
+    @"",
+    @"",
+    @"10.1",
+    @"",
+    @"10.2",
+    @"10.3",
+    @"",
+    @"箱包_P",
+    @"10.4",
+    @"",
+    @"10.5"
+    //    @"contacts",
+    //    @"Add bags",
+    //    @"Safe area",
+    //    @"Language selection",
+    //    @"Complaints and suggestions"
 };
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -293,13 +324,13 @@ NSString * manageData[manageDataCount___] = {
         return [RACSignal empty];
     }];
     
-    return backgroudView;
+    return [UIView new];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     
-    return 110;
+    return 1;//110;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -309,7 +340,10 @@ NSString * manageData[manageDataCount___] = {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         return 80;
-    }else return 50;
+    }else if (L(manageData[indexPath.row-1]).length >0){
+        return 50;
+    }else //if(indexPath.row == 1)
+        return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -336,12 +370,22 @@ NSString * manageData[manageDataCount___] = {
         
         cell.textLabel.text = L(manageData[indexPath.row-1]);
         
-        if (indexPath.row == 4) {
-            cell.accessoryView = nil;//__languageSwitch;
-        }else {
-            UIImageView  * arrow  = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"展开去到"]];
+//        if (indexPath.row == 4) {
+//            cell.accessoryView = nil;//__languageSwitch;
+//        }else {
+        UIImageView  * arrow  = cell.textLabel.text.length >0?[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"展开去到"]]:nil;
             cell.accessoryView = arrow;
+//        }
+        if (cell.textLabel.text.length >0) {
+            cell.backgroundColor = [UIColor whiteColor];
+            cell.imageView.image = [UIImage imageNamed:manageImage[indexPath.row]];
+        }else {
+            cell.backgroundColor = [UIColor clearColor];
+            cell.imageView.image = nil;
         }
+        
+        
+        
         return cell;
     }
 }
@@ -350,18 +394,17 @@ NSString * manageData[manageDataCount___] = {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString *title = L(manageData[indexPath.row - 1]);
+    NSString *title = L(manageData[indexPath.row-1]);
     
     switch (indexPath.row) {
         case 0:
         {
-            
             ITPHeadAndNameViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"headername"];
             vc.title = L(@"User information");
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 1:
+        case 2:
         {
         
             ITPContactViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"contacts"];
@@ -369,31 +412,40 @@ NSString * manageData[manageDataCount___] = {
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 2:
+        case 4:
         {
-            
+//            PostViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"collectpost"];
+//            vc.title = title;
+//            [self.navigationController pushViewController:vc animated:YES];
+            [self showAlert:L(@"Under development") WithDelay:2];
+        }
+            break;
+        case 5:
+        {
+            [self showAlert:L(@"Under development") WithDelay:2];
+//            PostViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"collectpost"];
+//            vc.title = title;
+//            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 7:
+        {
             ITPAddBabWithIDViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"addbagwithid"];
             vc.title = title;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 3:
+        case 8:
         {
             SafeBagListViewController * vc = [SafeBagListViewController new];
             vc.hidesBottomBarWhenPushed = YES;
             vc.title = title;   vc.isSafebagList = YES;
             [self.navigationController pushViewController:vc animated:YES];
-            
         }
             break;
-        case 4:
+        case 10:
         {
-            [self showLanguage];
-        }
-            break;
-        case 5:
-        {   
-            FeedBackViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"feedback"];
+            SettingViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"setting"];
             vc.title = title;
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];

@@ -13,9 +13,14 @@
 #import "JPUSHService.h"
 #import <AdSupport/AdSupport.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
+#import "ITPRealmStore.h"
+#import "RealmItem.h"
+
+
+
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) ITPRealmStore * store;
 @end
 
 @implementation AppDelegate
@@ -27,7 +32,7 @@
         UITabBarController * mainView = (UITabBarController *)self.window.rootViewController;
         
         NSArray <UITabBarItem *>* items = mainView.tabBar.items;
-        NSArray * tittles = @[@"Luggage and bags", @"Location", @"Introduce", @"Manage"];
+        NSArray * tittles = @[@"Luggage and bags", @"Location", @"Social", @"Mine"];
         for (int i = 0; i < items.count; i++) {
             
             NSString * title = L(tittles[i]);
@@ -108,9 +113,41 @@
     
     [self registerJpushNotice];
     //===========================================
-    
+    self.store = [[ITPRealmStore alloc] init];
+    NSDictionary * dic = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (dic.allKeys > 0) {
+        [self addPushStore:dic];
+    }
     return YES;
 }
+
+- (void)addPushStore:(NSDictionary *)userInfo {
+//    {
+//        NSDictionary *dic = userInfo[@"aps"];
+//        NSString *content = dic[@"alert"];
+//        NSArray * contents = [content componentsSeparatedByString:@","];
+//        RealmItem * item = [RealmItem new];
+//        item.email = [ITPUserManager ShareInstanceOne].userEmail;
+//        item.title = userInfo[@"TITLE"];
+//        item.content = contents.count>1?contents[0]:@"None";
+//        item.time = contents.count>1?contents[1]:@"None";
+//        //    [self.store addObject:item];
+//        
+//        [self showAlter:[NSArray arrayWithObjects:item.title,item.content, nil]];
+//        
+//    }
+    NSError *parseError = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userInfo options:NSJSONWritingPrettyPrinted error:&parseError];
+    NSString * message = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.window animated:YES];
+    hud.detailsLabelText = message;
+    hud.mode = MBProgressHUDModeCustomView;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:20];
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -153,17 +190,62 @@
     /// Required -    DeviceToken
     [JPUSHService registerDeviceToken:deviceToken];
 }
+
+// app 挂起 点击通知进入app 会收到推送  不点击通知收不到
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     // Required,For systems with less than or equal to iOS6
     [JPUSHService handleRemoteNotification:userInfo];
+    {
+        NSDictionary *dic = userInfo[@"aps"];
+        NSString *content = dic[@"alert"];
+        NSArray * contents = [content componentsSeparatedByString:@","];
+        
+
+        
+        
+        RealmItem * item = [RealmItem new];
+        item.email = [ITPUserManager ShareInstanceOne].userEmail;
+        item.title = userInfo[@"TITLE"];
+        item.content = contents.count>1?contents[0]:@"None";
+        item.time = contents.count>1?contents[1]:@"None";
+
+        [self.store addObject:item];
+        
+//         [[ITPRealmStore shareInstance]addItem:item];
+        
+        [self showAlter:[NSArray arrayWithObjects:item.title,item.content, nil]];
+        
+    }
 }
 
+// app 挂起 点击进入app 会收到推送                 aps = {content-available = 1;} 挂起也能收到。
 //这里接收通知（APNS）信息
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     // IOS 7 Support Required
     [JPUSHService handleRemoteNotification:userInfo];
-    [self showAlter:userInfo[@"aps"]];
-//    [[NSNotificationCenter defaultCenter]postNotificationName:reloadTableIndentifier object:nil];
+    
+    [self performBlock:^{
+        {
+            
+            NSDictionary *dic = userInfo[@"aps"];
+            NSString *content = dic[@"alert"];
+            NSArray * contents = [content componentsSeparatedByString:@","];
+            RealmItem * item = [RealmItem new];
+            item.email = [ITPUserManager ShareInstanceOne].userEmail;
+            item.title = userInfo[@"TITLE"];
+            item.content = contents.count>1?contents[0]:@"None";
+            item.time = contents.count>1?contents[1]:@"None";
+            
+//            [[ITPRealmStore shareInstance]addItem:item];
+             [self.store addObject:item];
+            
+            [self showAlter:[NSArray arrayWithObjects:item.title,item.content, nil]];
+            
+        }
+        
+    } afterDelay:.1];
+    //    [[NSNotificationCenter defaultCenter]postNotificationName:reloadTableIndentifier object:nil];
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
@@ -201,9 +283,9 @@
     
 }
 
-- (void)showAlter:(NSDictionary *)dic
+- (void)showAlter:(NSArray *)dic
 {
-    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:dic[@"alert"]==nil?dic[@"content"]:dic[@"alert"]  message:dic[@"alert"]==nil?dic[@"content"]:dic[@"alert"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:dic[0]  message:dic[1] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     [alert show];
 }
 

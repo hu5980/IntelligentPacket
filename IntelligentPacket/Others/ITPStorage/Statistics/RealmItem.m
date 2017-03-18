@@ -28,25 +28,26 @@
 
 // Specify default values for properties
 
-+ (NSDictionary *)defaultPropertyValues
-{
-    return @{
-             @"pageName" : @"",
-             @"prevPageName" : @"",
-             @"toPageName" : @"",
-             @"stype" : @"",
-             @"project" : @"", 
-             @"ptag" : @"", 
-             @"visitPageTime" : @0,
-             @"leavePageTime" : @0,
-             @"groupID" : @"",
-             @"topicID" : @"",
-             @"dap" : @"",
-             @"pvID" : @"",
-             @"latitude" : @"",
-             @"longtitude" : @"",
-             };
-}
+//+ (NSDictionary *)defaultPropertyValues
+//{
+//    return @{
+//             @"email" : @"",
+//             @"title" : @"",
+//             @"content" : @"",
+//             @"time" : @"",
+////             @"stype" : @"",
+////             @"project" : @"", 
+////             @"ptag" : @"", 
+////             @"visitPageTime" : @0,
+////             @"leavePageTime" : @0,
+////             @"groupID" : @"",
+////             @"topicID" : @"",
+////             @"dap" : @"",
+////             @"pvID" : @"",
+////             @"latitude" : @"",
+////             @"longtitude" : @"",
+//             };
+//}
 
 // Specify properties to ignore (Realm won't persist these)
 

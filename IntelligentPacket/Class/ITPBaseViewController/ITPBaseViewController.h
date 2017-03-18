@@ -17,6 +17,8 @@
 @interface ITPBaseViewController : UIViewController
 
 - (void)showAlert:(nonnull NSString *)message WithDelay:(NSTimeInterval)d;
+- (void)showHUBAlert:(nonnull NSString *)message WithDelay:(NSTimeInterval)d;
+- (void)hideAlert;
 
 - (void)setNavBarBarItemWithTitle:(NSString  * _Nullable )aTitle target:(nonnull id)aTarget action:(nonnull SEL)aAction atRight:(BOOL)aRight;
 

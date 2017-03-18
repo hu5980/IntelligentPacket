@@ -64,6 +64,11 @@
 		5D7BE9021D313A2200E8C55F /* ITPContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BE9001D313A2200E8C55F /* ITPContactsCell.xib */; };
 		5D7BE9051D31E0B000E8C55F /* ITPAddContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE9041D31E0B000E8C55F /* ITPAddContactViewController.m */; };
 		5D7BE9081D32022B00E8C55F /* ITPContactEditorVeiwController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BE9071D32022B00E8C55F /* ITPContactEditorVeiwController.m */; };
+		5D7D9A631DEC8DC4005E464B /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D9A621DEC8DC4005E464B /* PostViewController.m */; };
+		5D7D9A671DEC8F8B005E464B /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D9A661DEC8F8B005E464B /* SettingViewController.m */; };
+		5DA7AC341DEDDC3600FD1BE9 /* SystemMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7AC331DEDDC3600FD1BE9 /* SystemMessageViewController.m */; };
+		5DA7AC3B1DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7AC391DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.m */; };
+		5DA7AC3C1DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DA7AC3A1DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.xib */; };
 		5DA7E4CB1D1F830400F1A5D3 /* ITPSocketSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7E4CA1D1F830400F1A5D3 /* ITPSocketSDK.m */; };
 		5DA88A751D2D599500C0F8CD /* ITPPacketBagModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A741D2D599500C0F8CD /* ITPPacketBagModel.m */; };
 		5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DA88A771D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m */; };
@@ -236,6 +241,15 @@
 		5D7BE9041D31E0B000E8C55F /* ITPAddContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPAddContactViewController.m; sourceTree = "<group>"; };
 		5D7BE9061D32022B00E8C55F /* ITPContactEditorVeiwController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPContactEditorVeiwController.h; sourceTree = "<group>"; };
 		5D7BE9071D32022B00E8C55F /* ITPContactEditorVeiwController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPContactEditorVeiwController.m; sourceTree = "<group>"; };
+		5D7D9A611DEC8DC4005E464B /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		5D7D9A621DEC8DC4005E464B /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		5D7D9A651DEC8F8B005E464B /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		5D7D9A661DEC8F8B005E464B /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		5DA7AC321DEDDC3600FD1BE9 /* SystemMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageViewController.h; sourceTree = "<group>"; };
+		5DA7AC331DEDDC3600FD1BE9 /* SystemMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageViewController.m; sourceTree = "<group>"; };
+		5DA7AC381DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemMessageTableViewCell.h; sourceTree = "<group>"; };
+		5DA7AC391DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemMessageTableViewCell.m; sourceTree = "<group>"; };
+		5DA7AC3A1DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SystemMessageTableViewCell.xib; sourceTree = "<group>"; };
 		5DA7E4C91D1F830400F1A5D3 /* ITPSocketSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPSocketSDK.h; sourceTree = "<group>"; };
 		5DA7E4CA1D1F830400F1A5D3 /* ITPSocketSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITPSocketSDK.m; sourceTree = "<group>"; };
 		5DA88A731D2D599500C0F8CD /* ITPPacketBagModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITPPacketBagModel.h; sourceTree = "<group>"; };
@@ -487,6 +501,8 @@
 				5DABF9E61D3B1B92006ADBE3 /* HeadPortraitAndName */,
 				5D5577201D2ABD5B0094E72C /* Contacts */,
 				5D5577221D2ABD8C0094E72C /* SafeArea */,
+				5D7D9A601DEC8D34005E464B /* Mypost */,
+				5D7D9A641DEC8F80005E464B /* Setting */,
 				5D5577261D2ABDBD0094E72C /* FeedBackViewController.h */,
 				5D5577271D2ABDBD0094E72C /* FeedBackViewController.m */,
 			);
@@ -540,6 +556,45 @@
 				5D6812861D3FC1790041D811 /* UIColor+Hex.m */,
 			);
 			path = KMCalendar;
+			sourceTree = "<group>";
+		};
+		5D7D9A601DEC8D34005E464B /* Mypost */ = {
+			isa = PBXGroup;
+			children = (
+				5D7D9A611DEC8DC4005E464B /* PostViewController.h */,
+				5D7D9A621DEC8DC4005E464B /* PostViewController.m */,
+			);
+			path = Mypost;
+			sourceTree = "<group>";
+		};
+		5D7D9A641DEC8F80005E464B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				5DA7AC311DEDDBE300FD1BE9 /* view */,
+				5DA7AC301DEDDBCC00FD1BE9 /* vc */,
+				5D7D9A651DEC8F8B005E464B /* SettingViewController.h */,
+				5D7D9A661DEC8F8B005E464B /* SettingViewController.m */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		5DA7AC301DEDDBCC00FD1BE9 /* vc */ = {
+			isa = PBXGroup;
+			children = (
+				5DA7AC321DEDDC3600FD1BE9 /* SystemMessageViewController.h */,
+				5DA7AC331DEDDC3600FD1BE9 /* SystemMessageViewController.m */,
+			);
+			path = vc;
+			sourceTree = "<group>";
+		};
+		5DA7AC311DEDDBE300FD1BE9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				5DA7AC381DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.h */,
+				5DA7AC391DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.m */,
+				5DA7AC3A1DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.xib */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		5DA7E4C81D1E1BB200F1A5D3 /* ITPSocketService */ = {
@@ -1100,8 +1155,8 @@
 				TargetAttributes = {
 					5DD5AFB21D0E9DB000EBDB70 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 2T4W7AYHBZ;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = KXFKF6GJJP;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -1170,6 +1225,7 @@
 				5D0E26091D7DBCC5007B7FD1 /* QRCodeTopRight@3x.png in Resources */,
 				5D0E26041D7DBCC5007B7FD1 /* QRCodeLine@2x.png in Resources */,
 				5DEA63571D166DF1000D3BBD /* LoginAndRegister.storyboard in Resources */,
+				5DA7AC3C1DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.xib in Resources */,
 				5DB50C991D22CDB900F28535 /* ITPManageCell.xib in Resources */,
 				5D0E26001D7DBCC5007B7FD1 /* QRCodeBottomLeft@2x.png in Resources */,
 				5DD5AFC11D0E9DB000EBDB70 /* Main.storyboard in Resources */,
@@ -1249,10 +1305,12 @@
 				5D68128E1D3FC1790041D811 /* UIColor+Hex.m in Sources */,
 				5DA88A781D2D5AE600C0F8CD /* ITPPacketbagWeightVeiwController.m in Sources */,
 				5DD5A7721D167717006D771E /* ITPUserManager.swift in Sources */,
+				5D7D9A631DEC8DC4005E464B /* PostViewController.m in Sources */,
 				5DABF9EC1D3B3228006ADBE3 /* ITPheadViewController.m in Sources */,
 				5D68128C1D3FC1790041D811 /* KMCalendarView.m in Sources */,
 				5D55772B1D2ABDD70094E72C /* SafeAreaViewController.m in Sources */,
 				5DB50C821D200F0900F28535 /* ITPPacketBagCell.m in Sources */,
+				5DA7AC3B1DEDDC9A00FD1BE9 /* SystemMessageTableViewCell.m in Sources */,
 				5DB50CA71D269B5B00F28535 /* ITPDataCenter.m in Sources */,
 				5D0E25FD1D7DBCC5007B7FD1 /* QRCodeReaderMaskView.m in Sources */,
 				5D68128B1D3FC1790041D811 /* KMCalendarItem.m in Sources */,
@@ -1276,6 +1334,8 @@
 				5D0E25FC1D7DBCC5007B7FD1 /* QRCodeReaderAanimationLineView.m in Sources */,
 				5D0E260A1D7DBCC5007B7FD1 /* README.md in Sources */,
 				5DABF9E91D3B1BAF006ADBE3 /* ITPHeadAndNameViewController.m in Sources */,
+				5D7D9A671DEC8F8B005E464B /* SettingViewController.m in Sources */,
+				5DA7AC341DEDDC3600FD1BE9 /* SystemMessageViewController.m in Sources */,
 				5DB50CA41D269B0700F28535 /* StdDes.m in Sources */,
 				5D24FBA71D787C8D009A8A9A /* SearchResultTableVC.m in Sources */,
 				5D0E25FA1D7DBCC5007B7FD1 /* QRCameraSwitchButton.m in Sources */,
@@ -1512,9 +1572,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IntelligentPacket/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.detu.smartbags;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5b526399-e506-42a2-b251-8aa7682f6328";
+				PROVISIONING_PROFILE = "43952c0a-5b1a-4e21-9164-2c9241694ac6";
 				PROVISIONING_PROFILE_SPECIFIER = com.sam.smartbags.dev.per;
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1548,9 +1608,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/IntelligentPacket/lib",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.detu.smartbags;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sam.smartbags;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "38f33f4e-0689-45cc-a75d-db3f735154b1";
+				PROVISIONING_PROFILE = "53e2d988-a527-4874-8610-da36867fda14";
 				PROVISIONING_PROFILE_SPECIFIER = com.sam.smartbags.dis.per;
 				SWIFT_OBJC_BRIDGING_HEADER = "IntelligentPacket/IntelligentPacket-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;

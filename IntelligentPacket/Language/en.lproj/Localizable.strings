@@ -19,7 +19,7 @@
 
 //定位
 "Location" = "Location";
-
+"Accuracy" = "Accuracy";
 
 //介绍
 "Introduce" = "Introduce";

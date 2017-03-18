@@ -7,7 +7,6 @@
 //
 
 #import "ITPRealmStore.h"
-
 #import "RealmItem.h"
 
 @interface ITPRealmStore ()
@@ -80,5 +79,68 @@
         completionBlock(results);
     }
 }
+
+
+
+
+
+
+
+
+
+////
+//NSString * systemMessageKey = @"systemMessage";
+//
+//+ (instancetype)shareInstance {
+//    static ITPRealmStore * sigle = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        sigle = [[ITPRealmStore alloc] init];
+//        [sigle check];
+//    });
+//    return sigle;
+//}
+//
+//- (void)addItem:(RealmItem*)item {
+//    [self.stores addObject:item];
+//    [self update];
+//}
+//
+//- (void)deleteItem:(RealmItem*)item {
+//    [self.stores removeObject:item];
+//    [self update];
+//}
+//
+//- (NSMutableArray *)stores {
+//    
+//    NSMutableDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:systemMessageKey];
+//    if (!dic)
+//        return nil;
+//    NSString * userEmail = [ITPUserManager ShareInstanceOne].userEmail;
+//    _stores = [NSMutableArray arrayWithArray:dic[userEmail]];
+//    if (!_stores)
+//        _stores = [NSMutableArray array];
+//    return _stores;
+//}
+//
+//- (void)update {
+//    NSMutableDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:systemMessageKey];
+//    if (!dic) {
+//        dic = [NSMutableDictionary dictionary];
+//    }
+//    NSString * userEmail = [ITPUserManager ShareInstanceOne].userEmail;
+//    [dic setObject:_stores forKey:userEmail];
+//    [[NSUserDefaults standardUserDefaults]setObject:dic forKey:systemMessageKey];
+//    [[NSUserDefaults standardUserDefaults]synchronize];
+//}
+//
+//- (void)check {
+//    NSMutableDictionary * dic = [[NSUserDefaults standardUserDefaults]objectForKey:systemMessageKey];
+//    if (!dic) {
+//        dic = [NSMutableDictionary dictionary];
+//        [[NSUserDefaults standardUserDefaults]setObject:dic forKey:systemMessageKey];
+//        [[NSUserDefaults standardUserDefaults]synchronize];
+//    }
+//}
 
 @end

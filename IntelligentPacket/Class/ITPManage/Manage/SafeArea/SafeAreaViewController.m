@@ -270,8 +270,10 @@
         locationmanager.delegate = self;
         locationmanager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
         locationmanager.distanceFilter = 50;
+        if ([locationmanager   respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [locationmanager requestWhenInUseAuthorization];
+        }else [locationmanager requestAlwaysAuthorization];
         
-        [locationmanager requestAlwaysAuthorization];
         [locationmanager startUpdatingLocation];
 //                [locationmanager startUpdatingHeading];
     }

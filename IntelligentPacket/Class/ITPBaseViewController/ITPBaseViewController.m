@@ -53,6 +53,24 @@
     [hud hide:YES afterDelay:d];
 }
 
+- (void)showHUBAlert:(NSString *)message WithDelay:(NSTimeInterval)d
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = message;
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:d];
+}
+
+
+- (void)hideAlert {
+    for (UIView *__v in self.view.subviews) {
+        if ([__v isKindOfClass:[MBProgressHUD class]]) {
+            [(MBProgressHUD *)__v hide:YES];
+        }
+    }
+}
+
 - (void)setNavBarBarItemWithTitle:(NSString *)aTitle target:(id)aTarget action:(SEL)aAction atRight:(BOOL)aRight
 {
     UIButton *_barButton = [UIButton buttonWithType:UIButtonTypeCustom];

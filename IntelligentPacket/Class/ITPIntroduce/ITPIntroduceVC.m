@@ -37,24 +37,24 @@
     introduceLabel.numberOfLines = 0;
     [self.view addSubview:introduceLabel];
     
-    [self.contWeb setDelegate:(id)self];
-    
-    
-    self.contWeb.scalesPageToFit = YES;
-    [self.contWeb loadRequest:[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.hwhandbag.com"]]];
-    
-//    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://www.baidu.com"]];
-//    [self.contWeb loadData:data MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[NSURL URLWithString:@"www.baidu.com"]];
+//    if (!self.isWeb) {
+//        self.contWeb.alpha = 0;
+//    }else {
+        [self.contWeb setDelegate:(id)self];
+        self.contWeb.scalesPageToFit = YES;
+        [self.contWeb loadRequest:[NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://www.hwhandbag.com"]]];
+//    }
+
 }
 
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
 
+    [self showHUBAlert:@"" WithDelay:10];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-
-    
+    [self hideAlert];
 }
 
 - (void)setupUI {
@@ -108,8 +108,10 @@
 - (void)refreshLanguge {
     
     //    [self.tableView reloadData];
+//    if (self.isWeb) {
+        self.title = L(@"Social");
+//    }
     
-    self.title = L(@"Introduce");
     
     introduceStrArr = @[L(@"Shenzhen Hong Wang handbags Products Co., Ltd.\n"), L(@"Was founded in January 2002, is a professional design and production of bags of production enterprises. Hong Wang to foundry world brand of a gleam of bags products started, after many years of efforts, developed a series of own brand products, mainly including:\n"), L(@"series solar charging bag\n"), L(@"Intelligent outdoor bag series\n"), L(@"Smart bag series\n"), L(@"Smart luggage series\n\n"), L(@"Hong Wang's vision: to do first-class luggage products, to do responsible business, happy work, happy life\n")];
     

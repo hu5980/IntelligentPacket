@@ -48,7 +48,7 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    self.view.backgroundColor = viewColor;
     [self configTable];
     
     [self configOther];
@@ -112,6 +112,9 @@ long long currentTimeSamp = 0;
             }else {
                 //                        [self showAlert:@"获取数据失败" WithDelay:1];
             }
+            [self performBlock:^{
+                [self showAlertMessage];
+            } afterDelay:.3];
         } afterDelay:0.1];
         
     }];
@@ -120,6 +123,47 @@ long long currentTimeSamp = 0;
         [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     } afterDelay:2];
     
+    [self performBlock:^{
+        shouldRefresh = YES;
+        [self loaddata];
+    } afterDelay:30];
+}
+
+- (void)showAlertMessage {
+    
+    ITPPacketBagModel *_model;
+    for (ITPPacketBagModel *model in self.dataSource) {
+        if ([model.bagEmail isEqualToString:[ITPUserManager ShareInstanceOne].userEmail] && model.status.safetype == DIS_SAFE) {
+            _model = model; break;
+        }
+    }
+    
+    if (!_model) return;
+    NSString * mes = L(@"Be careful！ Your luggage %@ has been out of the security area, please keep the!");
+    mes = [mes stringByReplacingOccurrencesOfString:@"%@" withString:_model.bagName];
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"⚠️" message:mes preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * cancel = [UIAlertAction actionWithTitle:L(@"cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    UIAlertAction * determine = [UIAlertAction actionWithTitle:L(@"Lift the alarm") style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        //转为地球坐标 提交
+        @weakify(self);
+        [[ITPScoketManager shareInstance] setSafeRegion:[ITPUserManager ShareInstanceOne].userEmail bagId:_model.bagId longitude:@"0" latitude:@"0" radius:@"0" withTimeout:10 tag:112 result:^(NSData *data, long tag, NSError *error) {
+            @strongify(self);
+            [self performBlock:^{
+                @strongify(self);
+                [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddSafebags object:nil];
+                [[NSNotificationCenter defaultCenter]postNotificationName:ITPacketAddbags object:nil];
+                [self loaddata];
+            } afterDelay:.1];
+        }];
+
+    }];
+    
+    [alert addAction:determine];[alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+
 }
 
 - (void)configOther {
@@ -130,7 +174,8 @@ long long currentTimeSamp = 0;
 //    self.view.layer
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }else [self.tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -190,30 +235,33 @@ long long currentTimeSamp = 0;
     if (self.dataSource[indexPath.row].bagType == 1) {  //箱子
         
         if (self.dataSource[indexPath.row].status.onlinetype == IS_ONLINE) {
-            [cell.bagheadImage setImage:[UIImage imageNamed:@"组-2"]];
+            [cell.bagheadImage setImage:[UIImage imageNamed:@"5.0"]];
         }else{
-            [cell.bagheadImage setImage:[UIImage imageNamed:@"xiangzi_dontonline"]];
+            [cell.bagheadImage setImage:[UIImage imageNamed:@"5.1"]];
         }
         
         cell.bagweight.hidden = NO;
-        [cell.bagPhone setImage:[UIImage imageNamed:@"close"] forState:UIControlStateNormal];
+        [cell.bagPhone setImage:[UIImage imageNamed:@"5.4"] forState:UIControlStateNormal];
         [cell.bagPhone setImage:[UIImage imageNamed:@"open"] forState:UIControlStateSelected];
         
     }else {
         
         if (self.dataSource[indexPath.row].status.onlinetype == IS_ONLINE) {
-            [cell.bagheadImage setImage:[UIImage imageNamed:@"组-1"]];
+            [cell.bagheadImage setImage:[UIImage imageNamed:@"5.0"]];
         }else{
-            [cell.bagheadImage setImage:[UIImage imageNamed:@"bag_dontonline"]];
+            [cell.bagheadImage setImage:[UIImage imageNamed:@"5.1"]];
         }
         
         cell.bagweight.hidden = YES;
-        [cell.bagPhone setImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        [cell.bagPhone setImage:[UIImage imageNamed:@"5.2"] forState:UIControlStateNormal];
     }
     
-    if ([self.dataSource[indexPath.row].bagEmail isEqualToString:[ITPUserManager ShareInstanceOne].userEmail])
-            cell.manangerImage.hidden = NO;
-    else    cell.manangerImage.hidden = YES;
+    if ([self.dataSource[indexPath.row].bagEmail isEqualToString:[ITPUserManager ShareInstanceOne].userEmail]){
+        int elec = (self.dataSource[indexPath.row].electric.intValue-1)/20;
+        [cell.manangerImage setImage:[UIImage imageNamed:OCSTR(@"电池%d", elec)]];
+    }else{
+        [cell.manangerImage setImage:[UIImage imageNamed:@"5.8"]];
+    }
     // ==================================================================
     
     

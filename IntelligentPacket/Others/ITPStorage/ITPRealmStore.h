@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "Realm.h"
+#import "RealmItem.h"
 
 @class ITPRealmStore;
 typedef void(^DataStoreFetchCompletionBlock)(RLMResults *results);
 
 @interface ITPRealmStore : NSObject
+
+@property (nonatomic, strong) NSMutableArray * stores;
+
 
 - (void)addObject:(id)object;
 - (void)removeObject:(RLMObject *)object;

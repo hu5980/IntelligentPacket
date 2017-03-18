@@ -139,7 +139,7 @@
 //            
 //            tableView.editing = NO;
 //        }];
-    
+//    
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:L(@"delete") handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         
         __selectIndexPath = indexPath;

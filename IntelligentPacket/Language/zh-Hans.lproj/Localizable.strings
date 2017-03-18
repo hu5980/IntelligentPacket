@@ -7,6 +7,10 @@
 */
 
 /////  箱包 =================
+"Lift the alarm" = "解除警报";
+"Be careful！ Your luggage %@ has been out of the security area, please keep the!" = "注意！您的箱包%@已离开安全区域，请妥善保管！";
+"success" = "成功";
+"failure" = "失败";
 "Luggage and bags" = "箱包";
 "Bag weighing" = "箱包称重";
 "confim" = "确认";
@@ -39,13 +43,14 @@
 "Has been bound to the user:%@" = "已绑定用户:%@";
 ////// 定位 ========================
 "Location" = "定位";
-
+"Accuracy" = "精度";
 "Add success" = "添加成功";
 "Add failure" = "添加失败";
 "Not yet positioned" = "尚未定位";
 "Update Time" = "更新时间";
-////// 介绍 ========================
+////// 介绍 ========================圈子
 "Introduce" = "介绍";
+"Social" = "圈子";
 
 "Shenzhen Hong Wang handbags Products Co., Ltd.\n" = "深圳市宏旺手袋制品有限公司\n";
 "Was founded in January 2002, is a professional design and production of bags of production enterprises. Hong Wang to foundry world brand of a gleam of bags products started, after many years of efforts, developed a series of own brand products, mainly including:\n" = "创立于2002年1月，是一家专业设计和制作箱包产品的生产企业。宏旺以代工世界一线品牌的包袋产品起家，经过多年的努力，研发出一系列的自主品牌产品，主要包括:\n";
@@ -55,7 +60,7 @@
 "Smart luggage series\n\n" = "智能行李箱系列\n\n";
 "Hong Wang's vision: to do first-class luggage products, to do responsible business, happy work, happy life\n" = "宏旺的愿景：做一流的箱包产品，做负责任的企业，快乐的工作，快乐的生活\n";
 /////管理 =================
-
+"Mine" = "我的";
 "User information" = "用户资料";
 "Head portrait" = "头像";
 "NickName" = "昵称";
@@ -80,6 +85,18 @@
 
 "Password error" = "密码错误";
 
+
+"My good friend" = "我的好友";
+"My collection of Posts" = "我收藏的帖子";
+"My post."="我发布的帖子";
+"My fence info"="我的围栏信息";
+"Setting" = "设置";
+
+"Under development" = "正在开发中";
+
+"System message" = "系统消息";
+"Version upgrade" = "版本升级";
+"About us" = "关于我们";
 // 安全栏 。。。。
 
 "No security zone set" = "未设置安全区";

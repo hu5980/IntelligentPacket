@@ -30,7 +30,7 @@
 
 #define mainSchemeColor RGB(60,135,234) 
 
-#define viewColor    RGB(246, 246, 246)
+#define viewColor    RGB(230, 230, 230)
 
 // 国际化
 #define AppLanguage @"appLanguage"

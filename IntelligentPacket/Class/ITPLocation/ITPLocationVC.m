@@ -130,7 +130,7 @@
 //    self.locationTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(aotoQueryLocation) userInfo:nil repeats:YES];
 //    self.locationTimer.fireDate = [NSDate distantFuture]; // pause
     
-    updateTimeLabel =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 250, 30)];
+    updateTimeLabel =[[UILabel alloc] initWithFrame:CGRectMake(5, 0, self.view.width - 5, 30)];
     updateTimeLabel.textColor = [UIColor blueColor];
     updateTimeLabel.font = XKDefaultFontWithSize( 14.f);
     updateTimeLabel.backgroundColor = [UIColor clearColor];
@@ -293,7 +293,7 @@ static int stepValue = 11;
         BOOL abool = [ITPLocationViewModel isSuccesss:data];
         if (!error&&abool) { //更新时间 尚未定位
             ITPLocationModel * model = [ITPLocationViewModel Locations:data];
-            updateTimeLabel.text = [NSString stringWithFormat:@"%@:%@",L(@"Update Time"), model.time.intValue>0?model.time:L(@"Not yet positioned")];
+            updateTimeLabel.text = [NSString stringWithFormat:@"%@:%@ %@ %@m",L(@"Update Time"), model.time.intValue>0?model.time:L(@"Not yet positioned"), L(@"Accuracy"), model.accuracy];
             [self setelectricImage:model.electric];
             NSLog(@"longitude = %@   latitude = %@", model.electric, model.latitude);
             self.circleRadiu = model.accuracy.intValue;
@@ -347,8 +347,10 @@ static int stepValue = 11;
         locationmanager.delegate = self;
         locationmanager.desiredAccuracy = kCLLocationAccuracyBest;
         locationmanager.distanceFilter = .5f;
+        if ([locationmanager   respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [locationmanager requestWhenInUseAuthorization];
+        }else [locationmanager requestAlwaysAuthorization];
         
-        [locationmanager requestAlwaysAuthorization];
         [locationmanager startUpdatingLocation];
     }
 }

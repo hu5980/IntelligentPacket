@@ -29,6 +29,7 @@
 
 - (void)refreshLanguge {
 
+    self.title = L(@"Find password") ;
     self.titleLable.text = L(@"Find password");
     self.emaiTF.placeholder = L(@"Please enter your email address");
     self.firstpasswordTF.placeholder = L(@"Please enter your password");
@@ -61,7 +62,7 @@
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillShowNotification object:nil]subscribeNext:^(id x) {
         @strongify(self)
         NSLog(@"%@", x);
-        self.view.transform = CGAffineTransformMakeTranslation(0, -100);
+        self.view.transform = CGAffineTransformMakeTranslation(0, 0);
     }];
     
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillHideNotification object:nil]subscribeNext:^(id x) {

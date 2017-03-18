@@ -26,7 +26,7 @@
     
     if (self.model.bagPhoneNum.length >10 ) {
         [confimButton setTitle:L(@"save") forState:UIControlStateNormal];
-    }[confimButton setTitle:L(@"add") forState:UIControlStateNormal];
+    }else [confimButton setTitle:L(@"add") forState:UIControlStateNormal];
     
     phoneTextFiled.placeholder = L(@"phone number");
     nicknameTF.placeholder = L(@"Remarks");
@@ -69,10 +69,11 @@
         animationImages = @[[UIImage imageNamed:@"背包点击00"],[UIImage imageNamed:@"背包点击01"],[UIImage imageNamed:@"背包点击02"],[UIImage imageNamed:@"背包点击03"],[UIImage imageNamed:@"背包点击04"],[UIImage imageNamed:@"背包点击05"],[UIImage imageNamed:@"背包点击06"]];
     }
     
-    bag.animationImages = animationImages;
-    bag.animationDuration = .5;
-    bag.animationRepeatCount = 0;
-    [bag startAnimating];
+//    bag.animationImages = //animationImages;
+//    bag.animationDuration = .5;
+//    bag.animationRepeatCount = 0;
+//    [bag startAnimating];
+    
 
 }
 
@@ -89,7 +90,7 @@
             BOOL abool = [ITPBagViewModel isSuccesss:data callback:^(int statu, NSString *rec) {
                 if (statu == 1) {
                     @strongify(self);
-                    [self showAlert:L(@"Add bags success") WithDelay:2.];
+                    [self showAlert:L(@"success") WithDelay:2.];
                     [[NSNotificationCenter defaultCenter] postNotificationName:ITPacketAddbags object:nil];
                     [self performBlock:^{
                         @strongify(self);
@@ -101,7 +102,7 @@
                     string = [string stringByReplacingOccurrencesOfString:@"%@" withString:rec];
                     [self showAlert:string WithDelay:2.];;
                 }else {
-                    [self showAlert:L(@"Add bags failure") WithDelay:2.];;
+                    [self showAlert:L(@"failure") WithDelay:2.];;
                 }
             }];
         } afterDelay:.1];

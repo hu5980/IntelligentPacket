@@ -9,5 +9,5 @@
 #import "ITPBaseViewController.h"
 
 @interface ITPIntroduceVC : ITPBaseViewController
-
+//@property (assign) BOOL isWeb;
 @end

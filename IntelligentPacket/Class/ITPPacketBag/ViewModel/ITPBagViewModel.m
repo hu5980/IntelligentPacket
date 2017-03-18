@@ -26,7 +26,7 @@
     NSArray * dataArr = [self paraserData:data];
     
     if (((NSString *)dataArr[1]).intValue == 1) {
-        if(call) call(((NSString *)dataArr[1]).intValue, (NSString *)dataArr[2]);
+        if(call) call(((NSString *)dataArr[1]).intValue, nil);
         return YES;
     }else if (((NSString *)dataArr[1]).intValue == 3) {
         if(call) call(((NSString *)dataArr[1]).intValue, (NSString *)dataArr[2]);
@@ -67,6 +67,7 @@
         model.safeLongitude = (NSString *)temp[8];
         model.safeLatitude = (NSString *)temp[9];
         model.safeRadius = (NSString *)temp[10];
+        model.electric = (NSString *)temp[11];
         model.status = [self isONline:model];
     Next:
         [bags addObject:model];

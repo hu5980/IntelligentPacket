@@ -34,6 +34,7 @@
 
 - (void)refreshLanguge {
    
+    self.title = L(@"login") ;
     self.emailTextField.placeholder = L(@"Please enter your email address");
     self.passwordTextField.placeholder = L(@"Please enter your password");
     [self.loginButton setTitle:L(@"login") forState:UIControlStateNormal];
